@@ -24,6 +24,7 @@ public class SetupGame extends StateBasedGame {
         AppGameContainer app = new AppGameContainer(new SetupGame("Game"));
         app.setDisplayMode(width, height, false);
         app.setTargetFrameRate(fps);
+        app.setAlwaysRender(true);
         app.start();
 
     }
