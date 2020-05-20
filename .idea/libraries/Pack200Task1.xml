@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Pack200Task1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/Pack200Task.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

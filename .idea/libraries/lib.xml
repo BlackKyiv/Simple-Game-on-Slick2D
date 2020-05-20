@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/slick.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/lwjgl_util_applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/jogg-0.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/natives-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/jnlp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/jinput.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/tinylinepp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/ibxm.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/natives-linux.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/lwjgl_util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/natives-windows.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/slick-examples.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Desktop/GAME/out/production/Graphics2D/Libary/lib/jorbis-0.0.15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
