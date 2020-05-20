@@ -6,8 +6,11 @@
       <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Coronavirus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Coronavirus.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/MapLevel1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/MapLevel1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Babka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Babka.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Coronavirus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Coronavirus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/MapLevel1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/MapLevel1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/SetupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/SetupGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -141,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589972269744</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ggg">
+      <created>1589978576054</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589978576054</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -153,46 +164,46 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="823" y="167" key="#com.intellij.ide.util.MemberChooser/0.23.1280.777@0.23.1280.777" timestamp="1589916147328" />
-    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1589972269373">
+    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1589978575814">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1589972269373" />
+    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1589978575814" />
     <state x="274" y="123" key="DetectedRootsChooserDialog" timestamp="1589886104573">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="274" y="123" key="DetectedRootsChooserDialog/0.23.1280.777@0.23.1280.777" timestamp="1589886104573" />
-    <state width="1175" height="93" key="GridCell.Tab.0.bottom" timestamp="1589977950799">
+    <state width="1175" height="93" key="GridCell.Tab.0.bottom" timestamp="1589984172871">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1175" height="93" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1589977950799" />
-    <state width="1175" height="93" key="GridCell.Tab.0.center" timestamp="1589977950798">
+    <state width="1175" height="93" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1589984172871" />
+    <state width="1175" height="93" key="GridCell.Tab.0.center" timestamp="1589984172870">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1175" height="93" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1589977950798" />
-    <state width="1175" height="93" key="GridCell.Tab.0.left" timestamp="1589977950797">
+    <state width="1175" height="93" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1589984172870" />
+    <state width="1175" height="93" key="GridCell.Tab.0.left" timestamp="1589984172869">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1175" height="93" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1589977950797" />
-    <state width="1175" height="93" key="GridCell.Tab.0.right" timestamp="1589977950798">
+    <state width="1175" height="93" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1589984172869" />
+    <state width="1175" height="93" key="GridCell.Tab.0.right" timestamp="1589984172870">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state width="1175" height="93" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1589977950798" />
+    <state width="1175" height="93" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1589984172870" />
     <state x="0" y="23" key="SettingsEditor" timestamp="1589886107985">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="0" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1589886107985" />
-    <state x="271" y="143" key="Vcs.Push.Dialog.v2" timestamp="1589972271489">
+    <state x="271" y="143" key="Vcs.Push.Dialog.v2" timestamp="1589978577938">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="271" y="143" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1589972271489" />
+    <state x="271" y="143" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1589978577938" />
     <state x="589" y="263" key="com.intellij.ide.util.TipDialog" timestamp="1589884666219">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="589" y="263" key="com.intellij.ide.util.TipDialog/0.23.1280.777@0.23.1280.777" timestamp="1589884666219" />
-    <state x="454" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589969151451">
+    <state x="454" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589979102093">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="454" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1589969151451" />
+    <state x="454" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1589979102093" />
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">
     <General>

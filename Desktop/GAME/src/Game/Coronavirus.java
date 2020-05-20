@@ -1,11 +1,9 @@
 package Game;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
-public class Coronavirus extends Rectangle {
+public class Coronavirus extends Rectangle implements Enemy {
 
     private boolean blockedLeft = false;
     private boolean blockedRight = false;
@@ -23,6 +21,7 @@ public class Coronavirus extends Rectangle {
     private boolean babkaNoticed = false;
     private boolean dead = false;
     private boolean babkaFound = false;
+    private boolean alive = true;
 
 
     public Coronavirus(float x, float y, float width, float height) throws SlickException {
@@ -83,6 +82,10 @@ public class Coronavirus extends Rectangle {
         }
     }
 
+    public void die(){
+        alive = false;
+    }
+    public boolean isAlive(){return alive;}
 
     public void checkForCollision(Rectangle platform, boolean isBabka, boolean notice) {
 
@@ -119,6 +122,11 @@ public class Coronavirus extends Rectangle {
 
                 if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
                     babkaNoticed = true;
+                }
+
+                Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
+                if (headDie.intersects(platform)) {
+                   die();
                 }
 
             }

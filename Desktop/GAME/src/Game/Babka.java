@@ -8,7 +8,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 
-
 public class Babka extends Rectangle {
     private float speedX = 0;
     private float speedY = 0;
@@ -169,4 +168,5 @@ public class Babka extends Rectangle {
     public void turnRight(){
 
     }
+
 }
