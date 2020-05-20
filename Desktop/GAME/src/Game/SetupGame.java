@@ -1,0 +1,29 @@
+package Game;
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
+
+public class SetupGame extends StateBasedGame {
+
+    public final static int width = 1100;
+    public final static int height = 700;
+    public final static int fps = 60;
+
+    public SetupGame(String name) {
+        super(name);
+    }
+
+    @Override
+    public void initStatesList(GameContainer gameContainer) throws SlickException {
+        this.addState(new MapLevel1());
+    }
+
+    public static void main(String[] args) throws SlickException {
+        AppGameContainer app = new AppGameContainer(new SetupGame("Game"));
+        app.setDisplayMode(width, height, false);
+        app.setTargetFrameRate(fps);
+        app.start();
+    }
+}
