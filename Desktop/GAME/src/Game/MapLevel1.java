@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
     public class MapLevel1 extends BasicGameState {
         private Babka babka;
+        private Coronavirus corona;
         private Rectangle terrain;
         private Rectangle platform;
         private Rectangle platform1;
@@ -26,6 +27,7 @@ import org.newdawn.slick.state.StateBasedGame;
         @Override
         public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
             babka = new Babka(50, 50, 50, 50);
+            corona = new Coronavirus(200, 50, 50, 50);
             terrain = new Rectangle(0, SetupGame.height-100, SetupGame.width, 100);
             platform = new Rectangle(0, SetupGame.height-100, SetupGame.width,20);
             platform1 = new Rectangle(SetupGame.width/2, SetupGame.height - 500, 100, 300);
@@ -45,18 +47,27 @@ import org.newdawn.slick.state.StateBasedGame;
             graphics.fill(platform3);
             graphics.setColor(Color.white);
             graphics.fill(babka);
+            graphics.setColor(Color.green);
+            graphics.fill(corona);
             graphics.drawString("Vertical Speed:"+Math.abs(babka.getSpeedY())+" m/s", 50,50);
             graphics.drawString("Landed:"+babka.isLanded(), 50,70);
         }
 
         @Override
         public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-            babka.update();
+            babka.update(1);
             babka.checkForCollision(platform);
             babka.checkForCollision(platform1);
             babka.checkForCollision(platform2);
             babka.checkForCollision(platform3);
+            babka.checkForCollision(corona);
             babka.controls(gameContainer);
+           corona.update();
+            corona.checkForCollision(platform,false);
+            corona.checkForCollision(babka, true);
+            corona.checkForCollision(platform1,false);
+            corona.checkForCollision(platform2,false);
+            corona.checkForCollision(platform3,false);
         }
 
 
