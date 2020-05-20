@@ -17,6 +17,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;" />
         <option value="dgoptsii" />
       </list>
     </option>
@@ -116,10 +117,10 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="823" y="167" key="#com.intellij.ide.util.MemberChooser/0.23.1280.777@0.23.1280.777" timestamp="1589916147328" />
-    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1589958648194">
+    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1589958669302">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1589958648194" />
+    <state x="0" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1589958669302" />
     <state x="274" y="123" key="DetectedRootsChooserDialog" timestamp="1589886104573">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -144,6 +145,10 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="0" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1589886107985" />
+    <state x="271" y="143" key="Vcs.Push.Dialog.v2" timestamp="1589958672060">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="271" y="143" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1589958672060" />
     <state x="589" y="263" key="com.intellij.ide.util.TipDialog" timestamp="1589884666219">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
