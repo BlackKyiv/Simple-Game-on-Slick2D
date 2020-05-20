@@ -6,167 +6,126 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
 public class Coronavirus extends Rectangle {
-    private float speedX = 0;
-    private float speedY = 0;
 
-    private float speed = 7f;
-
-    private float time = 0.1666666f;
-    private float gravity = 9.89f;
-    private boolean landed = false;
-    private Rectangle landTangel = null;
     private boolean blockedLeft = false;
     private boolean blockedRight = false;
+    private boolean blockedUp = false;
+    private boolean blockedDown = false;
 
     private float initialX;
     private float initialY;
-    private boolean goRight=true;
-    private boolean babkaNoticed=false;
+    private boolean goRight = true;
+
+
     float babkaX;
     float babkaY;
 
+    private boolean babkaNoticed = false;
+    private boolean dead = false;
+    private boolean babkaFound = false;
 
 
-
-
-    public Coronavirus (float x, float y, float width, float height) throws SlickException {
+    public Coronavirus(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
-        initialX=x;
-        initialY=x;
+        initialX = x;
+        initialY = x;
     }
 
 
+    public void update() {
 
-    public void update(){
+        move();
 
-            move( speedY);
-
-        gravityPull();
 
         blockedLeft = false;
         blockedRight = false;
+        blockedDown = false;
+        blockedLeft = false;
     }
 
-    public int getSpeedY(){
-        return (int) speedY;
-    }
-    public int getSpeedX(){return  (int) speedX;}
 
-    private void gravityPull(){
-        if(!landed){
-            speedY += gravity * Math.pow(time, 2);
-        }
+    private void move() {
+        if (babkaNoticed == false) {
 
-    }
-
-    private void move(float y) {
-        if (babkaNoticed = false) {
-            if (landed) {
-                if (goRight) {
-                    if (this.getX() >= initialX + 150 || blockedRight) {
-                        goRight = false;
-                    } else {
-                        this.setCenterX(getCenterX() + 1);
-                    }
+            if (goRight) {
+                if (this.getX() >= initialX + 150 || blockedRight) {
+                    goRight = false;
                 } else {
-                    if (this.getX() <= initialX - 150 || blockedLeft) {
-                        goRight = true;
-                    } else {
-                        this.setCenterX(getCenterX() - 1);
-                    }
+                    this.setCenterX(getCenterX() + 1);
                 }
-
             } else {
-                initialX = this.getX();
-                this.setCenterX(getCenterX() + 0);
+                if (this.getX() <= initialX - 150 || blockedLeft) {
+                    goRight = true;
+                } else {
+                    this.setCenterX(getCenterX() - 1);
+                }
             }
-            this.setCenterY(getCenterY() + y);
+
+
 
         }
 
         ///// babka noticed
         else {
-            if (this.getX() < babkaX&&blockedRight==false) {
-                this.setCenterX(getCenterX() + 1);
-            } else if (this.getX() > babkaX&&blockedLeft==false){
-                this.setCenterX(getCenterX() - 1);
-            }
-            if (this.getY() < babkaY) {
-                this.setCenterY(getCenterY() + 1);
-            } else {
-                this.setCenterY(getCenterY() - 1);
+            if (Math.abs(babkaX-this.getX())>350||Math.abs(babkaY-this.getY())>150){
+                babkaNoticed=false;
+                System.out.println(("babka bye"));
+            }else {
+                if (this.getX() < babkaX && blockedRight == false) {
+                        this.setCenterX(getCenterX() + 2);
+
+                } else if (this.getX() > babkaX && blockedLeft == false) {
+                    this.setCenterX(getCenterX() - 2);
+                }
+
+
             }
         }
     }
 
 
+    public void checkForCollision(Rectangle platform, boolean isBabka, boolean notice) {
 
+        if (notice) {
 
+            Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
 
-    public void checkForCollision(Rectangle platform, boolean isBabka){
-        if (isBabka){
-
-            babkaX=platform.getCenterX();
-          babkaY=platform.getCenterY();
-            Rectangle arm1 = new Rectangle(this.getX()-50, this.getY()+1, 50, 1);
-            Rectangle arm2 = new Rectangle(this.getX()-50, this.getY() + this.getHeight() - 2, 50, 1);
-
-            if ((arm1.intersects(platform) || arm2.intersects(platform)) && landed) {
-                blockedLeft = true;
-                babkaNoticed=true;
+            if (leg.intersects(platform)) {
+                blockedDown = true;
             }
 
 
-            Rectangle arm3 = new Rectangle(this.getX() + getWidth() +50, this.getY()+1 , 50, 1);
-            Rectangle arm4 = new Rectangle(this.getX() + getWidth() +50, this.getY() + this.getHeight() - 2, 50, 1);
-
-            if (arm3.intersects(platform) || arm4.intersects(platform) && landed) {
-                blockedRight = true;
-                babkaNoticed=true;
-            }
-
-
-
-
-        }
-
-
-            Rectangle leg1 = new Rectangle(this.getX(), this.getY() + this.getHeight(), 1, 1);
-            Rectangle leg2 = new Rectangle(this.getX() + this.width - 1, this.getY() + this.getHeight(), 1, 1);
-
-            if (leg1.intersects(platform) || leg2.intersects(platform) && landTangel != null && landTangel.equals(platform)) {
-                this.setY(platform.getY() - this.getHeight());
-                setLanded(true);
-                landTangel = platform;
-            } else if (landTangel != null && landTangel.equals(platform)) {
-                setLanded(false);
-            }
-
-
-            Rectangle arm1 = new Rectangle(this.getX()-1, this.getY()+1, 1, 1);
-            Rectangle arm2 = new Rectangle(this.getX()-1, this.getY() + this.getHeight() - 2, 1, 1);
-
-            if ((arm1.intersects(platform) || arm2.intersects(platform)) && landed) {
+            Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
+            if ((arm1.intersects(platform))) {
                 blockedLeft = true;
             }
 
-
-            Rectangle arm3 = new Rectangle(this.getX() + getWidth() +1, this.getY()+1 , 1, 1);
-            Rectangle arm4 = new Rectangle(this.getX() + getWidth() +1, this.getY() + this.getHeight() - 2, 1, 1);
-
-            if (arm3.intersects(platform) || arm4.intersects(platform) && landed) {
+            Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
+            if ((arm2.intersects(platform))) {
                 blockedRight = true;
             }
 
+            Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
+            if (head.intersects(platform)) {
+                blockedUp = true;
+            }
+            if (isBabka) {
+                babkaX = platform.getX();
+                babkaY = platform.getY()+platform.getHeight();
+                Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, 250);
+                Rectangle arm1B = new Rectangle(this.getX() - 250, this.getY() + 1, 250, height - 2);
+                Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 250, height - 2);
+                Rectangle headB = new Rectangle(this.getX() - 250, this.getY(), width, 250);
 
-    }
+                if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
+                    babkaNoticed = true;
+                }
 
-    public void setLanded(boolean landed){
-        this.landed = landed;
-        if(landed) {
-             speedY = 0;
+            }
+
+
         }
-        else landTangel = null;
     }
+
 
 }

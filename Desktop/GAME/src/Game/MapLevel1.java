@@ -27,7 +27,7 @@ import org.newdawn.slick.state.StateBasedGame;
         @Override
         public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
             babka = new Babka(50, 50, 50, 50);
-            corona = new Coronavirus(200, 50, 50, 50);
+            corona = new Coronavirus(350, 550, 50, 50);
             terrain = new Rectangle(0, SetupGame.height-100, SetupGame.width, 100);
             platform = new Rectangle(0, SetupGame.height-100, SetupGame.width,20);
             platform1 = new Rectangle(SetupGame.width/2, SetupGame.height - 500, 100, 300);
@@ -63,11 +63,11 @@ import org.newdawn.slick.state.StateBasedGame;
             babka.checkForCollision(corona);
             babka.controls(gameContainer);
            corona.update();
-            corona.checkForCollision(platform,false);
-            corona.checkForCollision(babka, true);
-            corona.checkForCollision(platform1,false);
-            corona.checkForCollision(platform2,false);
-            corona.checkForCollision(platform3,false);
+            corona.checkForCollision(platform,false, true);
+            corona.checkForCollision(platform1,false,true);
+            corona.checkForCollision(platform2,false,true);
+            corona.checkForCollision(platform3,false,false);
+            corona.checkForCollision(babka, true,true);
         }
 
 
