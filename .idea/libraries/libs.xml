@@ -1,22 +1,21 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/jinput.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/natives-linux.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/natives-windows.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/jorbis-0.0.15.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/lwjgl.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/tinylinepp.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/slick-examples.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/ibxm.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/jogg-0.0.7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/slick.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/lwjgl_util_applet.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/jnlp.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/natives-mac.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Desktop/GAME/libs/lwjgl_util.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs" />
+      <root url="file://$PROJECT_DIR$/Libary" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/Libary/javadoc" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/natives" />
+      <root url="file://$PROJECT_DIR$/Libary" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/Libary/src" />
+      <root url="file://$PROJECT_DIR$/Libary/tools" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/Libary" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/libs" recursive="false" />
   </library>
 </component>
