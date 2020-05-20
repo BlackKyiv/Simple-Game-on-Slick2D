@@ -98,17 +98,6 @@ public class MapLevel1 extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-        if(gameContainer.getInput().isKeyDown(Input.KEY_R)){
-            babka = new Babka(50, 50, 50, 50);
-
-            initDoors();
-            initEnemies();
-            initAttackZone();
-            initWals();
-        }
-
-
-
         corona.update();
         corona.checkForCollision(platform, false, true);
         corona.checkForCollision(platform1, false, true);
