@@ -115,7 +115,7 @@ import org.newdawn.slick.state.StateBasedGame;
         private void checkForAttack(GameContainer container){
             //if babka`s x > mouse x then draw attackZone on right
             //else if babka`s x < mouse x then draw attackZone on left+
-            if(container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+            if(container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_F)){
                 if(container.getInput().getMouseX()>babka.getX()){
                     attackZone.setX(babka.getX()+babka.getWidth());
                     attackZone.setY(babka.getY());
