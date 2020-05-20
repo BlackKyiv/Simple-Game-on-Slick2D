@@ -25,5 +25,6 @@ public class SetupGame extends StateBasedGame {
         app.setDisplayMode(width, height, false);
         app.setTargetFrameRate(fps);
         app.start();
+
     }
 }
