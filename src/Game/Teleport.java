@@ -17,4 +17,5 @@ public class Teleport extends Rectangle {
         super(x, y, width, height);
     }
 
+    
 }
