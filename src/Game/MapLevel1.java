@@ -243,7 +243,7 @@ public class MapLevel1 extends BasicGameState {
 
 
         //Doctors
-        if (doctor.isAlive()) {
+
             doctor.update(delta);
             if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
 
@@ -251,7 +251,7 @@ public class MapLevel1 extends BasicGameState {
                 doctor.checkForCollisionWall(obstacle);
             }
             doctor.checkForCollisionBabka(babka);
-        }
+
 
         //Coronas
         if(corona.isAlive()) {
@@ -268,28 +268,27 @@ public class MapLevel1 extends BasicGameState {
             coronaS.checkForCollisionBabka(babka);
         }
         //Turrels
-        if(turrel.isAlive()) {
-            turrel.update(delta);
-            turrel.checkForCollisionBabka(babka);
-            if(turrel.isReadyToShoot(babka))turrelBullets.add(turrel.shoot());
-        }
+         turrel.update(delta);
+         turrel.checkForCollisionBabka(babka);
+         if(turrel.isReadyToShoot(babka))turrelBullets.add(turrel.shoot());
+
 
         //Injections update
-        if (!injections.isEmpty()) {
-            for (int i =0; i<injections.size(); i++) {
-                Injection j = injections.get(i);
-                if(j.isPresent()) {
-                    j.update();
-                    for (Rectangle obstacle : obstacles) {
-                        j.checkForCollision(obstacle);
-                    }
-                }
-                else {
-                    injections.remove(i);
-                    i--;
-                }
-            }
-        }
+         if (!injections.isEmpty()) {
+             for (int i =0; i<injections.size(); i++) {
+                 Injection j = injections.get(i);
+                 if(j.isPresent()) {
+                     j.update();
+                     for (Rectangle obstacle : obstacles) {
+                         j.checkForCollision(obstacle);
+                     }
+                 }
+                 else {
+                     injections.remove(i);
+                     i--;
+                 }
+             }
+         }
 
 
 

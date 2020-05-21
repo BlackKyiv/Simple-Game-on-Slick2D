@@ -207,7 +207,7 @@ public class Doctor extends Rectangle implements Enemy {
     }
 
     public boolean isReadyToShoot(){
-        return shootGap.isFinished();
+        return isAlive()&&shootGap.isFinished();
     }
 
     public boolean babkaIsToRight(){

@@ -37,12 +37,7 @@ public class Turrel extends Rectangle implements Enemy {
     }
 
     public boolean isReadyToShoot(Rectangle target){
-        if(shootGap.isFinished()) {
-            return intersectsLineOfSight(target);
-        }
-        else {
-            return false;
-        }
+        return isAlive()&& shootGap.isFinished()&&intersectsLineOfSight(target);
     }
 
     public Injection shoot() throws SlickException {
