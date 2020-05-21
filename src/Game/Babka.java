@@ -107,7 +107,7 @@ public class Babka extends Rectangle {
             setLanded(false);
         }
 
-        Rectangle head = new Rectangle(this.getCenterX()-1, this.getY(), 1, 1);
+        Rectangle head = new Rectangle(this.getCenterX()-4, this.getY(), 5, 1);
         if(head.intersects(platform) && speedY<0){
             speedY = 0;
             this.setY(platform.getY()+platform.getHeight());
