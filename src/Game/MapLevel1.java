@@ -20,6 +20,8 @@ public class MapLevel1 extends BasicGameState {
     private Doctor doctor;
     private Teleport upperTeleport, lowerTeleport;
 
+    private ArrayList<Rectangle> obstacles  = new ArrayList<>();
+
     private Door door;
 
     private ArrayList<Injection> injections = new ArrayList<Injection>();
@@ -31,7 +33,7 @@ public class MapLevel1 extends BasicGameState {
     private int floorH =225, floorW =900;
     private int x_offset=100;
 
-    private String path = "/Users/dgoptsii/Game/pictures/";
+    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
 
     @Override
     public int getID() {
@@ -60,6 +62,8 @@ public class MapLevel1 extends BasicGameState {
         platform2 = new Rectangle(0, 0, 20, SetupGame.height);
 
         wall = new Image(path+"wall.jpg");
+
+
         leftWall = new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2);
         rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2-80, wallW, floorH *2);
         firstFloor = new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW);
