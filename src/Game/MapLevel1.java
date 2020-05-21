@@ -46,7 +46,7 @@ public class MapLevel1 extends BasicGameState {
     private int floorH = 225, floorW = 900;
     private int x_offset = 100;
 
-    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
+    private String path = SetupGame.path;
 
     @Override
     public int getID() {
@@ -69,12 +69,12 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void initWalls() throws SlickException {
-        background = new Image(path + "backg.jpg");
+        background = new Image(path + "pictures\\backg.jpg");
 
         terrain = new Rectangle(0, SetupGame.height - 10, SetupGame.width, 10);
         platform2 = new Rectangle(0, 0, 20, SetupGame.height);
 
-        wall = new Image(path+"wall.jpg");
+        wall = new Image(path+"pictures\\wall.jpg");
 
 
         obstacles.add(new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2));
@@ -89,22 +89,22 @@ public class MapLevel1 extends BasicGameState {
         secondF = new SpriteSheet(wall,10,10);
         roofF = new SpriteSheet(wall,50,50);
 
-        wallpaper = new Image(path+"wallpaper.jpg");
+        wallpaper = new Image(path+"pictures\\wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper,100,100);
 
-        window = new Image(path+"window.jpg");
-        sofa = new Image(path+"sofa.png");
-        table = new Image(path+"table.png");
-        wardrobe = new Image(path+"wardrobe.png");
-        cupboard = new Image(path+"cupboard.png");
-        nightstand = new Image(path+"nightstand.png");
-        rockingChair = new Image(path+"rocking chair.png");
+        window = new Image(path+"pictures\\window.jpg");
+        sofa = new Image(path+"pictures\\sofa.png");
+        table = new Image(path+"pictures\\table.png");
+        wardrobe = new Image(path+"pictures\\wardrobe.png");
+        cupboard = new Image(path+"pictures\\cupboard.png");
+        nightstand = new Image(path+"pictures\\nightstand.png");
+        rockingChair = new Image(path+"pictures\\rocking chair.png");
     }
 
     private void initDoors() throws SlickException {
         //  door = new Door(550,SetupGame.height-200, 20,100);
-        doorDown = new Image(path + "door.jpg");
-        doorUp = new Image(path + "door.jpg");
+        doorDown = new Image(path + "pictures\\door.jpg");
+        doorUp = new Image(path + "pictures\\door.jpg");
         upperTeleport = new Teleport(200, 330, 80, 135);
         lowerTeleport = new Teleport(200, 555, 80, 135);
     }
