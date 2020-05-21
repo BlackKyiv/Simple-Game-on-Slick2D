@@ -37,8 +37,6 @@ public class MapLevel1 extends BasicGameState {
 
     private ArrayList<Injection> injections = new ArrayList<Injection>();
     private ArrayList<Injection> turrelBullets = new ArrayList<Injection>();
-    private int timePassedD;
-    private int timePassedT;
 
 
     private static final int GROUND = 80;
@@ -55,7 +53,6 @@ public class MapLevel1 extends BasicGameState {
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
         babka = new Babka(900, 300, 50, 50);
 
         initDoors();
@@ -75,7 +72,6 @@ public class MapLevel1 extends BasicGameState {
         platform2 = new Rectangle(0, 0, 20, SetupGame.height);
 
         wall = new Image(path+"pictures\\wall.jpg");
-
 
         obstacles.add(new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2));
         obstacles.add(new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2-80, wallW, floorH *2));
@@ -111,14 +107,12 @@ public class MapLevel1 extends BasicGameState {
 
     private void initEnemies() throws SlickException {
 
-
         corona = new Coronavirus(650, 400);
         corona.setSpace(150);
         corona.setVisionHorizontal(150);
         corona.setVisionVertical(150);
         corona.setNotVisionHorizontal(200);
         corona.setNotVisionVertical(150);
-
 
 
         coronaS = new CoronaSmall(650, 700);
@@ -141,8 +135,6 @@ public class MapLevel1 extends BasicGameState {
 
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
-
         //drawDoors(graphics);
 
         graphics.fill(platform2);
@@ -219,7 +211,7 @@ public class MapLevel1 extends BasicGameState {
             graphics.fill(turrel);
         }
 
-        if (injections.isEmpty() == false) {
+        if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
                     graphics.setColor(Color.red);
@@ -228,7 +220,7 @@ public class MapLevel1 extends BasicGameState {
             }
         }
 
-        if (turrelBullets.isEmpty() == false) {
+        if (!turrelBullets.isEmpty()) {
             for (Injection i : turrelBullets) {
                 if (i.isPresent()) {
                     graphics.setColor(Color.orange);
@@ -247,10 +239,7 @@ public class MapLevel1 extends BasicGameState {
             babka.checkForCollision(obstacle);
         }
         babka.controls(gameContainer);
-
-
         //Doctors
-
             doctor.update(delta);
             if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
 
@@ -274,7 +263,7 @@ public class MapLevel1 extends BasicGameState {
             coronaS.update();
             coronaS.checkForCollisionBabka(babka);
         }
-        //Turrels
+        //Turrets
          turrel.update(delta);
          turrel.checkForCollisionBabka(babka);
          if(turrel.isReadyToShoot(babka))turrelBullets.add(turrel.shoot());

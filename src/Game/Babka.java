@@ -20,6 +20,7 @@ public class Babka extends Rectangle {
     private boolean blockedRight = false;
     private boolean inTeleport = false;
 
+
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
 
