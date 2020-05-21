@@ -14,6 +14,7 @@ public class MapLevel2 extends BasicGameState {
     private Babka babka;
     private Rectangle terrain;
     private Rectangle platform;
+    private Rectangle leftFrame, rightFrame, upperFrame;
     private Rectangle leftWallUp,leftWallDown,rightWall,firstFloor,secondFloor,thirdFloor,roof;
     private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter,turret1,turret2;
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
@@ -25,12 +26,11 @@ public class MapLevel2 extends BasicGameState {
 
     private Door door1,door2;
 
-    private static final int GROUND=80;
     private int wallW =10;
     private int floorH =190, floorW =900;
-    private int x_offset=100;
+    private int x_offset=200;
 
-    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
+    private String path = "..//Game//pictures//";
 
     @Override
     public int getID() {
