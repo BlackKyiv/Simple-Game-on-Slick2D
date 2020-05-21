@@ -17,7 +17,7 @@ public class Babka extends Rectangle {
     private Rectangle landTangle = null;
     private boolean blockedLeft = false;
     private boolean blockedRight = false;
-
+    private boolean inTeleport = false;
 
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
@@ -161,5 +161,26 @@ public class Babka extends Rectangle {
     public void turnRight(){
 
     }
+
+    public void teleport(GameContainer gc, int x, int y, int width, int height, int dx, int dy){
+        if(this.getMinX()>=x && this.getMaxX()<=x+width && this.getMinY()>=y && this.getMaxY()<=y+height && gc.getInput().isKeyPressed(Input.KEY_ENTER)){
+            this.move(dx,dy);
+        }
+    }
+
+    public boolean inTeleport(Teleport teleport){
+        inTeleport=false;
+        if(this.getMinX()>=teleport.getMinX() && this.getMaxX()<=teleport.getMaxX()&& this.getMinY()>=teleport.getMinY() && this.getMaxY()<=teleport.getMaxY()){
+            inTeleport=true;
+        }
+        return inTeleport;
+    }
+
+    public void goInTeleport(GameContainer gameContainer,Teleport teleport, int dx, int dy){
+        if(inTeleport(teleport)&&gameContainer.getInput().isKeyPressed(Input.KEY_ENTER)){
+            this.move(dx,dy);
+        }
+    }
+
 
 }
