@@ -90,52 +90,72 @@ public class Coronavirus extends Rectangle implements Enemy {
     }
     public boolean isAlive(){return alive;}
 
-    public void checkForCollision(Rectangle platform, boolean isBabka, boolean notice) {
 
-        if (notice) {
+    public void checkForCollisionWall(Rectangle platform){
 
-            Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
+        Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
 
-            if (leg.intersects(platform)) {
-                blockedDown = true;
-            }
+        if (leg.intersects(platform)) {
+            blockedDown = true;
+        }
 
 
-            Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
-            if ((arm1.intersects(platform))) {
-                blockedLeft = true;
-            }
+        Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
+        if ((arm1.intersects(platform))) {
+            blockedLeft = true;
+        }
 
-            Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
-            if ((arm2.intersects(platform))) {
-                blockedRight = true;
-            }
+        Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
+        if ((arm2.intersects(platform))) {
+            blockedRight = true;
+        }
 
-            Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
-            if (head.intersects(platform)) {
-                blockedUp = true;
-            }
-            if (isBabka) {
-                babkaX = platform.getX();
-                babkaY = platform.getY()+platform.getHeight();
-                Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVertical);
-                Rectangle arm1B = new Rectangle(this.getX() - visionHorizontal, this.getY() + 1, visionHorizontal, height - 2);
-                Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontal, height - 2);
-                Rectangle headB = new Rectangle(this.getX() , this.getY()- visionVertical, width, visionVertical);
-
-                if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
-                    babkaNoticed = true;
-                }
-
-                Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
-                if (headDie.intersects(platform)) {
-                    die();
-                }
-
-            }
-
+        Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
+        if (head.intersects(platform)) {
+            blockedUp = true;
         }
     }
+    public void checkForCollisionBabka(Rectangle platform){
+        Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
+
+        if (leg.intersects(platform)) {
+            blockedDown = true;
+        }
+
+
+        Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
+        if ((arm1.intersects(platform))) {
+            blockedLeft = true;
+        }
+
+        Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
+        if ((arm2.intersects(platform))) {
+            blockedRight = true;
+        }
+
+        Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
+        if (head.intersects(platform)) {
+            blockedUp = true;
+        }
+            babkaX = platform.getX();
+            babkaY = platform.getY()+platform.getHeight();
+            Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVertical);
+            Rectangle arm1B = new Rectangle(this.getX() - visionHorizontal, this.getY() + 1, visionHorizontal, height - 2);
+            Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontal, height - 2);
+            Rectangle headB = new Rectangle(this.getX() , this.getY()- visionVertical, width, visionVertical);
+
+            if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
+                babkaNoticed = true;
+            }
+
+            Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
+            if (headDie.intersects(platform)) {
+                die();
+            }
+
+    }
+
+
 
     public void setVisionHorizontal( float visionHorizontal){
         this.visionHorizontal=visionHorizontal;
