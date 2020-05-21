@@ -96,7 +96,6 @@ public class MapLevel2 extends BasicGameState {
     }
     private void initEnemies() throws SlickException {
 
-
     }
 
     @Override
