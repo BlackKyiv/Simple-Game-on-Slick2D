@@ -169,12 +169,6 @@ public class Babka extends Rectangle {
 
     }
 
-    public void teleport(GameContainer gc, int x, int y, int width, int height, int dx, int dy){
-        if(this.getMinX()>=x && this.getMaxX()<=x+width && this.getMinY()>=y && this.getMaxY()<=y+height && gc.getInput().isKeyPressed(Input.KEY_ENTER)){
-            this.move(dx,dy);
-        }
-    }
-
     public boolean inTeleport(Teleport teleport){
         inTeleport=false;
         if(this.getMinX()>=teleport.getMinX() && this.getMaxX()<=teleport.getMaxX()&& this.getMinY()>=teleport.getMinY() && this.getMaxY()<=teleport.getMaxY()){
