@@ -294,6 +294,7 @@ public class MapLevel1 extends BasicGameState {
                      injections.remove(i);
                      i--;
                  }
+                 if(j.intersects(attackZone)) j.reflect();
              }
          }
 
@@ -313,6 +314,7 @@ public class MapLevel1 extends BasicGameState {
                     turrelBullets.remove(i);
                     i--;
                 }
+                if(j.intersects(attackZone)) j.reflect();
             }
         }
 
