@@ -6,23 +6,24 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class MapLevel1 extends BasicGameState {
+public class MapLevel2 extends BasicGameState {
     private Babka babka;
     private Rectangle terrain;
     private Rectangle platform2;
-    private Rectangle leftWall,rightWall,firstFloor,secondFloor,roof;
-    private Image background,wall,wallpaper,window,sofa,table,wardrobe,cupboard,nightstand,rockingChair,  doorDown,  doorUp;
-    private SpriteSheet leftW,rightW,firstF,secondF,roofF, wallpaper1;
+    private Rectangle leftWall,rightWall,firstFloor,secondFloor,thirdFloor,roof;
+    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter,turret1,turret2;
+    private Image lift21, lift22, lift1,lift31, lift32, lift4;
+    private SpriteSheet leftW,rightW,firstF,secondF,thirdF, roofF, wallpaper1;
     private Rectangle attackZone;
     private Coronavirus corona;
     private Doctor doctor;
-    private Teleport upperTeleport, lowerTeleport;
+    private Teleport stairsL0,liftL1,liftL2,stairsL2,stairsL3;
 
     private Door door;
 
     private static final int GROUND=80;
     private int wallW =10;
-    private int floorH =225, floorW =900;
+    private int floorH =190, floorW =900;
     private int x_offset=100;
 
     private String path = "..\\Game\\pictures\\";
@@ -35,7 +36,7 @@ public class MapLevel1 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(900, 300, 50, 50);
+        babka = new Babka(120, 600, 50, 50);
 
         initDoors();
         initEnemies();
@@ -54,49 +55,45 @@ public class MapLevel1 extends BasicGameState {
         platform2 = new Rectangle(0, 0, 20, SetupGame.height);
 
         wall = new Image(path+"wall.jpg");
-        leftWall = new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2);
-        rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2-80, wallW, floorH *2);
+        leftWall = new Rectangle(x_offset- wallW,SetupGame.height- floorH *2-80, wallW, floorH *2);
+        rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2, wallW, floorH *2);
         firstFloor = new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW);
         secondFloor = new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW);
-        roof = new Rectangle(x_offset,SetupGame.height- floorH *2- wallW *2, floorW, wallW *2);
+        thirdFloor = new Rectangle(x_offset,SetupGame.height- floorH *2- wallW *2, floorW, wallW);
+        roof = new Rectangle(x_offset,SetupGame.height- floorH *3- wallW *3, floorW, wallW *2);
 
         leftW = new SpriteSheet(wall,10,10);
         rightW = new SpriteSheet(wall,10,10);
         firstF = new SpriteSheet(wall,10,10);
         secondF = new SpriteSheet(wall,10,10);
+        thirdF = new SpriteSheet(wall,10,10);
         roofF = new SpriteSheet(wall,50,50);
 
+        cellarwallpaper = new Image(path+"cellarwallpaper.png");
+        workshopwallpaper = new Image(path+"workshopwallpaer.jpg");
         wallpaper = new Image(path+"wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper,100,100);
 
+        helicopter = new Image(path+"helicopter.png");
         window = new Image(path+"window.jpg");
-        sofa = new Image(path+"sofa.png");
-        table = new Image(path+"table.png");
-        wardrobe = new Image(path+"wardrobe.png");
-        cupboard = new Image(path+"cupboard.png");
-        nightstand = new Image(path+"nightstand.png");
-        rockingChair = new Image(path+"rocking chair.png");
+        turret1 = new Image(path+"turret.png");
+        turret2 = new Image(path+"turret.png");
     }
 
     private void initDoors()throws SlickException{
-        //  door = new Door(550,SetupGame.height-200, 20,100);
-        doorDown = new Image(path+"door.jpg");
-        doorUp = new Image(path+"door.jpg");
-        upperTeleport = new Teleport(200,330,80,135);
-        lowerTeleport = new Teleport(200,555,80,135);
+        lift22 = new Image(path+"lift.png");
+        lift1 = new Image(path+"stairsLeft.png");
+        lift32 = new Image(path+"stairsLeft.png");
+        lift31 = new Image(path+"lift.png");
+        lift4 = new Image(path+"stairsLeft.png");
     }
     private void initEnemies() throws SlickException {
 
 
     }
 
-
-
-
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-
-
         // drawEnenmies(graphics);//if dummy is alive then draw it
         //drawDoors(graphics);
 
@@ -107,40 +104,41 @@ public class MapLevel1 extends BasicGameState {
         wall.startUse();
         for(int a=x_offset; a<SetupGame.width-x_offset; a+=10) {
             firstF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - wallW, 10, 10);
-            secondF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height- floorH - wallW, 10, 10);
-            roofF.getSubImage(0,20,100,70).drawEmbedded(a,SetupGame.height- floorH *2- wallW *2,10,20);
+            firstF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height- floorH - wallW, 10, 10);
+            firstF.getSubImage(0,20,50,50).drawEmbedded(a,SetupGame.height- floorH *2- wallW *2,10,10);
+            firstF.getSubImage(0,20,100,70).drawEmbedded(a,SetupGame.height- floorH *3- wallW *3,10,20);
         }
-        for(int a = SetupGame.height; a>SetupGame.height-2* wallW -2* floorH; a-=10){
+        for(int a = SetupGame.height; a>SetupGame.height-3* wallW -3* floorH; a-=10){
             leftW.getSubImage(0,20,50,50).drawEmbedded(x_offset- wallW,a,10,10);
             rightW.getSubImage(0,20,50,50).drawEmbedded(SetupGame.width-x_offset,a,10,10);
         }
         wall.endUse();
 
-        wallpaper.startUse();
+        workshopwallpaper.startUse();
         for(int a=x_offset; a<SetupGame.width-x_offset; a+=10){
-            wallpaper1.getSubImage(0,0,333,850).drawEmbedded(a,SetupGame.height-floorH,10,floorH-wallW);
-            wallpaper1.getSubImage(0,0,333,850).drawEmbedded(a,SetupGame.height-floorH*2,10,floorH-wallW);
+            wallpaper1.getSubImage(0,0,333,850).drawEmbedded(a,SetupGame.height-floorH*3-wallW*2,10,floorH);
+            wallpaper1.getSubImage(0,0,333,850).drawEmbedded(a,SetupGame.height-floorH*2-wallW,10,floorH);
         }
-        wallpaper.endUse();
+        workshopwallpaper.endUse();
+        cellarwallpaper.draw(100,510,900,180);
 
-        window.draw(800,300,100,100);
-        window.draw(500,300,100,100);
-        window.draw(800,550,100,100);
-        window.draw(500,550,100,100);
-        doorUp.draw(200,330,80,135);
-        doorDown.draw(200,555,80,135);
-        sofa.draw(600,365,200,100);
-        nightstand.draw(540,415,60,50);
-        nightstand.draw(800,415,60,50);
-        table.draw(625,630,150,60);
-        wardrobe.draw(350,500,130,193);
-        cupboard.draw(320,300,150,100);
-        rockingChair.draw(110,620,70,70);
+        window.draw(700,350,150,70);
+        window.draw(300,350,150,70);
+        window.draw(700,150,150,70);
+        window.draw(300,150,150,70);
+
+        lift22.draw(140,365,80,135);
+        lift1.draw(1000,530,-80,160);
+        lift32.draw(1000,140,-80,160);
+        lift31.draw(140,165,80,135);
+        lift4.draw(920,45,80,60);
+
+        turret1.draw(800,600,100,70);
+
+        helicopter.draw(150,20,250,80);
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
-        graphics.setColor(Color.black);
-
     }
 
     private void drawDoors(Graphics graphics) {
@@ -160,8 +158,6 @@ public class MapLevel1 extends BasicGameState {
             graphics.fill(doctor);
         }
 
-
-
     }
 
     @Override
@@ -175,13 +171,12 @@ public class MapLevel1 extends BasicGameState {
         babka.checkForCollision(leftWall);
         babka.checkForCollision(firstFloor);
         babka.checkForCollision(secondFloor);
+        babka.checkForCollision(thirdFloor);
         babka.checkForCollision(roof);
         babka.controls(gameContainer);
         checkForAttack(gameContainer);
-        //babka.teleport(gameContainer,200,330,80,135,0,100); //upper door
-        //babka.teleport(gameContainer,200,555,80,135,0,-300); //lower door
-        babka.goInTeleport(gameContainer,upperTeleport,0,100);
-        babka.goInTeleport(gameContainer,lowerTeleport,0,-300);
+        babka.teleport(gameContainer,200,330,80,135,0,100); //upper door
+        babka.teleport(gameContainer,200,555,80,135,0,-300); //lower door
     }
 
     private void checkForAttack(GameContainer container){
