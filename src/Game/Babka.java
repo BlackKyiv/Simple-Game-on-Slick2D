@@ -1,5 +1,6 @@
 package Game;
 
+import Game.interactiveObjects.Teleport;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 

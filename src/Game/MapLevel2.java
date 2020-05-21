@@ -1,5 +1,9 @@
 package Game;
 
+import Game.enemies.Coronavirus;
+import Game.enemies.Doctor;
+import Game.interactiveObjects.Door;
+import Game.interactiveObjects.Teleport;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;

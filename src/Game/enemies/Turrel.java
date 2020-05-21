@@ -1,9 +1,7 @@
-package Game;
+package Game.enemies;
 
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
-
-
+import Game.interactiveObjects.Injection;
+import Game.Timer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
