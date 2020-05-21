@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class MapLevel1 extends BasicGameState {
     private Babka babka;
     private Rectangle terrain;
-    private Rectangle platform2;
+    private Rectangle leftFrame,rightFrame,upperFrame;
     private Rectangle leftWall, rightWall, firstFloor, secondFloor, roof;
     private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp;
     private SpriteSheet leftW, rightW, firstF, secondF, roofF, wallpaper1;
@@ -35,9 +35,9 @@ public class MapLevel1 extends BasicGameState {
     private static final int GROUND = 80;
     private int wallW = 10;
     private int floorH = 225, floorW = 900;
-    private int x_offset = 100;
+    private int x_offset = 200;
 
-    private String path = "/Users/dgoptsii/Game/pictures/";
+    private String path = "..\\Game\\pictures\\";
 
     @Override
     public int getID() {
@@ -63,14 +63,16 @@ public class MapLevel1 extends BasicGameState {
         background = new Image(path + "backg.jpg");
 
         terrain = new Rectangle(0, SetupGame.height - 10, SetupGame.width, 10);
-        platform2 = new Rectangle(0, 0, 20, SetupGame.height);
+        leftFrame = new Rectangle(0, 0, 10, SetupGame.height);
+        rightFrame = new Rectangle(1090, 0, 10, SetupGame.height);
+        upperFrame = new Rectangle(0, 0, SetupGame.width, 10);
 
         wall = new Image(path+"wall.jpg");
-        leftWall = new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2);
-        rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2-80, wallW, floorH *2);
-        firstFloor = new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW);
-        secondFloor = new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW);
-        roof = new Rectangle(x_offset,SetupGame.height- floorH *2- wallW *2, floorW, wallW *2);
+        leftWall = new Rectangle(0,SetupGame.height- floorH *2, wallW, floorH *2);
+        rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2, wallW, floorH *2);
+        firstFloor = new Rectangle(0,SetupGame.height- wallW, floorW, wallW);
+        secondFloor = new Rectangle(0,SetupGame.height- floorH - wallW, floorW, wallW);
+        roof = new Rectangle(0,SetupGame.height- floorH *2- wallW *2, floorW+50, wallW *2);
 
         leftW = new SpriteSheet(wall,10,10);
         rightW = new SpriteSheet(wall,10,10);
@@ -94,14 +96,14 @@ public class MapLevel1 extends BasicGameState {
         //  door = new Door(550,SetupGame.height-200, 20,100);
         doorDown = new Image(path + "door.jpg");
         doorUp = new Image(path + "door.jpg");
-        upperTeleport = new Teleport(200, 330, 80, 135);
-        lowerTeleport = new Teleport(200, 555, 80, 135);
+        upperTeleport = new Teleport(100, 330, 80, 135);
+        lowerTeleport = new Teleport(100, 555, 80, 135);
     }
 
     private void initEnemies() throws SlickException {
 
 
-        corona = new Coronavirus(650, 400);
+        corona = new Coronavirus(550, 400);
         corona.setSpace(150);
         corona.setVisionHorizontal(150);
         corona.setVisionVertical(150);
@@ -110,10 +112,10 @@ public class MapLevel1 extends BasicGameState {
 
 
 
-        coronaS = new CoronaSmall(650, 700);
+        coronaS = new CoronaSmall(550, 700);
         coronaS.setSpeed(2);
 
-        doctor = new Doctor(750, 350);
+        doctor = new Doctor(650, 350);
         doctor.setSpace(150);
         doctor.setVisionHorizontal(350);
         doctor.setVisionVertical(150);
@@ -121,7 +123,7 @@ public class MapLevel1 extends BasicGameState {
         doctor.setNotVisionVertical(150);
 
 
-        turrel = new Turrel(750, 380);
+        turrel = new Turrel(650, 380);
 
 
     }
@@ -133,42 +135,44 @@ public class MapLevel1 extends BasicGameState {
 
         //drawDoors(graphics);
 
-        graphics.fill(platform2);
+        graphics.fill(leftFrame);
         graphics.fill(terrain);
         background.draw(0, 0, 1100, 700);
 
         wall.startUse();
-        for (int a = x_offset; a < SetupGame.width - x_offset; a += 10) {
+        for (int a = 0; a < SetupGame.width - x_offset; a += 10) {
             firstF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - wallW, 10, 10);
             secondF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - floorH - wallW, 10, 10);
+        }
+        for(int a = 0; a < SetupGame.width - x_offset+50; a += 10){
             roofF.getSubImage(0, 20, 100, 70).drawEmbedded(a, SetupGame.height - floorH * 2 - wallW * 2, 10, 20);
         }
         for (int a = SetupGame.height; a > SetupGame.height - 2 * wallW - 2 * floorH; a -= 10) {
-            leftW.getSubImage(0, 20, 50, 50).drawEmbedded(x_offset - wallW, a, 10, 10);
+            leftW.getSubImage(0, 20, 50, 50).drawEmbedded(0, a, 10, 10);
             rightW.getSubImage(0, 20, 50, 50).drawEmbedded(SetupGame.width - x_offset, a, 10, 10);
         }
         wall.endUse();
 
         wallpaper.startUse();
-        for (int a = x_offset; a < SetupGame.width - x_offset; a += 10) {
+        for (int a = wallW; a < SetupGame.width - x_offset; a += 10) {
             wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH, 10, floorH - wallW);
             wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH * 2, 10, floorH - wallW);
         }
         wallpaper.endUse();
 
-        window.draw(800, 300, 100, 100);
-        window.draw(500, 300, 100, 100);
-        window.draw(800, 550, 100, 100);
-        window.draw(500, 550, 100, 100);
-        doorUp.draw(200, 330, 80, 135);
-        doorDown.draw(200, 555, 80, 135);
-        sofa.draw(600, 365, 200, 100);
-        nightstand.draw(540, 415, 60, 50);
-        nightstand.draw(800, 415, 60, 50);
-        table.draw(625, 630, 150, 60);
-        wardrobe.draw(350, 500, 130, 193);
-        cupboard.draw(320, 300, 150, 100);
-        rockingChair.draw(110, 620, 70, 70);
+        window.draw(700, 300, 100, 100);
+        window.draw(400, 300, 100, 100);
+        window.draw(700, 550, 100, 100);
+        window.draw(400, 550, 100, 100);
+        doorUp.draw(100, 330, 80, 135);
+        doorDown.draw(100, 555, 80, 135);
+        sofa.draw(500, 365, 200, 100);
+        nightstand.draw(440, 415, 60, 50);
+        nightstand.draw(700, 415, 60, 50);
+        table.draw(525, 630, 150, 60);
+        wardrobe.draw(250, 500, 130, 193);
+        cupboard.draw(220, 300, 150, 100);
+        rockingChair.draw(10, 620, 70, 70);
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
@@ -234,7 +238,9 @@ public class MapLevel1 extends BasicGameState {
 
         babka.update(1);
         babka.checkForCollision(terrain);
-        babka.checkForCollision(platform2);
+        babka.checkForCollision(leftFrame);
+        babka.checkForCollision(rightFrame);
+        babka.checkForCollision(upperFrame);
         babka.checkForCollision(rightWall);
         babka.checkForCollision(leftWall);
         babka.checkForCollision(firstFloor);
@@ -244,7 +250,9 @@ public class MapLevel1 extends BasicGameState {
 
         doctor.update();
         doctor.checkForCollisionWall(terrain);
-        doctor.checkForCollisionWall(platform2);
+        doctor.checkForCollisionWall(leftFrame);
+        doctor.checkForCollisionWall(leftFrame);
+        doctor.checkForCollisionWall(upperFrame);
         doctor.checkForCollisionWall(rightWall);
         doctor.checkForCollisionWall(leftWall);
         doctor.checkForCollisionWall(firstFloor);
@@ -254,7 +262,9 @@ public class MapLevel1 extends BasicGameState {
 
         corona.update();
         corona.checkForCollisionWall(terrain);
-        corona.checkForCollisionWall(platform2);
+        corona.checkForCollisionWall(leftFrame);
+        corona.checkForCollisionWall(rightFrame);
+        corona.checkForCollisionWall(upperFrame);
         corona.checkForCollisionWall(rightWall);
         corona.checkForCollisionWall(leftWall);
         corona.checkForCollisionWall(firstFloor);
@@ -277,7 +287,9 @@ public class MapLevel1 extends BasicGameState {
             for (Injection j : injections) {
                 j.update();
                 j.checkForCollision(terrain);
-                j.checkForCollision(platform2);
+                j.checkForCollision(leftFrame);
+                j.checkForCollision(rightFrame);
+                j.checkForCollision(upperFrame);
                 j.checkForCollision(rightWall);
                 j.checkForCollision(leftWall);
                 j.checkForCollision(firstFloor);
@@ -296,7 +308,9 @@ public class MapLevel1 extends BasicGameState {
             for (Injection j :turrelBullets) {
                 j.update();
                 j.checkForCollision(terrain);
-                j.checkForCollision(platform2);
+                j.checkForCollision(leftFrame);
+                j.checkForCollision(rightFrame);
+                j.checkForCollision(upperFrame);
                 j.checkForCollision(rightWall);
                 j.checkForCollision(leftWall);
                 j.checkForCollision(firstFloor);
