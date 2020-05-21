@@ -107,9 +107,7 @@ public class Doctor extends Rectangle implements Enemy {
     }
     public boolean isAlive(){return alive;}
 
-    public void checkForCollision(Rectangle platform, boolean isBabka, boolean notice)   {
-
-        if (notice) {
+    public void checkForCollisionWall(Rectangle platform)   {
 
             Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
 
@@ -132,7 +130,32 @@ public class Doctor extends Rectangle implements Enemy {
             if (head.intersects(platform)) {
                 blockedUp = true;
             }
-            if (isBabka) {
+
+    }
+
+
+    public void checkForCollisionBabka(Rectangle platform)   {
+            Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
+
+            if (leg.intersects(platform)) {
+                blockedDown = true;
+            }
+
+
+            Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
+            if ((arm1.intersects(platform))) {
+                blockedLeft = true;
+            }
+
+            Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
+            if ((arm2.intersects(platform))) {
+                blockedRight = true;
+            }
+
+            Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
+            if (head.intersects(platform)) {
+                blockedUp = true;
+            }
                 babkaX = platform.getX();
                 babkaY = platform.getY();
                 babkaWidth=+platform.getWidth();
@@ -152,11 +175,9 @@ public class Doctor extends Rectangle implements Enemy {
                     die();
                 }
 
-            }
 
-        }
+
     }
-
 
 
     public boolean isBabkaNoticed(){
