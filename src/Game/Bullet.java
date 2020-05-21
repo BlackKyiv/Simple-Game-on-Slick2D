@@ -3,16 +3,22 @@ package Game;
 public interface Bullet {
     boolean right = false;
 
+
     void setRight();
 
     void setLeft();
 
-    void move();
 
     void checkCollisions();
 
-    void setSpeed();
+    void setSpeed( int speed);
 
+    void reflect();
+
+    boolean collided();
+
+    public void disappear();
+    public boolean isPresent();
 
 }
 

@@ -5,6 +5,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.util.ArrayList;
+
 
 public class MapLevel1 extends BasicGameState {
     private Babka babka;
@@ -20,12 +22,16 @@ public class MapLevel1 extends BasicGameState {
 
     private Door door;
 
+    private ArrayList<Injection> injections = new ArrayList<Injection>();
+    private int timePassed;
+
+
     private static final int GROUND=80;
     private int wallW =10;
     private int floorH =225, floorW =900;
     private int x_offset=100;
 
-    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
+    private String path = "/Users/dgoptsii/Game/pictures/";
 
     @Override
     public int getID() {
@@ -87,6 +93,20 @@ public class MapLevel1 extends BasicGameState {
     }
     private void initEnemies() throws SlickException {
 
+        doctor = new Doctor(750, 350);
+        corona = new Coronavirus(650, 400);
+        corona.setSpace(150);
+        corona.setVisionHorizontal(150);
+        corona.setVisionVertical(150);
+        corona.setNotVisionHorizontal(200);
+        corona.setNotVisionVertical(150);
+
+        doctor.setSpace(150);
+        doctor.setVisionHorizontal(350);
+        doctor.setVisionVertical(150);
+        doctor.setNotVisionHorizontal(400);
+        doctor.setNotVisionVertical(150);
+
 
     }
 
@@ -97,7 +117,7 @@ public class MapLevel1 extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 
 
-        // drawEnenmies(graphics);//if dummy is alive then draw it
+
         //drawDoors(graphics);
 
         graphics.fill(platform2);
@@ -140,6 +160,10 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.pink);
         graphics.fill(babka);
         graphics.setColor(Color.black);
+        graphics.setColor(Color.yellow);
+        graphics.fill(attackZone);
+
+        drawEnenmies(graphics);
 
     }
 
@@ -160,14 +184,20 @@ public class MapLevel1 extends BasicGameState {
             graphics.setColor(Color.cyan);
             graphics.fill(doctor);
         }
-
+        if (injections.isEmpty() == false) {
+            for (Injection i : injections) {
+                if (i.isPresent()) {
+                    graphics.setColor(Color.red);
+                    graphics.fill(i);
+                }
+            }
+        }
 
 
     }
 
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
 
 
 
@@ -180,7 +210,47 @@ public class MapLevel1 extends BasicGameState {
         babka.checkForCollision(secondFloor);
         babka.checkForCollision(roof);
         babka.controls(gameContainer);
+
+        doctor.update();
+        doctor.checkForCollision(terrain, false, true);
+        doctor.checkForCollision(platform2, false, true);
+        doctor.checkForCollision(rightWall, false, true);
+        doctor.checkForCollision(leftWall, false, true);
+        doctor.checkForCollision(firstFloor, false, true);
+        doctor.checkForCollision(secondFloor, false, true);
+        doctor.checkForCollision(roof, false, true);
+        doctor.checkForCollision(babka, true, true);
+
+        corona.update();
+        corona.checkForCollision(terrain, false, false);
+        corona.checkForCollision(platform2, false, false);
+        corona.checkForCollision(rightWall, false, false);
+        corona.checkForCollision(leftWall, false, false);
+        corona.checkForCollision(firstFloor, false, false);
+        corona.checkForCollision(secondFloor, false, false);
+        corona.checkForCollision(roof, false, false);
+        corona.checkForCollision(babka, true, true);
+
+        timePassed += delta;
+        if (timePassed>600){
+            timePassed=0;
+            doctorShoot();
+        }
+        if (injections.isEmpty() == false) {
+            for (Injection j : injections) {
+                j.update();
+                j.checkForCollision(terrain);
+                j.checkForCollision(platform2);
+                j.checkForCollision(rightWall);
+                j.checkForCollision(leftWall);
+                j.checkForCollision(firstFloor);
+                j.checkForCollision(secondFloor);
+                j.checkForCollision(roof);
+            }
+        }
         checkForAttack(gameContainer);
+
+
         //babka.teleport(gameContainer,200,330,80,135,0,100); //upper door
         //babka.teleport(gameContainer,200,555,80,135,0,-300); //lower door
         babka.goInTeleport(gameContainer,upperTeleport,0,100);
@@ -205,10 +275,24 @@ public class MapLevel1 extends BasicGameState {
         }
 
 
-       /* if(attackZone.intersects(corona)) corona.die();
-        if(attackZone.intersects(door)) door.broke();*/
+        if (attackZone.intersects(corona)) corona.die();
+        // if(attackZone.intersects(door)) door.broke();*/
+        if (attackZone.intersects(doctor)) doctor.die();
 
     }
+    private void doctorShoot() throws SlickException {
+        if (doctor.isBabkaNoticed()&&doctor.isAlive()) {
+            if (doctor.babkaIsToRight()){
+                Injection newInj= doctor.shoot();
+                newInj.setRight();
+                injections.add(newInj);
+            }else{
+                Injection newInj= doctor.shoot();
+                newInj.setLeft();
+                injections.add(newInj);
+            }
 
+        }
+    }
 
 }

@@ -1,6 +1,7 @@
 package Game;
 
 
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -15,6 +16,7 @@ public class Doctor extends Rectangle implements Enemy {
     private float initialX;
     private float initialY;
     private boolean goRight = true;
+    private boolean babkaToRight;
 
 
     float babkaX;
@@ -27,7 +29,7 @@ public class Doctor extends Rectangle implements Enemy {
     float notVisionHorizontal;
     float notVisionVertical;
     float space;
-    float distance=200;
+    float distance=100;
 
     private boolean babkaNoticed = false;
     private boolean alive = true;
@@ -49,6 +51,11 @@ public class Doctor extends Rectangle implements Enemy {
         blockedRight = false;
         blockedDown = false;
         blockedLeft = false;
+        if (babkaX<=this.getCenterX()){
+            babkaToRight=false;
+        }else{
+            babkaToRight=true;
+        }
     }
 
 
@@ -81,14 +88,13 @@ public class Doctor extends Rectangle implements Enemy {
             }
 
 
+            if (this.getX()+this.getWidth()+distance < babkaX||(this.getX() < babkaX+babkaWidth+distance&&this.getX() > babkaX+babkaWidth)&&blockedRight==false) {
+                this.setCenterX(getCenterX() + 2);
+            }
+            if (this.getX() > babkaX+this.getWidth()+distance||(this.getX()+this.getWidth()+distance > babkaX&&this.getX() +this.getWidth()< babkaX)&&blockedLeft==false) {
+                this.setCenterX(getCenterX() - 2);
 
-                if (this.getX()+this.getWidth()+distance < babkaX||(this.getX() < babkaX+babkaWidth+distance&&this.getX() > babkaX+babkaWidth)&&blockedRight==false) {
-                    this.setCenterX(getCenterX() + 2);
-                }
-        if (this.getX() > babkaX+this.getWidth()+distance||(this.getX()+this.getWidth()+distance > babkaX&&this.getX() +this.getWidth()< babkaX)&&blockedLeft==false) {
-            this.setCenterX(getCenterX() - 2);
-
-        }
+            }
 
 
 
@@ -101,7 +107,7 @@ public class Doctor extends Rectangle implements Enemy {
     }
     public boolean isAlive(){return alive;}
 
-    public void checkForCollision(Rectangle platform, boolean isBabka, boolean notice) {
+    public void checkForCollision(Rectangle platform, boolean isBabka, boolean notice)   {
 
         if (notice) {
 
@@ -129,7 +135,7 @@ public class Doctor extends Rectangle implements Enemy {
             if (isBabka) {
                 babkaX = platform.getX();
                 babkaY = platform.getY();
-                 babkaWidth=+platform.getWidth();
+                babkaWidth=+platform.getWidth();
                 babkaHeight=platform.getHeight();
                 Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVertical);
                 Rectangle arm1B = new Rectangle(this.getX() - visionHorizontal, this.getY() + 1, visionHorizontal, height - 2);
@@ -138,6 +144,7 @@ public class Doctor extends Rectangle implements Enemy {
 
                 if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
                     babkaNoticed = true;
+
                 }
 
                 Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
@@ -150,6 +157,11 @@ public class Doctor extends Rectangle implements Enemy {
         }
     }
 
+
+
+    public boolean isBabkaNoticed(){
+        return babkaNoticed;
+    }
     public void setVisionHorizontal( float visionHorizontal){
         this.visionHorizontal=visionHorizontal;
     }
@@ -171,7 +183,15 @@ public class Doctor extends Rectangle implements Enemy {
     public void setDistance( float distance){
         this.distance=distance;
     }
+    public Injection shoot() throws SlickException {
+        Injection injection = new Injection((int) this.getCenterX(), (int) this.getCenterY());
+        injection.setLeft();
+        injection.setPresent(true);
+        return injection;
+    }
 
-
+    public boolean babkaIsToRight(){
+        return babkaToRight;
+    }
 
 }

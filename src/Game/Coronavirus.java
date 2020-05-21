@@ -74,7 +74,7 @@ public class Coronavirus extends Rectangle implements Enemy {
 
             }else {
                 if (this.getX() < babkaX && blockedRight == false) {
-                        this.setCenterX(getCenterX() + 2);
+                    this.setCenterX(getCenterX() + 2);
 
                 } else if (this.getX() > babkaX && blockedLeft == false) {
                     this.setCenterX(getCenterX() - 2);
@@ -129,7 +129,7 @@ public class Coronavirus extends Rectangle implements Enemy {
 
                 Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
                 if (headDie.intersects(platform)) {
-                   die();
+                    die();
                 }
 
             }
@@ -153,7 +153,7 @@ public class Coronavirus extends Rectangle implements Enemy {
     }
 
     public void setSpace( float space){
-    this.space=space;
+        this.space=space;
     }
 
 
