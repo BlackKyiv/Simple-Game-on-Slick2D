@@ -107,7 +107,7 @@ public class Babka extends Rectangle {
             setLanded(false);
         }
 
-        Rectangle head = new Rectangle(this.getCenterX()-1, this.getY(), 1, 1);
+        Rectangle head = new Rectangle(this.getCenterX()-4, this.getY(), 5, 1);
         if(head.intersects(platform) && speedY<0){
             speedY = 0;
             this.setY(platform.getY()+platform.getHeight());
@@ -160,12 +160,6 @@ public class Babka extends Rectangle {
 
     public void turnRight(){
 
-    }
-
-    public void teleport(GameContainer gc, int x, int y, int width, int height, int dx, int dy){
-        if(this.getMinX()>=x && this.getMaxX()<=x+width && this.getMinY()>=y && this.getMaxY()<=y+height && gc.getInput().isKeyPressed(Input.KEY_ENTER)){
-            this.move(dx,dy);
-        }
     }
 
     public boolean inTeleport(Teleport teleport){
