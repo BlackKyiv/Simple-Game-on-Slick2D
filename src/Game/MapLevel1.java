@@ -24,7 +24,6 @@ public class MapLevel1 extends BasicGameState {
 
     private Teleport upperTeleport, lowerTeleport;
 
-
     private Door door;
 
     private ArrayList<Injection> injections = new ArrayList<Injection>();
@@ -66,29 +65,29 @@ public class MapLevel1 extends BasicGameState {
         terrain = new Rectangle(0, SetupGame.height - 10, SetupGame.width, 10);
         platform2 = new Rectangle(0, 0, 20, SetupGame.height);
 
-        wall = new Image(path + "wall.jpg");
-        leftWall = new Rectangle(x_offset - wallW, SetupGame.height - floorH * 2, wallW, floorH * 2);
-        rightWall = new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2 - 80, wallW, floorH * 2);
-        firstFloor = new Rectangle(x_offset, SetupGame.height - wallW, floorW, wallW);
-        secondFloor = new Rectangle(x_offset, SetupGame.height - floorH - wallW, floorW, wallW);
-        roof = new Rectangle(x_offset, SetupGame.height - floorH * 2 - wallW * 2, floorW, wallW * 2);
+        wall = new Image(path+"wall.jpg");
+        leftWall = new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2);
+        rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2-80, wallW, floorH *2);
+        firstFloor = new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW);
+        secondFloor = new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW);
+        roof = new Rectangle(x_offset,SetupGame.height- floorH *2- wallW *2, floorW, wallW *2);
 
-        leftW = new SpriteSheet(wall, 10, 10);
-        rightW = new SpriteSheet(wall, 10, 10);
-        firstF = new SpriteSheet(wall, 10, 10);
-        secondF = new SpriteSheet(wall, 10, 10);
-        roofF = new SpriteSheet(wall, 50, 50);
+        leftW = new SpriteSheet(wall,10,10);
+        rightW = new SpriteSheet(wall,10,10);
+        firstF = new SpriteSheet(wall,10,10);
+        secondF = new SpriteSheet(wall,10,10);
+        roofF = new SpriteSheet(wall,50,50);
 
-        wallpaper = new Image(path + "wallpaper.jpg");
-        wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
+        wallpaper = new Image(path+"wallpaper.jpg");
+        wallpaper1 = new SpriteSheet(wallpaper,100,100);
 
-        window = new Image(path + "window.jpg");
-        sofa = new Image(path + "sofa.png");
-        table = new Image(path + "table.png");
-        wardrobe = new Image(path + "wardrobe.png");
-        cupboard = new Image(path + "cupboard.png");
-        nightstand = new Image(path + "nightstand.png");
-        rockingChair = new Image(path + "rocking chair.png");
+        window = new Image(path+"window.jpg");
+        sofa = new Image(path+"sofa.png");
+        table = new Image(path+"table.png");
+        wardrobe = new Image(path+"wardrobe.png");
+        cupboard = new Image(path+"cupboard.png");
+        nightstand = new Image(path+"nightstand.png");
+        rockingChair = new Image(path+"rocking chair.png");
     }
 
     private void initDoors() throws SlickException {

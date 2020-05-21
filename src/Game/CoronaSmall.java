@@ -1,3 +1,4 @@
+
 package Game;
 
 import org.newdawn.slick.SlickException;
@@ -32,15 +33,15 @@ public class CoronaSmall extends Rectangle implements Enemy {
 
 
     private void move() {
-                if (this.getX() < babkaX && blockedRight == false) {
-                    this.setCenterX(getCenterX() + speed);
+        if (this.getX() < babkaX && blockedRight == false) {
+            this.setCenterX(getCenterX() + speed);
 
-                } if (this.getX() > babkaX && blockedLeft == false) {
-                    this.setCenterX(getCenterX() - speed);
-                }
-             if (this.getY() > babkaY  && blockedUp == false) {
-                    this.setCenterY(getCenterY() - speed);
-                } if (this.getY() < babkaY && blockedDown == false) {
+        } if (this.getX() > babkaX && blockedLeft == false) {
+            this.setCenterX(getCenterX() - speed);
+        }
+        if (this.getY() > babkaY  && blockedUp == false) {
+            this.setCenterY(getCenterY() - speed);
+        } if (this.getY() < babkaY && blockedDown == false) {
             this.setCenterY(getCenterY() + speed);
 
         }
@@ -57,13 +58,13 @@ public class CoronaSmall extends Rectangle implements Enemy {
 
     public void checkForCollisionWall(Rectangle platform) {}
     public void checkForCollisionBabka(Rectangle platform) {
-                babkaX = platform.getCenterX();
-                babkaY = platform.getCenterY();
+        babkaX = platform.getCenterX();
+        babkaY = platform.getCenterY();
 
-                Rectangle headDie = new Rectangle(this.getX() + 8, this.getY(), width - 16, 1);
-                if (headDie.intersects(platform)) {
-                    die();
-                }
+        Rectangle headDie = new Rectangle(this.getX() + 8, this.getY(), width - 16, 1);
+        if (headDie.intersects(platform)) {
+            die();
+        }
 
     }
 
