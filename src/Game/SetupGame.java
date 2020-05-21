@@ -10,6 +10,7 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
+    public final static String path = "..\\Game\\";
 
     public SetupGame(String name) {
         super(name);
@@ -17,7 +18,7 @@ public class SetupGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        this.addState(new MapLevel2());
+        this.addState(new MapLevel1());
     }
 
     public static void main(String[] args) throws SlickException {

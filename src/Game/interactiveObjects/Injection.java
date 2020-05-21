@@ -1,6 +1,5 @@
 package Game.interactiveObjects;
 
-import Game.enemies.Bullet;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 

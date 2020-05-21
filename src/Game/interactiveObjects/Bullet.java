@@ -1,4 +1,4 @@
-package Game.enemies;
+package Game.interactiveObjects;
 
 public interface Bullet {
     boolean right = false;

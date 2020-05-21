@@ -30,7 +30,7 @@ public class MapLevel2 extends BasicGameState {
     private int floorH =190, floorW =900;
     private int x_offset=200;
 
-    private String path = "..//Game//pictures//";
+    private String path = SetupGame.path;
 
     @Override
     public int getID() {
@@ -53,12 +53,12 @@ public class MapLevel2 extends BasicGameState {
     }
 
     private void initWalls()throws SlickException {
-        background = new Image(path+"backg.jpg");
+        background = new Image(path+"pictures\\backg.jpg");
 
         terrain = new Rectangle(0, SetupGame.height-10, SetupGame.width, 10);
         platform = new Rectangle(0, 0, 20, SetupGame.height);
 
-        wall = new Image(path+"wall.jpg");
+        wall = new Image(path+"pictures\\wall.jpg");
         leftWallUp = new Rectangle(x_offset- wallW,110, wallW, 310);
         leftWallDown = new Rectangle(x_offset- wallW,SetupGame.height- floorH - wallW,wallW,110);
         rightWall = new Rectangle(SetupGame.width-x_offset,110, wallW, 590);
@@ -70,17 +70,17 @@ public class MapLevel2 extends BasicGameState {
         wallSS = new SpriteSheet(wall,10,10);
         floorSS = new SpriteSheet(wall,10,10);
 
-        cellarwallpaper = new Image(path+"cellarwallpaper.png");
-        workshopwallpaper = new Image(path+"workshopwallpaer.jpg");
-        wallpaper = new Image(path+"wallpaper.jpg");
+        cellarwallpaper = new Image(path+"pictures\\cellarwallpaper.png");
+        workshopwallpaper = new Image(path+"pictures\\workshopwallpaer.jpg");
+        wallpaper = new Image(path+"pictures\\wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper,10,10);
 
-        lift22 = new Image(path+"lift.png");
-        lift1 = new Image(path+"lift.png");
-        lift32 = new Image(path+"lift.png");
-        lift31 = new Image(path+"lift.png");
-        lift4 = new Image(path+"lift.png");
-        lift21 = new Image(path+"lift.png");
+        lift22 = new Image(path+"pictures\\lift.png");
+        lift1 = new Image(path+"pictures\\lift.png");
+        lift32 = new Image(path+"pictures\\lift.png");
+        lift31 = new Image(path+"pictures\\lift.png");
+        lift4 = new Image(path+"pictures\\lift.png");
+        lift21 = new Image(path+"pictures\\lift.png");
         tp1 = new Teleport(900,600,80,90);
         tp21 = new Teleport(120,410,80,90);
         tp22 = new Teleport(900,410,80,90);
@@ -88,10 +88,10 @@ public class MapLevel2 extends BasicGameState {
         tp32 = new Teleport(900,310,80,90);
         tp4 = new Teleport(900,10,80,90);
 
-        helicopter = new Image(path+"helicopter.png");
-        window = new Image(path+"window.jpg");
-        turret1 = new Image(path+"turret.png");
-        turret2 = new Image(path+"turret.png");
+        helicopter = new Image(path+"pictures\\helicopter.png");
+        window = new Image(path+"pictures\\window.jpg");
+        turret1 = new Image(path+"pictures\\turret.png");
+        turret2 = new Image(path+"pictures\\turret.png");
     }
 
     private void initDoors()throws SlickException{
