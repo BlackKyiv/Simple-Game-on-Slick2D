@@ -1,4 +1,4 @@
-package Game;
+package Game.enemies;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;

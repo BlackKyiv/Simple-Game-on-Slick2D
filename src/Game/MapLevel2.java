@@ -1,5 +1,9 @@
 package Game;
 
+import Game.enemies.Coronavirus;
+import Game.enemies.Doctor;
+import Game.interactiveObjects.Door;
+import Game.interactiveObjects.Teleport;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
@@ -26,7 +30,7 @@ public class MapLevel2 extends BasicGameState {
     private int floorH =190, floorW =900;
     private int x_offset=100;
 
-    private String path = "/Users/dgoptsii/Game/pictures/";
+    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
 
     @Override
     public int getID() {

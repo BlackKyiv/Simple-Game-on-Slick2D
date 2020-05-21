@@ -1,5 +1,6 @@
 package Game;
 
+import Game.interactiveObjects.Teleport;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -113,9 +114,6 @@ public class Babka extends Rectangle {
             this.setY(platform.getY()+platform.getHeight());
         }
 
-
-
-
         Rectangle arm1 = new Rectangle(this.getX()-1, this.getY()+2,1,1);
         Rectangle arm2 = new Rectangle(this.getX()-1, this.getY()+this.getHeight()-2,1,1);
 
@@ -138,6 +136,20 @@ public class Babka extends Rectangle {
 
         }
 
+    }
+
+    public void checkForCollisionWithInterior(Rectangle platform){
+        Rectangle leg1 = new Rectangle(this.getCenterX(), this.getY()+this.getHeight(),1,1);
+        Rectangle leg2 = new Rectangle(this.getCenterX(), this.getY()+this.getHeight(),1,1);
+
+        if(leg1.intersects(platform)||leg2.intersects(platform) && landTangle != null && landTangle.equals(platform)){
+            this.setY(platform.getY()-this.getHeight() );
+            setLanded(true);
+            landTangle = platform;
+        }
+        else if(landTangle != null && landTangle.equals(platform)){
+            setLanded(false);
+        }
     }
 
     public void setLanded(boolean landed){

@@ -1,5 +1,12 @@
 package Game;
 
+import Game.enemies.CoronaSmall;
+import Game.enemies.Coronavirus;
+import Game.enemies.Doctor;
+import Game.enemies.Turrel;
+import Game.interactiveObjects.Door;
+import Game.interactiveObjects.Injection;
+import Game.interactiveObjects.Teleport;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
@@ -11,11 +18,13 @@ import java.util.ArrayList;
 public class MapLevel1 extends BasicGameState {
     private Babka babka;
     private Rectangle terrain;
-    private Rectangle leftFrame,rightFrame,upperFrame;
+    private Rectangle platform2;
     private Rectangle leftWall, rightWall, firstFloor, secondFloor, roof;
     private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp;
     private SpriteSheet leftW, rightW, firstF, secondF, roofF, wallpaper1;
     private Rectangle attackZone;
+
+    private ArrayList<Rectangle> obstacles = new ArrayList<>();
 
     private Turrel turrel;
     private CoronaSmall coronaS;
@@ -35,9 +44,9 @@ public class MapLevel1 extends BasicGameState {
     private static final int GROUND = 80;
     private int wallW = 10;
     private int floorH = 225, floorW = 900;
-    private int x_offset = 200;
+    private int x_offset = 100;
 
-    private String path = "..\\Game\\pictures\\";
+    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
 
     @Override
     public int getID() {
@@ -63,16 +72,16 @@ public class MapLevel1 extends BasicGameState {
         background = new Image(path + "backg.jpg");
 
         terrain = new Rectangle(0, SetupGame.height - 10, SetupGame.width, 10);
-        leftFrame = new Rectangle(0, 0, 10, SetupGame.height);
-        rightFrame = new Rectangle(1090, 0, 10, SetupGame.height);
-        upperFrame = new Rectangle(0, 0, SetupGame.width, 10);
+        platform2 = new Rectangle(0, 0, 20, SetupGame.height);
 
         wall = new Image(path+"wall.jpg");
-        leftWall = new Rectangle(0,SetupGame.height- floorH *2, wallW, floorH *2);
-        rightWall = new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2, wallW, floorH *2);
-        firstFloor = new Rectangle(0,SetupGame.height- wallW, floorW, wallW);
-        secondFloor = new Rectangle(0,SetupGame.height- floorH - wallW, floorW, wallW);
-        roof = new Rectangle(0,SetupGame.height- floorH *2- wallW *2, floorW+50, wallW *2);
+
+
+        obstacles.add(new Rectangle(x_offset- wallW,SetupGame.height- floorH *2, wallW, floorH *2));
+        obstacles.add(new Rectangle(SetupGame.width-x_offset,SetupGame.height- floorH *2-80, wallW, floorH *2));
+        obstacles.add(new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW));
+        obstacles.add(new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW));
+        obstacles.add(new Rectangle(x_offset,SetupGame.height- floorH *2- wallW *2, floorW, wallW *2));
 
         leftW = new SpriteSheet(wall,10,10);
         rightW = new SpriteSheet(wall,10,10);
@@ -96,14 +105,14 @@ public class MapLevel1 extends BasicGameState {
         //  door = new Door(550,SetupGame.height-200, 20,100);
         doorDown = new Image(path + "door.jpg");
         doorUp = new Image(path + "door.jpg");
-        upperTeleport = new Teleport(100, 330, 80, 135);
-        lowerTeleport = new Teleport(100, 555, 80, 135);
+        upperTeleport = new Teleport(200, 330, 80, 135);
+        lowerTeleport = new Teleport(200, 555, 80, 135);
     }
 
     private void initEnemies() throws SlickException {
 
 
-        corona = new Coronavirus(550, 400);
+        corona = new Coronavirus(650, 400);
         corona.setSpace(150);
         corona.setVisionHorizontal(150);
         corona.setVisionVertical(150);
@@ -112,10 +121,10 @@ public class MapLevel1 extends BasicGameState {
 
 
 
-        coronaS = new CoronaSmall(550, 700);
+        coronaS = new CoronaSmall(650, 700);
         coronaS.setSpeed(2);
 
-        doctor = new Doctor(650, 350);
+        doctor = new Doctor(750, 350);
         doctor.setSpace(150);
         doctor.setVisionHorizontal(350);
         doctor.setVisionVertical(150);
@@ -123,8 +132,9 @@ public class MapLevel1 extends BasicGameState {
         doctor.setNotVisionVertical(150);
 
 
-        turrel = new Turrel(650, 380);
-
+        turrel = new Turrel(750, 380);
+        turrel.setLeft();
+        turrel.setRangeOfSight(500);
 
     }
 
@@ -135,44 +145,42 @@ public class MapLevel1 extends BasicGameState {
 
         //drawDoors(graphics);
 
-        graphics.fill(leftFrame);
+        graphics.fill(platform2);
         graphics.fill(terrain);
         background.draw(0, 0, 1100, 700);
 
         wall.startUse();
-        for (int a = 0; a < SetupGame.width - x_offset; a += 10) {
+        for (int a = x_offset; a < SetupGame.width - x_offset; a += 10) {
             firstF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - wallW, 10, 10);
             secondF.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - floorH - wallW, 10, 10);
-        }
-        for(int a = 0; a < SetupGame.width - x_offset+50; a += 10){
             roofF.getSubImage(0, 20, 100, 70).drawEmbedded(a, SetupGame.height - floorH * 2 - wallW * 2, 10, 20);
         }
         for (int a = SetupGame.height; a > SetupGame.height - 2 * wallW - 2 * floorH; a -= 10) {
-            leftW.getSubImage(0, 20, 50, 50).drawEmbedded(0, a, 10, 10);
+            leftW.getSubImage(0, 20, 50, 50).drawEmbedded(x_offset - wallW, a, 10, 10);
             rightW.getSubImage(0, 20, 50, 50).drawEmbedded(SetupGame.width - x_offset, a, 10, 10);
         }
         wall.endUse();
 
         wallpaper.startUse();
-        for (int a = wallW; a < SetupGame.width - x_offset; a += 10) {
+        for (int a = x_offset; a < SetupGame.width - x_offset; a += 10) {
             wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH, 10, floorH - wallW);
             wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH * 2, 10, floorH - wallW);
         }
         wallpaper.endUse();
 
-        window.draw(700, 300, 100, 100);
-        window.draw(400, 300, 100, 100);
-        window.draw(700, 550, 100, 100);
-        window.draw(400, 550, 100, 100);
-        doorUp.draw(100, 330, 80, 135);
-        doorDown.draw(100, 555, 80, 135);
-        sofa.draw(500, 365, 200, 100);
-        nightstand.draw(440, 415, 60, 50);
-        nightstand.draw(700, 415, 60, 50);
-        table.draw(525, 630, 150, 60);
-        wardrobe.draw(250, 500, 130, 193);
-        cupboard.draw(220, 300, 150, 100);
-        rockingChair.draw(10, 620, 70, 70);
+        window.draw(800, 300, 100, 100);
+        window.draw(500, 300, 100, 100);
+        window.draw(800, 550, 100, 100);
+        window.draw(500, 550, 100, 100);
+        doorUp.draw(200, 330, 80, 135);
+        doorDown.draw(200, 555, 80, 135);
+        sofa.draw(600, 365, 200, 100);
+        nightstand.draw(540, 415, 60, 50);
+        nightstand.draw(800, 415, 60, 50);
+        table.draw(625, 630, 150, 60);
+        wardrobe.draw(350, 500, 130, 193);
+        cupboard.draw(320, 300, 150, 100);
+        rockingChair.draw(110, 620, 70, 70);
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
@@ -234,88 +242,77 @@ public class MapLevel1 extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
-
-
         babka.update(1);
-        babka.checkForCollision(terrain);
-        babka.checkForCollision(leftFrame);
-        babka.checkForCollision(rightFrame);
-        babka.checkForCollision(upperFrame);
-        babka.checkForCollision(rightWall);
-        babka.checkForCollision(leftWall);
-        babka.checkForCollision(firstFloor);
-        babka.checkForCollision(secondFloor);
-        babka.checkForCollision(roof);
+        for (Rectangle obstacle : obstacles) {
+            babka.checkForCollision(obstacle);
+        }
         babka.controls(gameContainer);
 
-        doctor.update();
-        doctor.checkForCollisionWall(terrain);
-        doctor.checkForCollisionWall(leftFrame);
-        doctor.checkForCollisionWall(leftFrame);
-        doctor.checkForCollisionWall(upperFrame);
-        doctor.checkForCollisionWall(rightWall);
-        doctor.checkForCollisionWall(leftWall);
-        doctor.checkForCollisionWall(firstFloor);
-        doctor.checkForCollisionWall(secondFloor);
-        doctor.checkForCollisionWall(roof);
-        doctor.checkForCollisionBabka(babka);
 
-        corona.update();
-        corona.checkForCollisionWall(terrain);
-        corona.checkForCollisionWall(leftFrame);
-        corona.checkForCollisionWall(rightFrame);
-        corona.checkForCollisionWall(upperFrame);
-        corona.checkForCollisionWall(rightWall);
-        corona.checkForCollisionWall(leftWall);
-        corona.checkForCollisionWall(firstFloor);
-        corona.checkForCollisionWall(secondFloor);
-        corona.checkForCollisionWall(roof);
-        corona.checkForCollisionBabka(babka);
+        //Doctors
 
-        coronaS.update();
-        coronaS.checkForCollisionBabka(babka);
+            doctor.update(delta);
+            if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
 
-        turrel.update();
-        turrel.checkForCollisionBabka(babka);
-
-        timePassedD += delta;
-        if (timePassedD > 600) {
-            timePassedD = 0;
-            doctorShoot();
-        }
-        if (injections.isEmpty() == false) {
-            for (Injection j : injections) {
-                j.update();
-                j.checkForCollision(terrain);
-                j.checkForCollision(leftFrame);
-                j.checkForCollision(rightFrame);
-                j.checkForCollision(upperFrame);
-                j.checkForCollision(rightWall);
-                j.checkForCollision(leftWall);
-                j.checkForCollision(firstFloor);
-                j.checkForCollision(secondFloor);
-                j.checkForCollision(roof);
+            for (Rectangle obstacle : obstacles) {
+                doctor.checkForCollisionWall(obstacle);
             }
-        }
+            doctor.checkForCollisionBabka(babka);
 
 
-        timePassedT += delta;
-        if (timePassedT > 700) {
-            timePassedT = 0;
-            turrelShoot();
+        //Coronas
+        if(corona.isAlive()) {
+            corona.update();
+            for (Rectangle obstacle : obstacles) {
+                corona.checkForCollisionWall(obstacle);
+            }
+            corona.checkForCollisionBabka(babka);
         }
-        if (turrelBullets.isEmpty() == false) {
-            for (Injection j :turrelBullets) {
-                j.update();
-                j.checkForCollision(terrain);
-                j.checkForCollision(leftFrame);
-                j.checkForCollision(rightFrame);
-                j.checkForCollision(upperFrame);
-                j.checkForCollision(rightWall);
-                j.checkForCollision(leftWall);
-                j.checkForCollision(firstFloor);
-                j.checkForCollision(secondFloor);
-                j.checkForCollision(roof);
+
+        //CoronaSes
+        if(coronaS.isAlive()) {
+            coronaS.update();
+            coronaS.checkForCollisionBabka(babka);
+        }
+        //Turrels
+         turrel.update(delta);
+         turrel.checkForCollisionBabka(babka);
+         if(turrel.isReadyToShoot(babka))turrelBullets.add(turrel.shoot());
+
+
+        //Injections update
+         if (!injections.isEmpty()) {
+             for (int i =0; i<injections.size(); i++) {
+                 Injection j = injections.get(i);
+                 if(j.isPresent()) {
+                     j.update();
+                     for (Rectangle obstacle : obstacles) {
+                         j.checkForCollision(obstacle);
+                     }
+                 }
+                 else {
+                     injections.remove(i);
+                     i--;
+                 }
+             }
+         }
+
+
+
+        //Turrel bullets update
+        if (!turrelBullets.isEmpty()) {
+            for (int i = 0; i<turrelBullets.size(); i++) {
+                Injection j = turrelBullets.get(i);
+                if(j.isPresent()) {
+                    j.update();
+                    for (Rectangle obstacle : obstacles) {
+                        j.checkForCollision(obstacle);
+                    }
+                }
+                else {
+                    turrelBullets.remove(i);
+                    i--;
+                }
             }
         }
 
@@ -350,34 +347,8 @@ public class MapLevel1 extends BasicGameState {
 
     }
 
-    private void doctorShoot() throws SlickException {
-        if (doctor.isBabkaNoticed() && doctor.isAlive()) {
-            if (doctor.babkaIsToRight()) {
-                Injection newInj = doctor.shoot();
-                newInj.setRight();
-                injections.add(newInj);
-            } else {
-                Injection newInj = doctor.shoot();
-                newInj.setLeft();
-                injections.add(newInj);
-            }
 
-        }
-    }
 
-    private void turrelShoot() throws SlickException {
-        if ( turrel.isAlive()) {
-            if (turrel.isToRight()) {
-                Injection newInj = turrel.shoot();
-                newInj.setRight();
-                turrelBullets.add(newInj);
-            } else {
-                Injection newInj = turrel.shoot();
-                newInj.setLeft();
-                turrelBullets.add(newInj);
-            }
 
-        }
-    }
 
 }
