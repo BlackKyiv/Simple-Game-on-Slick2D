@@ -25,7 +25,7 @@ public class MapLevel1 extends BasicGameState {
     private int floorH =225, floorW =900;
     private int x_offset=100;
 
-    private String path = "/Users/dgoptsii/Game/pictures/";
+    private String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
 
     @Override
     public int getID() {
@@ -141,6 +141,7 @@ public class MapLevel1 extends BasicGameState {
 
     }
 
+
     private void drawDoors(Graphics graphics) {
         if(!door.isBroken()) {
             graphics.setColor(Color.blue);
@@ -164,6 +165,8 @@ public class MapLevel1 extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+
+
 
 
         babka.update(1);

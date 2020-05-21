@@ -1,11 +1,6 @@
 package Game;
 
-
-
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 
 public class Babka extends Rectangle {
@@ -24,9 +19,6 @@ public class Babka extends Rectangle {
     private boolean blockedRight = false;
 
 
-
-
-
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
 
@@ -37,6 +29,7 @@ public class Babka extends Rectangle {
         this.timeCoeff = timeCoeff;
         if(!isLanded()) move(speedX*timeCoeff, speedY*timeCoeff);
         gravityPull();
+
 
         blockedLeft = false;
         blockedRight = false;
