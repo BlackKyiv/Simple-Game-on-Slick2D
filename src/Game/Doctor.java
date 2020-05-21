@@ -13,6 +13,9 @@ public class Doctor extends Rectangle implements Enemy {
     private boolean blockedUp = false;
     private boolean blockedDown = false;
 
+    private Timer shootGap;
+
+
     private float initialX;
     private float initialY;
     private boolean goRight = true;
@@ -39,14 +42,15 @@ public class Doctor extends Rectangle implements Enemy {
         super(x, y, 50, 80);
         initialX = x;
         initialY = y;
+
+        shootGap = new Timer(1000);
+        shootGap.start();
     }
 
 
-    public void update() {
-
+    public void update(int delta) {
+        shootGap.update(delta);
         move();
-
-
         blockedLeft = false;
         blockedRight = false;
         blockedDown = false;
@@ -61,7 +65,6 @@ public class Doctor extends Rectangle implements Enemy {
 
     private void move() {
         if (babkaNoticed == false) {
-
             if (goRight) {
                 if (this.getX() >= initialX + space|| blockedRight) {
                     goRight = false;
@@ -75,16 +78,12 @@ public class Doctor extends Rectangle implements Enemy {
                     this.setCenterX(getCenterX() - 1);
                 }
             }
-
-
-
         }
 
         ///// babka noticed
         else {
             if (Math.abs(babkaX-this.getX())>notVisionHorizontal||Math.abs(babkaY-this.getY())>notVisionVertical){
                 babkaNoticed=false;
-
             }
 
 
@@ -93,7 +92,6 @@ public class Doctor extends Rectangle implements Enemy {
             }
             if (this.getX() > babkaX+this.getWidth()+distance||(this.getX()+this.getWidth()+distance > babkaX&&this.getX() +this.getWidth()< babkaX)&&blockedLeft==false) {
                 this.setCenterX(getCenterX() - 2);
-
             }
 
 
@@ -108,29 +106,22 @@ public class Doctor extends Rectangle implements Enemy {
     public boolean isAlive(){return alive;}
 
     public void checkForCollisionWall(Rectangle platform)   {
-
             Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
-
             if (leg.intersects(platform)) {
                 blockedDown = true;
             }
-
-
             Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
             if ((arm1.intersects(platform))) {
                 blockedLeft = true;
             }
-
             Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
             if ((arm2.intersects(platform))) {
                 blockedRight = true;
             }
-
             Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
             if (head.intersects(platform)) {
                 blockedUp = true;
             }
-
     }
 
 
@@ -141,17 +132,14 @@ public class Doctor extends Rectangle implements Enemy {
                 blockedDown = true;
             }
 
-
             Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
             if ((arm1.intersects(platform))) {
                 blockedLeft = true;
             }
-
             Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
             if ((arm2.intersects(platform))) {
                 blockedRight = true;
             }
-
             Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
             if (head.intersects(platform)) {
                 blockedUp = true;
@@ -183,9 +171,11 @@ public class Doctor extends Rectangle implements Enemy {
     public boolean isBabkaNoticed(){
         return babkaNoticed;
     }
+
     public void setVisionHorizontal( float visionHorizontal){
         this.visionHorizontal=visionHorizontal;
     }
+
     public void setVisionVertical( float visionVertical){
         this.visionVertical=visionVertical;
     }
@@ -198,17 +188,26 @@ public class Doctor extends Rectangle implements Enemy {
         this.notVisionVertical=notVisionVertical;
     }
 
-    public void setSpace( float space){
+    public void setSpace(float space){
         this.space=space;
     }
-    public void setDistance( float distance){
+
+    public void setDistance(float distance){
         this.distance=distance;
     }
-    public Injection shoot() throws SlickException {
-        Injection injection = new Injection((int) this.getCenterX(), (int) this.getCenterY());
-        injection.setLeft();
-        injection.setPresent(true);
-        return injection;
+
+    public Injection shoot(Rectangle target) throws SlickException {
+            Injection injection = new Injection((int) this.getCenterX(), (int) this.getCenterY());
+            if(target.getX()<this.getX())injection.setLeft();
+            else injection.setRight();
+            injection.setPresent(true);
+            shootGap.restart();
+            shootGap.start();
+            return injection;
+    }
+
+    public boolean isReadyToShoot(){
+        return shootGap.isFinished();
     }
 
     public boolean babkaIsToRight(){

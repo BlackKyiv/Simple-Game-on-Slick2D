@@ -9,12 +9,13 @@ import org.newdawn.slick.geom.Rectangle;
 
 
 public class Turrel extends Rectangle implements Enemy {
-
-
     private float initialX;
     private float initialY;
     private boolean goRight = true;
     private boolean toRight;
+
+    private float rangeOfSight = 10000;
+    private Timer shootGap;
 
 
     private boolean alive = true;
@@ -24,12 +25,54 @@ public class Turrel extends Rectangle implements Enemy {
         super(x, y, 80, 80);
         initialX = x;
         initialY = y;
+
+        shootGap = new Timer(200);
+        shootGap.start();
     }
 
 
-    public void update() {
+    public void update(int delta) {
+        shootGap.update(delta);
 
     }
+
+    public boolean isReadyToShoot(Rectangle target){
+        if(shootGap.isFinished()) {
+            return intersectsLineOfSight(target);
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Injection shoot() throws SlickException {
+        Injection injection = new Injection((int) this.getCenterX(), (int) this.getCenterY());
+        if(!isToRight() )injection.setLeft();
+        else injection.setRight();
+        injection.setSpeed(13);
+        injection.setPresent(true);
+        shootGap.restart();
+        shootGap.start();
+        return injection;
+    }
+
+
+    public boolean intersectsLineOfSight(Rectangle target){
+        if(target.getY()>= this.getY() && target.getY()<= this.getY()+this.getHeight() && isToRight() && target.getX()>this.getCenterX() &&
+            target.getCenterX()-this.getCenterX()<=rangeOfSight){
+            return true;
+        }
+        else if(target.getY()>= this.getY() && target.getY()<= this.getY()+this.getHeight() && !isToRight() && target.getX()<this.getCenterX() &&
+                this.getCenterX()-target.getX()<=rangeOfSight){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+
 
 
     private void move() {
@@ -42,27 +85,28 @@ public class Turrel extends Rectangle implements Enemy {
     public boolean isAlive(){return alive;}
 
     public void checkForCollisionBabka(Rectangle platform)   {
-
-                Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
-                if (headDie.intersects(platform)) {
-                    die();
-                }
+        Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
+        if (headDie.intersects(platform)) {
+            die();
+        }
     }
 
     public void checkForCollisionWall(Rectangle platform) {
     }
 
-    public Injection shoot() throws SlickException {
-        Injection injection = new Injection((int) this.getCenterX(), (int) this.getCenterY());
-        injection.setPresent(true);
-        return injection;
-    }
 
     public void setRight(){
         toRight=true;
     }
     public void setLeft(){
         toRight=false;
+    }
+
+    public float getRangeOfSight(){
+        return rangeOfSight;
+    }
+    public void setRangeOfSight(float rangeOfSight) {
+        this.rangeOfSight = rangeOfSight;
     }
 
     public boolean isToRight(){
