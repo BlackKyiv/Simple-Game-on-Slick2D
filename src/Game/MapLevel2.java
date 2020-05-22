@@ -1,6 +1,7 @@
 package Game;
 
 import Game.enemies.*;
+import Game.interactiveObjects.Bullet;
 import Game.interactiveObjects.Door;
 import Game.interactiveObjects.Injection;
 import Game.interactiveObjects.Teleport;
@@ -202,6 +203,8 @@ public class MapLevel2 extends BasicGameState {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
                 if (coronaS.isAlive()) {
                     coronaS.update();
+                    graphics.setColor(Color.green);
+                    graphics.fill(coronaS);
                     coronaS.checkForCollisionBabka(babka);
                 }
             } else if (enemies.get(i) instanceof Turrel) {
@@ -214,13 +217,15 @@ public class MapLevel2 extends BasicGameState {
         }
 
         if (!injections.isEmpty()) {
-            for (Injection i : injections) {
+            for (Bullet i : injections) {
                 if (i.isPresent()) {
                     graphics.setColor(Color.red);
-                    graphics.fill(i);
+                    graphics.fill((Rectangle)i);
                 }
             }
         }
+
+
     }
 
     @Override
@@ -287,28 +292,6 @@ public class MapLevel2 extends BasicGameState {
 
     }
 
-    private void checkForAttack(GameContainer container){
-        //if babka`s x > mouse x then draw attackZone on right
-        //else if babka`s x < mouse x then draw attackZone on left+
-        if(container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_F)){
-            if(container.getInput().getMouseX()>babka.getX()){
-                attackZone.setX(babka.getX()+babka.getWidth());
-                attackZone.setY(babka.getY());
-            }
-            else if(container.getInput().getMouseX()<babka.getX()){
-                attackZone.setX(babka.getX()-babka.getWidth());
-                attackZone.setY(babka.getY());
-            }
-        }
-        else {
-            attackZone = new Rectangle(-50, -50, 50, 50);
-        }
-
-        checkForAttackDoors();
-        checkForAttackEnemies();
-
-    }
-
     private void updateBullets(){
         //Injections update
         if (!injections.isEmpty()) {
@@ -325,9 +308,28 @@ public class MapLevel2 extends BasicGameState {
                     i--;
                 }
                 if(j.intersects(attackZone)) j.reflect();
+                if(j.intersects(babka)) babka.die();
             }
         }
 
+    }
+
+    private void checkForAttack(GameContainer container) {
+        //if babka`s x > mouse x then draw attackZone on right
+        //else if babka`s x < mouse x then draw attackZone on left+
+        if(babka.isAlive()) {
+            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
+                if (container.getInput().getMouseX() > babka.getX()) {
+                    attackZone.setX(babka.getX() + babka.getWidth());
+                    attackZone.setY(babka.getY());
+                } else if (container.getInput().getMouseX() < babka.getX()) {
+                    attackZone.setX(babka.getX() - babka.getWidth());
+                    attackZone.setY(babka.getY());
+                }
+            } else attackZone = new Rectangle(-50, -50, 50, 50);
+            checkForAttackDoors();
+            checkForAttackEnemies();
+        }
     }
 
     private void checkForAttackDoors(){

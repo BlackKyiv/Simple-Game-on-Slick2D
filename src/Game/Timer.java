@@ -33,6 +33,10 @@ public class Timer {
         running = false;
     }
 
+    public boolean isRunning(){
+        return running;
+    }
+
     public void restart(){
         timePassed = 0;
         running = false;

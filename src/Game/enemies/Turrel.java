@@ -5,6 +5,8 @@ import Game.Timer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
+import java.time.OffsetTime;
+
 
 public class Turrel extends Rectangle implements Enemy {
     private float initialX;
@@ -12,8 +14,11 @@ public class Turrel extends Rectangle implements Enemy {
     private boolean goRight = true;
     private boolean toRight;
 
+
+
     private float rangeOfSight = 10000;
     private Timer shootGap;
+
 
 
     private boolean alive = true;
@@ -23,6 +28,7 @@ public class Turrel extends Rectangle implements Enemy {
         super(x, y, 80, 80);
         initialX = x;
         initialY = y;
+
 
         shootGap = new Timer(200);
         shootGap.start();
@@ -53,13 +59,17 @@ public class Turrel extends Rectangle implements Enemy {
     public boolean intersectsLineOfSight(Rectangle target){
         if(target.getY()>= this.getY() && target.getY()<= this.getY()+this.getHeight() && isToRight() && target.getX()>this.getCenterX() &&
             target.getCenterX()-this.getCenterX()<=rangeOfSight){
+
             return true;
+
         }
         else if(target.getY()>= this.getY() && target.getY()<= this.getY()+this.getHeight() && !isToRight() && target.getX()<this.getCenterX() &&
                 this.getCenterX()-target.getX()<=rangeOfSight){
+
             return true;
         }
         else {
+
             return false;
         }
     }
