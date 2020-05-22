@@ -1,7 +1,9 @@
 package Game.enemies;
 
-import org.newdawn.slick.SlickException;
+import Game.SetupGame;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+
 
 public class Coronavirus extends Rectangle implements Enemy {
 
@@ -25,15 +27,24 @@ public class Coronavirus extends Rectangle implements Enemy {
 
     private boolean babkaNoticed = false;
     private boolean alive = true;
+    private String path = "/Users/dgoptsii/Game copy/pictures/";
 
+   // private Image image  = new Image(path + "corona_left.PNG");;
+
+    private SpriteSheet image1  = new SpriteSheet( "/Users/dgoptsii/Game/pictures/corona_left.PNG",50,50);;
+    private Animation animation;
 
     public Coronavirus(int x, int y) throws SlickException {
         super(x, y, 50, 50);
         initialX = x;
         initialY = y;
+
+        animation = new Animation(image1,100);
+        animation.setPingPong(true);
     }
-
-
+    public  Animation  getAnimation(Graphics graphics){
+        return animation;
+    }
     public void update() {
 
         move();
