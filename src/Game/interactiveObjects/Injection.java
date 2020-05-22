@@ -1,7 +1,10 @@
 package Game.interactiveObjects;
 
-import org.newdawn.slick.SlickException;
+import Game.SetupGame;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+
+
 
 public class Injection extends Rectangle implements Bullet {
 
@@ -12,17 +15,53 @@ public class Injection extends Rectangle implements Bullet {
     private float initialX;
     private float initialY;
     private float speed=3;
+    private boolean doctor;
 
 
     private boolean right = false;
     private boolean present = true;
+    private Image imageBlueLeft;
+    private Image imageBlueRight;
+    private Image imageRedLeft;
+    private Image imageRedRight;
+
 
 
     public Injection(int x, int y) throws SlickException {
-        super(x, y, 20, 10);
+        super(x, y, 30, 10);
         initialX = x;
         initialY = y;
+
+        setUpImage();
     }
+
+    private void setUpImage() throws SlickException {
+        imageBlueLeft = new Image (SetupGame.path + "injection_blue_left.PNG");;
+        imageBlueRight  = new Image (SetupGame.path + "injection_blue_right.PNG");;
+
+        imageRedLeft = new Image (SetupGame.path + "injection_red_left.PNG");;
+        imageRedRight = new Image (SetupGame.path + "injection_red_right.PNG");;
+
+    }
+    public Image getImage(Graphics graphics) {
+if (doctor) {
+    if (right) {
+        return imageBlueRight;
+    } else {
+        return imageBlueLeft;
+    }
+}
+else{
+    if (right) {
+        return imageRedRight;
+    } else {
+        return imageRedLeft;
+    }
+}
+        // return animationLeft;
+    }
+
+
 
 
     public void update() {
@@ -113,6 +152,9 @@ public class Injection extends Rectangle implements Bullet {
         return collided;
     }
 
+    public void setDoctor(boolean doctor){
+        this.doctor=doctor;
+    }
 
 
 }

@@ -30,7 +30,7 @@ public class MapLevel1 extends BasicGameState {
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
-    private String path = "..\\Game\\pictures\\";
+    private String path = "/Users/dgoptsii/Game copy/pictures/";
 
     @Override
     public int getID() {
@@ -103,17 +103,17 @@ public class MapLevel1 extends BasicGameState {
         enemies.add(corona);
 
 
-        CoronaSmall coronaS = new CoronaSmall(150, 700);
+        CoronaSmall coronaS = new CoronaSmall(550, 700);
         coronaS.setSpeed(2);
         enemies.add(coronaS);
 
 
         Doctor doctor = new Doctor(650, 350);
         doctor.setSpace(150);
-        doctor.setVisionHorizontal(350);
-        doctor.setVisionVertical(150);
-        doctor.setNotVisionHorizontal(400);
-        doctor.setNotVisionVertical(150);
+        doctor.setVisionHorizontal(150);
+        doctor.setVisionVertical(50);
+        doctor.setNotVisionHorizontal(150);
+        doctor.setNotVisionVertical(50);
 
         enemies.add(doctor);
 
@@ -190,22 +190,20 @@ public class MapLevel1 extends BasicGameState {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
-                    graphics.setColor(Color.cyan);
-                    graphics.fill(doctor);
+                    doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
+
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
-                    graphics.setColor(Color.green);
-                    graphics.fill(corona);
+                    corona.getAnimation( graphics).draw(corona.getX(), corona.getY());
+
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
                 if (coronaS.isAlive()) {
-                    coronaS.update();
-                    graphics.setColor(Color.green);
-                    graphics.fill(coronaS);
-                    coronaS.checkForCollisionBabka(babka);
+                    coronaS.getAnimation( graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
+
                 }
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
@@ -219,8 +217,7 @@ public class MapLevel1 extends BasicGameState {
         if (!injections.isEmpty()) {
             for (Bullet i : injections) {
                 if (i.isPresent()) {
-                    graphics.setColor(Color.red);
-                    graphics.fill((Rectangle)i);
+                    i.getImage (graphics).draw(i.getX(), i.getY());
                 }
             }
         }

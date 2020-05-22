@@ -57,7 +57,7 @@ public class MapLevel2 extends BasicGameState {
 
     private void initWalls()throws SlickException {
 
-        background = new Image(path+"pictures\\backg.jpg");
+        background = new Image(path+"backg.jpg");
 
         obstacles.add(new Rectangle(0, SetupGame.height-10, SetupGame.width, 10)); //terrain
         obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
@@ -72,22 +72,22 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(440,250,150,40)); //platform 1
         obstacles.add(new Rectangle(740,250,150,40)); //platform 2
 
-        wall = new Image(path+"pictures\\wall.jpg");
+        wall = new Image(path+"wall.jpg");
         wallSS = new SpriteSheet(wall,10,10);
         floorSS = new SpriteSheet(wall,10,10);
         platformSS = new SpriteSheet(wall,10,10);
 
-        cellarwallpaper = new Image(path+"pictures\\cellarwallpaper.png");
-        workshopwallpaper = new Image(path+"pictures\\workshopwallpaer.jpg");
-        wallpaper = new Image(path+"pictures\\wallpaper.jpg");
+        cellarwallpaper = new Image(path+"cellarwallpaper.png");
+        workshopwallpaper = new Image(path+"workshopwallpaer.jpg");
+        wallpaper = new Image(path+"wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper,10,10);
 
-        lift22 = new Image(path+"pictures\\lift.png");
-        lift1 = new Image(path+"pictures\\lift.png");
-        lift32 = new Image(path+"pictures\\lift.png");
-        lift31 = new Image(path+"pictures\\lift.png");
-        lift4 = new Image(path+"pictures\\lift.png");
-        lift21 = new Image(path+"pictures\\lift.png");
+        lift22 = new Image(path+"lift.png");
+        lift1 = new Image(path+"lift.png");
+        lift32 = new Image(path+"lift.png");
+        lift31 = new Image(path+"lift.png");
+        lift4 = new Image(path+"lift.png");
+        lift21 = new Image(path+"lift.png");
 
         teleports = new ArrayList<>();
         teleports.add(new Teleport(1000,600,80,90,0,-190)); //1
@@ -98,10 +98,10 @@ public class MapLevel2 extends BasicGameState {
         teleports.add(new Teleport(1000,10,80,90,0,300)); //4
 
         helicopter = new Image(path+"pictures\\helicopter.png");
-        window = new Image(path+"pictures\\window.jpg");
-        turret1 = new Image(path+"pictures\\turret.png");
-        turret2 = new Image(path+"pictures\\turret.png");
-        table = new Image(path+"pictures\\officetable.png");
+        window = new Image(path+"window.jpg");
+        turret1 = new Image(path+"turret.png");
+        turret2 = new Image(path+"turret.png");
+        table = new Image(path+"officetable.png");
     }
 
     private void initDoors()throws SlickException{
