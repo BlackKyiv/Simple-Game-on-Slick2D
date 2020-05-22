@@ -24,6 +24,7 @@ public class MapLevel2 extends BasicGameState {
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Door> doors = new ArrayList<>();
+    private ArrayList<Teleport> teleports;
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<Injection>();
@@ -87,12 +88,14 @@ public class MapLevel2 extends BasicGameState {
         lift31 = new Image(path+"pictures\\lift.png");
         lift4 = new Image(path+"pictures\\lift.png");
         lift21 = new Image(path+"pictures\\lift.png");
-        tp1 = new Teleport(1000,600,80,90);
-        tp21 = new Teleport(220,410,80,90);
-        tp22 = new Teleport(1000,410,80,90);
-        tp31 = new Teleport(220,310,80,90);
-        tp32 = new Teleport(1000,310,80,90);
-        tp4 = new Teleport(1000,10,80,90);
+
+        teleports = new ArrayList<>();
+        teleports.add(new Teleport(1000,600,80,90,0,-190)); //1
+        teleports.add(new Teleport(220,410,80,90,0,-90)); //21
+        teleports.add(new Teleport(1000,410,80,90,0,190)); //22
+        teleports.add(new Teleport(220,310,80,90,0,90)); //31
+        teleports.add(new Teleport(1000,310,80,90,0,-300)); //32
+        teleports.add(new Teleport(1000,10,80,90,0,300)); //4
 
         helicopter = new Image(path+"pictures\\helicopter.png");
         window = new Image(path+"pictures\\window.jpg");
@@ -227,19 +230,14 @@ public class MapLevel2 extends BasicGameState {
         for (Door door : doors){
             if(!door.isBroken())babka.checkForCollision(door);
         }
-
+        for(Teleport teleport: teleports){
+            babka.goInTeleport(gameContainer,teleport);
+        }
         babka.controls(gameContainer);
 
         updateEnemies(delta);
         updateBullets();
         checkForAttack(gameContainer);
-
-        babka.goInTeleport(gameContainer,tp1,0,-190);
-        babka.goInTeleport(gameContainer,tp21,0,-90);
-        babka.goInTeleport(gameContainer,tp22,0,190);
-        babka.goInTeleport(gameContainer,tp31,0,90);
-        babka.goInTeleport(gameContainer,tp32,0,-300);
-        babka.goInTeleport(gameContainer,tp4,0,300);
 
         babka.controls(gameContainer);
         updateEnemies(delta);

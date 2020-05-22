@@ -17,9 +17,9 @@ public class MapLevel1 extends BasicGameState {
     private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp;
     private SpriteSheet wallSS, floorSS, wallpaper1;
     private Rectangle attackZone;
-    private Teleport tp2, tp1;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
+    private ArrayList<Teleport> teleports;
     private ArrayList<Door> doors = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
@@ -82,8 +82,10 @@ public class MapLevel1 extends BasicGameState {
 
         doorDown = new Image(path + "door.jpg");
         doorUp = new Image(path + "door.jpg");
-        tp2 = new Teleport(100, 330, 80, 135);
-        tp1 = new Teleport(100, 555, 80, 135);
+
+        teleports = new ArrayList<>();
+        teleports.add(new Teleport(100, 330, 80, 135,0,225));
+        teleports.add(new Teleport(100, 555, 80, 135,0,-220));
     }
 
     private void initDoors() throws SlickException {
@@ -233,6 +235,9 @@ public class MapLevel1 extends BasicGameState {
         for (Door door : doors){
             if(!door.isBroken())babka.checkForCollision(door);
         }
+        for(Teleport teleport: teleports){
+            babka.goInTeleport(gameContainer,teleport);
+        }
 
         babka.controls(gameContainer);
 
@@ -240,8 +245,12 @@ public class MapLevel1 extends BasicGameState {
         updateBullets();
         checkForAttack(gameContainer);
 
-        babka.goInTeleport(gameContainer, tp2, 0, 225);
-        babka.goInTeleport(gameContainer, tp1, 0, -220);
+        //babka.goInTeleport(gameContainer, tp2);
+        //babka.goInTeleport(gameContainer, tp1);
+    }
+
+    private void updateTeleports(){
+
     }
 
     private void updateEnemies(int delta) throws SlickException {
