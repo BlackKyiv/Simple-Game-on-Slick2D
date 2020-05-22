@@ -27,7 +27,6 @@ public class Injection extends Rectangle implements Bullet {
 
     public void update() {
         move();
-
     }
 
 

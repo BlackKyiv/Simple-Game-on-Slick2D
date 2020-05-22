@@ -12,13 +12,14 @@ public class Babka extends Rectangle {
     private float jump = 8;
 
     private float deltaSeconds = 0.1666666f;
-    private float timeCoeff = 0.5f;
+    private float timeCoeff = 1;
     private float gravity = 9.89f;
     private boolean landed = false;
     private Rectangle landTangle = null;
     private boolean blockedLeft = false;
     private boolean blockedRight = false;
     private boolean inTeleport = false;
+
 
 
     public Babka(float x, float y, float width, float height) throws SlickException {
@@ -109,14 +110,14 @@ public class Babka extends Rectangle {
             setLanded(false);
         }
 
-        Rectangle head = new Rectangle(this.getCenterX()-4, this.getY(), 5, 1);
+        Rectangle head = new Rectangle(this.getCenterX()-1, this.getY(), 2, 1);
         if(head.intersects(platform) && speedY<0){
             speedY = 0;
             this.setY(platform.getY()+platform.getHeight());
         }
 
-        Rectangle arm1 = new Rectangle(this.getX()-1, this.getY()+2,1,1);
-        Rectangle arm2 = new Rectangle(this.getX()-1, this.getY()+this.getHeight()-2,1,1);
+        Rectangle arm1 = new Rectangle(this.getX()-1, this.getY()+1,1,2);
+        Rectangle arm2 = new Rectangle(this.getX()-1, this.getY()+this.getHeight()-3,1,2);
 
         if((arm1.intersects(platform)||arm2.intersects(platform))&&!head.intersects(platform)){
             blockedLeft = true;
@@ -125,9 +126,8 @@ public class Babka extends Rectangle {
             else speedY *= 0.9;
         }
 
-
-        Rectangle arm3 = new Rectangle(this.getX()+getWidth()+1, this.getY()+2,1,1);
-        Rectangle arm4 = new Rectangle(this.getX()+getWidth()+1, this.getY()+this.getHeight()-2,1,1);
+        Rectangle arm3 = new Rectangle(this.getX()+getWidth()+1, this.getY()+1,1,2);
+        Rectangle arm4 = new Rectangle(this.getX()+getWidth()+1, this.getY()+this.getHeight()-3,1,2);
 
         if(arm3.intersects(platform)||arm4.intersects(platform)&&!head.intersects(platform)){
             blockedRight = true;
@@ -183,11 +183,13 @@ public class Babka extends Rectangle {
         return inTeleport;
     }
 
-    public void goInTeleport(GameContainer gameContainer,Teleport teleport, int dx, int dy){
+    public void goInTeleport(GameContainer gameContainer,Teleport teleport){
         if(inTeleport(teleport)&&gameContainer.getInput().isKeyPressed(Input.KEY_ENTER)){
-            this.move(dx,dy);
+            this.move(teleport.getDx(),teleport.getDy());
         }
     }
+
+
 
 
 }
