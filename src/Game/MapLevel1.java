@@ -103,7 +103,8 @@ public class MapLevel1 extends BasicGameState {
 
 
         CoronaSmall coronaS = new CoronaSmall(550, 700);
-        coronaS.setSpeed(2);
+        coronaS.setSpeed(1);
+
         enemies.add(coronaS);
 
 
@@ -202,8 +203,8 @@ public class MapLevel1 extends BasicGameState {
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
                 if (coronaS.isAlive()) {
-                    coronaS.update();
-                    coronaS.checkForCollisionBabka(babka);
+                    coronaS.getAnimation( graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
+
                 }
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
