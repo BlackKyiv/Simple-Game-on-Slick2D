@@ -12,13 +12,14 @@ public class Babka extends Rectangle {
     private float jump = 8;
 
     private float deltaSeconds = 0.1666666f;
-    private float timeCoeff = 0.5f;
+    private float timeCoeff = 1;
     private float gravity = 9.89f;
     private boolean landed = false;
     private Rectangle landTangle = null;
     private boolean blockedLeft = false;
     private boolean blockedRight = false;
     private boolean inTeleport = false;
+
 
 
     public Babka(float x, float y, float width, float height) throws SlickException {
@@ -188,6 +189,8 @@ public class Babka extends Rectangle {
             this.move(dx,dy);
         }
     }
+
+
 
 
 }
