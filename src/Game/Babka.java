@@ -11,6 +11,9 @@ public class Babka extends Rectangle {
     private float speed = 7f;
     private float jump = 8;
 
+    private boolean alive = true;
+    private boolean mortal = true;
+
     private float deltaSeconds = 0.1666666f;
     private float timeCoeff = 1;
     private float gravity = 9.89f;
@@ -44,16 +47,17 @@ public class Babka extends Rectangle {
     public int getSpeedX(){return  (int) speedX;}
 
     private void gravityPull(){
-        if(!landed){
+        if(!landed && alive){
             speedY += timeCoeff*gravity * Math.pow(deltaSeconds, 2);
         }
 
     }
 
     private void move(float x, float y){
-
-        this.setCenterX(getCenterX() + x);
-        this.setCenterY(getCenterY() + y);
+        if(alive) {
+            this.setCenterX(getCenterX() + x);
+            this.setCenterY(getCenterY() + y);
+        }
     }
 
 
@@ -173,6 +177,14 @@ public class Babka extends Rectangle {
 
     public void turnRight(){
 
+    }
+
+    public boolean isAlive(){
+        return alive && mortal;
+    }
+
+    public void die(){
+        alive = false;
     }
 
     public boolean inTeleport(Teleport teleport){

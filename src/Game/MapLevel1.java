@@ -1,6 +1,7 @@
 package Game;
 
 import Game.enemies.*;
+import Game.interactiveObjects.Bullet;
 import Game.interactiveObjects.Door;
 import Game.interactiveObjects.Injection;
 import Game.interactiveObjects.Teleport;
@@ -23,13 +24,13 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Door> doors = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Injection> injections = new ArrayList<Injection>();
+    private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallW = 10;
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
-    private String path = "/Users/dgoptsii/Game copy/pictures/";
+    private String path = SetupGame.path;
 
     @Override
     public int getID() {
@@ -103,8 +104,7 @@ public class MapLevel1 extends BasicGameState {
 
 
         CoronaSmall coronaS = new CoronaSmall(550, 700);
-        coronaS.setSpeed(1);
-
+        coronaS.setSpeed(2);
         enemies.add(coronaS);
 
 
@@ -117,8 +117,7 @@ public class MapLevel1 extends BasicGameState {
 
         enemies.add(doctor);
 
-        Turrel turrel = new Turrel(650, 380);
-        turrel = new Turrel(500, 380);
+        Turrel turrel = new Turrel(500, 380);
         turrel.setLeft();
         turrel.setRangeOfSight(500);
 
@@ -192,19 +191,16 @@ public class MapLevel1 extends BasicGameState {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
                     doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
-
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
-                    corona.getAnimation( graphics).draw(corona.getX(), corona.getY());
-
+                    corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
                 if (coronaS.isAlive()) {
-                    coronaS.getAnimation( graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
-
+                    coronaS.getAnimation(graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
                 }
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
@@ -245,6 +241,20 @@ public class MapLevel1 extends BasicGameState {
         updateBullets();
         checkForAttack(gameContainer);
 
+
+        if(gameContainer.getInput().isKeyDown(Input.KEY_R)){
+            enemies = new ArrayList<>();
+            injections = new ArrayList<>();
+            obstacles = new ArrayList<>();
+
+            babka = new Babka(800, 300, 50, 50);
+
+            initDoors();
+            initEnemies();
+            initAttackZone();
+            initWalls();
+        }
+
         //babka.goInTeleport(gameContainer, tp2);
         //babka.goInTeleport(gameContainer, tp1);
     }
@@ -274,6 +284,7 @@ public class MapLevel1 extends BasicGameState {
                         corona.checkForCollisionWall(obstacle);
                     }
                     corona.checkForCollisionBabka(babka);
+                    if(babka.intersects(corona)&&corona.isAlive()) babka.die();
                 }
             }
             else if(enemies.get(i) instanceof CoronaSmall){
@@ -281,6 +292,7 @@ public class MapLevel1 extends BasicGameState {
                 if(coronaS.isAlive()) {
                     coronaS.update();
                     coronaS.checkForCollisionBabka(babka);
+                    if(babka.intersects(coronaS)&&coronaS.isAlive()) babka.die();
                 }
             }
             else if(enemies.get(i) instanceof Turrel){
@@ -298,18 +310,20 @@ public class MapLevel1 extends BasicGameState {
         //Injections update
         if (!injections.isEmpty()) {
             for (int i =0; i<injections.size(); i++) {
-                Injection j = injections.get(i);
+                Injection j = (Injection) injections.get(i);
                 if(j.isPresent()) {
                     j.update();
                     for (Rectangle obstacle : obstacles) {
                         j.checkForCollision(obstacle);
                     }
+                    if(j.intersects(babka))babka.die();
                 }
                 else {
                     injections.remove(i);
                     i--;
                 }
                 if(j.intersects(attackZone)) j.reflect();
+                if(j.intersects(babka)) babka.die();
             }
         }
 
@@ -318,19 +332,19 @@ public class MapLevel1 extends BasicGameState {
     private void checkForAttack(GameContainer container) {
         //if babka`s x > mouse x then draw attackZone on right
         //else if babka`s x < mouse x then draw attackZone on left+
-        if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
-            if (container.getInput().getMouseX() > babka.getX()) {
-                attackZone.setX(babka.getX() + babka.getWidth());
-                attackZone.setY(babka.getY());
-            } else if (container.getInput().getMouseX() < babka.getX()) {
-                attackZone.setX(babka.getX() - babka.getWidth());
-                attackZone.setY(babka.getY());
-            }
+        if(babka.isAlive()) {
+            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
+                if (container.getInput().getMouseX() > babka.getX()) {
+                    attackZone.setX(babka.getX() + babka.getWidth());
+                    attackZone.setY(babka.getY());
+                } else if (container.getInput().getMouseX() < babka.getX()) {
+                    attackZone.setX(babka.getX() - babka.getWidth());
+                    attackZone.setY(babka.getY());
+                }
+            } else attackZone = new Rectangle(-50, -50, 50, 50);
+            checkForAttackDoors();
+            checkForAttackEnemies();
         }
-        else attackZone = new Rectangle(-50, -50, 50, 50);
-        checkForAttackDoors();
-        checkForAttackEnemies();
-
     }
 
     private void checkForAttackDoors(){
