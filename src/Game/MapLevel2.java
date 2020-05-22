@@ -28,9 +28,9 @@ public class MapLevel2 extends BasicGameState {
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<Injection>();
 
-    private int wallW =10;
-    private int floorH =190, floorW =900;
-    private int x_offset=200;
+    private int wallW = 10;
+    private int floorH = 190, floorW = 900;
+    private int x_offset = 200;
 
     private String path = SetupGame.path;
 
@@ -105,7 +105,13 @@ public class MapLevel2 extends BasicGameState {
         doors.add(new Door(190,610,10,80));
     }
     private void initEnemies() throws SlickException {
+        Turrel t = new Turrel(900,600);
+        t.setRangeOfSight(500);
+        enemies.add(t);
 
+        Turrel t1 = new Turrel(900,320);
+        t1.setRangeOfSight(800);
+        enemies.add(t1);
     }
 
     @Override
@@ -206,7 +212,6 @@ public class MapLevel2 extends BasicGameState {
             }
         }
 
-
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
@@ -243,7 +248,6 @@ public class MapLevel2 extends BasicGameState {
         babka.goInTeleport(gameContainer,tp32,0,-300);
         babka.goInTeleport(gameContainer,tp4,0,300);
 
-        babka.controls(gameContainer);
         updateEnemies(delta);
         updateBullets();
         checkForAttack(gameContainer);
@@ -311,7 +315,6 @@ public class MapLevel2 extends BasicGameState {
 
     }
 
-
     private void updateBullets(){
         //Injections update
         if (!injections.isEmpty()) {
@@ -332,7 +335,6 @@ public class MapLevel2 extends BasicGameState {
         }
 
     }
-
 
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
