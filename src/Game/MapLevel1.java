@@ -24,7 +24,7 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Door> doors = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> injections = new ArrayList<>();
+    private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallW = 10;
     private int floorH = 225, floorW = 900;
@@ -215,7 +215,7 @@ public class MapLevel1 extends BasicGameState {
         }
 
         if (!injections.isEmpty()) {
-            for (Bullet i : injections) {
+            for (Injection i : injections) {
                 if (i.isPresent()) {
                     i.getImage (graphics).draw(i.getX(), i.getY());
                 }
