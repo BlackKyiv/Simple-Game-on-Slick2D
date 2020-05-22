@@ -22,11 +22,10 @@ public class SetupGame extends StateBasedGame {
     }
 
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new SetupGame("Game"));
+        AppGameContainer app = new AppGameContainer(new SetupGame("Corona vs Granny"));
         app.setDisplayMode(width, height, false);
         app.setTargetFrameRate(fps);
         app.setAlwaysRender(true);
         app.start();
-
     }
 }

@@ -221,8 +221,6 @@ public class MapLevel2 extends BasicGameState {
                 }
             }
         }
-
-
     }
 
     @Override
@@ -243,13 +241,6 @@ public class MapLevel2 extends BasicGameState {
         updateEnemies(delta);
         updateBullets();
         checkForAttack(gameContainer);
-
-        babka.goInTeleport(gameContainer,tp1,0,-190);
-        babka.goInTeleport(gameContainer,tp21,0,-90);
-        babka.goInTeleport(gameContainer,tp22,0,190);
-        babka.goInTeleport(gameContainer,tp31,0,90);
-        babka.goInTeleport(gameContainer,tp32,0,-300);
-        babka.goInTeleport(gameContainer,tp4,0,300);
 
         updateEnemies(delta);
         updateBullets();
