@@ -20,10 +20,10 @@ public class MapLevel2 extends BasicGameState {
     private Rectangle attackZone;
     private Coronavirus corona;
     private Doctor doctor;
-    private Teleport tp1,tp21,tp22,tp31,tp32,tp4;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Door> doors = new ArrayList<>();
+    private ArrayList<Teleport> teleports;
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<Injection>();
@@ -87,12 +87,14 @@ public class MapLevel2 extends BasicGameState {
         lift31 = new Image(path+"pictures\\lift.png");
         lift4 = new Image(path+"pictures\\lift.png");
         lift21 = new Image(path+"pictures\\lift.png");
-        tp1 = new Teleport(1000,600,80,90);
-        tp21 = new Teleport(220,410,80,90);
-        tp22 = new Teleport(1000,410,80,90);
-        tp31 = new Teleport(220,310,80,90);
-        tp32 = new Teleport(1000,310,80,90);
-        tp4 = new Teleport(1000,10,80,90);
+
+        teleports = new ArrayList<>();
+        teleports.add(new Teleport(1000,600,80,90,0,-190)); //1
+        teleports.add(new Teleport(220,410,80,90,0,-90)); //21
+        teleports.add(new Teleport(1000,410,80,90,0,190)); //22
+        teleports.add(new Teleport(220,310,80,90,0,90)); //31
+        teleports.add(new Teleport(1000,310,80,90,0,-300)); //32
+        teleports.add(new Teleport(1000,10,80,90,0,300)); //4
 
         helicopter = new Image(path+"pictures\\helicopter.png");
         window = new Image(path+"pictures\\window.jpg");
@@ -156,9 +158,9 @@ public class MapLevel2 extends BasicGameState {
         drawDoors(graphics);
 
         wall.startUse();
-        for(int a=440; a<=590; a+=10){
-            platformSS.getSubImage(0,20,50,100).drawEmbedded(a,250,10,20);
-            platformSS.getSubImage(0,20,50,100).drawEmbedded(a+300,250,10,20);
+        for(int a=440; a<590; a+=10){
+            platformSS.getSubImage(0,20,50,200).drawEmbedded(a,250,10,40);
+            platformSS.getSubImage(0,20,50,200).drawEmbedded(a+300,250,10,40);
         }
         wall.endUse();
 
@@ -169,7 +171,6 @@ public class MapLevel2 extends BasicGameState {
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
-
         drawEnemies(graphics);
 
     }
@@ -234,7 +235,9 @@ public class MapLevel2 extends BasicGameState {
         for (Door door : doors){
             if(!door.isBroken())babka.checkForCollision(door);
         }
-
+        for(Teleport teleport: teleports){
+            babka.goInTeleport(gameContainer,teleport);
+        }
         babka.controls(gameContainer);
 
         updateEnemies(delta);

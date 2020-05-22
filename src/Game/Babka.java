@@ -183,9 +183,9 @@ public class Babka extends Rectangle {
         return inTeleport;
     }
 
-    public void goInTeleport(GameContainer gameContainer,Teleport teleport, int dx, int dy){
+    public void goInTeleport(GameContainer gameContainer,Teleport teleport){
         if(inTeleport(teleport)&&gameContainer.getInput().isKeyPressed(Input.KEY_ENTER)){
-            this.move(dx,dy);
+            this.move(teleport.getDx(),teleport.getDy());
         }
     }
 
