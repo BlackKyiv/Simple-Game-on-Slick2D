@@ -23,7 +23,7 @@ public class Babka extends Rectangle {
     private boolean blockedRight = false;
     private boolean inTeleport = false;
 
-
+    private boolean walkingLeft = false;
 
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
@@ -166,6 +166,9 @@ public class Babka extends Rectangle {
         else landTangle = null;
     }
 
+    private void setupAnimation(){
+
+    }
 
     public void getAnimation(){
 
