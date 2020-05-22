@@ -70,6 +70,10 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(0,100, 1100, wallW *2)); //roof
         obstacles.add(new Rectangle(440,250,150,40)); //platform 1
         obstacles.add(new Rectangle(740,250,150,40)); //platform 2
+        for(int i=500; i<=800; i+=150){
+            obstacles.add(new Rectangle(i,500,10,70));
+        }
+
 
         wall = new Image(path+"wall.jpg");
         wallSS = new SpriteSheet(wall,10,10);
@@ -96,7 +100,7 @@ public class MapLevel2 extends BasicGameState {
         teleports.add(new Teleport(1000,310,80,90,0,-300)); //32
         teleports.add(new Teleport(1000,10,80,90,0,300)); //4
 
-        helicopter = new Image(path+"pictures\\helicopter.png");
+        helicopter = new Image(path+"helicopter.png");
         window = new Image(path+"window.jpg");
         turret1 = new Image(path+"turret.png");
         turret2 = new Image(path+"turret.png");
@@ -104,7 +108,10 @@ public class MapLevel2 extends BasicGameState {
     }
 
     private void initDoors()throws SlickException{
-        doors.add(new Door(190,610,10,80));
+        doors.add(new Door(190,610,10,80)); //entry
+        doors.add(new Door(390,610,10,80)); //1st floor
+        doors.add(new Door(495,420,10,80)); //2nd floor
+        doors.add(new Door(795,420,10,80)); //2nd floor
     }
     private void initEnemies() throws SlickException {
         Turrel t = new Turrel(900,600);
@@ -120,22 +127,6 @@ public class MapLevel2 extends BasicGameState {
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0,0,1100,700);
 
-        wall.startUse();
-        for(int a=x_offset; a<SetupGame.width; a+=10) {
-            floorSS.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - wallW, 10, 10);
-            floorSS.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height- floorH - wallW, 10, 10);
-            floorSS.getSubImage(0,20,50,50).drawEmbedded(a,SetupGame.height- floorH -90- wallW *2,10,10);
-        }
-
-        for(int a=x_offset-50; a<SetupGame.width; a+=10)
-            floorSS.getSubImage(0,20,100,70).drawEmbedded(a,SetupGame.height- floorH *3- wallW *3,10,20);
-        for(int a = SetupGame.height; a>SetupGame.height-3* wallW -3* floorH; a-=10){
-            if(!(a<=690&&a>=610))
-                wallSS.getSubImage(0,20,50,50).drawEmbedded(x_offset- wallW,a,10,10);
-            wallSS.getSubImage(0,20,50,50).drawEmbedded(SetupGame.width-wallW,a,10,10);
-        }
-        wall.endUse();
-
         workshopwallpaper.startUse();
         for(int a=x_offset; a<SetupGame.width-wallW; a+=10){
             wallpaper1.getSubImage(0,0,333,850).drawEmbedded(a,SetupGame.height-floorH*3-wallW,10,280);
@@ -144,10 +135,36 @@ public class MapLevel2 extends BasicGameState {
         workshopwallpaper.endUse();
         cellarwallpaper.draw(x_offset,510,980,180);
 
-        window.draw(800,420,140,60);
-        window.draw(400,420,140,60);
-        window.draw(800,180,140,180);
-        window.draw(400,180,140,180);
+        wall.startUse();
+        for(int a=x_offset; a<SetupGame.width; a+=10) {
+            floorSS.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height - wallW, 10, 10);
+            floorSS.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height- floorH - wallW, 10, 10);
+            floorSS.getSubImage(0,20,50,50).drawEmbedded(a,SetupGame.height- floorH -90- wallW *2,10,10);
+        }
+        for(int a=x_offset-50; a<SetupGame.width; a+=10)
+            floorSS.getSubImage(0,20,100,70).drawEmbedded(a,SetupGame.height- floorH *3- wallW *3,10,20);
+        for(int a = SetupGame.height; a>SetupGame.height-3* wallW -3* floorH; a-=10){
+            if(!(a<=690&&a>=610))
+                wallSS.getSubImage(0,20,50,50).drawEmbedded(x_offset- wallW,a,10,10);
+            wallSS.getSubImage(0,20,50,50).drawEmbedded(SetupGame.width-wallW,a,10,10);
+        }
+        for(int a=500; a<=600; a+=10){
+            wallSS.getSubImage(0,20,50,50).drawEmbedded(390,a,10,10);
+            if(a<570) {
+                wallSS.getSubImage(0, 20, 50, 50).drawEmbedded(500, a, 10, 10); //1-st floor балки
+                wallSS.getSubImage(0, 20, 50, 50).drawEmbedded(650, a, 10, 10);
+                wallSS.getSubImage(0, 20, 50, 50).drawEmbedded(800, a, 10, 10);
+            }
+        }
+        wallSS.getSubImage(0, 20, 50, 50).drawEmbedded(495, 410, 10, 10);
+        wallSS.getSubImage(0, 20, 50, 50).drawEmbedded(795, 410, 10, 10);
+        wall.endUse();
+
+        window.draw(850,420,120,60);
+        window.draw(575,420,120,60);
+        window.draw(340,420,120,60);
+        //window.draw(800,180,140,60);
+        //window.draw(400,180,140,60);
 
         lift1.draw(1000,600,80,90);
         lift21.draw(220,410,80,90);
@@ -167,7 +184,7 @@ public class MapLevel2 extends BasicGameState {
         turret1.draw(900,600,100,70);
         turret2.draw(900,320,100,70);
         helicopter.draw(250,20,250,80);
-        table.draw(400,400,100,70);
+        //table.draw(400,400,100,70);
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
