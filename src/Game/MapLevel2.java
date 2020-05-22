@@ -68,8 +68,8 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW)); //second floor
         obstacles.add(new Rectangle(x_offset,400, floorW, wallW)); //third floor
         obstacles.add(new Rectangle(0,100, 1100, wallW *2)); //roof
-        obstacles.add(new Rectangle(440,250,150,20)); //platform 1
-        obstacles.add(new Rectangle(740,250,150,20)); //platform 2
+        obstacles.add(new Rectangle(440,250,150,40)); //platform 1
+        obstacles.add(new Rectangle(740,250,150,40)); //platform 2
 
         wall = new Image(path+"pictures\\wall.jpg");
         wallSS = new SpriteSheet(wall,10,10);
@@ -118,6 +118,7 @@ public class MapLevel2 extends BasicGameState {
             floorSS.getSubImage(0, 20, 50, 50).drawEmbedded(a, SetupGame.height- floorH - wallW, 10, 10);
             floorSS.getSubImage(0,20,50,50).drawEmbedded(a,SetupGame.height- floorH -90- wallW *2,10,10);
         }
+
         for(int a=x_offset-50; a<SetupGame.width; a+=10)
             floorSS.getSubImage(0,20,100,70).drawEmbedded(a,SetupGame.height- floorH *3- wallW *3,10,20);
         for(int a = SetupGame.height; a>SetupGame.height-3* wallW -3* floorH; a-=10){
@@ -164,6 +165,7 @@ public class MapLevel2 extends BasicGameState {
         graphics.fill(babka);
 
         drawEnemies(graphics);
+
     }
 
     private void drawDoors(Graphics graphics) {
