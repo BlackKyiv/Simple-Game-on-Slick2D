@@ -44,6 +44,7 @@ public class Turrel extends Rectangle implements Enemy {
         else injection.setRight();
         injection.setSpeed(13);
         injection.setPresent(true);
+        injection.setDoctor(false);
         shootGap.restart();
         shootGap.start();
         return injection;

@@ -2,6 +2,7 @@ package Game.enemies;
 
 import Game.SetupGame;
 import org.newdawn.slick.*;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 
 
@@ -27,28 +28,69 @@ public class Coronavirus extends Rectangle implements Enemy {
 
     private boolean babkaNoticed = false;
     private boolean alive = true;
-    private String path = "/Users/dgoptsii/Game copy/pictures/";
 
-   // private Image image  = new Image(path + "corona_left.PNG");;
 
-    private SpriteSheet image1  = new SpriteSheet( "/Users/dgoptsii/Game/pictures/corona_left.PNG",50,50);;
-    private Animation animation;
+    private SpriteSheet imageLeft;
+    private SpriteSheet imageRight;
+    private Animation animationLeft;
+    private Animation animationRight;
+
+    private SpriteSheet imageLeftNoticed;
+    private SpriteSheet imageRightNoticed;
+    private Animation animationLeftNoticed;
+    private Animation animationRightNoticed;
 
     public Coronavirus(int x, int y) throws SlickException {
         super(x, y, 50, 50);
         initialX = x;
         initialY = y;
 
-        animation = new Animation(image1,100);
-        animation.setPingPong(true);
+        setUpAnimation();
     }
+
+    private void setUpAnimation() throws SlickException{
+        Image image = new Image(SetupGame.path + "corona_left.PNG");
+
+        imageLeft = new SpriteSheet(SetupGame.path + "corona_left.PNG", 50, 50);;
+        imageRight = new SpriteSheet(SetupGame.path + "corona_right.PNG", 50, 50);;
+
+        imageLeftNoticed = new SpriteSheet(SetupGame.path + "corona_left_noticed.PNG", 50, 50);;
+        imageRightNoticed = new SpriteSheet(SetupGame.path + "corona_right_noticed.PNG", 50, 50);
+
+
+        animationLeft = new Animation(imageLeft,100);
+        animationLeft.setPingPong(true);
+
+        animationRight = new Animation(imageRight,100);
+        animationRight.setPingPong(true);
+
+        animationLeftNoticed = new Animation(imageLeftNoticed,100);
+        animationLeftNoticed.setPingPong(true);
+
+        animationRightNoticed = new Animation(imageRightNoticed,100);
+        animationRightNoticed.setPingPong(true);
+
+    }
+
     public  Animation  getAnimation(Graphics graphics){
-        return animation;
+       if (babkaNoticed==false) {
+           if (goRight) {
+               return animationRight;
+           } else {
+               return animationLeft;
+           }
+       }else {
+           if (goRight) {
+               return animationRightNoticed;
+           } else {
+               return animationLeftNoticed;
+           }
+       }
+
     }
     public void update() {
 
         move();
-
 
         blockedLeft = false;
         blockedRight = false;
@@ -80,16 +122,21 @@ public class Coronavirus extends Rectangle implements Enemy {
 
         ///// babka noticed
         else {
+
             if (Math.abs(babkaX-this.getX())>notVisionHorizontal||Math.abs(babkaY-this.getY())>notVisionVertical){
                 babkaNoticed=false;
 
             }else {
+
+
                 if (this.getX() < babkaX && blockedRight == false) {
                     this.setCenterX(getCenterX() + 2);
-
+                    goRight=true;
                 } else if (this.getX() > babkaX && blockedLeft == false) {
                     this.setCenterX(getCenterX() - 2);
+                    goRight=false;
                 }
+
 
 
             }
