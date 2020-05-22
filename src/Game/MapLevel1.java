@@ -191,19 +191,16 @@ public class MapLevel1 extends BasicGameState {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
                     doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
-
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
-                    corona.getAnimation( graphics).draw(corona.getX(), corona.getY());
-
+                    corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
                 if (coronaS.isAlive()) {
-                    coronaS.getAnimation( graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
-
+                    coronaS.getAnimation(graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
                 }
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);

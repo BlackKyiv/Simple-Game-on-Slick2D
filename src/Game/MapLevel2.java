@@ -97,7 +97,7 @@ public class MapLevel2 extends BasicGameState {
         teleports.add(new Teleport(1000,310,80,90,0,-300)); //32
         teleports.add(new Teleport(1000,10,80,90,0,300)); //4
 
-        helicopter = new Image(path+"pictures\\helicopter.png");
+        helicopter = new Image(path+"helicopter.png");
         window = new Image(path+"window.jpg");
         turret1 = new Image(path+"turret.png");
         turret2 = new Image(path+"turret.png");
