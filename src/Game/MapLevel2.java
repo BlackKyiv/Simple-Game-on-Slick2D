@@ -20,7 +20,6 @@ public class MapLevel2 extends BasicGameState {
     private Rectangle attackZone;
     private Coronavirus corona;
     private Doctor doctor;
-    private Teleport tp1,tp21,tp22,tp31,tp32,tp4;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Door> doors = new ArrayList<>();
@@ -153,9 +152,9 @@ public class MapLevel2 extends BasicGameState {
         drawDoors(graphics);
 
         wall.startUse();
-        for(int a=440; a<=590; a+=10){
-            platformSS.getSubImage(0,20,50,100).drawEmbedded(a,250,10,20);
-            platformSS.getSubImage(0,20,50,100).drawEmbedded(a+300,250,10,20);
+        for(int a=440; a<590; a+=10){
+            platformSS.getSubImage(0,20,50,200).drawEmbedded(a,250,10,40);
+            platformSS.getSubImage(0,20,50,200).drawEmbedded(a+300,250,10,40);
         }
         wall.endUse();
 
@@ -166,7 +165,6 @@ public class MapLevel2 extends BasicGameState {
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
-
         drawEnemies(graphics);
 
     }
