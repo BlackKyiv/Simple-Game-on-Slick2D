@@ -14,12 +14,9 @@ import java.util.ArrayList;
 
 public class MapLevel2 extends BasicGameState {
     private Babka babka;
-    private Rectangle terrain;
-    private Rectangle leftFrame, rightFrame, upperFrame;
-    private Rectangle leftWall,rightWall,firstFloor,secondFloor,thirdFloor,roof;
-    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter,turret1,turret2;
+    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter,turret1,turret2,table;
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
-    private SpriteSheet wallSS,floorSS,wallpaper1,platform1,platform2;
+    private SpriteSheet wallSS,floorSS,wallpaper1, platformSS;
     private Rectangle attackZone;
     private Coronavirus corona;
     private Doctor doctor;
@@ -30,8 +27,6 @@ public class MapLevel2 extends BasicGameState {
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<Injection>();
-
-    private Door door1,door2;
 
     private int wallW =10;
     private int floorH =190, floorW =900;
@@ -60,23 +55,26 @@ public class MapLevel2 extends BasicGameState {
     }
 
     private void initWalls()throws SlickException {
+
         background = new Image(path+"pictures\\backg.jpg");
 
-        obstacles.add(new Rectangle(0, SetupGame.height-10, SetupGame.width, 10));
-        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height));
-        obstacles.add(new Rectangle(1090,0,10,700));
-        obstacles.add(new Rectangle(0,0,1100,10));
+        obstacles.add(new Rectangle(0, SetupGame.height-10, SetupGame.width, 10)); //terrain
+        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
+        obstacles.add(new Rectangle(1090,0,10,700)); //right frame
+        obstacles.add(new Rectangle(0,0,1100,10)); //upper frame
+        obstacles.add(new Rectangle(x_offset- wallW,110, wallW, 500)); //left wall
+        obstacles.add(new Rectangle(SetupGame.width-wallW,110, wallW, 590)); //right wall
+        obstacles.add(new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW)); //first floor
+        obstacles.add(new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW)); //second floor
+        obstacles.add(new Rectangle(x_offset,400, floorW, wallW)); //third floor
+        obstacles.add(new Rectangle(0,100, 1100, wallW *2)); //roof
+        obstacles.add(new Rectangle(440,250,150,20)); //platform 1
+        obstacles.add(new Rectangle(740,250,150,20)); //platform 2
 
         wall = new Image(path+"pictures\\wall.jpg");
-        obstacles.add(new Rectangle(x_offset- wallW,110, wallW, 500));
-        obstacles.add(new Rectangle(SetupGame.width-wallW,110, wallW, 590));
-        obstacles.add(new Rectangle(x_offset,SetupGame.height- wallW, floorW, wallW));
-        obstacles.add(new Rectangle(x_offset,SetupGame.height- floorH - wallW, floorW, wallW));
-        obstacles.add(new Rectangle(x_offset,400, floorW, wallW));
-        obstacles.add(new Rectangle(0,100, 1100, wallW *2));
-
         wallSS = new SpriteSheet(wall,10,10);
         floorSS = new SpriteSheet(wall,10,10);
+        platformSS = new SpriteSheet(wall,10,10);
 
         cellarwallpaper = new Image(path+"pictures\\cellarwallpaper.png");
         workshopwallpaper = new Image(path+"pictures\\workshopwallpaer.jpg");
@@ -100,6 +98,7 @@ public class MapLevel2 extends BasicGameState {
         window = new Image(path+"pictures\\window.jpg");
         turret1 = new Image(path+"pictures\\turret.png");
         turret2 = new Image(path+"pictures\\turret.png");
+        table = new Image(path+"pictures\\officetable.png");
     }
 
     private void initDoors()throws SlickException{
@@ -134,7 +133,7 @@ public class MapLevel2 extends BasicGameState {
             wallpaper1.getSubImage(0,0,333,850).drawEmbedded(a,SetupGame.height-floorH-90-wallW,10,90);
         }
         workshopwallpaper.endUse();
-        cellarwallpaper.draw(x_offset,510,990,180);
+        cellarwallpaper.draw(x_offset,510,980,180);
 
         window.draw(800,420,140,60);
         window.draw(400,420,140,60);
@@ -149,9 +148,17 @@ public class MapLevel2 extends BasicGameState {
         lift4.draw(1000,10,80,90);
         drawDoors(graphics);
 
+        wall.startUse();
+        for(int a=440; a<=590; a+=10){
+            platformSS.getSubImage(0,20,50,100).drawEmbedded(a,250,10,20);
+            platformSS.getSubImage(0,20,50,100).drawEmbedded(a+300,250,10,20);
+        }
+        wall.endUse();
+
         turret1.draw(900,600,100,70);
         turret2.draw(900,320,100,70);
         helicopter.draw(250,20,250,80);
+        table.draw(400,400,100,70);
 
         graphics.setColor(Color.pink);
         graphics.fill(babka);
@@ -213,6 +220,7 @@ public class MapLevel2 extends BasicGameState {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
         babka.update(1);
+
         for (Rectangle obstacle : obstacles) {
             babka.checkForCollision(obstacle);
         }
