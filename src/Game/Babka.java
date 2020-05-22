@@ -23,7 +23,10 @@ public class Babka extends Rectangle {
     private boolean blockedRight = false;
     private boolean inTeleport = false;
 
-
+    private boolean walkingLeft = false;
+    private boolean walkingRight = false;
+    private boolean standingLeft = false;
+    private boolean standingRight = true;
 
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
@@ -70,7 +73,6 @@ public class Babka extends Rectangle {
             if(blockedRight) {
                 move(-3, 0);
                 speedX =-speed*1.5f;
-
             }
             this.move(0,-1);
             setLanded(false);
@@ -79,6 +81,9 @@ public class Babka extends Rectangle {
         if(gameContainer.getInput().isKeyDown(Input.KEY_A)&&!blockedLeft){
             if(landed) {
                 this.move(-speed*timeCoeff, 0);
+                walkingLeft = true;
+                standingLeft = false;
+                standingRight = false;
             }
             else {
                 speedX = -speed;
@@ -89,6 +94,9 @@ public class Babka extends Rectangle {
         if(gameContainer.getInput().isKeyDown(Input.KEY_D)&&!blockedRight){
             if(landed) {
                 this.move(speed*timeCoeff, 0);
+                walkingRight = false;
+                standingLeft = false;
+                standingRight = false;
             }
             else{
                 if(timeCoeff < 1 )speedX = speed +  speed*timeCoeff;
@@ -166,9 +174,40 @@ public class Babka extends Rectangle {
         else landTangle = null;
     }
 
+    private void setupAnimation(){
 
-    public void getAnimation(){
+    }
 
+    public Animation getAnimation() throws SlickException {
+        if(blockedLeft){
+            return null;
+        }
+        else if(blockedRight){
+            return null;
+        }
+        if(landed) {
+            if (walkingLeft) {
+                return null;
+            }
+            else if(walkingRight){
+                return null;
+            }
+            else if(standingRight){
+                return null;
+            }
+            else if(standingLeft){
+                return null;
+            }
+        }
+        else {
+            if(speedX>0){
+                return null;
+            }
+            else {
+                return null;
+            }
+        }
+        return null;
     }
 
     public void turnLeft(){
