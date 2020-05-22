@@ -47,7 +47,7 @@ public class MapLevel2 extends BasicGameState {
 
         initWalls();
         initDoors();
-        //initEnemies();
+        initEnemies();
         initAttackZone();
     }
 
