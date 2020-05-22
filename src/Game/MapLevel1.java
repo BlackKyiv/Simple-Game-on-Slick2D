@@ -30,7 +30,7 @@ public class MapLevel1 extends BasicGameState {
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
-    private String path = "/Users/dgoptsii/Game copy/pictures/";
+    private String path = SetupGame.path;
 
     @Override
     public int getID() {
