@@ -123,7 +123,6 @@ public class MapLevel1 extends BasicGameState {
 
     }
 
-
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0, 0, 1100, 700);
@@ -171,7 +170,7 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
         graphics.fill(attackZone);
-        drawEnenmies(graphics);
+        drawEnemies(graphics);
 
     }
 
@@ -184,7 +183,7 @@ public class MapLevel1 extends BasicGameState {
         }
     }
 
-    private void drawEnenmies(Graphics graphics) {
+    private void drawEnemies(Graphics graphics) {
         for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
@@ -212,7 +211,6 @@ public class MapLevel1 extends BasicGameState {
                 }
             }
         }
-
 
         if (!injections.isEmpty()) {
             for (Injection i : injections) {

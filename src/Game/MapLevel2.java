@@ -41,7 +41,7 @@ public class MapLevel2 extends BasicGameState {
 
     @Override
     public int getID() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -156,7 +156,7 @@ public class MapLevel2 extends BasicGameState {
         graphics.setColor(Color.pink);
         graphics.fill(babka);
 
-        drawEnenmies(graphics);
+        drawEnemies(graphics);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -168,7 +168,7 @@ public class MapLevel2 extends BasicGameState {
         }
     }
 
-    private void drawEnenmies(Graphics graphics) {
+    private void drawEnemies(Graphics graphics) {
         for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
