@@ -32,7 +32,7 @@ private boolean goRight;
     }
 
     private void setUpAnimation() throws SlickException{
-        Image image = new Image(SetupGame.path + "corona_left.PNG");
+
 
         imageLeftNoticed = new SpriteSheet(SetupGame.path + "corona_left_noticed.PNG", 50, 50);;
         imageRightNoticed = new SpriteSheet(SetupGame.path + "corona_right_noticed.PNG", 50, 50);

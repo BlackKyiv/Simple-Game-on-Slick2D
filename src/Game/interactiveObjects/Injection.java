@@ -8,14 +8,11 @@ import org.newdawn.slick.geom.Rectangle;
 
 public class Injection extends Rectangle implements Bullet {
 
-    private boolean blockedLeft = false;
-
     private boolean collided = false;
 
-    private float initialX;
-    private float initialY;
     private float speed=3;
     private boolean doctor;
+    boolean reflected=false;
 
 
     private boolean right = false;
@@ -29,9 +26,6 @@ public class Injection extends Rectangle implements Bullet {
 
     public Injection(int x, int y) throws SlickException {
         super(x, y, 30, 10);
-        initialX = x;
-        initialY = y;
-
         setUpImage();
     }
 
@@ -43,7 +37,7 @@ public class Injection extends Rectangle implements Bullet {
         imageRedRight = new Image (SetupGame.path + "injection_red_right.PNG");;
 
     }
-    public Image getImage(Graphics graphics) {
+    public Image getImageInjection(Graphics graphics) {
     if (doctor) {
     if (right) {
         return imageBlueRight;
@@ -87,11 +81,6 @@ else{
                 this.setCenterX(getCenterX() - speed);
             }
         }
-    }
-
-    @Override
-    public void checkCollisions() {
-
     }
 
     @Override
@@ -140,6 +129,7 @@ else{
     }
 
     public void reflect(){
+        reflected=true;
         if (right){
             right=false;
         }else{
@@ -150,6 +140,9 @@ else{
     @Override
     public  boolean collided(){
         return collided;
+    }
+    public  boolean isReflected(){
+        return reflected;
     }
 
     public void setDoctor(boolean doctor){

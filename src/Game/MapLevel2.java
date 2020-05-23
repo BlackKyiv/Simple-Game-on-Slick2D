@@ -206,7 +206,7 @@ public class MapLevel2 extends BasicGameState {
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
-                    i.getImage(graphics).draw(i.getX(), i.getY());
+                    i.getImageInjection(graphics).draw(i.getX(), i.getY());
                 }
             }
         }
@@ -238,7 +238,7 @@ public class MapLevel2 extends BasicGameState {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
                     graphics.setColor(Color.gray);
-                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY());
+                    turrel.getImageTurrel(graphics).draw(turrel.getX(), turrel.getY());
                 }
             }
         }

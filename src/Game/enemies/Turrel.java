@@ -51,7 +51,7 @@ public class Turrel extends Rectangle implements Enemy {
         imageRightNoticed  = new Image (SetupGame.path + "turrel_right_noticed.PNG");;
 
     }
-    public Image getImageT(Graphics graphics) {
+    public Image getImageTurrel(Graphics graphics) {
 
             if (babkaNoticed == false) {
                 if (toRight) {

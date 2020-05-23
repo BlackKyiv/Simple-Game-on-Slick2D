@@ -157,7 +157,7 @@ public class MapLevel3 extends BasicGameState {
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
-                    i.getImage(graphics).draw(i.getX(), i.getY());
+                    i.getImageInjection(graphics).draw(i.getX(), i.getY());
                 }
             }
         }
@@ -193,7 +193,7 @@ public class MapLevel3 extends BasicGameState {
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
-                    i.getImage (graphics).draw(i.getX(), i.getY());
+                    i.getImageInjection (graphics).draw(i.getX(), i.getY());
                 }
             }
         }
