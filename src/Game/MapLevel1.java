@@ -185,8 +185,7 @@ public class MapLevel1 extends BasicGameState {
     private void drawDoors(Graphics graphics) {
         for(Door door : doors){
             if (!door.isBroken()) {
-                graphics.setColor(Color.blue);
-                graphics.fill(door);
+                door.getImageDoor(graphics).draw(  door.getX(),   door.getY());
             }
         }
     }
@@ -211,7 +210,7 @@ public class MapLevel1 extends BasicGameState {
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY(),75,80);
+                    turrel.getImageTurrel(graphics).draw(turrel.getX(), turrel.getY(),75,80);
 
                 }
             }
@@ -226,7 +225,7 @@ public class MapLevel1 extends BasicGameState {
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
-                    i.getImage(graphics).draw(i.getX(), i.getY());
+                    i.getImageInjection(graphics).draw(i.getX(), i.getY());
                 }
             }
         }

@@ -43,7 +43,7 @@ public class Injection extends Rectangle implements Bullet {
         imageRedRight = new Image (SetupGame.path + "injection_red_right.PNG");;
 
     }
-    public Image getImage(Graphics graphics) {
+    public Image getImageInjection(Graphics graphics) {
     if (doctor) {
     if (right) {
         return imageBlueRight;
