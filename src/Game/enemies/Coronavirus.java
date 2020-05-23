@@ -20,11 +20,20 @@ public class Coronavirus extends Rectangle implements Enemy {
 
     float babkaX;
     float babkaY;
-    float visionHorizontal;
-    float visionVertical;
-    float notVisionHorizontal;
-    float notVisionVertical;
+    float babkaWidth;
+    float babkaHeight;
     float space;
+
+
+    float visionHorizontalLeft;
+    float visionHorizontalRight;
+    float visionVerticalUp;
+    float visionVerticalDown;
+
+    float notVisionHorizontalLeft;
+    float notVisionHorizontalRight;
+    float notVisionVerticalUp;
+    float notVisionVerticalDown;
 
     private boolean babkaNoticed = false;
     private boolean alive = true;
@@ -123,10 +132,10 @@ public class Coronavirus extends Rectangle implements Enemy {
         ///// babka noticed
         else {
 
-            if (Math.abs(babkaX-this.getX())>notVisionHorizontal||Math.abs(babkaY-this.getY())>notVisionVertical){
-                babkaNoticed=false;
-
-            }else {
+            if ((babkaX>(this.getX()+this.getWidth())&&babkaX - (this.getX()+this.getWidth()) > notVisionHorizontalRight) ||(babkaX+babkaWidth<this.getX()&&this.getX() - (babkaX+babkaWidth) > notVisionHorizontalLeft)||(babkaY>(this.getY()+this.getHeight())&&babkaY - (this.getY()+this.getHeight()) > notVisionVerticalUp) ||(babkaY+babkaHeight<this.getY()&&this.getY() - (babkaY+babkaHeight) > notVisionVerticalDown)) {
+                babkaNoticed = false;
+            }
+            else {
 
 
                 if (this.getX() < babkaX && blockedRight == false) {
@@ -195,14 +204,18 @@ public class Coronavirus extends Rectangle implements Enemy {
         if (head.intersects(platform)) {
             blockedUp = true;
         }
-            babkaX = platform.getX();
-            babkaY = platform.getY()+platform.getHeight();
-            Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVertical);
-            Rectangle arm1B = new Rectangle(this.getX() - visionHorizontal, this.getY() + 1, visionHorizontal, height - 2);
-            Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontal, height - 2);
-            Rectangle headB = new Rectangle(this.getX() , this.getY()- visionVertical, width, visionVertical);
 
-            if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
+        babkaX = platform.getX();
+        babkaY = platform.getY();
+        babkaWidth = +platform.getWidth();
+        babkaHeight = platform.getHeight();
+
+        Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVerticalDown);
+        Rectangle arm1B = new Rectangle(this.getX() - visionHorizontalLeft, this.getY() + 1, visionHorizontalLeft, height - 2);
+        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontalRight, height - 2);
+        Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
+
+        if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
                 babkaNoticed = true;
             }
 
@@ -214,22 +227,25 @@ public class Coronavirus extends Rectangle implements Enemy {
     }
 
 
-
-    public void setVisionHorizontal( float visionHorizontal){
-        this.visionHorizontal=visionHorizontal;
-    }
-    public void setVisionVertical( float visionVertical){
-        this.visionVertical=visionVertical;
+    public void setVisionHorizontal(float visionHorizontalLeft, float visionHorizontalRight) {
+        this.visionHorizontalLeft = visionHorizontalLeft;
+        this.visionHorizontalRight = visionHorizontalRight;
     }
 
-    public void setNotVisionHorizontal( float notVisionHorizontal){
-        this.notVisionHorizontal=notVisionHorizontal;
+    public void setVisionVertical(float visionVerticalUp,float visionVerticalDown ) {
+        this.visionVerticalUp = visionVerticalUp;
+        this.visionVerticalDown = visionVerticalDown;
     }
 
-    public void setNotVisionVertical( float notVisionVertical){
-        this.notVisionVertical=notVisionVertical;
+    public void setNotVisionHorizontal(float notVisionHorizontalLeft, float notVisionHorizontalRight) {
+        this.notVisionHorizontalLeft = notVisionHorizontalLeft;
+        this.notVisionHorizontalRight = notVisionHorizontalRight;
     }
 
+    public void setNotVisionVertical(float notVisionVerticalUp,float notVisionVerticalDown ) {
+        this.notVisionVerticalUp = notVisionVerticalUp;
+        this.notVisionVerticalDown = notVisionVerticalDown;
+    }
     public void setSpace( float space){
         this.space=space;
     }

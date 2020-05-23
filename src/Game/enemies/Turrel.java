@@ -1,7 +1,10 @@
 package Game.enemies;
 
+import Game.SetupGame;
 import Game.interactiveObjects.Injection;
 import Game.Timer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -9,7 +12,7 @@ import org.newdawn.slick.geom.Rectangle;
 public class Turrel extends Rectangle implements Enemy {
     private float initialX;
     private float initialY;
-    private boolean goRight = true;
+
     private boolean toRight;
     private boolean shooting = false;
 
@@ -22,10 +25,14 @@ public class Turrel extends Rectangle implements Enemy {
 
 
     private boolean alive = true;
-
+    private boolean babkaNoticed=false;
+    private Image imageLeft;
+    private Image imageRight;
+    private Image imageLeftNoticed;
+    private Image imageRightNoticed;
 
     public Turrel(int x, int y) throws SlickException {
-        super(x, y, 80, 80);
+        super(x, y, 75, 80);
         initialX = x;
         initialY = y;
 
@@ -33,7 +40,35 @@ public class Turrel extends Rectangle implements Enemy {
         shootGap = new Timer(200);
         beforeShoot = new Timer(390);
         shootGap.start();
+        setUpImage();
     }
+
+    private void setUpImage() throws SlickException {
+        imageLeft = new Image (SetupGame.path + "turrel_left.PNG");;
+        imageRight  = new Image (SetupGame.path + "turrel_right.PNG");;
+
+        imageLeftNoticed = new Image (SetupGame.path + "turrel_left_noticed.PNG");;
+        imageRightNoticed  = new Image (SetupGame.path + "turrel_right_noticed.PNG");;
+
+    }
+    public Image getImageT(Graphics graphics) {
+
+            if (babkaNoticed == false) {
+                if (toRight) {
+                    return imageRight;
+                } else {
+                    return imageLeft;
+                }
+            } else {
+                if (toRight) {
+                    return imageRightNoticed;
+                } else {
+                    return imageLeftNoticed;
+                }
+            }
+        }
+
+
 
 
     public void update(int delta) {
@@ -131,6 +166,9 @@ public class Turrel extends Rectangle implements Enemy {
 
     public boolean isToRight(){
         return toRight;
+    }
+    public void setTimer(float time){
+        shootGap = new Timer(time);
     }
 
 }

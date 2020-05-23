@@ -40,7 +40,7 @@ public class MapLevel1 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(800, 300, 50, 50);
+        babka = new Babka(800, 500);
 
         initDoors();
         initEnemies();
@@ -62,10 +62,10 @@ public class MapLevel1 extends BasicGameState {
         obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, SetupGame.width, floorHeight)); //terrain
-        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1090, 0, 10, SetupGame.height-90)); //right frame
-        obstacles.add(new Rectangle(0, 0, SetupGame.width, 10)); //upper frame
+        obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
+        obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
+        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
 
         wallSS = new SpriteSheet(wall, 10, 10);
         floorSS = new SpriteSheet(wall, 10, 10);
@@ -85,8 +85,8 @@ public class MapLevel1 extends BasicGameState {
         doorUp = new Image(path + "door.jpg");
 
         teleports = new ArrayList<>();
-        teleports.add(new Teleport(110, 325, 80, 135,0,225));
-        teleports.add(new Teleport(110, 550, 80, 135,0,-220));
+        teleports.add(new Teleport(110, 375, 80, 85,0,225));
+        teleports.add(new Teleport(110, 600, 80, 85,0,-220));
     }
 
     private void initDoors() throws SlickException {
@@ -96,11 +96,11 @@ public class MapLevel1 extends BasicGameState {
     private void initEnemies() throws SlickException {
         Coronavirus corona = new Coronavirus(550, 400);
         corona.setSpace(150);
-        corona.setVisionHorizontal(150);
-        corona.setVisionVertical(150);
-        corona.setNotVisionHorizontal(200);
-        corona.setNotVisionVertical(150);
-        enemies.add(corona);
+        corona.setVisionHorizontal(150,150);
+        corona.setVisionVertical(20,0);
+        corona.setNotVisionHorizontal(150,150);
+        corona.setNotVisionVertical(20,0);
+       enemies.add(corona);
 
 
         CoronaSmall coronaS = new CoronaSmall(550, 700);
@@ -110,12 +110,12 @@ public class MapLevel1 extends BasicGameState {
 
         Doctor doctor = new Doctor(650, 350);
         doctor.setSpace(150);
-        doctor.setVisionHorizontal(150);
-        doctor.setVisionVertical(50);
-        doctor.setNotVisionHorizontal(150);
-        doctor.setNotVisionVertical(50);
+        doctor.setVisionHorizontal(100,100);
+        doctor.setVisionVertical(50,0);
+        doctor.setNotVisionHorizontal(50,100);
+        doctor.setNotVisionVertical(50,0);
 
-        enemies.add(doctor);
+       enemies.add(doctor);
 
         Turrel turrel = new Turrel(500, 380);
         turrel.setLeft();
@@ -150,14 +150,12 @@ public class MapLevel1 extends BasicGameState {
         }
         wall.endUse();
 
-
-
         window.draw(700, 300, 100, 100);
         window.draw(400, 300, 100, 100);
         window.draw(700, 550, 100, 100);
         window.draw(400, 550, 100, 100);
-        doorUp.draw(110, 325, 80, 135);
-        doorDown.draw(110, 550, 80, 135);
+        doorUp.draw(110, 375, 80, 85);
+        doorDown.draw(110, 600, 80, 85);
         sofa.draw(500, 360, 200, 100);
         nightstand.draw(440, 410, 60, 50);
         nightstand.draw(700, 410, 60, 50);
@@ -187,7 +185,7 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void drawEnemies(Graphics graphics) {
-        for(int i = 0; i<enemies.size(); i++) {
+       for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
@@ -206,8 +204,8 @@ public class MapLevel1 extends BasicGameState {
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    graphics.setColor(Color.gray);
-                    graphics.fill(turrel);
+                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY(),75,80);
+
                 }
             }
         }
@@ -252,7 +250,7 @@ public class MapLevel1 extends BasicGameState {
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
 
-            babka = new Babka(800, 300, 50, 50);
+            babka = new Babka(800, 500 );
 
             initDoors();
             initEnemies();
