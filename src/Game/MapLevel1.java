@@ -96,23 +96,20 @@ public class MapLevel1 extends BasicGameState {
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
         corona1.setSpace(150);
-
         corona1.setVisionHorizontal(150,150);
         corona1.setVisionVertical(20,0);
         corona1.setNotVisionHorizontal(150,150);
         corona1.setNotVisionVertical(20,0);
         enemies.add(corona1);
-        Coronavirus corona2 = new Coronavirus(50, 300);
+        Coronavirus corona2 = new Coronavirus(50, 370);
         corona2.setSpace(150);
-
         corona2.setVisionHorizontal(100,150);
         corona2.setVisionVertical(20,0);
         corona2.setNotVisionHorizontal(150,150);
         corona2.setNotVisionVertical(20,0);
         enemies.add(corona2);
-        Coronavirus corona3 = new Coronavirus(200, 500);
+        Coronavirus corona3 = new Coronavirus(200, 600);
         corona3.setSpace(150);
-
         corona3.setVisionHorizontal(150,150);
         corona3.setVisionVertical(20,0);
         corona3.setNotVisionHorizontal(150,150);
@@ -156,9 +153,10 @@ public class MapLevel1 extends BasicGameState {
         }
         for (int a = SetupGame.height-floorHeight; a > SetupGame.height-2*floorH-2*floorHeight; a -= wallWidth) {
             wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(0, a, wallWidth, wallWidth);
-            if(a<=595)
+            if(a<=580)
                 wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(SetupGame.width-x_offset, a, wallWidth, wallWidth);
         }
+        wallSS.getSubImage(0,0,85,60).drawEmbedded(SetupGame.width-x_offset,585,wallWidth,15); //above doors
         wall.endUse();
 
         window.draw(700, 300, 100, 100);
