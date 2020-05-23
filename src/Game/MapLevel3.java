@@ -177,7 +177,7 @@ public class MapLevel3 extends BasicGameState {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
                     graphics.setColor(Color.gray);
-                    graphics.fill(turrel);
+                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY());
                 }
             }
         }

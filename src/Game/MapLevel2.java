@@ -122,8 +122,9 @@ public class MapLevel2 extends BasicGameState {
         t.setRangeOfSight(500);
         enemies.add(t);
 
-        Turrel t1 = new Turrel(900,320);
-        t1.setRangeOfSight(800);
+        Turrel t1 = new Turrel(900,310);
+        t1.setTimeBeforeShoot(200);
+        t1.setRangeOfSight(750);
         enemies.add(t1);
     }
 
@@ -184,8 +185,6 @@ public class MapLevel2 extends BasicGameState {
         }
         wall.endUse();
 
-        turret1.draw(900,600,100,70);
-        turret2.draw(900,320,100,70);
         helicopter.draw(250,5,250,80);
 
         graphics.setColor(Color.pink);
@@ -239,7 +238,7 @@ public class MapLevel2 extends BasicGameState {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
                     graphics.setColor(Color.gray);
-                    graphics.fill(turrel);
+                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY());
                 }
             }
         }
