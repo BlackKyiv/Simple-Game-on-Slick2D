@@ -60,7 +60,7 @@ public class MapLevel1 extends BasicGameState {
 
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
         obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
+        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW+wallWidth, floorHeight)); //first floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
         obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
@@ -174,11 +174,7 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
-        for(Rectangle r: obstacles)
-            graphics.fill(r);
-
-      //  graphics.fill(attackZone);
-
+        //graphics.fill(attackZone);
     }
 
     private void drawDoors(Graphics graphics) {
