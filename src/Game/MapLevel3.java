@@ -127,12 +127,11 @@ public class MapLevel3 extends BasicGameState {
         drawDoors(graphics);
 
         graphics.setColor(Color.pink);
-        graphics.fill(babka);
+        babka.getAnimation().draw(babka.getX(), babka.getY());
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
-        graphics.fill(attackZone);
+        //graphics.fill(attackZone);
         drawEnemies(graphics);
-
     }
 
     private void drawDoors(Graphics graphics) {
@@ -183,7 +182,7 @@ public class MapLevel3 extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
-        babka.update(1);
+        babka.update(1, delta);
         for (Rectangle obstacle : obstacles) {
             babka.checkForCollision(obstacle);
         }
@@ -293,9 +292,11 @@ public class MapLevel3 extends BasicGameState {
                 if (container.getInput().getMouseX() > babka.getX()) {
                     attackZone.setX(babka.getX() + babka.getWidth());
                     attackZone.setY(babka.getY());
+                    babka.setFightingRight(true);
                 } else if (container.getInput().getMouseX() < babka.getX()) {
                     attackZone.setX(babka.getX() - babka.getWidth());
                     attackZone.setY(babka.getY());
+                    babka.setFightingLeft(true);
                 }
             } else attackZone = new Rectangle(-50, -50, 50, 50);
             checkForAttackDoors();

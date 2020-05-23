@@ -248,7 +248,7 @@ public class MapLevel2 extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
-        babka.update(1);
+        babka.update(1, delta);
 
         for (Rectangle obstacle : obstacles) {
             babka.checkForCollision(obstacle);

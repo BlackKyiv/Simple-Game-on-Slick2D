@@ -27,6 +27,8 @@ public class Babka extends Rectangle {
     private boolean walkingRight = false;
     private boolean standingLeft = false;
     private boolean standingRight = true;
+    private boolean fightingLeft = false;
+    private boolean fightingRight = false;
 
     private Animation animationStandLeft;
     private Animation animationStandRight;
@@ -40,22 +42,46 @@ public class Babka extends Rectangle {
     private Animation animationJumpingLeft;
     private Animation animationJumpingRight;
 
+    private Timer attackTimerLeft;
+    private Timer attackTimerRight;
+
+    private Animation animationFightingLeft;
+    private Animation animationFightingRight;
+
 
 
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
-
+        setupAnimation();
+        attackTimerLeft = new Timer(200);
+        attackTimerRight = new Timer(200);
     }
 
 
-    public void update(float timeCoeff){
+    public void update(float timeCoeff, int delta){
         this.timeCoeff = timeCoeff;
+        this.attackTimerLeft.update(delta*timeCoeff);
+        this.attackTimerRight.update(delta*timeCoeff);
         if(!isLanded()) move(speedX*timeCoeff, speedY*timeCoeff);
         gravityPull();
 
 
+        if(walkingLeft||standingLeft){
+            standingLeft =true;
+            standingRight = false;
+        }
+        else if(walkingRight||standingRight){
+            standingLeft =false;
+            standingRight = true;
+        }
         blockedLeft = false;
         blockedRight = false;
+
+        walkingRight = false;
+        walkingLeft = false;
+
+        fightingLeft = false;
+        fightingRight = false;
     }
 
     public int getSpeedY(){
@@ -108,7 +134,7 @@ public class Babka extends Rectangle {
         if(gameContainer.getInput().isKeyDown(Input.KEY_D)&&!blockedRight){
             if(landed) {
                 this.move(speed*timeCoeff, 0);
-                walkingRight = false;
+                walkingRight = true;
                 standingLeft = false;
                 standingRight = false;
             }
@@ -190,59 +216,65 @@ public class Babka extends Rectangle {
 
     private void setupAnimation() throws SlickException {
 
-        animationSlidingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.png",50,50), 100);
-        animationSlidingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.png",50,50), 100);
+        animationSlidingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.PNG",50,50), 100);
+        animationSlidingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
 
-        animationWalkingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.png", 50,50), 100);
+
+        animationStandLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.PNG",50,50), 100);
+        animationStandRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
+
+        animationWalkingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.PNG", 50,50), 100);
         animationWalkingLeft.setPingPong(true);
 
-        animationWalkingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.png", 50,50), 100);
+        animationWalkingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_go_right.PNG", 50,50), 100);
         animationWalkingRight.setPingPong(true);
 
-        animationJumpingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_left.png", 50,50), 100);
-        animationJumpingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_right.png", 50,50), 100);
+        animationJumpingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_left.PNG", 50,50), 100);
+        animationJumpingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_right.PNG", 50,50), 100);
 
+        animationFightingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_left.PNG", 75,50), 100);
+        animationFightingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_right.PNG", 75,50), 100);
     }
 
     public Animation getAnimation() throws SlickException {
+        if(attackTimerLeft.isRunning()){
+            return animationFightingLeft;
+        }
+        else if(attackTimerRight.isRunning()){
+            return animationFightingRight;
+        }
         if(blockedLeft){
-            return null;
+            return animationSlidingLeft;
         }
         else if(blockedRight){
-            return null;
+            return animationSlidingRight;
         }
         if(landed) {
-            if (walkingLeft) {
-                return null;
-            }
-            else if(walkingRight){
-                return null;
-            }
-            else if(standingRight){
-                return null;
+            if(standingRight){
+                return animationStandLeft;
             }
             else if(standingLeft){
-                return null;
+                return animationStandRight;
             }
+            else if (walkingLeft) {
+                return animationWalkingRight;
+            }
+            else if(walkingRight){
+                return animationWalkingLeft;
+            }
+
         }
         else {
             if(speedX>0){
-                return null;
+                return animationJumpingRight;
             }
             else {
-                return null;
+                return animationJumpingLeft;
             }
         }
-        return null;
+        return animationSlidingLeft;
     }
 
-    public void turnLeft(){
-
-    }
-
-    public void turnRight(){
-
-    }
 
     public boolean isAlive(){
         return alive && mortal;
@@ -250,6 +282,26 @@ public class Babka extends Rectangle {
 
     public void die(){
         alive = false;
+    }
+
+    public void setFightingLeft(boolean fighting){
+        if(fighting) {
+            this.fightingLeft = fighting;
+            attackTimerLeft.restart();
+            standingRight = false;
+            standingLeft = true;
+        }
+        attackTimerLeft.start();
+    }
+
+    public void setFightingRight(boolean fighting){
+        if(fighting) {
+            attackTimerRight.restart();
+            attackTimerRight.start();
+            standingRight = true;
+            standingLeft = false;
+        }
+        this.fightingRight = fighting;
     }
 
     public boolean inTeleport(Teleport teleport){

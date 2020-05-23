@@ -172,7 +172,7 @@ public class MapLevel1 extends BasicGameState {
         graphics.fill(babka);
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
-        graphics.fill(attackZone);
+
         drawEnemies(graphics);
 
     }
@@ -225,7 +225,7 @@ public class MapLevel1 extends BasicGameState {
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
-        babka.update(1);
+        babka.update(1, delta);
         for (Rectangle obstacle : obstacles) {
             babka.checkForCollision(obstacle);
         }
