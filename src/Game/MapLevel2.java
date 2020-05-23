@@ -124,7 +124,7 @@ public class MapLevel2 extends BasicGameState {
 
         Turrel t1 = new Turrel(900,320);
         t1.setRangeOfSight(800);
-        enemies.add(t1);
+        //enemies.add(t1);
     }
 
     @Override
