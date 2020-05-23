@@ -185,7 +185,7 @@ public class MapLevel3 extends BasicGameState {
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY());
+                    turrel.getImageTurrel(graphics).draw(turrel.getX(), turrel.getY());
                 }
             }
         }
@@ -297,7 +297,20 @@ public class MapLevel3 extends BasicGameState {
                     for (Rectangle obstacle : obstacles) {
                         j.checkForCollision(obstacle);
                     }
+                    for (Rectangle obstacle : doors) {
+                        j.checkForCollision(obstacle);
+                    }
+                    for(int d = 0;d<enemies.size(); d++){
+                        if(enemies.get(d) instanceof Doctor) {
+                            Doctor doctor = (Doctor) enemies.get(d);
+                            if(j.intersects(doctor)&&j.isReflected()){
+                                doctor.die();
+                                j.disappear();
+                            }
+                        }
+                    }
                     if(j.intersects(babka))babka.die();
+
                 }
                 else {
                     injections.remove(i);

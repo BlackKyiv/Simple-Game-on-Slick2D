@@ -343,12 +343,26 @@ public class MapLevel2 extends BasicGameState {
         //Injections update
         if (!injections.isEmpty()) {
             for (int i =0; i<injections.size(); i++) {
-                Injection j = injections.get(i);
+                Injection j = (Injection) injections.get(i);
                 if(j.isPresent()) {
                     j.update();
                     for (Rectangle obstacle : obstacles) {
                         j.checkForCollision(obstacle);
                     }
+                    for (Rectangle obstacle : doors) {
+                        j.checkForCollision(obstacle);
+                    }
+                    for(int d = 0;d<enemies.size(); d++){
+                        if(enemies.get(d) instanceof Doctor) {
+                            Doctor doctor = (Doctor) enemies.get(d);
+                            if(j.intersects(doctor)&&j.isReflected()){
+                                doctor.die();
+                                j.disappear();
+                            }
+                        }
+                    }
+                    if(j.intersects(babka))babka.die();
+
                 }
                 else {
                     injections.remove(i);
