@@ -50,7 +50,7 @@ public class Babka extends Rectangle {
 
 
     private float attackZoneSizeX = 50;
-    private float attackZoneSizeY = 60;
+    private float attackZoneSizeY = 80;
 
 
     public Babka(float x, float y) throws SlickException {
@@ -313,11 +313,11 @@ public class Babka extends Rectangle {
             if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
                 if (container.getInput().getMouseX() > this.getX()) {
                     this.setFightingRight(true);
-                    return new Rectangle(getX() + getWidth(), getY(), attackZoneSizeX, attackZoneSizeY);
+                    return new Rectangle(getX(), getY()-15, attackZoneSizeX+getWidth(), attackZoneSizeY);
 
                 } else if (container.getInput().getMouseX() < this.getX()) {
                     this.setFightingLeft(true);
-                    return new Rectangle(getX() - attackZoneSizeX, getY(), attackZoneSizeX, attackZoneSizeY);
+                    return new Rectangle(getX() - attackZoneSizeX, getY()-15, attackZoneSizeX+getWidth(), attackZoneSizeY);
                 }
             }
         }

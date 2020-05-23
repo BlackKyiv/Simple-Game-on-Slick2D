@@ -184,6 +184,8 @@ public class MapLevel1 extends BasicGameState {
 
         drawEnemies(graphics);
 
+        graphics.fill(attackZone);
+
     }
 
     private void drawDoors(Graphics graphics) {
@@ -260,7 +262,7 @@ public class MapLevel1 extends BasicGameState {
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
 
-            babka = new Babka(800, 500 );
+            babka = new Babka(800, 350);
 
 
             initDoors();
