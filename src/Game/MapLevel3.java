@@ -134,6 +134,7 @@ public class MapLevel3 extends BasicGameState {
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
         drawEnemies(graphics);
+        drawBullets(graphics);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -141,6 +142,16 @@ public class MapLevel3 extends BasicGameState {
             if (!door.isBroken()) {
                 graphics.setColor(Color.blue);
                 graphics.fill(door);
+            }
+        }
+    }
+
+    private void drawBullets(Graphics graphics){
+        if (!injections.isEmpty()) {
+            for (Injection i : injections) {
+                if (i.isPresent()) {
+                    i.getImage(graphics).draw(i.getX(), i.getY());
+                }
             }
         }
     }
