@@ -103,6 +103,7 @@ public class Turrel extends Rectangle implements Enemy {
             if(!shooting &&!beforeShoot.isRunning()) {
                 beforeShoot.restart();
                 beforeShoot.start();
+                babkaNoticed = true;
             }
 
             return true;
@@ -113,12 +114,14 @@ public class Turrel extends Rectangle implements Enemy {
             if(!shooting &&!beforeShoot.isRunning()) {
                 beforeShoot.restart();
                 beforeShoot.start();
+                babkaNoticed = true;
             }
 
             if(beforeShoot.isFinished()) shooting = true;
             return true;
         }
         else {
+            babkaNoticed = false;
             beforeShoot.restart();
             beforeShoot.stop();
             shooting = false;
