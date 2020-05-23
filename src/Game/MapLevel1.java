@@ -40,7 +40,7 @@ public class MapLevel1 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(800, 500);
+        babka = new Babka(800, 350);
 
         initDoors();
         initEnemies();
@@ -94,35 +94,42 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void initEnemies() throws SlickException {
-        Coronavirus corona = new Coronavirus(550, 400);
-        corona.setSpace(150);
-        corona.setVisionHorizontal(150,150);
-        corona.setVisionVertical(20,0);
-        corona.setNotVisionHorizontal(150,150);
-        corona.setNotVisionVertical(20,0);
-       enemies.add(corona);
+        Coronavirus corona1 = new Coronavirus(950, 400);
+        corona1.setSpace(150);
+        corona1.setVisionHorizontal(150,150);
+        corona1.setVisionVertical(20,0);
+        corona1.setNotVisionHorizontal(150,150);
+        corona1.setNotVisionVertical(20,0);
+        enemies.add(corona1);
+        Coronavirus corona2 = new Coronavirus(50, 300);
+        corona2.setSpace(150);
+        corona2.setVisionHorizontal(150,150);
+        corona2.setVisionVertical(20,0);
+        corona2.setNotVisionHorizontal(150,150);
+        corona2.setNotVisionVertical(20,0);
+        enemies.add(corona2);
+        Coronavirus corona3 = new Coronavirus(200, 500);
+        corona3.setSpace(150);
+        corona3.setVisionHorizontal(150,150);
+        corona3.setVisionVertical(20,0);
+        corona3.setNotVisionHorizontal(150,150);
+        corona3.setNotVisionVertical(20,0);
+        enemies.add(corona3);
+        Coronavirus corona4 = new Coronavirus(700, 600);
+        corona4.setSpace(150);
+        corona4.setVisionHorizontal(150,150);
+        corona4.setVisionVertical(20,0);
+        corona4.setNotVisionHorizontal(150,150);
+        corona4.setNotVisionVertical(20,0);
+        enemies.add(corona4);
 
-
-        CoronaSmall coronaS = new CoronaSmall(550, 700);
-        coronaS.setSpeed(2);
-        enemies.add(coronaS);
-
-
-        Doctor doctor = new Doctor(650, 350);
+        Doctor doctor = new Doctor(900, 605);
         doctor.setSpace(150);
         doctor.setVisionHorizontal(100,100);
         doctor.setVisionVertical(50,0);
         doctor.setNotVisionHorizontal(50,100);
         doctor.setNotVisionVertical(50,0);
-
-       enemies.add(doctor);
-
-        Turrel turrel = new Turrel(500, 380);
-        turrel.setLeft();
-        turrel.setRangeOfSight(500);
-
-        enemies.add(turrel);
-
+        enemies.add(doctor);
     }
 
     @Override
@@ -273,6 +280,10 @@ public class MapLevel1 extends BasicGameState {
 
                 for (Rectangle obstacle : obstacles) {
                     doctor.checkForCollisionWall(obstacle);
+                }
+
+                for(Rectangle door: doors){
+                    doctor.checkForCollisionWall(door);
                 }
                 doctor.checkForCollisionBabka(babka);
             }

@@ -304,6 +304,9 @@ public class MapLevel2 extends BasicGameState {
                 for (Rectangle obstacle : obstacles) {
                     doctor.checkForCollisionWall(obstacle);
                 }
+                for(Rectangle door: doors){
+                    doctor.checkForCollisionWall(door);
+                }
                 doctor.checkForCollisionBabka(babka);
             }
             else if(enemies.get(i) instanceof Coronavirus){

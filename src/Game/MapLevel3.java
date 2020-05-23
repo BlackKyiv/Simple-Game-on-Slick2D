@@ -205,7 +205,6 @@ public class MapLevel3 extends BasicGameState {
         for(Teleport teleport: teleports){
             babka.goInTeleport(gameContainer,teleport);
         }
-
         babka.controls(gameContainer);
 
         updateEnemies(delta);
@@ -241,6 +240,9 @@ public class MapLevel3 extends BasicGameState {
 
                 for (Rectangle obstacle : obstacles) {
                     doctor.checkForCollisionWall(obstacle);
+                }
+                for(Rectangle door: doors){
+                    doctor.checkForCollisionWall(door);
                 }
                 doctor.checkForCollisionBabka(babka);
             }
