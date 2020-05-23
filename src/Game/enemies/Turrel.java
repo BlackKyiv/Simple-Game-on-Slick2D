@@ -1,7 +1,10 @@
 package Game.enemies;
 
+import Game.SetupGame;
 import Game.interactiveObjects.Injection;
 import Game.Timer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -11,7 +14,7 @@ import java.time.OffsetTime;
 public class Turrel extends Rectangle implements Enemy {
     private float initialX;
     private float initialY;
-    private boolean goRight = true;
+
     private boolean toRight;
 
 
@@ -22,17 +25,49 @@ public class Turrel extends Rectangle implements Enemy {
 
 
     private boolean alive = true;
-
+    private boolean babkaNoticed=false;
+    private Image imageLeft;
+    private Image imageRight;
+    private Image imageLeftNoticed;
+    private Image imageRightNoticed;
 
     public Turrel(int x, int y) throws SlickException {
-        super(x, y, 80, 80);
+        super(x, y, 75, 80);
         initialX = x;
         initialY = y;
 
 
-        shootGap = new Timer(200);
+        shootGap = new Timer(300);
         shootGap.start();
+        setUpImage();
     }
+
+    private void setUpImage() throws SlickException {
+        imageLeft = new Image (SetupGame.path + "turrel_left.PNG");;
+        imageRight  = new Image (SetupGame.path + "turrel_right.PNG");;
+
+        imageLeftNoticed = new Image (SetupGame.path + "turrel_left_noticed.PNG");;
+        imageRightNoticed  = new Image (SetupGame.path + "turrel_right_noticed.PNG");;
+
+    }
+    public Image getImage(Graphics graphics) {
+
+            if (babkaNoticed == false) {
+                if (toRight) {
+                    return imageRight;
+                } else {
+                    return imageLeft;
+                }
+            } else {
+                if (toRight) {
+                    return imageRightNoticed;
+                } else {
+                    return imageLeftNoticed;
+                }
+            }
+        }
+
+
 
 
     public void update(int delta) {
@@ -60,17 +95,17 @@ public class Turrel extends Rectangle implements Enemy {
     public boolean intersectsLineOfSight(Rectangle target){
         if(target.getY()>= this.getY() && target.getY()<= this.getY()+this.getHeight() && isToRight() && target.getX()>this.getCenterX() &&
             target.getCenterX()-this.getCenterX()<=rangeOfSight){
-
+            babkaNoticed=true;
             return true;
 
         }
         else if(target.getY()>= this.getY() && target.getY()<= this.getY()+this.getHeight() && !isToRight() && target.getX()<this.getCenterX() &&
                 this.getCenterX()-target.getX()<=rangeOfSight){
-
+            babkaNoticed=true;
             return true;
         }
         else {
-
+            babkaNoticed=false;
             return false;
         }
     }
@@ -115,6 +150,9 @@ public class Turrel extends Rectangle implements Enemy {
 
     public boolean isToRight(){
         return toRight;
+    }
+    public void setTimer(float time){
+        shootGap = new Timer(time);
     }
 
 }

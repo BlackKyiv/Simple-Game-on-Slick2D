@@ -34,10 +34,17 @@ public class Doctor extends Rectangle implements Enemy {
     float babkaWidth;
     float babkaHeight;
 
-    float visionHorizontal;
-    float visionVertical;
-    float notVisionHorizontal;
-    float notVisionVertical;
+    float visionHorizontalLeft;
+    float visionHorizontalRight;
+    float visionVerticalUp;
+    float visionVerticalDown;
+
+    float notVisionHorizontalLeft;
+    float notVisionHorizontalRight;
+    float notVisionVerticalUp;
+    float notVisionVerticalDown;
+
+
     float space;
     float distance = 100;
 
@@ -182,7 +189,7 @@ public class Doctor extends Rectangle implements Enemy {
            ///// babka noticed
            else {
                babkaXPrevious=babkaX-this.getX();
-               if (Math.abs(babkaX - this.getX()) > notVisionHorizontal || Math.abs(babkaY - this.getY()) > notVisionVertical) {
+               if ((babkaX>(this.getX()+this.getWidth())&&babkaX - (this.getX()+this.getWidth()) > notVisionHorizontalRight) ||(babkaX+babkaWidth<this.getX()&&this.getX() - (babkaX+babkaWidth) > notVisionHorizontalLeft)||(babkaY>(this.getY()+this.getHeight())&&babkaY - (this.getY()+this.getHeight()) > notVisionVerticalUp) ||(babkaY+babkaHeight<this.getY()&&this.getY() - (babkaY+babkaHeight) > notVisionVerticalDown)) {
                    babkaNoticed = false;
                }
 
@@ -254,10 +261,10 @@ public class Doctor extends Rectangle implements Enemy {
         babkaY = platform.getY();
         babkaWidth = +platform.getWidth();
         babkaHeight = platform.getHeight();
-        Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVertical);
-        Rectangle arm1B = new Rectangle(this.getX() - visionHorizontal, this.getY() + 1, visionHorizontal, height - 2);
-        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontal, height - 2);
-        Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVertical, width, visionVertical);
+        Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVerticalDown);
+        Rectangle arm1B = new Rectangle(this.getX() - visionHorizontalLeft, this.getY() + 1, visionHorizontalLeft, height - 2);
+        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontalRight, height - 2);
+        Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
 
         if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
             babkaNoticed = true;
@@ -277,20 +284,24 @@ public class Doctor extends Rectangle implements Enemy {
         return babkaNoticed;
     }
 
-    public void setVisionHorizontal(float visionHorizontal) {
-        this.visionHorizontal = visionHorizontal;
+    public void setVisionHorizontal(float visionHorizontalLeft, float visionHorizontalRight) {
+        this.visionHorizontalLeft = visionHorizontalLeft;
+        this.visionHorizontalRight = visionHorizontalRight;
     }
 
-    public void setVisionVertical(float visionVertical) {
-        this.visionVertical = visionVertical;
+    public void setVisionVertical(float visionVerticalUp,float visionVerticalDown ) {
+        this.visionVerticalUp = visionVerticalUp;
+        this.visionVerticalDown = visionVerticalDown;
     }
 
-    public void setNotVisionHorizontal(float notVisionHorizontal) {
-        this.notVisionHorizontal = notVisionHorizontal;
+    public void setNotVisionHorizontal(float notVisionHorizontalLeft, float notVisionHorizontalRight) {
+        this.notVisionHorizontalLeft = notVisionHorizontalLeft;
+        this.notVisionHorizontalRight = notVisionHorizontalRight;
     }
 
-    public void setNotVisionVertical(float notVisionVertical) {
-        this.notVisionVertical = notVisionVertical;
+    public void setNotVisionVertical(float notVisionVerticalUp,float notVisionVerticalDown ) {
+        this.notVisionVerticalUp = notVisionVerticalUp;
+        this.notVisionVerticalDown = notVisionVerticalDown;
     }
 
     public void setSpace(float space) {

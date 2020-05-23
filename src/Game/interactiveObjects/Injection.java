@@ -58,7 +58,7 @@ else{
         return imageRedLeft;
     }
 }
-        // return animationLeft;
+
     }
 
 

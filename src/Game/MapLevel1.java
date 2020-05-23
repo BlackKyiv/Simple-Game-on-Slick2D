@@ -40,7 +40,7 @@ public class MapLevel1 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(800, 300, 50, 50);
+        babka = new Babka(800, 500);
 
         initDoors();
         initEnemies();
@@ -96,32 +96,32 @@ public class MapLevel1 extends BasicGameState {
     private void initEnemies() throws SlickException {
         Coronavirus corona = new Coronavirus(550, 400);
         corona.setSpace(150);
-        corona.setVisionHorizontal(150);
-        corona.setVisionVertical(150);
-        corona.setNotVisionHorizontal(200);
-        corona.setNotVisionVertical(150);
-        enemies.add(corona);
+        corona.setVisionHorizontal(150,150);
+        corona.setVisionVertical(20,0);
+        corona.setNotVisionHorizontal(150,150);
+        corona.setNotVisionVertical(20,0);
+       enemies.add(corona);
 
 
         CoronaSmall coronaS = new CoronaSmall(550, 700);
         coronaS.setSpeed(2);
-        enemies.add(coronaS);
+        //enemies.add(coronaS);
 
 
         Doctor doctor = new Doctor(650, 350);
         doctor.setSpace(150);
-        doctor.setVisionHorizontal(150);
-        doctor.setVisionVertical(50);
-        doctor.setNotVisionHorizontal(150);
-        doctor.setNotVisionVertical(50);
+        doctor.setVisionHorizontal(100,100);
+        doctor.setVisionVertical(50,0);
+        doctor.setNotVisionHorizontal(50,100);
+        doctor.setNotVisionVertical(50,0);
 
-        enemies.add(doctor);
+       enemies.add(doctor);
 
         Turrel turrel = new Turrel(500, 380);
         turrel.setLeft();
         turrel.setRangeOfSight(500);
 
-        enemies.add(turrel);
+       // enemies.add(turrel);
 
     }
 
@@ -187,7 +187,7 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void drawEnemies(Graphics graphics) {
-        for(int i = 0; i<enemies.size(); i++) {
+       for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
@@ -206,8 +206,7 @@ public class MapLevel1 extends BasicGameState {
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    graphics.setColor(Color.gray);
-                    graphics.fill(turrel);
+                    turrel.getImage(graphics).draw(turrel.getX(), turrel.getY(),75,80);
                 }
             }
         }
@@ -248,7 +247,7 @@ public class MapLevel1 extends BasicGameState {
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
 
-            babka = new Babka(800, 300, 50, 50);
+            babka = new Babka(800, 500 );
 
             initDoors();
             initEnemies();

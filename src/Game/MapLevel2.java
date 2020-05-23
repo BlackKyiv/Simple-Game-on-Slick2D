@@ -43,7 +43,7 @@ public class MapLevel2 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(120, 600, 50, 50);
+        babka = new Babka(120, 600);
 
         initWalls();
         initDoors();
@@ -274,7 +274,7 @@ public class MapLevel2 extends BasicGameState {
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
 
-            babka = new Babka(120, 600, 50, 50);
+            babka = new Babka(120, 600);
 
             initWalls();
             initDoors();

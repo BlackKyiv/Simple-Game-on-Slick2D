@@ -53,8 +53,8 @@ public class Babka extends Rectangle {
     private float attackZoneSizeY = 50;
 
 
-    public Babka(float x, float y, float width, float height) throws SlickException {
-        super(x, y, width, height);
+    public Babka(float x, float y) throws SlickException {
+        super(x, y,50,50);
         setupAnimation();
         attackTimerLeft = new Timer(200);
         attackTimerRight = new Timer(200);
