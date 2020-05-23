@@ -2,6 +2,7 @@ package Game.enemies;
 
 
 import Game.SetupGame;
+import Game.interactiveObjects.Door;
 import Game.interactiveObjects.Injection;
 import Game.Timer;
 import org.newdawn.slick.Animation;
@@ -10,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 
+import java.util.ArrayList;
 
 
 public class Doctor extends Rectangle implements Enemy {
@@ -49,6 +51,7 @@ public class Doctor extends Rectangle implements Enemy {
     float distance = 100;
 
     private boolean babkaNoticed = false;
+    private boolean babkaVisible = false;
     private boolean alive = true;
     private boolean notMoves;
 
@@ -67,6 +70,8 @@ public class Doctor extends Rectangle implements Enemy {
     private SpriteSheet imageRightNoticed;
     private Animation animationLeftNoticed;
     private Animation animationRightNoticed;
+
+    private ArrayList<Rectangle> obstacles = new  ArrayList<Rectangle>() ;
 
 
     public Doctor(int x, int y) throws SlickException {
@@ -219,6 +224,7 @@ public class Doctor extends Rectangle implements Enemy {
     }
 
     public void checkForCollisionWall(Rectangle platform) {
+
         Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
         if (leg.intersects(platform)) {
             blockedDown = true;
@@ -267,7 +273,7 @@ public class Doctor extends Rectangle implements Enemy {
         Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
 
         if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
-            babkaNoticed = true;
+          babkaNoticed = true;
 
         }
 
@@ -289,7 +295,7 @@ public class Doctor extends Rectangle implements Enemy {
         this.visionHorizontalRight = visionHorizontalRight;
     }
 
-    public void setVisionVertical(float visionVerticalUp,float visionVerticalDown ) {
+    public void setVisionVertical(float visionVerticalUp, float visionVerticalDown) {
         this.visionVerticalUp = visionVerticalUp;
         this.visionVerticalDown = visionVerticalDown;
     }
@@ -299,7 +305,7 @@ public class Doctor extends Rectangle implements Enemy {
         this.notVisionHorizontalRight = notVisionHorizontalRight;
     }
 
-    public void setNotVisionVertical(float notVisionVerticalUp,float notVisionVerticalDown ) {
+    public void setNotVisionVertical(float notVisionVerticalUp, float notVisionVerticalDown) {
         this.notVisionVerticalUp = notVisionVerticalUp;
         this.notVisionVerticalDown = notVisionVerticalDown;
     }
@@ -336,4 +342,4 @@ public class Doctor extends Rectangle implements Enemy {
         return babkaToRight;
     }
 
-}
+    }

@@ -96,6 +96,7 @@ public class MapLevel1 extends BasicGameState {
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
         corona1.setSpace(150);
+
         corona1.setVisionHorizontal(150,150);
         corona1.setVisionVertical(20,0);
         corona1.setNotVisionHorizontal(150,150);
@@ -103,13 +104,15 @@ public class MapLevel1 extends BasicGameState {
         enemies.add(corona1);
         Coronavirus corona2 = new Coronavirus(50, 300);
         corona2.setSpace(150);
-        corona2.setVisionHorizontal(150,150);
+
+        corona2.setVisionHorizontal(100,150);
         corona2.setVisionVertical(20,0);
         corona2.setNotVisionHorizontal(150,150);
         corona2.setNotVisionVertical(20,0);
         enemies.add(corona2);
         Coronavirus corona3 = new Coronavirus(200, 500);
         corona3.setSpace(150);
+
         corona3.setVisionHorizontal(150,150);
         corona3.setVisionVertical(20,0);
         corona3.setNotVisionHorizontal(150,150);
@@ -129,6 +132,7 @@ public class MapLevel1 extends BasicGameState {
         doctor.setVisionVertical(50,0);
         doctor.setNotVisionHorizontal(50,100);
         doctor.setNotVisionVertical(50,0);
+
         enemies.add(doctor);
     }
 
@@ -258,6 +262,7 @@ public class MapLevel1 extends BasicGameState {
 
             babka = new Babka(800, 500 );
 
+
             initDoors();
             initEnemies();
             initAttackZone();
@@ -349,7 +354,7 @@ public class MapLevel1 extends BasicGameState {
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
             Door door = doors.get(i);
-            if(attackZone.intersects(door)) door.broke();
+            if(attackZone.intersects(door)) door.broke() ;
             if(door.isBroken()) doors.remove(i);
         }
     }
