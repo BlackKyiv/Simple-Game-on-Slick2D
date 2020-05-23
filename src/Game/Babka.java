@@ -28,6 +28,20 @@ public class Babka extends Rectangle {
     private boolean standingLeft = false;
     private boolean standingRight = true;
 
+    private Animation animationStandLeft;
+    private Animation animationStandRight;
+
+    private Animation animationWalkingLeft;
+    private Animation animationWalkingRight;
+
+    private Animation animationSlidingLeft;
+    private Animation animationSlidingRight;
+
+    private Animation animationJumpingLeft;
+    private Animation animationJumpingRight;
+
+
+
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
 
@@ -174,7 +188,19 @@ public class Babka extends Rectangle {
         else landTangle = null;
     }
 
-    private void setupAnimation(){
+    private void setupAnimation() throws SlickException {
+
+        animationSlidingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.png",50,50), 100);
+        animationSlidingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.png",50,50), 100);
+
+        animationWalkingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.png", 50,50), 100);
+        animationWalkingLeft.setPingPong(true);
+
+        animationWalkingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.png", 50,50), 100);
+        animationWalkingRight.setPingPong(true);
+
+        animationJumpingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_left.png", 50,50), 100);
+        animationJumpingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_right.png", 50,50), 100);
 
     }
 
