@@ -50,7 +50,7 @@ public class Babka extends Rectangle {
 
 
     private float attackZoneSizeX = 50;
-    private float attackZoneSizeY = 50;
+    private float attackZoneSizeY = 60;
 
 
     public Babka(float x, float y) throws SlickException {
@@ -223,8 +223,8 @@ public class Babka extends Rectangle {
         animationSlidingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
 
 
-        animationStandLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.PNG",50,50), 100);
-        animationStandRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
+        animationStandLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_stand_right.PNG",50,50), 100);
+        animationStandRight = new Animation(new SpriteSheet(SetupGame.path+"babka_stand_left.PNG",50,50), 100);
 
         animationWalkingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.PNG", 50,50), 100);
         animationWalkingLeft.setPingPong(true);

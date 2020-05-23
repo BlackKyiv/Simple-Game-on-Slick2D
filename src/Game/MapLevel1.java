@@ -62,10 +62,10 @@ public class MapLevel1 extends BasicGameState {
         obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, SetupGame.width, floorHeight)); //terrain
-        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1090, 0, 10, SetupGame.height-90)); //right frame
-        obstacles.add(new Rectangle(0, 0, SetupGame.width, 10)); //upper frame
+        obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
+        obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
+        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
 
         wallSS = new SpriteSheet(wall, 10, 10);
         floorSS = new SpriteSheet(wall, 10, 10);
@@ -85,8 +85,8 @@ public class MapLevel1 extends BasicGameState {
         doorUp = new Image(path + "door.jpg");
 
         teleports = new ArrayList<>();
-        teleports.add(new Teleport(110, 325, 80, 135,0,225));
-        teleports.add(new Teleport(110, 550, 80, 135,0,-220));
+        teleports.add(new Teleport(110, 375, 80, 85,0,225));
+        teleports.add(new Teleport(110, 600, 80, 85,0,-220));
     }
 
     private void initDoors() throws SlickException {
@@ -150,14 +150,12 @@ public class MapLevel1 extends BasicGameState {
         }
         wall.endUse();
 
-
-
         window.draw(700, 300, 100, 100);
         window.draw(400, 300, 100, 100);
         window.draw(700, 550, 100, 100);
         window.draw(400, 550, 100, 100);
-        doorUp.draw(110, 325, 80, 135);
-        doorDown.draw(110, 550, 80, 135);
+        doorUp.draw(110, 375, 80, 85);
+        doorDown.draw(110, 600, 80, 85);
         sofa.draw(500, 360, 200, 100);
         nightstand.draw(440, 410, 60, 50);
         nightstand.draw(700, 410, 60, 50);
@@ -211,15 +209,19 @@ public class MapLevel1 extends BasicGameState {
             }
         }
 
+        drawBullets(graphics);
+
+
+    }
+
+    private void drawBullets(Graphics graphics){
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
-                    i.getImage (graphics).draw(i.getX(), i.getY());
+                    i.getImage(graphics).draw(i.getX(), i.getY());
                 }
             }
         }
-
-
     }
 
     @Override

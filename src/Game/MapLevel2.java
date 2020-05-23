@@ -59,10 +59,10 @@ public class MapLevel2 extends BasicGameState {
 
         background = new Image(path+"backg.jpg");
 
-        obstacles.add(new Rectangle(0, SetupGame.height-floorHeight, SetupGame.width, floorHeight)); //terrain
-        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1090,0,10,700)); //right frame
-        obstacles.add(new Rectangle(0,0,1100,10)); //upper frame
+        obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
+        obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
+        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
         obstacles.add(new Rectangle(x_offset- wallWidth,110, wallWidth, 500)); //left wall
         obstacles.add(new Rectangle(SetupGame.width- wallWidth,110, wallWidth, 590)); //right wall
         obstacles.add(new Rectangle(x_offset,SetupGame.height- floorHeight, floorW, floorHeight)); //first floor
@@ -74,7 +74,7 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(390,510,wallWidth,100));
         obstacles.add(new Rectangle(495,400,wallWidth,10));
         obstacles.add(new Rectangle(795,400,wallWidth,10));
-        for(int i=500; i<=800; i+=150){
+        for(int i=600; i<=800; i+=200){
             obstacles.add(new Rectangle(i,510,wallWidth,70));
         }
 
@@ -155,8 +155,7 @@ public class MapLevel2 extends BasicGameState {
         for(int a=505; a<=600; a+=wallWidth){
             wallSS.getSubImage(0,0,85,85).drawEmbedded(390,a,wallWidth,wallWidth);
             if(a<570) {
-                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(500, a, wallWidth, wallWidth); //1-st floor балки
-                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(650, a, wallWidth, wallWidth);
+                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(600, a, wallWidth, wallWidth); //1-st floor балки
                 wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(800, a, wallWidth, wallWidth);
             }
         }
@@ -192,6 +191,7 @@ public class MapLevel2 extends BasicGameState {
         graphics.setColor(Color.pink);
         babka.getAnimation().draw(babka.getX(), babka.getY());
         drawEnemies(graphics);
+        drawBullets(graphics);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -199,6 +199,16 @@ public class MapLevel2 extends BasicGameState {
             if (!door.isBroken()) {
                 graphics.setColor(Color.blue);
                 graphics.fill(door);
+            }
+        }
+    }
+
+    private void drawBullets(Graphics graphics){
+        if (!injections.isEmpty()) {
+            for (Injection i : injections) {
+                if (i.isPresent()) {
+                    i.getImage(graphics).draw(i.getX(), i.getY());
+                }
             }
         }
     }
