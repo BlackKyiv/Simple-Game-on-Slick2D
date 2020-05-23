@@ -28,6 +28,7 @@ public class Door extends Rectangle {
                 return imageWindow;
             } else {
                 return imageDoor;
+
             }
         }
 
