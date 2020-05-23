@@ -173,5 +173,8 @@ public class Turrel extends Rectangle implements Enemy {
     public void setTimer(float time){
         shootGap = new Timer(time);
     }
+    public void setTimeBeforeShoot(float timeBeforeShoot){
+        beforeShoot = new Timer(timeBeforeShoot);
+    }
 
 }
