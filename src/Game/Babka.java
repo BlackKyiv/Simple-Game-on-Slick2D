@@ -11,6 +11,9 @@ public class Babka extends Rectangle {
     private float speed = 7f;
     private float jump = 8;
 
+    private boolean alive = true;
+    private boolean mortal = true;
+
     private float deltaSeconds = 0.1666666f;
     private float timeCoeff = 1;
     private float gravity = 9.89f;
@@ -20,22 +23,68 @@ public class Babka extends Rectangle {
     private boolean blockedRight = false;
     private boolean inTeleport = false;
 
+    private boolean walkingLeft = false;
+    private boolean walkingRight = false;
+    private boolean standingLeft = false;
+    private boolean standingRight = true;
+    private boolean fightingLeft = false;
+    private boolean fightingRight = false;
+
+    private Animation animationStandLeft;
+    private Animation animationStandRight;
+
+    private Animation animationWalkingLeft;
+    private Animation animationWalkingRight;
+
+    private Animation animationSlidingLeft;
+    private Animation animationSlidingRight;
+
+    private Animation animationJumpingLeft;
+    private Animation animationJumpingRight;
+
+    private Timer attackTimerLeft;
+    private Timer attackTimerRight;
+
+    private Animation animationFightingLeft;
+    private Animation animationFightingRight;
+
+
+    private float attackZoneSizeX = 50;
+    private float attackZoneSizeY = 50;
 
 
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
-
+        setupAnimation();
+        attackTimerLeft = new Timer(200);
+        attackTimerRight = new Timer(200);
     }
 
 
-    public void update(float timeCoeff){
+    public void update(float timeCoeff, int delta){
         this.timeCoeff = timeCoeff;
+        this.attackTimerLeft.update(delta*timeCoeff);
+        this.attackTimerRight.update(delta*timeCoeff);
         if(!isLanded()) move(speedX*timeCoeff, speedY*timeCoeff);
         gravityPull();
 
 
+        if(walkingLeft||standingLeft){
+            standingLeft =true;
+            standingRight = false;
+        }
+        else if(walkingRight||standingRight){
+            standingLeft =false;
+            standingRight = true;
+        }
         blockedLeft = false;
         blockedRight = false;
+
+        walkingRight = false;
+        walkingLeft = false;
+
+        fightingLeft = false;
+        fightingRight = false;
     }
 
     public int getSpeedY(){
@@ -44,16 +93,17 @@ public class Babka extends Rectangle {
     public int getSpeedX(){return  (int) speedX;}
 
     private void gravityPull(){
-        if(!landed){
+        if(!landed && alive){
             speedY += timeCoeff*gravity * Math.pow(deltaSeconds, 2);
         }
 
     }
 
     private void move(float x, float y){
-
-        this.setCenterX(getCenterX() + x);
-        this.setCenterY(getCenterY() + y);
+        if(alive) {
+            this.setCenterX(getCenterX() + x);
+            this.setCenterY(getCenterY() + y);
+        }
     }
 
 
@@ -66,7 +116,6 @@ public class Babka extends Rectangle {
             if(blockedRight) {
                 move(-3, 0);
                 speedX =-speed*1.5f;
-
             }
             this.move(0,-1);
             setLanded(false);
@@ -75,6 +124,9 @@ public class Babka extends Rectangle {
         if(gameContainer.getInput().isKeyDown(Input.KEY_A)&&!blockedLeft){
             if(landed) {
                 this.move(-speed*timeCoeff, 0);
+                walkingLeft = true;
+                standingLeft = false;
+                standingRight = false;
             }
             else {
                 speedX = -speed;
@@ -85,6 +137,9 @@ public class Babka extends Rectangle {
         if(gameContainer.getInput().isKeyDown(Input.KEY_D)&&!blockedRight){
             if(landed) {
                 this.move(speed*timeCoeff, 0);
+                walkingRight = true;
+                standingLeft = false;
+                standingRight = false;
             }
             else{
                 if(timeCoeff < 1 )speedX = speed +  speed*timeCoeff;
@@ -162,19 +217,112 @@ public class Babka extends Rectangle {
         else landTangle = null;
     }
 
+    private void setupAnimation() throws SlickException {
 
-    public void getAnimation(){
+        animationSlidingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.PNG",50,50), 100);
+        animationSlidingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
 
+
+        animationStandLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.PNG",50,50), 100);
+        animationStandRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
+
+        animationWalkingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_go_left.PNG", 50,50), 100);
+        animationWalkingLeft.setPingPong(true);
+
+        animationWalkingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_go_right.PNG", 50,50), 100);
+        animationWalkingRight.setPingPong(true);
+
+        animationJumpingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_left.PNG", 50,50), 100);
+        animationJumpingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_right.PNG", 50,50), 100);
+
+        animationFightingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_left.PNG", 75,50), 100);
+        animationFightingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_right.PNG", 75,50), 100);
     }
 
-    public void turnLeft(){
+    public Animation getAnimation() throws SlickException {
+        if(attackTimerLeft.isRunning()){
+            return animationFightingLeft;
+        }
+        else if(attackTimerRight.isRunning()){
+            return animationFightingRight;
+        }
+        if(blockedLeft){
+            return animationSlidingLeft;
+        }
+        else if(blockedRight){
+            return animationSlidingRight;
+        }
+        if(landed) {
+            if(standingRight){
+                return animationStandLeft;
+            }
+            else if(standingLeft){
+                return animationStandRight;
+            }
+            else if (walkingLeft) {
+                return animationWalkingRight;
+            }
+            else if(walkingRight){
+                return animationWalkingLeft;
+            }
 
+        }
+        else {
+            if(speedX>0){
+                return animationJumpingRight;
+            }
+            else {
+                return animationJumpingLeft;
+            }
+        }
+        return animationSlidingLeft;
     }
 
-    public void turnRight(){
 
+    public boolean isAlive(){
+        return alive && mortal;
     }
 
+    public void die(){
+        alive = false;
+    }
+
+    public void setFightingLeft(boolean fighting){
+        if(fighting) {
+            this.fightingLeft = fighting;
+            attackTimerLeft.restart();
+            standingRight = false;
+            standingLeft = true;
+        }
+        attackTimerLeft.start();
+    }
+
+    public void setFightingRight(boolean fighting){
+        if(fighting) {
+            attackTimerRight.restart();
+            attackTimerRight.start();
+            standingRight = true;
+            standingLeft = false;
+        }
+        this.fightingRight = fighting;
+    }
+
+
+    public Rectangle getHitZone(GameContainer container) {
+        if (isAlive()) {
+            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
+                if (container.getInput().getMouseX() > this.getX()) {
+                    this.setFightingRight(true);
+                    return new Rectangle(getX() + getWidth(), getY(), attackZoneSizeX, attackZoneSizeY);
+
+                } else if (container.getInput().getMouseX() < this.getX()) {
+                    this.setFightingLeft(true);
+                    return new Rectangle(getX() - attackZoneSizeX, getY(), attackZoneSizeX, attackZoneSizeY);
+                }
+            }
+        }
+        return new Rectangle(-attackZoneSizeX, -attackZoneSizeY, attackZoneSizeX, attackZoneSizeY);
+    }
     public boolean inTeleport(Teleport teleport){
         inTeleport=false;
         if(this.getMinX()>=teleport.getMinX() && this.getMaxX()<=teleport.getMaxX()&& this.getMinY()>=teleport.getMinY() && this.getMaxY()<=teleport.getMaxY()){

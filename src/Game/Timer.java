@@ -11,7 +11,7 @@ public class Timer {
         this.goalTime = goalTime;
     }
 
-    public void update(int delta){
+    public void update(float delta){
         if(running) {
             timePassed += delta;
             if (timePassed >= goalTime){
@@ -31,6 +31,10 @@ public class Timer {
 
     public void stop(){
         running = false;
+    }
+
+    public boolean isRunning(){
+        return running;
     }
 
     public void restart(){

@@ -13,9 +13,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import java.util.ArrayList;
 
 
-public class MapLevel1 extends BasicGameState {
+public class MapLevel3 extends BasicGameState {
     private Babka babka;
-    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp;
+    private Image background, wall, wallpaper, window;
     private SpriteSheet wallSS, floorSS, wallpaper1;
     private Rectangle attackZone;
 
@@ -27,7 +27,7 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
-    private int floorH = 225, floorW = 900;
+    private int floorH = 300, floorW = 900;
     private int x_offset = 200;
 
     private String path = SetupGame.path;
@@ -61,7 +61,7 @@ public class MapLevel1 extends BasicGameState {
         obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
         obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
+        obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, 1100, floorHeight * 2));//roof
         obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, SetupGame.width, floorHeight)); //terrain
         obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
         obstacles.add(new Rectangle(1090, 0, 10, SetupGame.height-90)); //right frame
@@ -74,15 +74,6 @@ public class MapLevel1 extends BasicGameState {
         wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
 
         window = new Image(path + "window.jpg");
-        sofa = new Image(path + "sofa.png");
-        table = new Image(path + "table.png");
-        wardrobe = new Image(path + "wardrobe.png");
-        cupboard = new Image(path + "cupboard.png");
-        nightstand = new Image(path + "nightstand.png");
-        rockingChair = new Image(path + "rocking chair.png");
-
-        doorDown = new Image(path + "door.jpg");
-        doorUp = new Image(path + "door.jpg");
 
         teleports = new ArrayList<>();
         teleports.add(new Teleport(110, 325, 80, 135,0,225));
@@ -90,38 +81,13 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void initDoors() throws SlickException {
-        doors.add(new Door(900,SetupGame.height-floorHeight-85,wallWidth,85));
+        doors.add(new Door(x_offset-wallWidth,SetupGame.height-floorHeight-85,wallWidth,85)); //1-st left
+        doors.add(new Door(SetupGame.width-x_offset,SetupGame.height-floorHeight-85,wallWidth,85)); //1-st right
+        doors.add(new Door(x_offset-wallWidth,SetupGame.height-floorHeight-floorH-85,wallWidth,85)); //2-nd left
+        doors.add(new Door(SetupGame.width-x_offset,SetupGame.height-floorHeight-floorH-85,wallWidth,85)); //2-nd right
     }
 
     private void initEnemies() throws SlickException {
-        Coronavirus corona = new Coronavirus(550, 400);
-        corona.setSpace(150);
-        corona.setVisionHorizontal(150);
-        corona.setVisionVertical(150);
-        corona.setNotVisionHorizontal(200);
-        corona.setNotVisionVertical(150);
-        enemies.add(corona);
-
-
-        CoronaSmall coronaS = new CoronaSmall(550, 700);
-        coronaS.setSpeed(2);
-        enemies.add(coronaS);
-
-
-        Doctor doctor = new Doctor(650, 350);
-        doctor.setSpace(150);
-        doctor.setVisionHorizontal(150);
-        doctor.setVisionVertical(50);
-        doctor.setNotVisionHorizontal(150);
-        doctor.setNotVisionVertical(50);
-
-        enemies.add(doctor);
-
-        Turrel turrel = new Turrel(500, 380);
-        turrel.setLeft();
-        turrel.setRangeOfSight(500);
-
-        enemies.add(turrel);
 
     }
 
@@ -130,41 +96,33 @@ public class MapLevel1 extends BasicGameState {
         background.draw(0, 0, 1100, 700);
 
         wallpaper.startUse();
-        for (int a = wallWidth; a <= SetupGame.width - x_offset; a += 10) {
+        for (int a = x_offset; a <= SetupGame.width - x_offset; a += 10) {
             wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH, 10, floorH - floorHeight);
             wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH * 2, 10, floorH - floorHeight);
         }
         wallpaper.endUse();
         wall.startUse();
-        for (int a = wallWidth; a < SetupGame.width - x_offset; a += floorHeight) {
+        for (int a = x_offset; a < SetupGame.width - x_offset; a += floorHeight) {
             floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorHeight, floorHeight*2, floorHeight);
             floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorH - floorHeight, floorHeight*2, floorHeight);
         }
-        for (int a = 0; a < SetupGame.width - x_offset+50; a += floorHeight*2) {
+        for (int a = x_offset-50; a < SetupGame.width - x_offset+50; a += floorHeight*2) {
             floorSS.getSubImage(0, 0, 110, 110).drawEmbedded(a, SetupGame.height - floorH * 2 - floorHeight * 2, floorHeight*2, floorHeight*2);
         }
-        for (int a = SetupGame.height-floorHeight; a > SetupGame.height-2*floorH-2*floorHeight; a -= wallWidth) {
-            wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(0, a, wallWidth, wallWidth);
-            if(a<=595)
-                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(SetupGame.width-x_offset, a, wallWidth, wallWidth);
+        for (int a = SetupGame.height-floorHeight-85; a > SetupGame.height-2*floorH-floorHeight; a -= wallWidth) {
+            if(!(a>=SetupGame.height-floorHeight-floorH-85&&a<=SetupGame.height-floorHeight-floorH)) {
+                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(x_offset - wallWidth, a, wallWidth, wallWidth);
+                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(SetupGame.width - x_offset, a, wallWidth, wallWidth);
+            }
         }
         wall.endUse();
 
 
 
-        window.draw(700, 300, 100, 100);
-        window.draw(400, 300, 100, 100);
-        window.draw(700, 550, 100, 100);
-        window.draw(400, 550, 100, 100);
-        doorUp.draw(110, 325, 80, 135);
-        doorDown.draw(110, 550, 80, 135);
-        sofa.draw(500, 360, 200, 100);
-        nightstand.draw(440, 410, 60, 50);
-        nightstand.draw(700, 410, 60, 50);
-        table.draw(525, 625, 150, 60);
-        wardrobe.draw(250, 495, 130, 193);
-        cupboard.draw(220, 300, 150, 100);
-        rockingChair.draw(20, 620, 70, 70);
+        window.draw(700, 150, 100, 100);
+        window.draw(400, 150, 100, 100);
+        window.draw(700, 450, 100, 100);
+        window.draw(400, 450, 100, 100);
 
         drawDoors(graphics);
 
@@ -172,9 +130,7 @@ public class MapLevel1 extends BasicGameState {
         babka.getAnimation().draw(babka.getX(), babka.getY());
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
-
         drawEnemies(graphics);
-
     }
 
     private void drawDoors(Graphics graphics) {
