@@ -5,6 +5,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Rectangle;
 
+import java.util.ArrayList;
+
 
 public class Coronavirus extends Rectangle implements Enemy {
 
@@ -38,6 +40,9 @@ public class Coronavirus extends Rectangle implements Enemy {
     private boolean babkaNoticed = false;
     private boolean alive = true;
 
+    private Rectangle vision1;
+    private Rectangle vision2;
+
 
     private SpriteSheet imageLeft;
     private SpriteSheet imageRight;
@@ -53,7 +58,8 @@ public class Coronavirus extends Rectangle implements Enemy {
         super(x, y, 50, 50);
         initialX = x;
         initialY = y;
-
+        vision1 = new Rectangle(getX(), getY(), getWidth(), getHeight());
+        vision2 = new Rectangle(getX(), getY(), getWidth(), getHeight());
         setUpAnimation();
     }
 
@@ -97,7 +103,7 @@ public class Coronavirus extends Rectangle implements Enemy {
        }
 
     }
-    public void update() {
+    public void update(ArrayList<Rectangle> obstacles) {
 
         move();
 
@@ -105,8 +111,54 @@ public class Coronavirus extends Rectangle implements Enemy {
         blockedRight = false;
         blockedDown = false;
         blockedLeft = false;
+
+        createVision(obstacles);
     }
 
+
+    public void createVision(ArrayList<Rectangle> obstacles){
+        vision1.setX(getX());
+        vision1.setY(getY());
+        vision1.setWidth(getWidth()/2);
+        vision1.setHeight(getHeight());
+
+        boolean visionCollided = false;
+        for(int i = 0; i<getCenterX(); i++){
+            vision1.setX(vision1.getX()-1);
+            vision1.setWidth(vision1.getWidth()+1);
+            for(int a =0; a<obstacles.size();a++){
+                if(vision1.intersects(obstacles.get(a))){
+                    visionCollided = true;
+                    break;
+                }
+            }
+            if(visionCollided) break;
+        }
+
+        vision2.setX(getCenterX());
+        vision2.setY(getY());
+        vision2.setWidth(getWidth()/2);
+        vision2.setHeight(getHeight());
+
+        visionCollided = false;
+        for(int i = 0; i<SetupGame.width-getCenterX(); i++){
+            vision2.setWidth(vision2.getWidth()+1);
+            for(int a =0; a<obstacles.size();a++){
+                if(vision2.intersects(obstacles.get(a))){
+                    visionCollided = true;
+                    break;
+                }
+            }
+            if(visionCollided) break;
+        }
+    }
+
+    public Rectangle getVision1(){
+        return vision1;
+    }
+    public Rectangle getVision2(){
+        return vision2;
+    }
 
     private void move() {
         if (babkaNoticed == false) {

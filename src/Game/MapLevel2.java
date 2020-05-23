@@ -294,10 +294,13 @@ public class MapLevel2 extends BasicGameState {
     }
 
     private void updateEnemies(int delta) throws SlickException {
+        ArrayList<Rectangle> all = new ArrayList<>();
+        all.addAll(obstacles);
+        all.addAll(doors);
         for(int i = 0; i<enemies.size(); i++){
             if(enemies.get(i) instanceof Doctor){
                 Doctor doctor = (Doctor) enemies.get(i);
-                doctor.update(delta);
+                doctor.update(delta, all);
                 if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
 
                 for (Rectangle obstacle : obstacles) {
@@ -311,7 +314,7 @@ public class MapLevel2 extends BasicGameState {
             else if(enemies.get(i) instanceof Coronavirus){
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if(corona.isAlive()) {
-                    corona.update();
+                    corona.update(obstacles);
                     for (Rectangle obstacle : obstacles) {
                         corona.checkForCollisionWall(obstacle);
                     }
