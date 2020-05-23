@@ -63,19 +63,18 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
         obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
         obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
-        obstacles.add(new Rectangle(x_offset- wallWidth,110, wallWidth, 500)); //left wall
+        obstacles.add(new Rectangle(x_offset- wallWidth,110, wallWidth, 490)); //left wall
         obstacles.add(new Rectangle(SetupGame.width- wallWidth,110, wallWidth, 590)); //right wall
-        obstacles.add(new Rectangle(x_offset,SetupGame.height- floorHeight, floorW, floorHeight)); //first floor
+        obstacles.add(new Rectangle(x_offset-wallWidth,SetupGame.height- floorHeight, floorW, floorHeight)); //first floor
         obstacles.add(new Rectangle(x_offset,SetupGame.height- floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(x_offset,390, floorW, floorHeight)); //third floor
         obstacles.add(new Rectangle(0,85, 1100, floorHeight *2)); //roof
         obstacles.add(new Rectangle(440,250,150,40)); //platform 1
         obstacles.add(new Rectangle(740,250,150,40)); //platform 2
-        obstacles.add(new Rectangle(390,510,wallWidth,100));
         obstacles.add(new Rectangle(495,400,wallWidth,10));
         obstacles.add(new Rectangle(795,400,wallWidth,10));
-        for(int i=600; i<=800; i+=200){
-            obstacles.add(new Rectangle(i,510,wallWidth,70));
+        for(int i=400; i<=800; i+=200){
+            obstacles.add(new Rectangle(i,510,wallWidth,90)); //on the first floor
         }
 
 
@@ -113,7 +112,7 @@ public class MapLevel2 extends BasicGameState {
 
     private void initDoors()throws SlickException{
         doors.add(new Door(x_offset-wallWidth,600,wallWidth,85)); //entry
-        doors.add(new Door(390,SetupGame.height-floorHeight-85,wallWidth,85)); //1st floor
+        doors.add(new Door(400,SetupGame.height-floorHeight-85,wallWidth,85)); //1st floor
         doors.add(new Door(495,410,wallWidth,85)); //2nd floor
         doors.add(new Door(795,410,wallWidth,85)); //2nd floor
     }
@@ -153,13 +152,12 @@ public class MapLevel2 extends BasicGameState {
                 wallSS.getSubImage(0,0,85,85).drawEmbedded(x_offset- wallWidth,a,wallWidth,wallWidth); //walls
             wallSS.getSubImage(0,0,85,85).drawEmbedded(SetupGame.width- wallWidth,a,wallWidth,wallWidth);
         }
-        for(int a=505; a<=600; a+=wallWidth){
-            wallSS.getSubImage(0,0,85,85).drawEmbedded(390,a,wallWidth,wallWidth);
-            if(a<570) {
-                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(600, a, wallWidth, wallWidth); //1-st floor балки
-                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(800, a, wallWidth, wallWidth);
-            }
+        for(int a=505; a<=570; a+=wallWidth){
+            wallSS.getSubImage(0,0,85,85).drawEmbedded(400,a,wallWidth,wallWidth); //above doors wall
+            wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(600, a, wallWidth, wallWidth); //1-st floor балки
+            wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(800, a, wallWidth, wallWidth);
         }
+        wallSS.getSubImage(0,0,85,60).drawEmbedded(400,580,wallWidth,20); //above doors separate end of wall
         wallSS.getSubImage(0, 0, 85, 17).drawEmbedded(495, 405, wallWidth, 5);
         wallSS.getSubImage(0, 0, 85, 17).drawEmbedded(795, 405, wallWidth, 5);
         wall.endUse();
@@ -196,8 +194,7 @@ public class MapLevel2 extends BasicGameState {
     private void drawDoors(Graphics graphics) {
         for(Door door : doors){
             if (!door.isBroken()) {
-                graphics.setColor(Color.blue);
-                graphics.fill(door);
+                door.getImageDoor(graphics).draw(  door.getX(),   door.getY());
             }
         }
     }
