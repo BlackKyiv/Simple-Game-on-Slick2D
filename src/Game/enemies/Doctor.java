@@ -302,7 +302,12 @@ public class Doctor extends Rectangle implements Enemy {
     }
 
     public Injection shoot(Rectangle target) throws SlickException {
-        Injection injection = new Injection((int) this.getCenterX(), (int) this.getCenterY());
+        Injection injection;
+        if (goRight) {
+           injection = new Injection((int) (this.getX()+this.getWidth()-  30), (int) this.getCenterY());
+        }else{
+           injection = new Injection((int) this.getX(), (int) this.getCenterY());
+        }
         if (target.getX() < this.getX()) injection.setLeft();
         else injection.setRight();
         injection.setPresent(true);
