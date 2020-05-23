@@ -105,7 +105,7 @@ public class MapLevel1 extends BasicGameState {
 
         CoronaSmall coronaS = new CoronaSmall(550, 700);
         coronaS.setSpeed(2);
-        //enemies.add(coronaS);
+        enemies.add(coronaS);
 
 
         Doctor doctor = new Doctor(650, 350);
@@ -121,7 +121,7 @@ public class MapLevel1 extends BasicGameState {
         turrel.setLeft();
         turrel.setRangeOfSight(500);
 
-       // enemies.add(turrel);
+        enemies.add(turrel);
 
     }
 
@@ -204,7 +204,8 @@ public class MapLevel1 extends BasicGameState {
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    turrel.getImage(graphics).draw(turrel.getX(), turrel.getY(),75,80);
+                    turrel.getImageT(graphics).draw(turrel.getX(), turrel.getY(),75,80);
+
                 }
             }
         }
