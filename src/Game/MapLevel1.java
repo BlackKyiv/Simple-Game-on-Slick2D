@@ -174,6 +174,8 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
+        for(Rectangle r: obstacles)
+            graphics.fill(r);
 
       //  graphics.fill(attackZone);
 
