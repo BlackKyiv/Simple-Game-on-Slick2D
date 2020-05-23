@@ -22,9 +22,9 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Teleport> teleports;
     private ArrayList<Door> doors = new ArrayList<>();
+    private  ArrayList<Coronavirus> coronas = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private  ArrayList<Coronavirus> coronas = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
@@ -94,6 +94,7 @@ public class MapLevel1 extends BasicGameState {
         doors.add(new Door(900,SetupGame.height-floorHeight-85,wallWidth,85));
     }
 
+
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
         coronas.add(corona1);
@@ -125,7 +126,6 @@ public class MapLevel1 extends BasicGameState {
 
         enemies.add(doctor);
     }
-
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0, 0, 1100, 700);
@@ -174,8 +174,6 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
-        for(Rectangle r: obstacles)
-            graphics.fill(r);
 
       //  graphics.fill(attackZone);
 
@@ -260,6 +258,7 @@ public class MapLevel1 extends BasicGameState {
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
             doors = new ArrayList<>();
+            coronas = new ArrayList<>();
             babka = new Babka(800, 350);
 
 
