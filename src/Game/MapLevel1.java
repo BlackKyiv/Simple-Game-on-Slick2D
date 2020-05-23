@@ -22,9 +22,9 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Teleport> teleports;
     private ArrayList<Door> doors = new ArrayList<>();
+    private  ArrayList<Coronavirus> coronas = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private  ArrayList<Coronavirus> coronas = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
@@ -60,7 +60,7 @@ public class MapLevel1 extends BasicGameState {
 
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
         obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW+wallWidth, floorHeight)); //first floor
+        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
         obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
@@ -94,6 +94,7 @@ public class MapLevel1 extends BasicGameState {
         doors.add(new Door(900,SetupGame.height-floorHeight-85,wallWidth,85));
     }
 
+
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
         coronas.add(corona1);
@@ -125,7 +126,6 @@ public class MapLevel1 extends BasicGameState {
 
         enemies.add(doctor);
     }
-
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0, 0, 1100, 700);
@@ -174,7 +174,9 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
-        //graphics.fill(attackZone);
+
+      //  graphics.fill(attackZone);
+
     }
 
     private void drawDoors(Graphics graphics) {
@@ -186,17 +188,21 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void drawEnemies(Graphics graphics) {
-       for(int i = 0; i<enemies.size(); i++) {
+        for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
                     doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
+                    graphics.draw(doctor.getVision1());
+                    graphics.draw(doctor.getVision2());
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
                     graphics.setColor(Color.blue);
                     corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
+                    graphics.draw(corona.getVision1());
+                    graphics.draw(corona.getVision2());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
@@ -251,7 +257,8 @@ public class MapLevel1 extends BasicGameState {
             enemies = new ArrayList<>();
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
-
+            doors = new ArrayList<>();
+            coronas = new ArrayList<>();
             babka = new Babka(800, 350);
 
 
@@ -361,6 +368,7 @@ public class MapLevel1 extends BasicGameState {
 
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
+
             Door door = doors.get(i);
             if(attackZone.intersects(door)) door.broke() ;
             if(door.isBroken()) doors.remove(i);
