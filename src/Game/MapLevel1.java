@@ -212,15 +212,19 @@ public class MapLevel1 extends BasicGameState {
             }
         }
 
+        drawBullets(graphics);
+
+
+    }
+
+    private void drawBullets(Graphics graphics){
         if (!injections.isEmpty()) {
             for (Injection i : injections) {
                 if (i.isPresent()) {
-                    i.getImage (graphics).draw(i.getX(), i.getY());
+                    i.getImage(graphics).draw(i.getX(), i.getY());
                 }
             }
         }
-
-
     }
 
     @Override

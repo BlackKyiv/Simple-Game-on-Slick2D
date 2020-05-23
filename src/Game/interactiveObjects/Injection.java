@@ -44,7 +44,7 @@ public class Injection extends Rectangle implements Bullet {
 
     }
     public Image getImage(Graphics graphics) {
-if (doctor) {
+    if (doctor) {
     if (right) {
         return imageBlueRight;
     } else {
