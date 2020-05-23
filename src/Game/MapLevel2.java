@@ -190,7 +190,7 @@ public class MapLevel2 extends BasicGameState {
         helicopter.draw(250,5,250,80);
 
         graphics.setColor(Color.pink);
-        graphics.fill(babka);
+        babka.getAnimation().draw(babka.getX(), babka.getY());
         drawEnemies(graphics);
     }
 
@@ -268,6 +268,20 @@ public class MapLevel2 extends BasicGameState {
         updateEnemies(delta);
         updateBullets();
         checkForAttack(gameContainer);
+
+        if(gameContainer.getInput().isKeyDown(Input.KEY_R)){
+            enemies = new ArrayList<>();
+            injections = new ArrayList<>();
+            obstacles = new ArrayList<>();
+
+            babka = new Babka(120, 600, 50, 50);
+
+            initWalls();
+            initDoors();
+            initEnemies();
+            initAttackZone();
+        }
+
     }
 
     private void updateEnemies(int delta) throws SlickException {
@@ -333,21 +347,10 @@ public class MapLevel2 extends BasicGameState {
     }
 
     private void checkForAttack(GameContainer container) {
-        //if babka`s x > mouse x then draw attackZone on right
-        //else if babka`s x < mouse x then draw attackZone on left+
-        if(babka.isAlive()) {
-            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
-                if (container.getInput().getMouseX() > babka.getX()) {
-                    attackZone.setX(babka.getX() + babka.getWidth());
-                    attackZone.setY(babka.getY());
-                } else if (container.getInput().getMouseX() < babka.getX()) {
-                    attackZone.setX(babka.getX() - babka.getWidth());
-                    attackZone.setY(babka.getY());
-                }
-            } else attackZone = new Rectangle(-50, -50, 50, 50);
-            checkForAttackDoors();
-            checkForAttackEnemies();
-        }
+        attackZone = babka.getHitZone(container);
+        checkForAttackDoors();
+        checkForAttackEnemies();
+
     }
 
     private void checkForAttackDoors(){

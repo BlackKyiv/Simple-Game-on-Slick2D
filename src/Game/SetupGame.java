@@ -5,6 +5,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.awt.*;
+
 public class SetupGame extends StateBasedGame {
 
     public final static int width = 1100;
@@ -18,7 +20,7 @@ public class SetupGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        this.addState(new MapLevel3());
+        this.addState(new MapLevel2());
     }
 
     public static void main(String[] args) throws SlickException {

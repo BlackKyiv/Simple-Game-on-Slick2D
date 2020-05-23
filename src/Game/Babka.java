@@ -49,6 +49,9 @@ public class Babka extends Rectangle {
     private Animation animationFightingRight;
 
 
+    private float attackZoneSizeX = 50;
+    private float attackZoneSizeY = 50;
+
 
     public Babka(float x, float y, float width, float height) throws SlickException {
         super(x, y, width, height);
@@ -304,6 +307,22 @@ public class Babka extends Rectangle {
         this.fightingRight = fighting;
     }
 
+
+    public Rectangle getHitZone(GameContainer container) {
+        if (isAlive()) {
+            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
+                if (container.getInput().getMouseX() > this.getX()) {
+                    this.setFightingRight(true);
+                    return new Rectangle(getX() + getWidth(), getY(), attackZoneSizeX, attackZoneSizeY);
+
+                } else if (container.getInput().getMouseX() < this.getX()) {
+                    this.setFightingLeft(true);
+                    return new Rectangle(getX() - attackZoneSizeX, getY(), attackZoneSizeX, attackZoneSizeY);
+                }
+            }
+        }
+        return new Rectangle(-attackZoneSizeX, -attackZoneSizeY, attackZoneSizeX, attackZoneSizeY);
+    }
     public boolean inTeleport(Teleport teleport){
         inTeleport=false;
         if(this.getMinX()>=teleport.getMinX() && this.getMaxX()<=teleport.getMaxX()&& this.getMinY()>=teleport.getMinY() && this.getMaxY()<=teleport.getMaxY()){

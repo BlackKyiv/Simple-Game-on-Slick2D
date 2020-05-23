@@ -169,7 +169,7 @@ public class MapLevel1 extends BasicGameState {
         drawDoors(graphics);
 
         graphics.setColor(Color.pink);
-        graphics.fill(babka);
+        babka.getAnimation().draw(babka.getX(), babka.getY());
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
 
@@ -328,21 +328,10 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void checkForAttack(GameContainer container) {
-        //if babka`s x > mouse x then draw attackZone on right
-        //else if babka`s x < mouse x then draw attackZone on left+
-        if(babka.isAlive()) {
-            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
-                if (container.getInput().getMouseX() > babka.getX()) {
-                    attackZone.setX(babka.getX() + babka.getWidth());
-                    attackZone.setY(babka.getY());
-                } else if (container.getInput().getMouseX() < babka.getX()) {
-                    attackZone.setX(babka.getX() - babka.getWidth());
-                    attackZone.setY(babka.getY());
-                }
-            } else attackZone = new Rectangle(-50, -50, 50, 50);
-            checkForAttackDoors();
-            checkForAttackEnemies();
-        }
+        attackZone = babka.getHitZone(container);
+        checkForAttackDoors();
+        checkForAttackEnemies();
+
     }
 
     private void checkForAttackDoors(){
