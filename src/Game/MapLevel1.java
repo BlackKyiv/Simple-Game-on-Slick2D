@@ -162,7 +162,7 @@ public class MapLevel1 extends BasicGameState {
         table.draw(525, 625, 150, 60);
         wardrobe.draw(250, 495, 130, 193);
         cupboard.draw(220, 300, 150, 100);
-        rockingChair.draw(20, 620, 70, 70);
+        rockingChair.draw(30, 625, 60, 60);
 
         drawDoors(graphics);
 
