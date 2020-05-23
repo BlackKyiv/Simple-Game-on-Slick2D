@@ -59,10 +59,10 @@ public class MapLevel2 extends BasicGameState {
 
         background = new Image(path+"backg.jpg");
 
-        obstacles.add(new Rectangle(0, SetupGame.height-floorHeight, SetupGame.width, floorHeight)); //terrain
-        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1090,0,10,700)); //right frame
-        obstacles.add(new Rectangle(0,0,1100,10)); //upper frame
+        obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
+        obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
+        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
         obstacles.add(new Rectangle(x_offset- wallWidth,110, wallWidth, 500)); //left wall
         obstacles.add(new Rectangle(SetupGame.width- wallWidth,110, wallWidth, 590)); //right wall
         obstacles.add(new Rectangle(x_offset,SetupGame.height- floorHeight, floorW, floorHeight)); //first floor

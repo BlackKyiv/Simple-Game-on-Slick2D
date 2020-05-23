@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class MapLevel3 extends BasicGameState {
     private Babka babka;
-    private Image background, wall, wallpaper, window;
+    private Image background, wall, wallpaper, window, door;
     private SpriteSheet wallSS, floorSS, wallpaper1;
     private Rectangle attackZone;
 
@@ -27,7 +27,7 @@ public class MapLevel3 extends BasicGameState {
     private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
-    private int floorH = 300, floorW = 900;
+    private int floorH = 300, floorW = 700;
     private int x_offset = 200;
 
     private String path = SetupGame.path;
@@ -40,7 +40,7 @@ public class MapLevel3 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(800, 300, 50, 50);
+        babka = new Babka(50, 300, 50, 50);
 
         initDoors();
         initEnemies();
@@ -57,15 +57,17 @@ public class MapLevel3 extends BasicGameState {
 
         wall = new Image(path + "wall.jpg");
 
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
-        obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
+        obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height - floorH * 2, wallWidth, floorH -floorHeight-85)); //left upper wall
+        obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height - floorH , wallWidth, floorH -floorHeight-85)); //left lower wall
+        obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH -floorHeight-85)); //right upper wall
+        obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH , wallWidth, floorH -floorHeight-85)); //right lower wall
+        obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height - floorHeight, floorW+wallWidth*2, floorHeight)); //first floor
+        obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height - floorH - floorHeight, floorW+wallWidth*2, floorHeight)); //second floor
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, 1100, floorHeight * 2));//roof
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, SetupGame.width, floorHeight)); //terrain
-        obstacles.add(new Rectangle(0, 0, 10, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1090, 0, 10, SetupGame.height-90)); //right frame
-        obstacles.add(new Rectangle(0, 0, SetupGame.width, 10)); //upper frame
+        obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
+        obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
+        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
 
         wallSS = new SpriteSheet(wall, 10, 10);
         floorSS = new SpriteSheet(wall, 10, 10);
@@ -74,10 +76,11 @@ public class MapLevel3 extends BasicGameState {
         wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
 
         window = new Image(path + "window.jpg");
+        door = new Image(path+"door.jpg");
 
         teleports = new ArrayList<>();
-        teleports.add(new Teleport(110, 325, 80, 135,0,225));
-        teleports.add(new Teleport(110, 550, 80, 135,0,-220));
+        teleports.add(new Teleport(800,SetupGame.height-floorHeight-85,80,85,0,-floorH)); //1-st floor
+        teleports.add(new Teleport(800,SetupGame.height-floorHeight-floorH-85,80,85,0,floorH)); //2-nd floor
     }
 
     private void initDoors() throws SlickException {
@@ -102,27 +105,27 @@ public class MapLevel3 extends BasicGameState {
         }
         wallpaper.endUse();
         wall.startUse();
-        for (int a = x_offset; a < SetupGame.width - x_offset; a += floorHeight) {
+        for (int a = x_offset-wallWidth; a < SetupGame.width - x_offset; a += floorHeight) {
             floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorHeight, floorHeight*2, floorHeight);
             floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorH - floorHeight, floorHeight*2, floorHeight);
         }
         for (int a = x_offset-50; a < SetupGame.width - x_offset+50; a += floorHeight*2) {
             floorSS.getSubImage(0, 0, 110, 110).drawEmbedded(a, SetupGame.height - floorH * 2 - floorHeight * 2, floorHeight*2, floorHeight*2);
         }
-        for (int a = SetupGame.height-floorHeight-85; a > SetupGame.height-2*floorH-floorHeight; a -= wallWidth) {
-            if(!(a>=SetupGame.height-floorHeight-floorH-85&&a<=SetupGame.height-floorHeight-floorH)) {
+        for (int a = SetupGame.height-floorHeight-85-wallWidth; a > SetupGame.height-2*floorH-floorHeight; a -= wallWidth) {
+            if(!(a>=SetupGame.height-floorHeight-floorH-100&&a<=SetupGame.height-floorHeight-floorH)) {
                 wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(x_offset - wallWidth, a, wallWidth, wallWidth);
                 wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(SetupGame.width - x_offset, a, wallWidth, wallWidth);
             }
         }
         wall.endUse();
 
-
-
         window.draw(700, 150, 100, 100);
         window.draw(400, 150, 100, 100);
         window.draw(700, 450, 100, 100);
         window.draw(400, 450, 100, 100);
+        door.draw(800,SetupGame.height-floorHeight-85,80,85);
+        door.draw(800,SetupGame.height-floorHeight-floorH-85,80,85);
 
         drawDoors(graphics);
 
