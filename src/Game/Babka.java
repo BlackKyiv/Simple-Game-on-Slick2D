@@ -50,7 +50,7 @@ public class Babka extends Rectangle {
 
 
     private float attackZoneSizeX = 50;
-    private float attackZoneSizeY = 50;
+    private float attackZoneSizeY = 60;
 
 
     public Babka(float x, float y, float width, float height) throws SlickException {
