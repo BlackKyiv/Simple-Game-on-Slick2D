@@ -1,5 +1,7 @@
 package Game.interactiveObjects;
 
+import org.newdawn.slick.geom.Rectangle;
+
 public interface Bullet {
     boolean right = false;
 
@@ -9,11 +11,9 @@ public interface Bullet {
     void setLeft();
 
 
-    void checkCollisions();
+    void checkForCollision(Rectangle platform);
 
     void setSpeed( int speed);
-
-    void reflect();
 
     boolean collided();
 

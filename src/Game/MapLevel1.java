@@ -184,7 +184,7 @@ public class MapLevel1 extends BasicGameState {
 
         drawEnemies(graphics);
 
-        graphics.fill(attackZone);
+      //  graphics.fill(attackZone);
 
     }
 
@@ -333,7 +333,17 @@ public class MapLevel1 extends BasicGameState {
                     for (Rectangle obstacle : obstacles) {
                         j.checkForCollision(obstacle);
                     }
+                    for(int d = 0;d<enemies.size(); d++){
+                        if(enemies.get(d) instanceof Doctor) {
+                            Doctor doctor = (Doctor) enemies.get(d);
+                            if(j.intersects(doctor)&&j.isReflected()){
+                                doctor.die();
+                                j.disappear();
+                            }
+                        }
+                        }
                     if(j.intersects(babka))babka.die();
+
                 }
                 else {
                     injections.remove(i);
