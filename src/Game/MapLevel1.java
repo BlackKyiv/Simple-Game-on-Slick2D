@@ -24,6 +24,7 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Door> doors = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
+    private  ArrayList<Coronavirus> coronas = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
@@ -95,33 +96,25 @@ public class MapLevel1 extends BasicGameState {
 
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
-        corona1.setSpace(150);
-        corona1.setVisionHorizontal(150,150);
-        corona1.setVisionVertical(20,0);
-        corona1.setNotVisionHorizontal(150,150);
-        corona1.setNotVisionVertical(20,0);
-        enemies.add(corona1);
+        coronas.add(corona1);
         Coronavirus corona2 = new Coronavirus(50, 370);
-        corona2.setSpace(150);
-        corona2.setVisionHorizontal(100,150);
-        corona2.setVisionVertical(20,0);
-        corona2.setNotVisionHorizontal(150,150);
-        corona2.setNotVisionVertical(20,0);
-        enemies.add(corona2);
+        coronas.add(corona2);
         Coronavirus corona3 = new Coronavirus(200, 600);
-        corona3.setSpace(150);
-        corona3.setVisionHorizontal(150,150);
-        corona3.setVisionVertical(20,0);
-        corona3.setNotVisionHorizontal(150,150);
-        corona3.setNotVisionVertical(20,0);
-        enemies.add(corona3);
+        coronas.add(corona3);
         Coronavirus corona4 = new Coronavirus(700, 620);
-        corona4.setSpace(150);
-        corona4.setVisionHorizontal(150,150);
-        corona4.setVisionVertical(20,0);
-        corona4.setNotVisionHorizontal(150,150);
-        corona4.setNotVisionVertical(20,0);
-        enemies.add(corona4);
+        coronas.add(corona4);
+        Coronavirus corona5 = new Coronavirus(400, 150);
+        coronas.add(corona5);
+        for(Coronavirus c: coronas){
+            if(c instanceof Coronavirus){
+                enemies.add(c);
+                c.setSpace(150);
+                c.setVisionHorizontal(150,150);
+                c.setVisionVertical(20,0);
+                c.setNotVisionHorizontal(150,150);
+                c.setNotVisionVertical(20,0);
+            }
+        }
 
         Doctor doctor = new Doctor(900, 605);
         doctor.setSpace(150);

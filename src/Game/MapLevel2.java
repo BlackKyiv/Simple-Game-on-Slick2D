@@ -196,8 +196,7 @@ public class MapLevel2 extends BasicGameState {
     private void drawDoors(Graphics graphics) {
         for(Door door : doors){
             if (!door.isBroken()) {
-                graphics.setColor(Color.blue);
-                graphics.fill(door);
+                door.getImageDoor(graphics).draw(  door.getX(),   door.getY());
             }
         }
     }
