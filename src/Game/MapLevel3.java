@@ -30,7 +30,11 @@ public class MapLevel3 extends BasicGameState {
     private int floorH = 300, floorW = 700;
     private int x_offset = 200;
 
+
     private String path = SetupGame.path;
+
+    public MapLevel3(){
+    }
 
     @Override
     public int getID() {
@@ -91,7 +95,10 @@ public class MapLevel3 extends BasicGameState {
     }
 
     private void initEnemies() throws SlickException {
-
+        Coronavirus coronavirus = new Coronavirus(200,304);
+        //coronavirus.setNotVisionHorizontal(500,500);
+        coronavirus.setVisionHorizontal(500,500);
+        enemies.add(coronavirus);
     }
 
     @Override
@@ -167,6 +174,8 @@ public class MapLevel3 extends BasicGameState {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
                     corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
+                    graphics.draw(corona.getVision1());
+                    graphics.draw(corona.getVision2());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
@@ -176,7 +185,6 @@ public class MapLevel3 extends BasicGameState {
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    graphics.setColor(Color.gray);
                     turrel.getImageTurrel(graphics).draw(turrel.getX(), turrel.getY());
                 }
             }
@@ -231,11 +239,14 @@ public class MapLevel3 extends BasicGameState {
     }
 
     private void updateEnemies(int delta) throws SlickException {
+        ArrayList<Rectangle> all = new ArrayList<>();
+        all.addAll(obstacles);
+        all.addAll(doors);
 
         for(int i = 0; i<enemies.size(); i++){
             if(enemies.get(i) instanceof Doctor){
                 Doctor doctor = (Doctor) enemies.get(i);
-                doctor.update(delta);
+                doctor.update(delta, all);
                 if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
 
                 for (Rectangle obstacle : obstacles) {
@@ -249,7 +260,7 @@ public class MapLevel3 extends BasicGameState {
             else if(enemies.get(i) instanceof Coronavirus){
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if(corona.isAlive()) {
-                    corona.update();
+                    corona.update(all);
                     for (Rectangle obstacle : obstacles) {
                         corona.checkForCollisionWall(obstacle);
                     }
@@ -286,7 +297,20 @@ public class MapLevel3 extends BasicGameState {
                     for (Rectangle obstacle : obstacles) {
                         j.checkForCollision(obstacle);
                     }
+                    for (Rectangle obstacle : doors) {
+                        j.checkForCollision(obstacle);
+                    }
+                    for(int d = 0;d<enemies.size(); d++){
+                        if(enemies.get(d) instanceof Doctor) {
+                            Doctor doctor = (Doctor) enemies.get(d);
+                            if(j.intersects(doctor)&&j.isReflected()){
+                                doctor.die();
+                                j.disappear();
+                            }
+                        }
+                    }
                     if(j.intersects(babka))babka.die();
+
                 }
                 else {
                     injections.remove(i);

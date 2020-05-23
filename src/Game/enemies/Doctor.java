@@ -30,6 +30,9 @@ public class Doctor extends Rectangle implements Enemy {
     private boolean babkaToRight;
 
 
+    private Rectangle vision1;
+    private Rectangle vision2;
+
     float babkaX;
     float babkaXPrevious=0;
     float babkaY;
@@ -81,6 +84,9 @@ public class Doctor extends Rectangle implements Enemy {
 
         shootGap = new Timer(1000);
         shootGap.start();
+
+        vision1 = new Rectangle(getX(), getY(), getWidth(),getHeight());
+        vision2 = new Rectangle(getX(), getY(), getWidth(),getHeight());
 
         setUpAnimation();
     }
@@ -143,7 +149,7 @@ public class Doctor extends Rectangle implements Enemy {
        // return animationLeft;
     }
 
-    public void update(int delta) {
+    public void update(int delta, ArrayList<Rectangle> obstacles) {
         shootGap.update(delta);
         move();
 
@@ -156,8 +162,54 @@ public class Doctor extends Rectangle implements Enemy {
         } else {
             babkaToRight = true;
         }
+
+        createVision(obstacles);
     }
 
+
+    public void createVision(ArrayList<Rectangle> obstacles){
+        vision1.setX(getX());
+        vision1.setY(getY()+5);
+        vision1.setWidth(getWidth()/2);
+        vision1.setHeight(getHeight()-10);
+
+        boolean visionCollided = false;
+        for(int i = 0; i<getCenterX(); i++){
+            vision1.setX(vision1.getX()-1);
+            vision1.setWidth(vision1.getWidth()+1);
+            for(int a =0; a<obstacles.size();a++){
+                if(vision1.intersects(obstacles.get(a))){
+                    visionCollided = true;
+                    break;
+                }
+            }
+            if(visionCollided) break;
+        }
+
+        vision2.setX(getCenterX());
+        vision2.setY(getY()+5);
+        vision2.setWidth(getWidth()/2);
+        vision2.setHeight(getHeight()-10);
+
+        visionCollided = false;
+        for(int i = 0; i<SetupGame.width-getCenterX(); i++){
+            vision2.setWidth(vision2.getWidth()+1);
+            for(int a =0; a<obstacles.size();a++){
+                if(vision2.intersects(obstacles.get(a))){
+                    visionCollided = true;
+                    break;
+                }
+            }
+            if(visionCollided) break;
+        }
+    }
+
+    public Rectangle getVision1(){
+        return vision1;
+    }
+    public Rectangle getVision2(){
+        return vision2;
+    }
 
     private void move() {
        if (babkaXPrevious==babkaX-this.getX()&&babkaNoticed){

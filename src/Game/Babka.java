@@ -8,7 +8,7 @@ public class Babka extends Rectangle {
     private float speedX = 0;
     private float speedY = 0;
 
-    private float speed = 7f;
+    private float speed = 5f;
     private float jump = 8;
 
     private boolean alive = true;

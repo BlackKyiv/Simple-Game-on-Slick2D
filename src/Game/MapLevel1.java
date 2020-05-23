@@ -118,7 +118,7 @@ public class MapLevel1 extends BasicGameState {
         corona3.setNotVisionHorizontal(150,150);
         corona3.setNotVisionVertical(20,0);
         enemies.add(corona3);
-        Coronavirus corona4 = new Coronavirus(700, 600);
+        Coronavirus corona4 = new Coronavirus(700, 620);
         corona4.setSpace(150);
         corona4.setVisionHorizontal(150,150);
         corona4.setVisionVertical(20,0);
@@ -206,6 +206,7 @@ public class MapLevel1 extends BasicGameState {
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
+                    graphics.setColor(Color.blue);
                     corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
@@ -277,11 +278,14 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void updateEnemies(int delta) throws SlickException {
+        ArrayList<Rectangle> all = new ArrayList<>();
+        all.addAll(obstacles);
+        all.addAll(doors);
 
         for(int i = 0; i<enemies.size(); i++){
             if(enemies.get(i) instanceof Doctor){
                 Doctor doctor = (Doctor) enemies.get(i);
-                doctor.update(delta);
+                doctor.update(delta, all);
                 if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
 
                 for (Rectangle obstacle : obstacles) {
@@ -296,7 +300,7 @@ public class MapLevel1 extends BasicGameState {
             else if(enemies.get(i) instanceof Coronavirus){
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if(corona.isAlive()) {
-                    corona.update();
+                    corona.update(all);
                     for (Rectangle obstacle : obstacles) {
                         corona.checkForCollisionWall(obstacle);
                     }
@@ -331,6 +335,9 @@ public class MapLevel1 extends BasicGameState {
                 if(j.isPresent()) {
                     j.update();
                     for (Rectangle obstacle : obstacles) {
+                        j.checkForCollision(obstacle);
+                    }
+                    for (Rectangle obstacle : doors) {
                         j.checkForCollision(obstacle);
                     }
                     for(int d = 0;d<enemies.size(); d++){
