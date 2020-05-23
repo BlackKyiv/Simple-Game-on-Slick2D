@@ -195,17 +195,21 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void drawEnemies(Graphics graphics) {
-       for(int i = 0; i<enemies.size(); i++) {
+        for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
                     doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
+                    graphics.draw(doctor.getVision1());
+                    graphics.draw(doctor.getVision2());
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
                     graphics.setColor(Color.blue);
                     corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
+                    graphics.draw(corona.getVision1());
+                    graphics.draw(corona.getVision2());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
@@ -260,7 +264,7 @@ public class MapLevel1 extends BasicGameState {
             enemies = new ArrayList<>();
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
-
+            doors = new ArrayList<>();
             babka = new Babka(800, 350);
 
 
@@ -370,6 +374,7 @@ public class MapLevel1 extends BasicGameState {
 
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
+
             Door door = doors.get(i);
             if(attackZone.intersects(door)) door.broke() ;
             if(door.isBroken()) doors.remove(i);
