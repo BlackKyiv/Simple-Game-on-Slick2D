@@ -1,8 +1,11 @@
 package Game;
 
+import Game.interactiveObjects.TapokThrow;
 import Game.interactiveObjects.Teleport;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+
+import javax.print.DocFlavor;
 
 public class Babka extends Rectangle {
     private float speedX = 0;
@@ -52,6 +55,8 @@ public class Babka extends Rectangle {
 
     private float attackZoneSizeX = 50;
     private float attackZoneSizeY = 80;
+
+    private int tapokQ = 10;
 
 
     public Babka(float x, float y) throws SlickException {
@@ -352,6 +357,39 @@ public class Babka extends Rectangle {
         }
         return new Rectangle(-attackZoneSizeX, -attackZoneSizeY, attackZoneSizeX, attackZoneSizeY);
     }
+
+    public boolean isReadyToShoot(GameContainer container){
+        return (tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
+    }
+    public TapokThrow shoot(GameContainer container) throws SlickException {
+        if(container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
+            System.out.println("Shoot! "+tapokQ);
+            if(container.getInput().getMouseX()<0){
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                tapokThrow.setLeft();
+                return tapokThrow;
+            }
+            else {
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                tapokThrow.setRight();
+                return tapokThrow;
+            }
+        }
+        else {
+            if(blockedRight || standingLeft || walkingLeft || speedX <0){
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                tapokThrow.setLeft();
+                return tapokThrow;
+            }
+            else{
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                tapokThrow.setRight();
+                return tapokThrow;
+            }
+        }
+
+    }
+
     public boolean inTeleport(Teleport teleport){
         inTeleport=false;
         if(this.getMinX()>=teleport.getMinX() && this.getMaxX()<=teleport.getMaxX()&& this.getMinY()>=teleport.getMinY() && this.getMaxY()<=teleport.getMaxY()){

@@ -5,10 +5,12 @@ import Game.enemies.*;
 import Game.interactiveObjects.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.svg.inkscape.InkscapeNonGeometricData;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class MapLevel1 extends BasicGameState {
     private  ArrayList<Coronavirus> coronas = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Injection> injections = new ArrayList<>();
+    private ArrayList<Bullet> bullets = new ArrayList<>();
     private ArrayList<TapokPick> tapki = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
@@ -236,11 +238,21 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void drawBullets(Graphics graphics){
-        if (!injections.isEmpty()) {
-            for (Injection i : injections) {
-                if (i.isPresent()) {
-                    i.getImageInjection(graphics).draw(i.getX(), i.getY());
+        if (!bullets.isEmpty()) {
+            for (int i = 0; i<bullets.size(); i++ ) {
+                if(bullets.get(i) instanceof Injection){
+                    Injection bullet = (Injection) bullets.get(i);;
+                    if (bullet.isPresent()) {
+                        bullet.getImageInjection(graphics).draw(bullet.getX(), bullet.getY());
+                    }
                 }
+                else if(bullets.get(i) instanceof TapokThrow){
+                    TapokThrow bullet = (TapokThrow) bullets.get(i);;
+                        if (bullet.isPresent()) {
+                            bullet.getImageInjection(graphics).draw(bullet.getX(), bullet.getY());
+                        }
+                }
+
             }
         }
     }
@@ -266,6 +278,8 @@ public class MapLevel1 extends BasicGameState {
             if(!door.isBroken())babka.checkForCollision(door);
         }
 
+
+
         for(Teleport teleport: teleports){
             babka.goInTeleport(gameContainer,teleport);
         }
@@ -279,9 +293,11 @@ public class MapLevel1 extends BasicGameState {
         if( gameContainer.getInput().isKeyDown(Input.KEY_ESCAPE)){
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
+
+        if(babka.isReadyToShoot(gameContainer)) bullets.add(babka.shoot(gameContainer));
         if(gameContainer.getInput().isKeyDown(Input.KEY_R)){
             enemies = new ArrayList<>();
-            injections = new ArrayList<>();
+            bullets = new ArrayList<>();
             obstacles = new ArrayList<>();
             doors = new ArrayList<>();
             coronas = new ArrayList<>();
@@ -313,7 +329,7 @@ public class MapLevel1 extends BasicGameState {
             if(enemies.get(i) instanceof Doctor){
                 Doctor doctor = (Doctor) enemies.get(i);
                 doctor.update(delta, all);
-                if (doctor.isReadyToShoot()) injections.add(doctor.shoot(babka));
+                if (doctor.isReadyToShoot()) bullets.add(doctor.shoot(babka));
 
                 for (Rectangle obstacle : obstacles) {
                     doctor.checkForCollisionWall(obstacle);
@@ -347,7 +363,7 @@ public class MapLevel1 extends BasicGameState {
                 Turrel turrel = (Turrel) enemies.get(i);
                 turrel.update(delta);
                 turrel.checkForCollisionBabka(babka);
-                if(turrel.isReadyToShoot(babka))injections.add(turrel.shoot());
+                if(turrel.isReadyToShoot(babka)) bullets.add(turrel.shoot());
             }
 
         }
@@ -369,38 +385,86 @@ public class MapLevel1 extends BasicGameState {
    }
 
     private void updateBullets(){
-        //Injections update
-        if (!injections.isEmpty()) {
-            for (int i =0; i<injections.size(); i++) {
-                Injection j = (Injection) injections.get(i);
-                if(j.isPresent()) {
-                    j.update();
-                    for (Rectangle obstacle : obstacles) {
-                        j.checkForCollision(obstacle);
-                    }
-                    for (Rectangle obstacle : doors) {
-                        j.checkForCollision(obstacle);
-                    }
-                    for(int d = 0;d<enemies.size(); d++){
-                        if(enemies.get(d) instanceof Doctor) {
+
+        for (int i = 0; i< bullets.size(); i++) {
+            if(bullets.get(i) instanceof Injection && bullets.get(i).isPresent()){
+                Injection j = (Injection) bullets.get(i);
+                j.update();
+                for (Rectangle obstacle : obstacles) {
+                    j.checkForCollision(obstacle);
+                }
+                for (Rectangle obstacle : doors) {
+                    j.checkForCollision(obstacle);
+                }
+                if(j.isReflected()) {
+                    for (int d = 0; d < enemies.size(); d++) {
+                        if (enemies.get(d) instanceof Doctor) {
                             Doctor doctor = (Doctor) enemies.get(d);
-                            if(j.intersects(doctor)&&j.isReflected()){
+                            if (j.intersects(doctor)) {
                                 doctor.die();
                                 j.disappear();
                             }
                         }
-                        }
-                    if(j.intersects(babka))babka.die();
-
+                    }
                 }
-                else {
-                    injections.remove(i);
-                    i--;
-                }
-                if(j.intersects(attackZone)) j.reflect();
                 if(j.intersects(babka)) babka.die();
             }
+            else if(bullets.get(i) instanceof TapokThrow && bullets.get(i).isPresent()){
+                TapokThrow tapok = (TapokThrow) bullets.get(i);
+                tapok.update();
+                for (Rectangle obstacle : obstacles) {
+                    tapok.checkForCollision(obstacle);
+                }
+                for (Rectangle obstacle : doors) {
+                    tapok.checkForCollision(obstacle);
+                }
+                for (int d = 0; d < enemies.size(); d++) {
+                    if(tapok.intersects((Shape) enemies.get(d))&&tapok.isPresent()){
+                         enemies.remove(d);
+                         tapok.disappear();
+                    }
+                }
+            }
+            else {
+                bullets.remove(i);
+                i--;
+            }
         }
+
+
+
+
+        //Injections update
+//        if (!bullets.isEmpty()) {
+//            for (int i = 0; i< bullets.size(); i++) {
+//                Injection j = (Injection) bullets.get(i);
+//                if(j.isPresent()) {
+//                    j.update();
+//                    for (Rectangle obstacle : obstacles) {
+//                        j.checkForCollision(obstacle);
+//                    }
+//                    for (Rectangle obstacle : doors) {
+//                        j.checkForCollision(obstacle);
+//                    }
+//                    for(int d = 0;d<enemies.size(); d++){
+//                        if(enemies.get(d) instanceof Doctor) {
+//                            Doctor doctor = (Doctor) enemies.get(d);
+//                            if(j.intersects(doctor)&&j.isReflected()){
+//                                doctor.die();
+//                                j.disappear();
+//                            }
+//                        }
+//                    }
+//                        if(j.intersects(babka))babka.die();
+//                }
+//                else {
+//                    bullets.remove(i);
+//                    i--;
+//                }
+//                if(j.intersects(attackZone)) j.reflect();
+//                if(j.intersects(babka)) babka.die();
+//            }
+//        }
 
     }
 
@@ -413,7 +477,6 @@ public class MapLevel1 extends BasicGameState {
 
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
-
             Door door = doors.get(i);
             if(attackZone.intersects(door)) door.broke() ;
             if(door.isBroken()) doors.remove(i);

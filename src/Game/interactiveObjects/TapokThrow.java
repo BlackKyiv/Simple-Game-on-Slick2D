@@ -22,14 +22,15 @@ public class TapokThrow extends Rectangle implements Bullet {
 
 
 
-    public TapokThrow(int x, int y) throws SlickException {
+    public TapokThrow(float x, float y) throws SlickException {
         super(x, y, 30, 10);
         setUpImage();
     }
 
+
     private void setUpImage() throws SlickException {
-        imageLeft = new Image (SetupGame.path + "injection_tapok_left.PNG");;
-        imageRight  = new Image (SetupGame.path + "injection_tapok_right.PNG");;
+        imageLeft = new Image (SetupGame.path + "injection_blue_left.PNG");;
+        imageRight  = new Image (SetupGame.path + "injection_blue_right.PNG");;
 
     }
     public Image getImageInjection(Graphics graphics) {
@@ -116,7 +117,6 @@ public class TapokThrow extends Rectangle implements Bullet {
 
 
     }
-
 
     @Override
     public  boolean collided(){
