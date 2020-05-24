@@ -68,7 +68,7 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
         obstacles.add(new Rectangle(x_offset- wallWidth,110, wallWidth, 490)); //left wall
         obstacles.add(new Rectangle(SetupGame.width- wallWidth,110, wallWidth, 590)); //right wall
-        obstacles.add(new Rectangle(0, SetupGame.height- floorHeight, floorW, floorHeight)); //first floor
+        obstacles.add(new Rectangle(0, SetupGame.height- floorHeight, SetupGame.width, floorHeight)); //first floor
         obstacles.add(new Rectangle(x_offset, SetupGame.height- floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(x_offset,390, floorW, floorHeight)); //third floor
         obstacles.add(new Rectangle(0,85, 1100, floorHeight *2)); //roof
@@ -146,21 +146,21 @@ public class MapLevel2 extends BasicGameState {
         corona3.setVisionVertical(20,0);
         corona3.setNotVisionHorizontal(150,150);
         corona3.setNotVisionVertical(20,0);
-        enemies.add(corona3);
+        //enemies.add(corona3);
         Coronavirus corona4 = new Coronavirus(600,530);
         corona4.setSpace(150);
         corona4.setVisionHorizontal(150,150);
         corona4.setVisionVertical(20,0);
         corona4.setNotVisionHorizontal(150,150);
         corona4.setNotVisionVertical(20,0);
-        enemies.add(corona4);
+        //enemies.add(corona4);
         Coronavirus corona5 = new Coronavirus(920,430);
         corona5.setSpace(100);
         corona5.setVisionHorizontal(150,150);
         corona5.setVisionVertical(20,0);
         corona5.setNotVisionHorizontal(150,150);
         corona5.setNotVisionVertical(20,0);
-        enemies.add(corona5);
+        //enemies.add(corona5);
         Coronavirus corona6 = new Coronavirus(350,430);
         corona6.setSpace(100);
         corona6.setVisionHorizontal(150,150);
