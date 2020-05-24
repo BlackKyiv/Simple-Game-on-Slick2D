@@ -13,8 +13,9 @@ import org.newdawn.slick.state.transition.*;
 public class MainMenu extends BasicGameState {
 
     private  String path = SetupGame.path;
-    private  Image background,play;
-    private MouseOverArea playMOA;
+    private  Image studios, presents, background, play;
+    private MouseOverArea studiosMOA, presentsMOA, playMOA;
+    private int timePassed=0;
 
     @Override
     public int getID() {
@@ -23,6 +24,9 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+
+        studios = new Image(path+"studios.png");
+        presents = new Image(path+"presents.png");
         background = new Image(path+"main_menu.png");
         play = new Image(path+"play.png");
         playMOA = new MouseOverArea(container,play,850,600);
@@ -30,15 +34,20 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        background.draw(0,0,1100,700);
-        play.draw(850,600);
+        if(timePassed<1000)
+            studios.draw(0,0,1100,700);
+        if(timePassed>1000)
+            presents.draw(0,0,1100,700);
+        if(timePassed>2000) {
+            background.draw(0, 0, 1100, 700);
+            play.draw(850, 600);
+        }
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if(container.getInput().isKeyDown(Input.KEY_C)){
-            game.enterState(1, new FadeOutTransition(),new FadeInTransition());
-        }
+        if(timePassed<2100)
+            timePassed += delta / 2;
         if(playMOA.isMouseOver() && Mouse.isButtonDown(0)){
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
