@@ -60,7 +60,7 @@ public class Coronavirus extends Rectangle implements Enemy {
 
 
     public Coronavirus(int x, int y) throws SlickException {
-        super(x, y, 50, 50);
+        super(x, y, 40, 40);
         initialX = x;
         initialY = y;
         vision1 = new Rectangle(getX(), getY(), getWidth(), getHeight());

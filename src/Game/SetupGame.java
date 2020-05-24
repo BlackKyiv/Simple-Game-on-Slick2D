@@ -1,11 +1,10 @@
 package Game;
 
+import Game.Levels.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
-
-import java.awt.*;
 
 public class SetupGame extends StateBasedGame {
 
@@ -20,7 +19,12 @@ public class SetupGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
+        this.addState(new MainMenu());
+        this.addState(new LevelsMenu());
         this.addState(new MapLevel1());
+        this.addState(new MapLevel2());
+        this.addState(new MapLevel3());
+
     }
 
     public static void main(String[] args) throws SlickException {
