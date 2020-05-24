@@ -10,7 +10,6 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
-import org.newdawn.slick.svg.inkscape.InkscapeNonGeometricData;
 
 import java.util.ArrayList;
 
@@ -36,7 +35,7 @@ public class MapLevel1 extends BasicGameState {
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
-    private TapokPick tapok;
+    private TapokPick tapok1, tapok2, tapok3;
 
     private String path = SetupGame.path;
 
@@ -60,8 +59,12 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void initTapki() throws SlickException {
-        tapok = new TapokPick(100,250);
-        tapki.add(tapok);
+        tapok1 = new TapokPick(250,285);
+        tapki.add(tapok1);
+        tapok2 = new TapokPick(50,150);
+        tapki.add(tapok2);
+        tapok3 = new TapokPick(30,670);
+        tapki.add(tapok3);
     }
     private void initAttackZone() {
         attackZone = new Rectangle(-50, -50, 50, 50);
@@ -194,8 +197,6 @@ public class MapLevel1 extends BasicGameState {
        }else{
            babka.getAnimation().draw(babka.getX(), babka.getY());
        }
-        graphics.setColor(Color.black);
-        graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
         drawTapki( graphics);
@@ -216,16 +217,12 @@ public class MapLevel1 extends BasicGameState {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
                     doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
-                    graphics.draw(doctor.getVision1());
-                    graphics.draw(doctor.getVision2());
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
                     graphics.setColor(Color.blue);
                     corona.getAnimation(graphics).draw(corona.getX()-5, corona.getY()-5);
-                    graphics.draw(corona.getVision1());
-                    graphics.draw(corona.getVision2());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);

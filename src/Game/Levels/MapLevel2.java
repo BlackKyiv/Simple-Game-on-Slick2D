@@ -21,8 +21,6 @@ public class MapLevel2 extends BasicGameState {
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
     private SpriteSheet wallSS,floorSS,wallpaper1, platformSS;
     private Rectangle attackZone;
-    private Coronavirus corona;
-    private Doctor doctor;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Door> doors = new ArrayList<>();
@@ -30,7 +28,9 @@ public class MapLevel2 extends BasicGameState {
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Bullet> bullets = new ArrayList<>();
+    private ArrayList<TapokPick> tapki = new ArrayList<>();
 
+    private TapokPick tapok1, tapok2, tapok3;
 
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 190, floorW = 900;
@@ -52,6 +52,7 @@ public class MapLevel2 extends BasicGameState {
         initDoors();
         initEnemies();
         initAttackZone();
+        initTapki();
     }
 
     private void initAttackZone(){
@@ -110,6 +111,15 @@ public class MapLevel2 extends BasicGameState {
         window = new Image(path+"window.jpg");
     }
 
+    private void initTapki() throws SlickException {
+        tapok1 = new TapokPick(500,535);
+        tapki.add(tapok1);
+        tapok2 = new TapokPick(770,530);
+        tapki.add(tapok2);
+        tapok3 = new TapokPick(350,120);
+        tapki.add(tapok3);
+    }
+
     private void initDoors()throws SlickException{
         doors.add(new Door(x_offset-wallWidth,600,wallWidth,85, false)); //entry
         doors.add(new Door(400, SetupGame.height-floorHeight-85,wallWidth,85, false)); //1st floor
@@ -126,14 +136,14 @@ public class MapLevel2 extends BasicGameState {
         t1.setRangeOfSight(750);
         enemies.add(t1);
 
-        Coronavirus corona1 = new Coronavirus(250,550);
+        Coronavirus corona1 = new Coronavirus(250,580);
         corona1.setSpace(150);
         corona1.setVisionHorizontal(150,150);
         corona1.setVisionVertical(20,0);
         corona1.setNotVisionHorizontal(150,150);
         corona1.setNotVisionVertical(20,0);
         enemies.add(corona1);
-        Coronavirus corona2 = new Coronavirus(300,570);
+        Coronavirus corona2 = new Coronavirus(300,600);
         corona2.setSpace(150);
         corona2.setVisionHorizontal(150,150);
         corona2.setVisionVertical(20,0);
@@ -146,7 +156,7 @@ public class MapLevel2 extends BasicGameState {
         corona3.setVisionVertical(20,0);
         corona3.setNotVisionHorizontal(150,150);
         corona3.setNotVisionVertical(20,0);
-        //enemies.add(corona3);
+        enemies.add(corona3);
         Coronavirus corona4 = new Coronavirus(600,530);
         corona4.setSpace(150);
         corona4.setVisionHorizontal(150,150);
@@ -258,6 +268,7 @@ public class MapLevel2 extends BasicGameState {
         }
             drawEnemies(graphics);
         drawBullets(graphics);
+        drawTapki(graphics);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -323,8 +334,16 @@ public class MapLevel2 extends BasicGameState {
                 }
             }
         }
+    }
 
-
+    private void drawTapki(Graphics graphics){
+        if (!tapki.isEmpty()) {
+            for (TapokPick i : tapki) {
+                if (i.isPresent()) {
+                    i.getAnimation(graphics).draw(i.getX(), i.getY());
+                }
+            }
+        }
     }
 
     @Override
