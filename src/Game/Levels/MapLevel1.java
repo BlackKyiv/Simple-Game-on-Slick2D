@@ -170,7 +170,11 @@ public class MapLevel1 extends BasicGameState {
         drawDoors(graphics);
 
         graphics.setColor(Color.pink);
-        babka.getAnimation().draw(babka.getX(), babka.getY());
+       if ( babka.animationSlide()) {
+           babka.getAnimation().draw(babka.getX()-25, babka.getY());
+       }else{
+           babka.getAnimation().draw(babka.getX(), babka.getY());
+       }
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
 

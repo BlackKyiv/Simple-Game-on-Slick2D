@@ -254,8 +254,12 @@ public class MapLevel2 extends BasicGameState {
         helicopter.draw(250,5,250,80);
 
         graphics.setColor(Color.pink);
-        babka.getAnimation().draw(babka.getX(), babka.getY());
-        drawEnemies(graphics);
+        if ( babka.animationSlide()) {
+            babka.getAnimation().draw(babka.getX()-25, babka.getY());
+        }else {
+            babka.getAnimation().draw(babka.getX(), babka.getY());
+        }
+            drawEnemies(graphics);
         drawBullets(graphics);
     }
 

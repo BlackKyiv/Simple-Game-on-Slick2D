@@ -39,6 +39,7 @@ public class Doctor extends Rectangle implements Enemy {
     float babkaWidth;
     float babkaHeight;
 
+
     float visionHorizontalLeft;
     float visionHorizontalRight;
     float visionVerticalUp;
@@ -395,5 +396,6 @@ public class Doctor extends Rectangle implements Enemy {
     public boolean babkaIsToRight() {
         return babkaToRight;
     }
+
 
     }
