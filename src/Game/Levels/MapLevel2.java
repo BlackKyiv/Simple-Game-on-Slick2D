@@ -18,7 +18,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class MapLevel2 extends BasicGameState {
     private Babka babka;
-    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter,turret1,turret2,table;
+    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter;
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
     private SpriteSheet wallSS,floorSS,wallpaper1, platformSS;
     private Rectangle attackZone;
@@ -60,7 +60,7 @@ public class MapLevel2 extends BasicGameState {
 
     private void initWalls()throws SlickException {
 
-        background = new Image(path+"backg.jpg");
+        background = new Image(path+"background.jpg");
 
         obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
         obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
@@ -108,9 +108,6 @@ public class MapLevel2 extends BasicGameState {
 
         helicopter = new Image(path+"helicopter.png");
         window = new Image(path+"window.jpg");
-        turret1 = new Image(path+"turret.png");
-        turret2 = new Image(path+"turret.png");
-        table = new Image(path+"officetable.png");
     }
 
     private void initDoors()throws SlickException{
