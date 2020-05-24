@@ -324,7 +324,8 @@ public class MapLevel2 extends BasicGameState {
             if(!door.isBroken())babka.checkForCollision(door);
         }
         for(Teleport teleport: teleports){
-            babka.goInTeleport(gameContainer,teleport);
+            if(gameContainer.getInput().isKeyDown(Input.KEY_ENTER))
+                babka.goInTeleport(gameContainer,teleport);
         }
         babka.controls(gameContainer);
 
