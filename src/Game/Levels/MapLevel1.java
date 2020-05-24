@@ -27,10 +27,13 @@ public class MapLevel1 extends BasicGameState {
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<>();
+    private ArrayList<TapokPick> tapki = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
+
+    private TapokPick tapok;
 
     private String path = SetupGame.path;
 
@@ -48,8 +51,13 @@ public class MapLevel1 extends BasicGameState {
         initEnemies();
         initAttackZone();
         initWalls();
+        initTapki();
     }
 
+    private void initTapki() throws SlickException {
+    tapok = new TapokPick(100,250);
+    tapki.add(tapok);
+    }
     private void initAttackZone() {
         attackZone = new Rectangle(-50, -50, 50, 50);
     }
@@ -179,7 +187,7 @@ public class MapLevel1 extends BasicGameState {
         graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
-        //graphics.fill(attackZone);
+        drawTapki( graphics);
 
     }
 
@@ -237,6 +245,16 @@ public class MapLevel1 extends BasicGameState {
         }
     }
 
+    private void drawTapki(Graphics graphics){
+        if (!tapki.isEmpty()) {
+            for (TapokPick i : tapki) {
+                if (i.isPresent()) {
+                    i.getAnimation(graphics).draw(i.getX(), i.getY());
+                }
+            }
+        }
+    }
+
     @Override
     public void update(GameContainer gameContainer, StateBasedGame game, int delta) throws SlickException {
 
@@ -247,12 +265,13 @@ public class MapLevel1 extends BasicGameState {
         for (Door door : doors){
             if(!door.isBroken())babka.checkForCollision(door);
         }
+
         for(Teleport teleport: teleports){
             babka.goInTeleport(gameContainer,teleport);
         }
 
         babka.controls(gameContainer);
-
+        updateTapki();
         updateEnemies(delta);
         updateBullets();
         checkForAttack(gameContainer);
@@ -266,6 +285,7 @@ public class MapLevel1 extends BasicGameState {
             obstacles = new ArrayList<>();
             doors = new ArrayList<>();
             coronas = new ArrayList<>();
+            tapki= new ArrayList<>();
             babka = new Babka(800, 350);
 
 
@@ -273,6 +293,7 @@ public class MapLevel1 extends BasicGameState {
             initEnemies();
             initAttackZone();
             initWalls();
+            initTapki();
         }
     }
 
@@ -332,6 +353,20 @@ public class MapLevel1 extends BasicGameState {
         }
 
     }
+
+   private void updateTapki(){
+        if (tapki.size()!=0) {
+            for (TapokPick tapok : tapki) {
+                if (tapok.isPresent()) {
+                    tapok.checkForCollision(babka);
+                }
+            }
+            for (int i = 0; i < tapki.size(); i++) {
+                TapokPick tapok = tapki.get(i);
+                if (tapok.isPresent() == false) tapki.remove(i);
+            }
+        }
+   }
 
     private void updateBullets(){
         //Injections update
