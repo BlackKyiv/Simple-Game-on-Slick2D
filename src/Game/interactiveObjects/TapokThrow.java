@@ -24,6 +24,7 @@ public class TapokThrow extends Rectangle implements Bullet {
 
     public TapokThrow(float x, float y) throws SlickException {
         super(x, y, 30, 10);
+        setSpeed(10);
         setUpImage();
     }
 

@@ -385,7 +385,6 @@ public class MapLevel1 extends BasicGameState {
    }
 
     private void updateBullets(){
-
         for (int i = 0; i< bullets.size(); i++) {
             if(bullets.get(i) instanceof Injection && bullets.get(i).isPresent()){
                 Injection j = (Injection) bullets.get(i);
@@ -419,8 +418,8 @@ public class MapLevel1 extends BasicGameState {
                     tapok.checkForCollision(obstacle);
                 }
                 for (int d = 0; d < enemies.size(); d++) {
-                    if(tapok.intersects((Shape) enemies.get(d))&&tapok.isPresent()){
-                         enemies.remove(d);
+                    if(!(enemies.get(d) instanceof Turrel) && tapok.intersects((Shape) enemies.get(d))&&tapok.isPresent()){
+                         enemies.get(d).die();
                          tapok.disappear();
                     }
                 }
@@ -430,42 +429,6 @@ public class MapLevel1 extends BasicGameState {
                 i--;
             }
         }
-
-
-
-
-        //Injections update
-//        if (!bullets.isEmpty()) {
-//            for (int i = 0; i< bullets.size(); i++) {
-//                Injection j = (Injection) bullets.get(i);
-//                if(j.isPresent()) {
-//                    j.update();
-//                    for (Rectangle obstacle : obstacles) {
-//                        j.checkForCollision(obstacle);
-//                    }
-//                    for (Rectangle obstacle : doors) {
-//                        j.checkForCollision(obstacle);
-//                    }
-//                    for(int d = 0;d<enemies.size(); d++){
-//                        if(enemies.get(d) instanceof Doctor) {
-//                            Doctor doctor = (Doctor) enemies.get(d);
-//                            if(j.intersects(doctor)&&j.isReflected()){
-//                                doctor.die();
-//                                j.disappear();
-//                            }
-//                        }
-//                    }
-//                        if(j.intersects(babka))babka.die();
-//                }
-//                else {
-//                    bullets.remove(i);
-//                    i--;
-//                }
-//                if(j.intersects(attackZone)) j.reflect();
-//                if(j.intersects(babka)) babka.die();
-//            }
-//        }
-
     }
 
     private void checkForAttack(GameContainer container) {

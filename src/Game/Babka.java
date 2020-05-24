@@ -359,30 +359,41 @@ public class Babka extends Rectangle {
     }
 
     public boolean isReadyToShoot(GameContainer container){
-        return (tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
+        return isAlive()&&(tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
     }
+
     public TapokThrow shoot(GameContainer container) throws SlickException {
-        if(container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)){
-            System.out.println("Shoot! "+tapokQ);
-            if(container.getInput().getMouseX()<0){
-                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+        tapokQ--;
+        if(container.getInput().isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
+            if(container.getInput().getMouseX()<getCenterX()){
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getY());
                 tapokThrow.setLeft();
                 return tapokThrow;
             }
             else {
-                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getY());
                 tapokThrow.setRight();
                 return tapokThrow;
             }
         }
         else {
+            if(blockedRight){
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getY());
+                tapokThrow.setLeft();
+                return tapokThrow;
+            }
+            if(blockedLeft){
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getY());
+                tapokThrow.setRight();
+                return tapokThrow;
+            }
             if(blockedRight || standingLeft || walkingLeft || speedX <0){
-                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getY());
                 tapokThrow.setLeft();
                 return tapokThrow;
             }
             else{
-                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY());
+                TapokThrow tapokThrow = new TapokThrow(getCenterX(), getY());
                 tapokThrow.setRight();
                 return tapokThrow;
             }
