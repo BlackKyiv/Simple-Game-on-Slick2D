@@ -11,7 +11,7 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
-    public final static String path = "/Users/dgoptsii/Game/pictures/";
+    public final static String path = "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
 
     public SetupGame(String name) {
         super(name);
@@ -28,6 +28,7 @@ public class SetupGame extends StateBasedGame {
     }
 
     public static void main(String[] args) throws SlickException {
+        System.out.println(path);
         AppGameContainer app = new AppGameContainer(new SetupGame("Corona vs Granny"));
         app.setDisplayMode(width, height, false);
         app.setTargetFrameRate(fps);

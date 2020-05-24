@@ -320,7 +320,7 @@ public class Babka extends Rectangle {
 
     public Rectangle getHitZone(GameContainer container) {
         if (isAlive()) {
-            if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
+            if (container.getInput().isKeyPressed(Input.KEY_F)) {
 
                 if (speedX == 0) {
                     if (standingRight) {
@@ -337,7 +337,9 @@ public class Babka extends Rectangle {
                 } else {
                     this.setFightingLeft(true);
                     return new Rectangle(getX() - attackZoneSizeX, getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
-            /*
+                }
+            }
+            if(container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON)){
                 if (container.getInput().getMouseX() > this.getX()) {
                     this.setFightingRight(true);
                     return new Rectangle(getX(), getY()-15, attackZoneSizeX+getWidth(), attackZoneSizeY);
@@ -345,8 +347,6 @@ public class Babka extends Rectangle {
                 } else if (container.getInput().getMouseX() < this.getX()) {
                     this.setFightingLeft(true);
                     return new Rectangle(getX() - attackZoneSizeX, getY()-15, attackZoneSizeX+getWidth(), attackZoneSizeY);
-                }
-            }*/
                 }
             }
         }

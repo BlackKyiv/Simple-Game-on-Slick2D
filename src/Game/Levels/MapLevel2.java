@@ -68,7 +68,7 @@ public class MapLevel2 extends BasicGameState {
         obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
         obstacles.add(new Rectangle(x_offset- wallWidth,110, wallWidth, 490)); //left wall
         obstacles.add(new Rectangle(SetupGame.width- wallWidth,110, wallWidth, 590)); //right wall
-        obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height- floorHeight, floorW, floorHeight)); //first floor
+        obstacles.add(new Rectangle(0, SetupGame.height- floorHeight, floorW, floorHeight)); //first floor
         obstacles.add(new Rectangle(x_offset, SetupGame.height- floorH - floorHeight, floorW, floorHeight)); //second floor
         obstacles.add(new Rectangle(x_offset,390, floorW, floorHeight)); //third floor
         obstacles.add(new Rectangle(0,85, 1100, floorHeight *2)); //roof
@@ -367,6 +367,7 @@ public class MapLevel2 extends BasicGameState {
         ArrayList<Rectangle> all = new ArrayList<>();
         all.addAll(obstacles);
         all.addAll(doors);
+
         for(int i = 0; i<enemies.size(); i++){
             if(enemies.get(i) instanceof Doctor){
                 Doctor doctor = (Doctor) enemies.get(i);
@@ -376,6 +377,7 @@ public class MapLevel2 extends BasicGameState {
                 for (Rectangle obstacle : obstacles) {
                     doctor.checkForCollisionWall(obstacle);
                 }
+
                 for(Rectangle door: doors){
                     doctor.checkForCollisionWall(door);
                 }
@@ -384,11 +386,12 @@ public class MapLevel2 extends BasicGameState {
             else if(enemies.get(i) instanceof Coronavirus){
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if(corona.isAlive()) {
-                    corona.update(obstacles);
+                    corona.update(all);
                     for (Rectangle obstacle : obstacles) {
                         corona.checkForCollisionWall(obstacle);
                     }
                     corona.checkForCollisionBabka(babka);
+                    if(babka.intersects(corona)&&corona.isAlive()) babka.die();
                 }
             }
             else if(enemies.get(i) instanceof CoronaSmall){
@@ -396,6 +399,7 @@ public class MapLevel2 extends BasicGameState {
                 if(coronaS.isAlive()) {
                     coronaS.update();
                     coronaS.checkForCollisionBabka(babka);
+                    if(babka.intersects(coronaS)&&coronaS.isAlive()) babka.die();
                 }
             }
             else if(enemies.get(i) instanceof Turrel){
