@@ -111,10 +111,10 @@ public class MapLevel2 extends BasicGameState {
     }
 
     private void initDoors()throws SlickException{
-        doors.add(new Door(x_offset-wallWidth,600,wallWidth,85)); //entry
-        doors.add(new Door(400, SetupGame.height-floorHeight-85,wallWidth,85)); //1st floor
-        doors.add(new Door(495,410,wallWidth,85)); //2nd floor
-        doors.add(new Door(795,410,wallWidth,85)); //2nd floor
+        doors.add(new Door(x_offset-wallWidth,600,wallWidth,85, false)); //entry
+        doors.add(new Door(400, SetupGame.height-floorHeight-85,wallWidth,85, false)); //1st floor
+        doors.add(new Door(495,410,wallWidth,85, false)); //2nd floor
+        doors.add(new Door(795,410,wallWidth,85, false)); //2nd floor
     }
     private void initEnemies() throws SlickException {
         Turrel t = new Turrel(900,600);

@@ -14,7 +14,7 @@ public class MainMenu extends BasicGameState {
 
     private  String path = SetupGame.path;
     private  Image studios, presents, background, play;
-    private MouseOverArea studiosMOA, presentsMOA, playMOA;
+    private MouseOverArea playMOA;
     private int timePassed=0;
 
     @Override
