@@ -13,8 +13,9 @@ public class Door extends Rectangle {
     private boolean broken = false;
     private boolean window=false;
 
-    public Door(float x, float y, float width, float height) throws SlickException {
+    public Door(float x, float y, float width, float height, boolean window) throws SlickException {
         super(x, y, width, height);
+        this.window=window;
         setUpImage();
     }
 

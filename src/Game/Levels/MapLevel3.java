@@ -89,14 +89,15 @@ public class MapLevel3 extends BasicGameState {
     }
 
     private void initDoors() throws SlickException {
-        doors.add(new Door(x_offset-wallWidth, SetupGame.height-floorHeight-85,wallWidth,85)); //1-st left
-        doors.add(new Door(SetupGame.width-x_offset, SetupGame.height-floorHeight-85,wallWidth,85)); //1-st right
-        doors.add(new Door(x_offset-wallWidth, SetupGame.height-floorHeight-floorH-85,wallWidth,85)); //2-nd left
-        doors.add(new Door(SetupGame.width-x_offset, SetupGame.height-floorHeight-floorH-85,wallWidth,85)); //2-nd right
+        doors.add(new Door(x_offset-wallWidth, SetupGame.height-floorHeight-85,wallWidth,85, false)); //1-st left
+        doors.add(new Door(SetupGame.width-x_offset, SetupGame.height-floorHeight-85,wallWidth,85, false)); //1-st right
+        doors.add(new Door(x_offset-wallWidth, SetupGame.height-floorHeight-floorH-85,wallWidth,85, true)); //2-nd left
+        doors.add(new Door(SetupGame.width-x_offset, SetupGame.height-floorHeight-floorH-85,wallWidth,85, true)); //2-nd right
     }
 
     private void initEnemies() throws SlickException {
-        Coronavirus coronavirus = new Coronavirus(200,304);
+        Coronavirus coronavirus = new Coronavirus(300,304);
+        coronavirus.setSpace(200);
         //coronavirus.setNotVisionHorizontal(500,500);
         coronavirus.setVisionHorizontal(500,500);
         enemies.add(coronavirus);
@@ -152,8 +153,7 @@ public class MapLevel3 extends BasicGameState {
     private void drawDoors(Graphics graphics) {
         for(Door door : doors){
             if (!door.isBroken()) {
-                graphics.setColor(Color.blue);
-                graphics.fill(door);
+                door.getImageDoor(graphics).draw(  door.getX(),   door.getY());
             }
         }
     }
@@ -221,6 +221,9 @@ public class MapLevel3 extends BasicGameState {
         for(Teleport teleport: teleports){
             if(gameContainer.getInput().isKeyDown(Input.KEY_ENTER))
                 babka.goInTeleport(gameContainer,teleport);
+        }
+        if( gameContainer.getInput().isKeyDown(Input.KEY_ESCAPE)){
+            game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
         babka.controls(gameContainer);
 

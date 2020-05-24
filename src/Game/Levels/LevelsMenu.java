@@ -65,6 +65,9 @@ public class LevelsMenu  extends BasicGameState {
         if(level5MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(6, new FadeOutTransition(),new FadeInTransition()); //level5
         }
+        if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
+            game.enterState(0, new FadeOutTransition(),new FadeInTransition());
+        }
 
     }
 }

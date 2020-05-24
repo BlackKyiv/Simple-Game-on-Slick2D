@@ -18,9 +18,10 @@ import java.util.ArrayList;
 
 public class MapLevel1 extends BasicGameState {
     private Babka babka;
-    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp;
+    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp,arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
     private Rectangle attackZone;
+    private  Teleport nextLevelT;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Teleport> teleports;
@@ -39,6 +40,8 @@ public class MapLevel1 extends BasicGameState {
 
     private String path = SetupGame.path;
 
+    private boolean nextLevel=true;
+
     @Override
     public int getID() {
         return 2;
@@ -50,7 +53,7 @@ public class MapLevel1 extends BasicGameState {
         babka = new Babka(800, 350);
 
         initDoors();
-        initEnemies();
+        //initEnemies();
         initAttackZone();
         initWalls();
         initTapki();
@@ -76,7 +79,7 @@ public class MapLevel1 extends BasicGameState {
         obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
         obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
         obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height)); //right frame
         obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
 
         wallSS = new SpriteSheet(wall, 10, 10);
@@ -95,14 +98,18 @@ public class MapLevel1 extends BasicGameState {
 
         doorDown = new Image(path + "door.jpg");
         doorUp = new Image(path + "door.jpg");
+        arrow = new Image(path+"arrow.png");
 
         teleports = new ArrayList<>();
         teleports.add(new Teleport(110, 375, 80, 85,0,225));
         teleports.add(new Teleport(110, 600, 80, 85,0,-220));
+        nextLevelT = new Teleport(1030, 630, 70, 70, 0, 0);
+        teleports.add(nextLevelT);
+
     }
 
     private void initDoors() throws SlickException {
-        doors.add(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85));
+        doors.add(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85, false));
     }
 
 
@@ -178,6 +185,8 @@ public class MapLevel1 extends BasicGameState {
         rockingChair.draw(30, 625, 60, 60);
 
         drawDoors(graphics);
+        if(nextLevel)
+            arrow.draw(1050,650,50,50);
 
         graphics.setColor(Color.pink);
        if ( babka.animationSlide()) {
@@ -281,7 +290,14 @@ public class MapLevel1 extends BasicGameState {
 
 
         for(Teleport teleport: teleports){
-            babka.goInTeleport(gameContainer,teleport);
+            if(gameContainer.getInput().isKeyDown(Input.KEY_ENTER))
+                babka.goInTeleport(gameContainer,teleport);
+        }
+        if(nextLevel&&babka.inTeleport(nextLevelT)&&gameContainer.getInput().isKeyDown(Input.KEY_ENTER)){
+            game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+        }
+        if(gameContainer.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+            game.enterState(0,new FadeOutTransition(), new FadeInTransition());
         }
 
         babka.controls(gameContainer);
