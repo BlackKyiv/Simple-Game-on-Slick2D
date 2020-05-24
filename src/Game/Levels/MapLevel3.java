@@ -57,7 +57,7 @@ public class MapLevel3 extends BasicGameState {
     }
 
     private void initWalls() throws SlickException {
-        background = new Image(path + "backg.jpg");
+        background = new Image(path + "background.jpg");
 
         wall = new Image(path + "wall.jpg");
 
