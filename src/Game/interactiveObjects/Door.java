@@ -20,7 +20,7 @@ public class Door extends Rectangle {
 
     private void setUpImage() throws SlickException {
        imageWindow = new Image(SetupGame.path + "window_interactive.PNG");;
-        imageDoor = new Image (SetupGame.path + "door_interactive.PNG");;
+       imageDoor = new Image (SetupGame.path + "door_interactive.PNG");;
 
     }
     public Image getImageDoor(Graphics graphics) {

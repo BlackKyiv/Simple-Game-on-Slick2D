@@ -55,8 +55,8 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void initTapki() throws SlickException {
-    tapok = new TapokPick(100,250);
-    tapki.add(tapok);
+        tapok = new TapokPick(100,250);
+        tapki.add(tapok);
     }
     private void initAttackZone() {
         attackZone = new Rectangle(-50, -50, 50, 50);
@@ -107,7 +107,7 @@ public class MapLevel1 extends BasicGameState {
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
         coronas.add(corona1);
-        Coronavirus corona2 = new Coronavirus(50, 370);
+        Coronavirus corona2 = new Coronavirus(50, 390);
         coronas.add(corona2);
         Coronavirus corona3 = new Coronavirus(200, 600);
         coronas.add(corona3);
