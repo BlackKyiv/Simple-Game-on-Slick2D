@@ -46,7 +46,7 @@ public class MapLevel2 extends BasicGameState {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
-        babka = new Babka(120, 600);
+        babka = new Babka(40, 600);
 
         initWalls();
         initDoors();
@@ -128,6 +128,71 @@ public class MapLevel2 extends BasicGameState {
         t1.setTimeBeforeShoot(200);
         t1.setRangeOfSight(750);
         enemies.add(t1);
+
+        Coronavirus corona1 = new Coronavirus(250,550);
+        corona1.setSpace(150);
+        corona1.setVisionHorizontal(150,150);
+        corona1.setVisionVertical(20,0);
+        corona1.setNotVisionHorizontal(150,150);
+        corona1.setNotVisionVertical(20,0);
+        enemies.add(corona1);
+        Coronavirus corona2 = new Coronavirus(300,570);
+        corona2.setSpace(150);
+        corona2.setVisionHorizontal(150,150);
+        corona2.setVisionVertical(20,0);
+        corona2.setNotVisionHorizontal(150,150);
+        corona2.setNotVisionVertical(20,0);
+        enemies.add(corona2);
+        Coronavirus corona3 = new Coronavirus(500,530);
+        corona3.setSpace(150);
+        corona3.setVisionHorizontal(150,150);
+        corona3.setVisionVertical(20,0);
+        corona3.setNotVisionHorizontal(150,150);
+        corona3.setNotVisionVertical(20,0);
+        enemies.add(corona3);
+        Coronavirus corona4 = new Coronavirus(600,530);
+        corona4.setSpace(150);
+        corona4.setVisionHorizontal(150,150);
+        corona4.setVisionVertical(20,0);
+        corona4.setNotVisionHorizontal(150,150);
+        corona4.setNotVisionVertical(20,0);
+        enemies.add(corona4);
+        Coronavirus corona5 = new Coronavirus(920,430);
+        corona5.setSpace(100);
+        corona5.setVisionHorizontal(150,150);
+        corona5.setVisionVertical(20,0);
+        corona5.setNotVisionHorizontal(150,150);
+        corona5.setNotVisionVertical(20,0);
+        enemies.add(corona5);
+        Coronavirus corona6 = new Coronavirus(350,430);
+        corona6.setSpace(100);
+        corona6.setVisionHorizontal(150,150);
+        corona6.setVisionVertical(20,0);
+        corona6.setNotVisionHorizontal(150,150);
+        corona6.setNotVisionVertical(20,0);
+        enemies.add(corona6);
+        Coronavirus corona7 = new Coronavirus(800,200);
+        corona7.setSpace(100);
+        corona7.setVisionHorizontal(150,150);
+        corona7.setVisionVertical(20,0);
+        corona7.setNotVisionHorizontal(150,150);
+        corona7.setNotVisionVertical(20,0);
+        enemies.add(corona7);
+
+        Doctor doctor1 = new Doctor(600,415);
+        doctor1.setSpace(150);
+        doctor1.setVisionHorizontal(100,100);
+        doctor1.setVisionVertical(50,0);
+        doctor1.setNotVisionHorizontal(50,100);
+        doctor1.setNotVisionVertical(50,0);
+        enemies.add(doctor1);
+        Doctor doctor2 = new Doctor(500,170);
+        doctor2.setSpace(60);
+        doctor2.setVisionHorizontal(100,100);
+        doctor2.setVisionVertical(50,0);
+        doctor2.setNotVisionHorizontal(50,100);
+        doctor2.setNotVisionVertical(50,0);
+        enemies.add(doctor2);
     }
 
     @Override
@@ -217,27 +282,23 @@ public class MapLevel2 extends BasicGameState {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
-                    graphics.setColor(Color.cyan);
-                    graphics.fill(doctor);
+                    doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
                 }
             } else if (enemies.get(i) instanceof Coronavirus) {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
-                    graphics.setColor(Color.green);
-                    graphics.fill(corona);
+                    corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
                 }
             } else if (enemies.get(i) instanceof CoronaSmall) {
                 CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
                 if (coronaS.isAlive()) {
                     coronaS.update();
-                    graphics.setColor(Color.green);
-                    graphics.fill(coronaS);
+                    coronaS.getAnimation(graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
                     coronaS.checkForCollisionBabka(babka);
                 }
             } else if (enemies.get(i) instanceof Turrel) {
                 Turrel turrel = (Turrel) enemies.get(i);
                 if (turrel.isAlive()) {
-                    graphics.setColor(Color.gray);
                     turrel.getImageTurrel(graphics).draw(turrel.getX(), turrel.getY());
                 }
             }
@@ -266,7 +327,8 @@ public class MapLevel2 extends BasicGameState {
             if(!door.isBroken())babka.checkForCollision(door);
         }
         for(Teleport teleport: teleports){
-            babka.goInTeleport(gameContainer,teleport);
+            if(gameContainer.getInput().isKeyDown(Input.KEY_ENTER))
+                babka.goInTeleport(gameContainer,teleport);
         }
         babka.controls(gameContainer);
 

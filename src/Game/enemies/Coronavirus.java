@@ -40,6 +40,7 @@ public class Coronavirus extends Rectangle implements Enemy {
     float notVisionVerticalDown;
 
     private boolean babkaNoticed = false;
+    private boolean babkaVisible = true;
     private boolean alive = true;
 
     private Rectangle vision1;
@@ -276,9 +277,9 @@ public class Coronavirus extends Rectangle implements Enemy {
         Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
 
         if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
-if (platform.intersects(vision1)||platform.intersects(vision2)) {
-    babkaNoticed = true;
-}
+            if (platform.intersects(vision1)||platform.intersects(vision2)) {
+                babkaNoticed = true;
+            }
 
         }
 
