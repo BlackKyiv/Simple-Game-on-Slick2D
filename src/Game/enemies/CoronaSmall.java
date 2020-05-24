@@ -16,6 +16,7 @@ public class CoronaSmall extends Rectangle implements Enemy {
     private float babkaY;
     private float speed;
 
+
     private boolean alive = true;
 
 private boolean goRight;

@@ -21,6 +21,7 @@ public class TapokThrow extends Rectangle implements Bullet {
 
 
 
+
     public TapokThrow(int x, int y) throws SlickException {
         super(x, y, 30, 10);
         setUpImage();
