@@ -53,7 +53,7 @@ public class MapLevel1 extends BasicGameState {
         babka = new Babka(800, 350);
 
         initDoors();
-        //initEnemies();
+        initEnemies();
         initAttackZone();
         initWalls();
         initTapki();
