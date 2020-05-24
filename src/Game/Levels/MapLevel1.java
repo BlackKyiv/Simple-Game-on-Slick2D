@@ -1,16 +1,17 @@
-package Game;
+package Game.Levels;
 
+import Game.*;
 import Game.enemies.*;
-import Game.interactiveObjects.Bullet;
-import Game.interactiveObjects.Door;
-import Game.interactiveObjects.Injection;
-import Game.interactiveObjects.Teleport;
+import Game.interactiveObjects.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import java.util.ArrayList;
+
 
 
 public class MapLevel1 extends BasicGameState {
@@ -22,19 +23,23 @@ public class MapLevel1 extends BasicGameState {
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Teleport> teleports;
     private ArrayList<Door> doors = new ArrayList<>();
+    private  ArrayList<Coronavirus> coronas = new ArrayList<>();
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<>();
+    private ArrayList<TapokPick> tapki = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
+    private TapokPick tapok;
+
     private String path = SetupGame.path;
 
     @Override
     public int getID() {
-        return 0;
+        return 2;
     }
 
     @Override
@@ -46,8 +51,13 @@ public class MapLevel1 extends BasicGameState {
         initEnemies();
         initAttackZone();
         initWalls();
+        initTapki();
     }
 
+    private void initTapki() throws SlickException {
+    tapok = new TapokPick(100,250);
+    tapki.add(tapok);
+    }
     private void initAttackZone() {
         attackZone = new Rectangle(-50, -50, 50, 50);
     }
@@ -90,41 +100,31 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void initDoors() throws SlickException {
-        doors.add(new Door(900,SetupGame.height-floorHeight-85,wallWidth,85));
+        doors.add(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85));
     }
+
 
     private void initEnemies() throws SlickException {
         Coronavirus corona1 = new Coronavirus(950, 400);
-        corona1.setSpace(150);
-
-        corona1.setVisionHorizontal(150,150);
-        corona1.setVisionVertical(20,0);
-        corona1.setNotVisionHorizontal(150,150);
-        corona1.setNotVisionVertical(20,0);
-        enemies.add(corona1);
-        Coronavirus corona2 = new Coronavirus(50, 300);
-        corona2.setSpace(150);
-
-        corona2.setVisionHorizontal(100,150);
-        corona2.setVisionVertical(20,0);
-        corona2.setNotVisionHorizontal(150,150);
-        corona2.setNotVisionVertical(20,0);
-        enemies.add(corona2);
-        Coronavirus corona3 = new Coronavirus(200, 500);
-        corona3.setSpace(150);
-
-        corona3.setVisionHorizontal(150,150);
-        corona3.setVisionVertical(20,0);
-        corona3.setNotVisionHorizontal(150,150);
-        corona3.setNotVisionVertical(20,0);
-        enemies.add(corona3);
+        coronas.add(corona1);
+        Coronavirus corona2 = new Coronavirus(50, 370);
+        coronas.add(corona2);
+        Coronavirus corona3 = new Coronavirus(200, 600);
+        coronas.add(corona3);
         Coronavirus corona4 = new Coronavirus(700, 620);
-        corona4.setSpace(150);
-        corona4.setVisionHorizontal(150,150);
-        corona4.setVisionVertical(20,0);
-        corona4.setNotVisionHorizontal(150,150);
-        corona4.setNotVisionVertical(20,0);
-        enemies.add(corona4);
+        coronas.add(corona4);
+        Coronavirus corona5 = new Coronavirus(400, 150);
+        coronas.add(corona5);
+        for(Coronavirus c: coronas){
+            if(c instanceof Coronavirus){
+                enemies.add(c);
+                c.setSpace(150);
+                c.setVisionHorizontal(150,150);
+                c.setVisionVertical(20,0);
+                c.setNotVisionHorizontal(150,150);
+                c.setNotVisionVertical(20,0);
+            }
+        }
 
         Doctor doctor = new Doctor(900, 605);
         doctor.setSpace(150);
@@ -135,7 +135,6 @@ public class MapLevel1 extends BasicGameState {
 
         enemies.add(doctor);
     }
-
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0, 0, 1100, 700);
@@ -156,9 +155,10 @@ public class MapLevel1 extends BasicGameState {
         }
         for (int a = SetupGame.height-floorHeight; a > SetupGame.height-2*floorH-2*floorHeight; a -= wallWidth) {
             wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(0, a, wallWidth, wallWidth);
-            if(a<=595)
+            if(a<=580)
                 wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(SetupGame.width-x_offset, a, wallWidth, wallWidth);
         }
+        wallSS.getSubImage(0,0,85,60).drawEmbedded(SetupGame.width-x_offset,585,wallWidth,15); //above doors
         wall.endUse();
 
         window.draw(700, 300, 100, 100);
@@ -178,13 +178,16 @@ public class MapLevel1 extends BasicGameState {
         drawDoors(graphics);
 
         graphics.setColor(Color.pink);
-        babka.getAnimation().draw(babka.getX(), babka.getY());
+       if ( babka.animationSlide()) {
+           babka.getAnimation().draw(babka.getX()-25, babka.getY());
+       }else{
+           babka.getAnimation().draw(babka.getX(), babka.getY());
+       }
         graphics.setColor(Color.black);
         graphics.setColor(Color.yellow);
 
         drawEnemies(graphics);
-
-      //  graphics.fill(attackZone);
+        drawTapki( graphics);
 
     }
 
@@ -197,7 +200,7 @@ public class MapLevel1 extends BasicGameState {
     }
 
     private void drawEnemies(Graphics graphics) {
-       for(int i = 0; i<enemies.size(); i++) {
+        for(int i = 0; i<enemies.size(); i++) {
             if (enemies.get(i) instanceof Doctor) {
                 Doctor doctor = (Doctor) enemies.get(i);
                 if (doctor.isAlive()) {
@@ -209,7 +212,7 @@ public class MapLevel1 extends BasicGameState {
                 Coronavirus corona = (Coronavirus) enemies.get(i);
                 if (corona.isAlive()) {
                     graphics.setColor(Color.blue);
-                    corona.getAnimation(graphics).draw(corona.getX(), corona.getY());
+                    corona.getAnimation(graphics).draw(corona.getX()-5, corona.getY()-5);
                     graphics.draw(corona.getVision1());
                     graphics.draw(corona.getVision2());
                 }
@@ -242,8 +245,19 @@ public class MapLevel1 extends BasicGameState {
         }
     }
 
+    private void drawTapki(Graphics graphics){
+        if (!tapki.isEmpty()) {
+            for (TapokPick i : tapki) {
+                if (i.isPresent()) {
+                    i.getAnimation(graphics).draw(i.getX(), i.getY());
+                }
+            }
+        }
+    }
+
     @Override
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int delta) throws SlickException {
+    public void update(GameContainer gameContainer, StateBasedGame game, int delta) throws SlickException {
+
         babka.update(1, delta);
         for (Rectangle obstacle : obstacles) {
             babka.checkForCollision(obstacle);
@@ -251,22 +265,27 @@ public class MapLevel1 extends BasicGameState {
         for (Door door : doors){
             if(!door.isBroken())babka.checkForCollision(door);
         }
+
         for(Teleport teleport: teleports){
             babka.goInTeleport(gameContainer,teleport);
         }
 
         babka.controls(gameContainer);
-
+        updateTapki();
         updateEnemies(delta);
         updateBullets();
         checkForAttack(gameContainer);
 
-
+        if( gameContainer.getInput().isKeyDown(Input.KEY_ESCAPE)){
+            game.enterState(1, new FadeOutTransition(),new FadeInTransition());
+        }
         if(gameContainer.getInput().isKeyDown(Input.KEY_R)){
             enemies = new ArrayList<>();
             injections = new ArrayList<>();
             obstacles = new ArrayList<>();
-
+            doors = new ArrayList<>();
+            coronas = new ArrayList<>();
+            tapki= new ArrayList<>();
             babka = new Babka(800, 350);
 
 
@@ -274,8 +293,12 @@ public class MapLevel1 extends BasicGameState {
             initEnemies();
             initAttackZone();
             initWalls();
+            initTapki();
         }
     }
+
+
+
 
     private void updateTeleports(){
 
@@ -331,6 +354,20 @@ public class MapLevel1 extends BasicGameState {
 
     }
 
+   private void updateTapki(){
+        if (tapki.size()!=0) {
+            for (TapokPick tapok : tapki) {
+                if (tapok.isPresent()) {
+                    tapok.checkForCollision(babka);
+                }
+            }
+            for (int i = 0; i < tapki.size(); i++) {
+                TapokPick tapok = tapki.get(i);
+                if (tapok.isPresent() == false) tapki.remove(i);
+            }
+        }
+   }
+
     private void updateBullets(){
         //Injections update
         if (!injections.isEmpty()) {
@@ -376,6 +413,7 @@ public class MapLevel1 extends BasicGameState {
 
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
+
             Door door = doors.get(i);
             if(attackZone.intersects(door)) door.broke() ;
             if(door.isBroken()) doors.remove(i);
@@ -390,5 +428,7 @@ public class MapLevel1 extends BasicGameState {
         }
 
     }
+
+
 
 }

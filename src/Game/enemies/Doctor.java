@@ -39,6 +39,7 @@ public class Doctor extends Rectangle implements Enemy {
     float babkaWidth;
     float babkaHeight;
 
+
     float visionHorizontalLeft;
     float visionHorizontalRight;
     float visionVerticalUp;
@@ -325,7 +326,9 @@ public class Doctor extends Rectangle implements Enemy {
         Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
 
         if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
-          babkaNoticed = true;
+            if (platform.intersects(vision1)||platform.intersects(vision2)) {
+                babkaNoticed = true;
+            }
 
         }
 
@@ -393,5 +396,6 @@ public class Doctor extends Rectangle implements Enemy {
     public boolean babkaIsToRight() {
         return babkaToRight;
     }
+
 
     }

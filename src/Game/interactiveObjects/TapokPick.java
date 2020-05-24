@@ -21,7 +21,7 @@ public class TapokPick extends Rectangle{
     private void setUpAnimation() throws SlickException{
 
 
-        image = new SpriteSheet(SetupGame.path + "tapok.PNG", 50, 50);;
+        image = new SpriteSheet(SetupGame.path + "tapok.PNG", 20, 13);;
         animation = new Animation(image,100);
         animation.setPingPong(true);
 

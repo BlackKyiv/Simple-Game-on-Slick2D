@@ -14,6 +14,7 @@ public class Babka extends Rectangle {
     private boolean alive = true;
     private boolean mortal = true;
 
+
     private float deltaSeconds = 0.1666666f;
     private float timeCoeff = 1;
     private float gravity = 9.89f;
@@ -85,6 +86,7 @@ public class Babka extends Rectangle {
 
         fightingLeft = false;
         fightingRight = false;
+
     }
 
     public int getSpeedY(){
@@ -108,7 +110,7 @@ public class Babka extends Rectangle {
 
 
     public void controls(GameContainer gameContainer){
-        if(gameContainer.getInput().isKeyPressed(Input.KEY_SPACE)&&(landed||blockedRight||blockedLeft)){
+        if((gameContainer.getInput().isKeyPressed(Input.KEY_SPACE)|| gameContainer.getInput().isKeyPressed(Input.KEY_W))&&(landed||blockedRight||blockedLeft)){
             if(blockedLeft) {
                 move(3, 0);
                 speedX =speed*1.5f;
@@ -235,11 +237,12 @@ public class Babka extends Rectangle {
         animationJumpingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_left.PNG", 50,50), 100);
         animationJumpingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_jump_right.PNG", 50,50), 100);
 
-        animationFightingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_left.PNG", 75,50), 100);
+        animationFightingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_left.PNG", 75,50), 200);
         animationFightingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_hit_right.PNG", 75,50), 100);
     }
 
     public Animation getAnimation() throws SlickException {
+
         if(attackTimerLeft.isRunning()){
             return animationFightingLeft;
         }
@@ -268,6 +271,13 @@ public class Babka extends Rectangle {
 
         }
         else {
+            if(speedX==0){
+                if (standingRight){
+                    return animationJumpingRight;
+                }else{
+                    return animationJumpingLeft;
+                }
+            }
             if(speedX>0){
                 return animationJumpingRight;
             }
@@ -311,6 +321,23 @@ public class Babka extends Rectangle {
     public Rectangle getHitZone(GameContainer container) {
         if (isAlive()) {
             if (container.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) || container.getInput().isKeyPressed(Input.KEY_F)) {
+
+                if (speedX == 0) {
+                    if (standingRight) {
+                        this.setFightingRight(true);
+                        return new Rectangle(getX(), getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
+                    } else {
+                        this.setFightingLeft(true);
+                        return new Rectangle(getX() - attackZoneSizeX, getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
+                    }
+                }
+                if (speedX > 0) {
+                    this.setFightingRight(true);
+                    return new Rectangle(getX(), getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
+                } else {
+                    this.setFightingLeft(true);
+                    return new Rectangle(getX() - attackZoneSizeX, getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
+            /*
                 if (container.getInput().getMouseX() > this.getX()) {
                     this.setFightingRight(true);
                     return new Rectangle(getX(), getY()-15, attackZoneSizeX+getWidth(), attackZoneSizeY);
@@ -318,6 +345,8 @@ public class Babka extends Rectangle {
                 } else if (container.getInput().getMouseX() < this.getX()) {
                     this.setFightingLeft(true);
                     return new Rectangle(getX() - attackZoneSizeX, getY()-15, attackZoneSizeX+getWidth(), attackZoneSizeY);
+                }
+            }*/
                 }
             }
         }
@@ -336,6 +365,15 @@ public class Babka extends Rectangle {
             this.move(teleport.getDx(),teleport.getDy());
         }
     }
+
+    public boolean animationSlide(){
+        if(attackTimerLeft.isRunning()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 
 

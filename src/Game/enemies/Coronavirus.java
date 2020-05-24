@@ -21,23 +21,24 @@ public class Coronavirus extends Rectangle implements Enemy {
     private boolean goRight = true;
 
 
-    float babkaX;
-    float babkaY;
-    float babkaWidth;
-    float babkaHeight;
-    float space;
+    private float babkaX;
+    private float babkaY;
+    private float babkaWidth;
+    private float babkaHeight;
+    private float space;
 
 
-    float visionHorizontalLeft;
-    float visionHorizontalRight;
-    float visionVerticalUp;
-    float visionVerticalDown;
+
+    private  float visionHorizontalLeft;
+    private float visionHorizontalRight;
+    private float visionVerticalUp;
+    private float visionVerticalDown;
 
 
-    float notVisionHorizontalLeft;
-    float notVisionHorizontalRight;
-    float notVisionVerticalUp;
-    float notVisionVerticalDown;
+    private float notVisionHorizontalLeft;
+    private float notVisionHorizontalRight;
+    private float notVisionVerticalUp;
+    private float notVisionVerticalDown;
 
     private boolean babkaNoticed = false;
     private boolean babkaVisible = true;
@@ -61,7 +62,7 @@ public class Coronavirus extends Rectangle implements Enemy {
 
 
     public Coronavirus(int x, int y) throws SlickException {
-        super(x, y, 50, 50);
+        super(x, y, 40, 40);
         initialX = x;
         initialY = y;
         vision1 = new Rectangle(getX(), getY(), getWidth(), getHeight());
@@ -277,7 +278,7 @@ public class Coronavirus extends Rectangle implements Enemy {
         Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
 
         if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
-            if (babkaVisible) {
+            if (platform.intersects(vision1)||platform.intersects(vision2)) {
                 babkaNoticed = true;
             }
 

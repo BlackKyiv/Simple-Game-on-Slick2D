@@ -11,8 +11,9 @@ public class Injection extends Rectangle implements Bullet {
     private boolean collided = false;
 
     private float speed=3;
+
     private boolean doctor;
-    boolean reflected=false;
+    private boolean reflected=false;
 
 
     private boolean right = false;
@@ -35,7 +36,6 @@ public class Injection extends Rectangle implements Bullet {
 
         imageRedLeft = new Image (SetupGame.path + "injection_red_left.PNG");;
         imageRedRight = new Image (SetupGame.path + "injection_red_right.PNG");;
-
     }
     public Image getImageInjection(Graphics graphics) {
     if (doctor) {
