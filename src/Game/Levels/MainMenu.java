@@ -46,9 +46,8 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        while(timePassed<2100) {
+        if(timePassed<2100)
             timePassed += delta / 2;
-        }
         if(playMOA.isMouseOver() && Mouse.isButtonDown(0)){
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
