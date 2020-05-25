@@ -93,38 +93,27 @@ public class TestLevel extends Level{
         ArrayList<Enemy> coronas = new ArrayList<>();
         Coronavirus corona1 = new Coronavirus(950, 400);
         coronas.add(corona1);
-
         Coronavirus corona2 = new Coronavirus(50, 390);
         coronas.add(corona2);
-
-
         Coronavirus corona3 = new Coronavirus(200, 600);
         coronas.add(corona3);
-
         Coronavirus corona4 = new Coronavirus(700, 620);
         coronas.add(corona4);
-
         Coronavirus corona5 = new Coronavirus(400, 150);
         coronas.add(corona5);
+        for (Enemy c : coronas) {
+            Coronavirus cor = (Coronavirus) c;
+            if (cor instanceof Coronavirus) {
+                cor.setSpace(150);
+                cor.setVisionVertical(70, 0, 70, 0);
 
-        for(Enemy i: coronas){
-            if(i instanceof Coronavirus){
-                Coronavirus c = (Coronavirus) i;
-                c.setSpace(150);
-                c.setVisionHorizontal(150,150);
-                c.setVisionVertical(20,0);
-                c.setNotVisionHorizontal(150,150);
-                c.setNotVisionVertical(20,0);
             }
         }
         addEnemy(coronas);
-
         Doctor doctor = new Doctor(900, 605);
         doctor.setSpace(150);
-        doctor.setVisionHorizontal(100,100);
-        doctor.setVisionVertical(50,0);
-        doctor.setNotVisionHorizontal(50,100);
-        doctor.setNotVisionVertical(50,0);
+        doctor.setVisionVertical(50, 0, 50, 0);
+
 
         addEnemy(doctor);
     }
