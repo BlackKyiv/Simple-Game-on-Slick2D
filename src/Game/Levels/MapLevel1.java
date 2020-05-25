@@ -64,8 +64,7 @@ public class MapLevel1 extends BasicGameState {
         initTapki();
         initScoreTable();
         initSymbol();
-        clock = new Clock();
-        clock.start();
+
 
 
     }
@@ -84,7 +83,8 @@ public class MapLevel1 extends BasicGameState {
 
     private void initScoreTable() throws SlickException {
         tapok = new Image(path + "tapok_score_table.png");
-
+        clock = new Clock();
+        clock.start();
     }
 
     private void initAttackZone() {
