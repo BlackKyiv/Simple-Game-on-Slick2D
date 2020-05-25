@@ -2,6 +2,8 @@ package Game.Levels;
 
 import Game.Babka;
 import Game.enemies.*;
+import Game.Clock;
+import Game.SetupGame;
 import Game.interactiveObjects.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -24,6 +26,11 @@ public abstract class Level extends BasicGameState {
     private int nextLevelId = 0;
 
     private Symbol symbol;
+    private Clock clock;
+    private boolean symbolpicked;
+    private int score = 0;
+    private Image tapok;
+    private String path= SetupGame.path;
 
     private Rectangle attackZone;
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
@@ -85,6 +92,8 @@ public abstract class Level extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         initLevel(container, game);
         initAttackZone();
+        initScoreTable();
+
     }
 
     private void initAttackZone(){
@@ -93,6 +102,12 @@ public abstract class Level extends BasicGameState {
 
     protected abstract void initLevel(GameContainer container, StateBasedGame game) throws SlickException;
 
+
+    private void initScoreTable() throws SlickException {
+        tapok = new Image(path + "tapok_score_table.png");
+        clock = new Clock();
+        clock.start();
+    }
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         renderLevel(container, game, g);
@@ -101,6 +116,7 @@ public abstract class Level extends BasicGameState {
         drawBullets(g);
         drawTapki(g);
         drawBabka();
+        drawScoreTable(g);
     }
 
     private void drawBabka() throws SlickException {
@@ -109,6 +125,15 @@ public abstract class Level extends BasicGameState {
         }else{
             babka.getAnimation().draw(babka.getX(), babka.getY());
         }
+    }
+
+    private void drawScoreTable(Graphics graphics) {
+        tapok.draw(850, 28);
+        graphics.setColor(Color.black);
+        graphics.drawString("X" + babka.tapkiLeft(), 870, 25);
+
+        graphics.drawString("Time:"+(int)(clock.getPassedTime()/1000)+"s", 900, 25);
+        graphics.drawString("Score:" + score, 980, 25);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -192,6 +217,7 @@ public abstract class Level extends BasicGameState {
         updateBullets();
         updateTapki();
         updateTeleport(container);
+
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
             game.enterState(0,new FadeOutTransition(), new FadeInTransition());
         }
@@ -202,7 +228,7 @@ public abstract class Level extends BasicGameState {
         }
 
         if(container.getInput().isKeyPressed(Input.KEY_R)) restart(container, game);
-
+        clock.update(delta);
     }
 
     protected void restart(GameContainer container, StateBasedGame game) throws SlickException {
@@ -216,6 +242,10 @@ public abstract class Level extends BasicGameState {
         teleports = new ArrayList<>();
         initLevel(container, game);
         initAttackZone();
+
+        score=0;
+        clock.restart();
+
     }
 
     protected void addEnemy(ArrayList<Enemy> enemies){
@@ -227,6 +257,8 @@ public abstract class Level extends BasicGameState {
             if(container.getInput().isKeyDown(Input.KEY_ENTER))babka = teleport.teleport(babka, container);
         }
     }
+
+
 
     private void updateBabka(int delta, GameContainer container) throws SlickException {
         babka.update(1, delta);
