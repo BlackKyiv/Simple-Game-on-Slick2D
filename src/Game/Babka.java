@@ -401,6 +401,13 @@ public class Babka extends Rectangle {
 
     }
 
+    public void giveTapok(){
+        tapokQ++;
+    }
+    public void giveTapok(int q){
+        tapokQ+=q;
+    }
+
     public boolean inTeleport(Teleport teleport){
         inTeleport=false;
         if(this.getMinX()>=teleport.getMinX() && this.getMaxX()<=teleport.getMaxX()&& this.getMinY()>=teleport.getMinY() && this.getMaxY()<=teleport.getMaxY()){

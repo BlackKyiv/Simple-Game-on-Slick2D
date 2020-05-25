@@ -20,7 +20,7 @@ public class MapLevel1 extends BasicGameState {
     private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp,arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
     private Rectangle attackZone;
-    private  Teleport nextLevelT;
+    private Teleport nextLevelT;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Teleport> teleports;
