@@ -20,14 +20,14 @@ public class SetupGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        this.addState(new TestLevel());
-        /*this.addState(new MainMenu());
+        //this.addState(new TestLevel());
+        this.addState(new MainMenu());
         this.addState(new LevelsMenu());
         this.addState(new MapLevel1());
         this.addState(new MapLevel2());
         this.addState(new MapLevel3());
         this.addState(new MapLevel4());
-        this.addState(new MapLevel5());*/
+        this.addState(new MapLevel5());
     }
 
     public static void main(String[] args) throws SlickException {

@@ -339,7 +339,7 @@ public class Babka extends Rectangle {
                 if (speedX > 0) {
                     this.setFightingRight(true);
                     return new Rectangle(getX(), getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
-                } else {
+                } else  {
                     this.setFightingLeft(true);
                     return new Rectangle(getX() - attackZoneSizeX, getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
                 }

@@ -89,8 +89,8 @@ public class MapLevel4 extends BasicGameState {
 
         window = new Image(path + "window.jpg");
 
-        doorDown = new Image(path + "door.jpg");
-        doorUp = new Image(path + "door.jpg");
+        doorDown = new Image(path + "door1.png");
+        doorUp = new Image(path + "door1.png");
         arrow = new Image(path+"arrow.png");
 
         teleports = new ArrayList<>();

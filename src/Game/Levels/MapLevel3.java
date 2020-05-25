@@ -81,7 +81,7 @@ public class MapLevel3 extends BasicGameState {
         wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
 
         window = new Image(path + "window.jpg");
-        door = new Image(path+"door.jpg");
+        door = new Image(path+"door1.png");
 
         teleports = new ArrayList<>();
         teleports.add(new Teleport(800, SetupGame.height-floorHeight-85,80,85,0,-floorH)); //1-st floor

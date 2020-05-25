@@ -16,7 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import java.util.ArrayList;
 
 public class TestLevel extends Level{
-    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, rockingChair, doorDown, doorUp,arrow;
+    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, doorDown, doorUp,arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
 
 
@@ -76,7 +76,7 @@ public class TestLevel extends Level{
         wardrobe = new Image(path + "wardrobe.png");
         cupboard = new Image(path + "cupboard.png");
         nightstand = new Image(path + "nightstand.png");
-        rockingChair = new Image(path + "rocking chair.png");
+
 
         doorDown = new Image(path + "door.jpg");
         doorUp = new Image(path + "door.jpg");
@@ -151,12 +151,12 @@ public class TestLevel extends Level{
         doorUp.draw(110, 375, 80, 85);
         doorDown.draw(110, 600, 80, 85);
         sofa.draw(500, 360, 200, 100);
-        nightstand.draw(440, 410, 60, 50);
+        nightstand.draw(435, 410, 60, 50);
         nightstand.draw(700, 410, 60, 50);
         table.draw(525, 625, 150, 60);
         wardrobe.draw(250, 495, 130, 193);
         cupboard.draw(220, 300, 150, 100);
-        rockingChair.draw(30, 625, 60, 60);
+
 
         arrow.draw(1050,650,50,50);
     }
