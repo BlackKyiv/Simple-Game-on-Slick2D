@@ -3,7 +3,6 @@ package Game;
 import Game.Levels.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -12,8 +11,8 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
-    public final static String path = "/Users/dgoptsii/Game/pictures/";
-    public final static String pathMusic = "/Users/dgoptsii/Game/music/";
+    public final static String path = "..\\Game\\pictures\\";
+    public final static String pathMusic = "..\\Game\\music\\";
 
     public SetupGame(String name) {
         super(name);
@@ -32,6 +31,7 @@ public class SetupGame extends StateBasedGame {
     }
 
     public static void main(String[] args) throws SlickException {
+        System.out.println(path);
         AppGameContainer app = new AppGameContainer(new SetupGame("Corona vs Granny"));
         app.setDisplayMode(width, height, false);
         app.setTargetFrameRate(fps);

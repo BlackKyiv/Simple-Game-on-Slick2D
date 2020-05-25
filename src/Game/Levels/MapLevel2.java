@@ -15,7 +15,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
-public class MapLevel2 extends BasicGameState {
+public class MapLevel2 extends Level {
     private Babka babka;
     private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter;
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
@@ -57,6 +57,11 @@ public class MapLevel2 extends BasicGameState {
 
     private void initAttackZone(){
         attackZone = new Rectangle(-50, -50, 50, 50);
+    }
+
+    @Override
+    protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
+
     }
 
     private void initWalls()throws SlickException {
@@ -221,8 +226,6 @@ public class MapLevel2 extends BasicGameState {
         window.draw(850,420,120,60);
         window.draw(575,420,120,60);
         window.draw(340,420,120,60);
-        //window.draw(800,180,140,60);
-        //window.draw(400,180,140,60);
 
         lift1.draw(980,600,80,85);
         lift21.draw(220,410,80,85);
@@ -325,6 +328,11 @@ public class MapLevel2 extends BasicGameState {
                 }
             }
         }
+    }
+
+    @Override
+    protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
+
     }
 
     @Override
@@ -467,6 +475,11 @@ public class MapLevel2 extends BasicGameState {
             }
         }
 
+
+    }
+
+    @Override
+    protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
 
     }
 
