@@ -22,6 +22,7 @@ public class Injection extends Rectangle implements Bullet {
     private Image imageBlueRight;
     private Image imageRedLeft;
     private Image imageRedRight;
+    private int reflections=0;
 
 
 
@@ -129,11 +130,14 @@ else{
     }
 
     public void reflect(){
-        reflected=true;
-        if (right){
-            right=false;
-        }else{
-            right=true;
+        if (doctor&&reflections==0) {
+            reflected = true;
+            if (right) {
+                right = false;
+            } else {
+                right = true;
+            }
+            reflections++;
         }
     }
 
