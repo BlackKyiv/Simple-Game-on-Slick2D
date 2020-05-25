@@ -30,9 +30,9 @@ public class TapokThrow extends Rectangle implements Bullet {
 
 
     private void setUpImage() throws SlickException {
-        imageLeft = new Image (SetupGame.path + "tapok_left.PNG");;
-        imageRight  = new Image (SetupGame.path + "tapok_right.PNG");;
-
+        imageLeft = new Image (SetupGame.path + "tapok_left.PNG");
+        imageRight  = new Image (SetupGame.path + "tapok_right.PNG");
+        System.out.println();
     }
     public Image getImageInjection(Graphics graphics) {
 

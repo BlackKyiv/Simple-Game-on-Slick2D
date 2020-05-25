@@ -132,7 +132,7 @@ public class MapLevel2 extends BasicGameState {
         enemies.add(t);
 
         Turrel t1 = new Turrel(900,310);
-        t1.setTimeBeforeShoot(200);
+        t1.setTimeBeforeShoot(400);
         t1.setRangeOfSight(750);
         enemies.add(t1);
 
@@ -401,11 +401,9 @@ public class MapLevel2 extends BasicGameState {
                 Doctor doctor = (Doctor) enemies.get(i);
                 doctor.update(delta, all);
                 if (doctor.isReadyToShoot()) bullets.add(doctor.shoot(babka));
-
                 for (Rectangle obstacle : obstacles) {
                     doctor.checkForCollisionWall(obstacle);
                 }
-
                 for(Rectangle door: doors){
                     doctor.checkForCollisionWall(door);
                 }
