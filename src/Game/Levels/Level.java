@@ -23,7 +23,7 @@ public abstract class Level extends BasicGameState {
 
     private int nextLevelId = 0;
 
-
+    private Symbol symbol;
 
     private Rectangle attackZone;
     private ArrayList<Rectangle> obstacles = new ArrayList<>();

@@ -16,6 +16,7 @@ public class MainMenu extends BasicGameState {
     private  Image studios, presents, background, play;
     private MouseOverArea playMOA;
     private int timePassed=0;
+    private Music entryMusic;
 
     @Override
     public int getID() {
@@ -24,7 +25,8 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-
+        entryMusic = new Music(SetupGame.pathMusic+"entryMusic.wav");
+        entryMusic.loop();
         studios = new Image(path+"studios.png");
         presents = new Image(path+"presents.png");
         background = new Image(path+"main_menu.png");
@@ -34,11 +36,11 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-        if(timePassed<1000)
+        if(timePassed<3000)
             studios.draw(0,0,1100,700);
-        if(timePassed>1000)
+        if(timePassed>3000)
             presents.draw(0,0,1100,700);
-        if(timePassed>2000) {
+        if(timePassed>7000) {
             background.draw(0, 0, 1100, 700);
             play.draw(850, 600);
         }
@@ -46,7 +48,7 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if(timePassed<2100)
+        if(timePassed<7100)
             timePassed += delta;
         if(playMOA.isMouseOver() && Mouse.isButtonDown(0)){
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
