@@ -130,19 +130,15 @@ public class MapLevel1 extends BasicGameState {
             if(c instanceof Coronavirus){
                 enemies.add(c);
                 c.setSpace(150);
-                c.setVisionHorizontal(150,150);
-                c.setVisionVertical(20,0);
-                c.setNotVisionHorizontal(150,150);
-                c.setNotVisionVertical(20,0);
+              c.setVisionVertical(70,0,70,0);
+
             }
         }
 
         Doctor doctor = new Doctor(900, 605);
         doctor.setSpace(150);
-        doctor.setVisionHorizontal(100,100);
-        doctor.setVisionVertical(50,0);
-        doctor.setNotVisionHorizontal(50,100);
-        doctor.setNotVisionVertical(50,0);
+        doctor.setVisionVertical(50,0,50,0);
+
 
         enemies.add(doctor);
     }
@@ -462,6 +458,7 @@ public class MapLevel1 extends BasicGameState {
                 enemies.get(i).die();
             }
         }
+
 
     }
 

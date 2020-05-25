@@ -99,7 +99,7 @@ public class MapLevel3 extends BasicGameState {
         Coronavirus coronavirus = new Coronavirus(300,304);
         coronavirus.setSpace(200);
         //coronavirus.setNotVisionHorizontal(500,500);
-        coronavirus.setVisionHorizontal(500,500);
+       // coronavirus.setVisionHorizontal(500,500);
         enemies.add(coronavirus);
     }
 
