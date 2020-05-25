@@ -68,7 +68,7 @@ public class MapLevel3 extends BasicGameState {
         obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH , wallWidth, floorH -floorHeight-85)); //right lower wall
         obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height - floorHeight, floorW+wallWidth*2, floorHeight)); //first floor
         obstacles.add(new Rectangle(x_offset-wallWidth, SetupGame.height - floorH - floorHeight, floorW+wallWidth*2, floorHeight)); //second floor
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, 1100, floorHeight * 2));//roof
+        obstacles.add(new Rectangle(x_offset-55, SetupGame.height - floorH * 2 - floorHeight * 2, floorW+110, floorHeight * 2));//roof
         obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
         obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
         obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
@@ -118,7 +118,7 @@ public class MapLevel3 extends BasicGameState {
             floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorHeight, floorHeight*2, floorHeight);
             floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorH - floorHeight, floorHeight*2, floorHeight);
         }
-        for (int a = x_offset-50; a < SetupGame.width - x_offset+50; a += floorHeight*2) {
+        for (int a = x_offset-55; a < SetupGame.width - x_offset+55; a += floorHeight*2) {
             floorSS.getSubImage(0, 0, 110, 110).drawEmbedded(a, SetupGame.height - floorH * 2 - floorHeight * 2, floorHeight*2, floorHeight*2);
         }
         for (int a = SetupGame.height-floorHeight-85-wallWidth; a > SetupGame.height-2*floorH-floorHeight; a -= wallWidth) {
@@ -137,7 +137,12 @@ public class MapLevel3 extends BasicGameState {
         door.draw(800, SetupGame.height-floorHeight-floorH-85,80,85);
 
         drawDoors(graphics);
+        /*
+        for(Rectangle r: obstacles)
+            graphics.fill(r);
 
+
+         */
         graphics.setColor(Color.pink);
         if ( babka.animationSlide()) {
             babka.getAnimation().draw(babka.getX()-25, babka.getY());
