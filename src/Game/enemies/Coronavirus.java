@@ -26,10 +26,10 @@ public class Coronavirus extends Rectangle implements Enemy {
     private float babkaWidth;
     private float babkaHeight;
     private float space;
+    private boolean defaultVision = true;
 
 
-
-    private  float visionHorizontalLeft;
+    private float visionHorizontalLeft;
     private float visionHorizontalRight;
     private float visionVerticalUp;
     private float visionVerticalDown;
@@ -58,7 +58,7 @@ public class Coronavirus extends Rectangle implements Enemy {
     private Animation animationLeftNoticed;
     private Animation animationRightNoticed;
 
-    private ArrayList<Rectangle> obstacles = new  ArrayList<Rectangle>() ;
+    private ArrayList<Rectangle> obstacles = new ArrayList<Rectangle>();
 
 
     public Coronavirus(int x, int y) throws SlickException {
@@ -67,6 +67,7 @@ public class Coronavirus extends Rectangle implements Enemy {
         initialY = y;
         vision1 = new Rectangle(getX(), getY(), getWidth(), getHeight());
         vision2 = new Rectangle(getX(), getY(), getWidth(), getHeight());
+
         setUpAnimation();
     }
 
@@ -113,6 +114,7 @@ public class Coronavirus extends Rectangle implements Enemy {
         }
 
     }
+
     public void update(ArrayList<Rectangle> obstacles) {
 
         move();
@@ -125,47 +127,55 @@ public class Coronavirus extends Rectangle implements Enemy {
     }
 
 
-    public void createVision(ArrayList<Rectangle> obstacles){
+    public void createVision(ArrayList<Rectangle> obstacles) {
         vision1.setX(getX());
         vision1.setY(getY());
-        vision1.setWidth(getWidth()/2);
+        vision1.setWidth(getWidth() / 2);
         vision1.setHeight(getHeight());
 
         boolean visionCollided = false;
-        for(int i = 0; i<getCenterX(); i++){
-            vision1.setX(vision1.getX()-1);
-            vision1.setWidth(vision1.getWidth()+1);
-            for(int a =0; a<obstacles.size();a++){
-                if(vision1.intersects(obstacles.get(a))){
+        for (int i = 0; i < getCenterX(); i++) {
+            vision1.setX(vision1.getX() - 1);
+            vision1.setWidth(vision1.getWidth() + 1);
+            for (int a = 0; a < obstacles.size(); a++) {
+                if (vision1.intersects(obstacles.get(a))) {
                     visionCollided = true;
                     break;
                 }
             }
-            if(visionCollided) break;
+            if (visionCollided) break;
         }
 
         vision2.setX(getCenterX());
         vision2.setY(getY());
-        vision2.setWidth(getWidth()/2);
+        vision2.setWidth(getWidth() / 2);
         vision2.setHeight(getHeight());
 
         visionCollided = false;
-        for(int i = 0; i<SetupGame.width-getCenterX(); i++){
-            vision2.setWidth(vision2.getWidth()+1);
-            for(int a =0; a<obstacles.size();a++){
-                if(vision2.intersects(obstacles.get(a))){
+        for (int i = 0; i < SetupGame.width - getCenterX(); i++) {
+            vision2.setWidth(vision2.getWidth() + 1);
+            for (int a = 0; a < obstacles.size(); a++) {
+                if (vision2.intersects(obstacles.get(a))) {
                     visionCollided = true;
                     break;
                 }
             }
-            if(visionCollided) break;
+            if (visionCollided) break;
         }
+        if (defaultVision) {
+            visionHorizontalLeft = vision1.getWidth();
+            visionHorizontalRight = vision2.getWidth();
+            notVisionHorizontalLeft = vision1.getWidth();
+            notVisionHorizontalRight = vision2.getWidth();
+        }
+
     }
 
-    public Rectangle getVision1(){
+    public Rectangle getVision1() {
         return vision1;
     }
-    public Rectangle getVision2(){
+
+    public Rectangle getVision2() {
         return vision2;
     }
 
@@ -192,21 +202,16 @@ public class Coronavirus extends Rectangle implements Enemy {
         ///// babka noticed
         else {
 
-            if ((babkaX > (this.getX() + this.getWidth()) && babkaX - (this.getX() + this.getWidth()) > notVisionHorizontalRight) || (babkaX + babkaWidth < this.getX() && this.getX() - (babkaX + babkaWidth) > notVisionHorizontalLeft) || (babkaY > (this.getY() + this.getHeight()) && babkaY - (this.getY() + this.getHeight()) > notVisionVerticalUp) || (babkaY + babkaHeight < this.getY() && this.getY() - (babkaY + babkaHeight) > notVisionVerticalDown)) {
-                babkaNoticed = false;
-            } else {
 
-
-                if (this.getX() < babkaX && blockedRight == false) {
-                    this.setCenterX(getCenterX() + 2);
-                    goRight = true;
-                } else if (this.getX() > babkaX && blockedLeft == false) {
-                    this.setCenterX(getCenterX() - 2);
-                    goRight = false;
-                }
-
-
+            if (this.getX() < babkaX && blockedRight == false) {
+                this.setCenterX(getCenterX() + 2);
+                goRight = true;
+            } else if (this.getX() > babkaX && blockedLeft == false) {
+                this.setCenterX(getCenterX() - 2);
+                goRight = false;
             }
+
+
         }
     }
 
@@ -272,15 +277,15 @@ public class Coronavirus extends Rectangle implements Enemy {
         babkaWidth = +platform.getWidth();
         babkaHeight = platform.getHeight();
 
-        Rectangle legB = new Rectangle(this.getX(), this.getY() + this.height, width, visionVerticalDown);
-        Rectangle arm1B = new Rectangle(this.getX() - visionHorizontalLeft, this.getY() + 1, visionHorizontalLeft, height - 2);
-        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, visionHorizontalRight, height - 2);
-        Rectangle headB = new Rectangle(this.getX(), this.getY() - visionVerticalUp, width, visionVerticalUp);
+       Rectangle arm1B = new Rectangle(this.getX() - visionHorizontalLeft, this.getY() - visionVerticalUp, visionHorizontalLeft, visionVerticalUp + this.getHeight() + visionVerticalDown);
+        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() - visionVerticalUp, visionHorizontalRight, visionVerticalUp + this.getHeight() + visionVerticalDown);
 
-        if (legB.intersects(platform) || headB.intersects(platform) || arm1B.intersects(platform) || arm2B.intersects(platform)) {
-            if (platform.intersects(vision1)||platform.intersects(vision2)) {
-                babkaNoticed = true;
-            }
+        if (arm1B.intersects(platform) && goRight == false || arm2B.intersects(platform) && goRight) {
+            babkaNoticed = true;
+
+
+        } else {
+            babkaNoticed = false;
 
         }
 
@@ -292,32 +297,26 @@ public class Coronavirus extends Rectangle implements Enemy {
     }
 
 
-    public void setVisionHorizontal(float visionHorizontalLeft, float visionHorizontalRight) {
+    public void setVisionHorizontal(float visionHorizontalLeft, float visionHorizontalRight, float notVisionHorizontalLeft, float notVisionHorizontalRight) {
         this.visionHorizontalLeft = visionHorizontalLeft;
         this.visionHorizontalRight = visionHorizontalRight;
-
-    }
-
-    public void setVisionVertical(float visionVerticalUp, float visionVerticalDown) {
-        this.visionVerticalUp = visionVerticalUp;
-        this.visionVerticalDown = visionVerticalDown;
-
-    }
-
-    public void setNotVisionHorizontal(float notVisionHorizontalLeft, float notVisionHorizontalRight) {
         this.notVisionHorizontalLeft = notVisionHorizontalLeft;
         this.notVisionHorizontalRight = notVisionHorizontalRight;
+        defaultVision = false;
+
     }
 
-    public void setNotVisionVertical(float notVisionVerticalUp, float notVisionVerticalDown) {
+    public void setVisionVertical(float visionVerticalUp, float visionVerticalDown, float notVisionVerticalUp, float notVisionVerticalDown) {
+        this.visionVerticalUp = visionVerticalUp;
+        this.visionVerticalDown = visionVerticalDown;
         this.notVisionVerticalUp = notVisionVerticalUp;
         this.notVisionVerticalDown = notVisionVerticalDown;
     }
 
+
     public void setSpace(float space) {
         this.space = space;
     }
-
 
 
 }
