@@ -302,7 +302,6 @@ public class MapLevel1 extends BasicGameState {
         }
     }
 
-
     private void drawSymbol(Graphics graphics) {
 
         if (symbol.isPresent()) {
