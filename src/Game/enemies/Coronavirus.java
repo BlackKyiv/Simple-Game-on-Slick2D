@@ -262,7 +262,7 @@ public class Coronavirus extends Rectangle implements Enemy {
             blockedLeft = true;
         }
 
-        Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
+        Rectangle arm2 = new Rectangle(this.getX() + this.getWidth()-1, this.getY() + 1, 1, height - 2);
         if ((arm2.intersects(platform))) {
             blockedRight = true;
         }
