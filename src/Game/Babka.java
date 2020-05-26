@@ -328,7 +328,7 @@ public class Babka extends Rectangle {
             if (container.getInput().isKeyPressed(Input.KEY_F)) {
 
                 if (speedX == 0) {
-                    if (standingRight) {
+                    if (standingRight||walkingRight) {
                         this.setFightingRight(true);
                         return new Rectangle(getX(), getY() - 15, attackZoneSizeX + getWidth(), attackZoneSizeY);
                     } else {
