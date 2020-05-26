@@ -47,6 +47,7 @@ public abstract class Level extends BasicGameState {
     public int getID() {
         return id;
     }
+    
 
     protected void addEnemy(Enemy enemy){
         enemies.add(enemy);

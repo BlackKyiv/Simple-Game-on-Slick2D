@@ -60,7 +60,6 @@ public class Doctor extends Rectangle implements Enemy {
     private boolean alive = true;
     private boolean notMoves;
 
-
     private SpriteSheet imageLeft;
     private SpriteSheet imageRight;
     private Animation animationLeft;
@@ -274,7 +273,6 @@ public class Doctor extends Rectangle implements Enemy {
 
     }
 
-
     public void die() {
         alive = false;
     }
@@ -302,7 +300,6 @@ public class Doctor extends Rectangle implements Enemy {
             blockedUp = true;
         }
     }
-
 
     public void checkForCollisionBabka(Rectangle platform) {
         Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
@@ -344,10 +341,10 @@ public class Doctor extends Rectangle implements Enemy {
 
     }
 
-
     public boolean isBabkaNoticed() {
         return babkaNoticed;
     }
+
     public void setVisionHorizontal(float visionHorizontalLeft, float visionHorizontalRight,float notVisionHorizontalLeft, float notVisionHorizontalRight) {
         this.visionHorizontalLeft = visionHorizontalLeft;
         this.visionHorizontalRight = visionHorizontalRight;
