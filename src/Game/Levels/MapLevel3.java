@@ -35,8 +35,8 @@ public class MapLevel3 extends Level {
     @Override
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
         setBabka(new Babka(800, 350));
-        setId(2);
-        setNextLevelId(3);
+        setId(3);
+        setNextLevelId(5);
         initDoors();
         initWalls();
         initEnemies();
