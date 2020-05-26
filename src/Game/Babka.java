@@ -293,7 +293,6 @@ public class Babka extends Rectangle {
         return animationSlidingLeft;
     }
 
-
     public boolean isAlive(){
         return alive && mortal;
     }
@@ -321,7 +320,6 @@ public class Babka extends Rectangle {
         }
         this.fightingRight = fighting;
     }
-
 
     public Rectangle getHitZone(GameContainer container) {
         if (isAlive()) {
@@ -359,7 +357,13 @@ public class Babka extends Rectangle {
     }
 
     public boolean isReadyToShoot(GameContainer container){
-        return isAlive()&&(tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyDown(Input.KEY_E));
+        //System.out.println("Checking for shooting "+(container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E)));
+        return isAlive()&&(tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
+    }
+
+    public boolean isReadyToPickTapok(){
+        if(tapokQ < 2) return true;
+        return false;
     }
 
     public TapokThrow shoot(GameContainer container) throws SlickException {
@@ -401,10 +405,10 @@ public class Babka extends Rectangle {
 
     }
 
-    public void giveTapok(){
+    public void pickTapok(){
         tapokQ++;
     }
-    public void giveTapok(int q){
+    public void pickTapok(int q){
         tapokQ+=q;
     }
 
@@ -430,9 +434,7 @@ public class Babka extends Rectangle {
         }
     }
 
-    public void pickTapok(){
-        tapokQ+=1;
-    }
+
     public int tapkiLeft(){
         return  tapokQ;
     }

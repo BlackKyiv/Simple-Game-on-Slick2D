@@ -15,53 +15,31 @@ import java.util.ArrayList;
 
 
 public class MapLevel1 extends Level {
-    private Babka babka;
     private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, doorDown, doorUp, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
-    private Rectangle attackZone;
-    private Teleport nextLevelT;
-
-    private ArrayList<Teleport> teleports;
-    private ArrayList<Coronavirus> coronas = new ArrayList<>();// for initing
-
-    private ArrayList<TapokPick> tapki = new ArrayList<>();
-
-    private Symbol symbol;
-    private boolean symbolpicked;
-
-    private Clock clock;
-    private int score = 0;
-    private Image tapok;
 
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
-    private TapokPick tapok1, tapok2, tapok3;
-
     private String path = SetupGame.path;
 
-    private boolean nextLevel = true;
 
     @Override
     public int getID() {
         return 2;
     }
 
-    private void initSymbol()throws SlickException{
-        symbol = new Symbol(50, 150);
-    }
 
     private void initTapki() throws SlickException {
-        tapok1 = new TapokPick(250, 285);
-        tapki.add(tapok1);
-        tapok2 = new TapokPick(30, 670);
-        tapki.add(tapok2);
+
+        addTapok(new TapokPick(250, 285));
+        addTapok(new TapokPick(30, 670));
+        addTapok(new TapokPick(50, 670));
     }
 
     @Override
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
-        teleports = new ArrayList<>();
         setBabka(new Babka(800, 350));
         setId(2);
         setNextLevelId(3);
@@ -69,7 +47,7 @@ public class MapLevel1 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-        initSymbol();
+        setSymbol(new Symbol(50, 150));
         setExitNextLevel(1050,650,50,50);
         addTeleport(new Teleport1(110, 375, 80, 85,110, 600));
     }
@@ -105,8 +83,7 @@ public class MapLevel1 extends Level {
         doorUp = new Image(path + "door1.png");
         arrow = new Image(path + "arrow.png");
 
-        nextLevelT = new Teleport(1030, 630, 70, 70, 0, 0);
-        teleports.add(nextLevelT);
+
     }
 
     private void initDoors() throws SlickException {
@@ -114,6 +91,7 @@ public class MapLevel1 extends Level {
     }
 
     private void initEnemies() throws SlickException {
+        ArrayList<Coronavirus> coronas = new ArrayList<>();
         Coronavirus corona1 = new Coronavirus(950, 400);
         coronas.add(corona1);
         Coronavirus corona2 = new Coronavirus(50, 390);
@@ -178,31 +156,12 @@ public class MapLevel1 extends Level {
 
         arrow.draw(1050,650,50,50);
 
-        drawSymbol(g);
-    }
-
-
-    private void drawSymbol(Graphics graphics) {
-        if (symbol.isPresent()) {
-            symbol.getAnimation(graphics).draw(symbol.getX(), symbol.getY());
-        }
-    }
-
-    private void updateSymbol() {
-        if (symbol.isPresent()) {
-            //symbol.checkForCollision(babka);
-            if(getBabka().intersects(symbol))
-                symbolpicked=true;
-        }
-
     }
 
     @Override
     protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
-        updateSymbol();
-        if(getQuantityOfEnemiesAlive()<=0){
+        if(getQuantityOfEnemiesAlive()<=0 || !isSymbolPresent()){
             setReadyToGoNextLevel(true);
-            System.out.println(getID());
         }
     }
 

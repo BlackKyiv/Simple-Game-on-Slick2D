@@ -27,7 +27,6 @@ public abstract class Level extends BasicGameState {
 
     private Symbol symbol;
     private Clock clock;
-    private boolean symbolpicked;
     private int score = 0;
     private Image tapok;
     private String path= SetupGame.path;
@@ -40,18 +39,20 @@ public abstract class Level extends BasicGameState {
     private ArrayList<TapokPick> tapki = new ArrayList<>();
     private ArrayList<Teleport1> teleports = new ArrayList<>();
 
-
-
-
-    @Override
-    public int getID() {
-        return id;
-    }
     
 
     protected void addEnemy(Enemy enemy){
         enemies.add(enemy);
     }
+
+    protected void setSymbol(Symbol symbol){
+        this.symbol = symbol;
+    }
+
+    protected boolean isSymbolPresent(){
+        return symbol.isPresent();
+    }
+
     protected void addTapok(TapokPick tapok){
         tapki.add(tapok);
     }
@@ -118,6 +119,13 @@ public abstract class Level extends BasicGameState {
         drawTapki(g);
         drawBabka();
         drawScoreTable(g);
+        drawSymbol(g);
+    }
+
+    private void drawSymbol(Graphics graphics) {
+        if (symbol.isPresent()) {
+            symbol.getAnimation(graphics).draw(symbol.getX(), symbol.getY());
+        }
     }
 
     private void drawBabka() throws SlickException {
@@ -220,7 +228,7 @@ public abstract class Level extends BasicGameState {
         updateTeleport(container);
 
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
-            game.enterState(0,new FadeOutTransition(), new FadeInTransition());
+            game.enterState(1,new FadeOutTransition(), new FadeInTransition());
         }
 
         if(readyToGoNextLevel && babka.intersects(exitNextLevel)){
@@ -230,6 +238,15 @@ public abstract class Level extends BasicGameState {
 
         if(container.getInput().isKeyPressed(Input.KEY_R)) restart(container, game);
         clock.update(delta);
+
+        updateSymbol();
+    }
+
+    private void updateSymbol() {
+        if (symbol.isPresent()) {
+            symbol.checkForCollision(babka);
+        }
+
     }
 
     protected void restart(GameContainer container, StateBasedGame game) throws SlickException {
@@ -271,7 +288,10 @@ public abstract class Level extends BasicGameState {
         }
         babka.controls(container);
 
-        if(babka.isReadyToShoot(container)) bullets.add(babka.shoot(container));
+        if(babka.isReadyToShoot(container)){
+            bullets.add(babka.shoot(container));
+        }
+
     }
 
     private void updateEnemies(int delta) throws SlickException {
@@ -331,13 +351,16 @@ public abstract class Level extends BasicGameState {
     private void updateTapki(){
         if (tapki.size()!=0) {
             for (TapokPick tapok : tapki) {
-                if (tapok.isPresent()) {
-                    tapok.checkForCollision(babka);
+                if (tapok.isPresent() && babka.isReadyToPickTapok()) {
+                    if(babka.intersects(tapok)){
+                        babka.pickTapok();
+                        tapok.setPresent(false);
+                    }
                 }
             }
             for (int i = 0; i < tapki.size(); i++) {
                 TapokPick tapok = tapki.get(i);
-                if (tapok.isPresent() == false) tapki.remove(i);
+                if (!tapok.isPresent()) tapki.remove(i);
             }
         }
     }
@@ -347,6 +370,10 @@ public abstract class Level extends BasicGameState {
             if(bullets.get(i) instanceof Injection && bullets.get(i).isPresent()){
                 Injection j = (Injection) bullets.get(i);
                 j.update();
+                if(j.intersects(attackZone)){
+                    j.reflect();
+                    bullets.set(i, j);
+                }
                 for (Rectangle obstacle : obstacles) {
                     j.checkForCollision(obstacle);
                 }
@@ -428,11 +455,11 @@ public abstract class Level extends BasicGameState {
     }
 
     protected void giveBabkeTapok(){
-        babka.giveTapok();
+        babka.pickTapok();
     }
 
     protected void giveBabkeTapok(int q){
-        babka.giveTapok(q);
+        babka.pickTapok(q);
     }
 
     protected Babka getBabka(){

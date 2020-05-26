@@ -169,4 +169,8 @@ public class TestLevel extends Level{
     }
 
 
+    @Override
+    public int getID() {
+        return 2;
+    }
 }
