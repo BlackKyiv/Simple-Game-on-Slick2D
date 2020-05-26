@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 
-public class MapLevel4 extends BasicGameState {
+public class MapLevel4 extends Level {
     private Babka babka;
     private Image background, wall, wallpaper, window, doorDown, doorUp,arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
@@ -64,6 +64,11 @@ public class MapLevel4 extends BasicGameState {
     }
     private void initAttackZone() {
         attackZone = new Rectangle(-50, -50, 50, 50);
+    }
+
+    @Override
+    protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
+
     }
 
     private void initWalls() throws SlickException {
@@ -254,6 +259,11 @@ public class MapLevel4 extends BasicGameState {
     }
 
     @Override
+    protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
+
+    }
+
+    @Override
     public void update(GameContainer gameContainer, StateBasedGame game, int delta) throws SlickException {
 
         babka.update(1, delta);
@@ -422,6 +432,11 @@ public class MapLevel4 extends BasicGameState {
                 i--;
             }
         }
+    }
+
+    @Override
+    protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
+
     }
 
     private void checkForAttack(GameContainer container) {

@@ -13,7 +13,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import java.util.ArrayList;
 
-public class MapLevel5 extends BasicGameState {
+public class MapLevel5 extends Level {
     private Babka babka;
     private Image background, t1,t2;
     private Rectangle attackZone;
@@ -46,6 +46,11 @@ public class MapLevel5 extends BasicGameState {
 
     private void initAttackZone() {
         attackZone = new Rectangle(-50, -50, 50, 50);
+    }
+
+    @Override
+    protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
+
     }
 
     private void initWalls() throws SlickException {
@@ -127,6 +132,11 @@ public class MapLevel5 extends BasicGameState {
 
             }
         }
+    }
+
+    @Override
+    protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
+
     }
 
     private void drawEnemies(Graphics graphics) {
@@ -297,6 +307,11 @@ public class MapLevel5 extends BasicGameState {
                 i--;
             }
         }
+
+    }
+
+    @Override
+    protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
 
     }
 

@@ -14,9 +14,9 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 
-public class MapLevel1 extends BasicGameState {
+public class MapLevel1 extends Level {
     private Babka babka;
-    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand,  doorDown, doorUp, arrow;
+    private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, doorDown, doorUp, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
     private Rectangle attackZone;
     private Teleport nextLevelT;
@@ -91,6 +91,11 @@ public class MapLevel1 extends BasicGameState {
         attackZone = new Rectangle(-50, -50, 50, 50);
     }
 
+    @Override
+    protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
+
+    }
+
     private void initWalls() throws SlickException {
         background = new Image(path + "background.jpg");
 
@@ -118,7 +123,6 @@ public class MapLevel1 extends BasicGameState {
         wardrobe = new Image(path + "wardrobe.png");
         cupboard = new Image(path + "cupboard.png");
         nightstand = new Image(path + "nightstand.png");
-
 
         doorDown = new Image(path + "door1.png");
         doorUp = new Image(path + "door1.png");
@@ -198,11 +202,10 @@ public class MapLevel1 extends BasicGameState {
         doorDown.draw(110, 600, 80, 85);
         sofa.draw(500, 360, 200, 100);
         nightstand.draw(440, 410, 60, 50);
-        nightstand.draw(703, 410, 60, 50);
-        table.draw(520, 625, 150, 60);
+        nightstand.draw(700, 410, 60, 50);
+        table.draw(525, 625, 150, 60);
         wardrobe.draw(250, 495, 130, 193);
         cupboard.draw(220, 300, 150, 100);
-
 
         drawDoors(graphics);
         if (nextLevel)
@@ -301,6 +304,12 @@ public class MapLevel1 extends BasicGameState {
             }
         }
     }
+
+    @Override
+    protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
+
+    }
+
 
     private void drawSymbol(Graphics graphics) {
 
@@ -506,6 +515,11 @@ clock.update(delta);
                 i--;
             }
         }
+    }
+
+    @Override
+    protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
+
     }
 
     private void checkForAttack(GameContainer container) {
