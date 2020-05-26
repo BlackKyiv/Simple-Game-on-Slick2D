@@ -13,29 +13,18 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import java.util.ArrayList;
 
-
-
 public class MapLevel4 extends Level {
-    private Babka babka;
+
     private Image background, wall, wallpaper, window, doorDown, doorUp,arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
-    private Rectangle attackZone;
     private  Teleport winnerT;
 
-    private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Teleport> teleports;
-    private ArrayList<Door> doors = new ArrayList<>();
     private  ArrayList<Coronavirus> coronas = new ArrayList<>();
-
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> bullets = new ArrayList<>();
-    private ArrayList<TapokPick> tapki = new ArrayList<>();
 
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
-
-    private TapokPick tapok;
 
     private String path = SetupGame.path;
 
@@ -46,45 +35,36 @@ public class MapLevel4 extends Level {
         return 5;
     }
 
-    @Override
-    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
-        babka = new Babka(800, 350);
-
-        initDoors();
-        initEnemies();
-        initAttackZone();
-        initWalls();
-        initTapki();
-    }
-
     private void initTapki() throws SlickException {
-        tapok = new TapokPick(100,250);
-        tapki.add(tapok);
-    }
-    private void initAttackZone() {
-        attackZone = new Rectangle(-50, -50, 50, 50);
+        addTapok(new TapokPick(100,250));
     }
 
     @Override
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
-
+        setBabka(new Babka(800, 350));
+        setId(5);
+        setNextLevelId(6);
+        initDoors();
+        initWalls();
+        initEnemies();
+        initTapki();
+        setSymbol(new Symbol(50, 150));
+        setExitNextLevel(1050, 650, 50, 50);
     }
 
     private void initWalls() throws SlickException {
         background = new Image(path + "background.jpg");
-
         wall = new Image(path + "wall.jpg");
 
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
-        obstacles.add(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
-        obstacles.add(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
-        obstacles.add(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
-        obstacles.add(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
-        obstacles.add(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
-        obstacles.add(new Rectangle(1100, 0, 25, SetupGame.height)); //right frame
-        obstacles.add(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
+        addObstacle(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
+        addObstacle(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
+        addObstacle(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
+        addObstacle(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
+        addObstacle(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
+        addObstacle(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
+        addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
+        addObstacle(new Rectangle(1100, 0, 25, SetupGame.height)); //right frame
+        addObstacle(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
 
         wallSS = new SpriteSheet(wall, 10, 10);
         floorSS = new SpriteSheet(wall, 10, 10);
@@ -99,15 +79,14 @@ public class MapLevel4 extends Level {
         arrow = new Image(path+"arrow.png");
 
         teleports = new ArrayList<>();
-        teleports.add(new Teleport(110, 375, 80, 85,0,225));
-        teleports.add(new Teleport(110, 600, 80, 85,0,-220));
         winnerT = new Teleport(1030, 630, 70, 70, 0, 0);
         teleports.add(winnerT);
 
+        addTeleport(new Teleport1(110,600,80,85,110,375));
     }
 
     private void initDoors() throws SlickException {
-        doors.add(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85, false));
+        addDoor(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85, false));
     }
 
 
@@ -124,21 +103,19 @@ public class MapLevel4 extends Level {
         coronas.add(corona5);
         for(Coronavirus c: coronas){
             if(c instanceof Coronavirus){
-                enemies.add(c);
+                addEnemy(c);
                 c.setSpace(150);
                 c.setVisionVertical(20,0,20,0);
             }
         }
-
         Doctor doctor = new Doctor(900, 605);
         doctor.setSpace(150);
         doctor.setVisionVertical(50,0,50,0);
-
-
-        enemies.add(doctor);
+        addEnemy(doctor);
     }
+
     @Override
-    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+    protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
         background.draw(0, 0, 1100, 700);
 
         wallpaper.startUse();
@@ -169,300 +146,17 @@ public class MapLevel4 extends Level {
         window.draw(400, 550, 100, 100);
         doorUp.draw(110, 375, 80, 85);
         doorDown.draw(110, 600, 80, 85);
-
-        drawDoors(graphics);
-        if(nextLevel)
-            arrow.draw(1050,650,50,50);
-
-        graphics.setColor(Color.pink);
-        if ( babka.animationSlide()) {
-            babka.getAnimation().draw(babka.getX()-25, babka.getY());
-        }else{
-            babka.getAnimation().draw(babka.getX(), babka.getY());
-        }
-        graphics.setColor(Color.black);
-        graphics.setColor(Color.yellow);
-
-        drawEnemies(graphics);
-        drawTapki( graphics);
-
-    }
-
-    private void drawDoors(Graphics graphics) {
-        for(Door door : doors){
-            if (!door.isBroken()) {
-                door.getImageDoor(graphics).draw(  door.getX(),   door.getY());
-            }
-        }
-    }
-
-    private void drawEnemies(Graphics graphics) {
-        for(int i = 0; i<enemies.size(); i++) {
-            if (enemies.get(i) instanceof Doctor) {
-                Doctor doctor = (Doctor) enemies.get(i);
-                if (doctor.isAlive()) {
-                    doctor.getAnimation(graphics).draw(  doctor.getX(),  doctor.getY());
-                }
-            } else if (enemies.get(i) instanceof Coronavirus) {
-                Coronavirus corona = (Coronavirus) enemies.get(i);
-                if (corona.isAlive()) {
-                    graphics.setColor(Color.blue);
-                    corona.getAnimation(graphics).draw(corona.getX()-5, corona.getY()-5);
-                }
-            } else if (enemies.get(i) instanceof CoronaSmall) {
-                CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
-                if (coronaS.isAlive()) {
-                    coronaS.getAnimation(graphics).draw(coronaS.getX(), coronaS.getY(),25,25);
-                }
-            } else if (enemies.get(i) instanceof Turrel) {
-                Turrel turrel = (Turrel) enemies.get(i);
-                if (turrel.isAlive()) {
-                    turrel.getImageTurrel(graphics).draw(turrel.getX(), turrel.getY(),75,80);
-
-                }
-            }
-        }
-
-        drawBullets(graphics);
-
-
-    }
-
-    private void drawBullets(Graphics graphics){
-        if (!bullets.isEmpty()) {
-            for (int i = 0; i<bullets.size(); i++ ) {
-                if(bullets.get(i) instanceof Injection){
-                    Injection bullet = (Injection) bullets.get(i);;
-                    if (bullet.isPresent()) {
-                        bullet.getImageInjection(graphics).draw(bullet.getX(), bullet.getY());
-                    }
-                }
-                else if(bullets.get(i) instanceof TapokThrow){
-                    TapokThrow bullet = (TapokThrow) bullets.get(i);;
-                    if (bullet.isPresent()) {
-                        bullet.getImageInjection(graphics).draw(bullet.getX(), bullet.getY());
-                    }
-                }
-
-            }
-        }
-    }
-
-    private void drawTapki(Graphics graphics){
-        if (!tapki.isEmpty()) {
-            for (TapokPick i : tapki) {
-                if (i.isPresent()) {
-                    i.getAnimation(graphics).draw(i.getX(), i.getY());
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
-
-    }
-
-    @Override
-    public void update(GameContainer gameContainer, StateBasedGame game, int delta) throws SlickException {
-
-        babka.update(1, delta);
-        for (Rectangle obstacle : obstacles) {
-            babka.checkForCollision(obstacle);
-        }
-        for (Door door : doors){
-            if(!door.isBroken())babka.checkForCollision(door);
-        }
-
-
-
-        for(Teleport teleport: teleports){
-            if(gameContainer.getInput().isKeyDown(Input.KEY_ENTER))
-                babka.goInTeleport(gameContainer,teleport);
-        }
-        if(nextLevel&&babka.inTeleport(winnerT)&&gameContainer.getInput().isKeyDown(Input.KEY_ENTER)){
-            game.enterState(3, new FadeOutTransition(), new FadeInTransition());
-        }
-        if(gameContainer.getInput().isKeyPressed(Input.KEY_ESCAPE)){
-            game.enterState(0,new FadeOutTransition(), new FadeInTransition());
-        }
-
-        babka.controls(gameContainer);
-        updateTapki();
-        updateEnemies(delta);
-        updateBullets();
-        checkForAttack(gameContainer);
-
-        if( gameContainer.getInput().isKeyDown(Input.KEY_ESCAPE)){
-            game.enterState(1, new FadeOutTransition(),new FadeInTransition());
-        }
-
-        if(babka.isReadyToShoot(gameContainer)) bullets.add(babka.shoot(gameContainer));
-        if(gameContainer.getInput().isKeyDown(Input.KEY_R)){
-            enemies = new ArrayList<>();
-            bullets = new ArrayList<>();
-            obstacles = new ArrayList<>();
-            doors = new ArrayList<>();
-            coronas = new ArrayList<>();
-            tapki= new ArrayList<>();
-            babka = new Babka(800, 350);
-
-
-            initDoors();
-            initEnemies();
-            initAttackZone();
-            initWalls();
-            initTapki();
-        }
-    }
-
-
-
-
-    private void updateTeleports(){
-
-    }
-
-    private void updateEnemies(int delta) throws SlickException {
-        ArrayList<Rectangle> all = new ArrayList<>();
-        all.addAll(obstacles);
-        all.addAll(doors);
-
-        for(int i = 0; i<enemies.size(); i++){
-            if(enemies.get(i) instanceof Doctor){
-                Doctor doctor = (Doctor) enemies.get(i);
-                doctor.update(delta, all);
-                if (doctor.isReadyToShoot()) bullets.add(doctor.shoot(babka));
-
-                for (Rectangle obstacle : obstacles) {
-                    doctor.checkForCollisionWall(obstacle);
-                }
-
-                for(Rectangle door: doors){
-                    doctor.checkForCollisionWall(door);
-                }
-                doctor.checkForCollisionBabka(babka);
-            }
-            else if(enemies.get(i) instanceof Coronavirus){
-                Coronavirus corona = (Coronavirus) enemies.get(i);
-                if(corona.isAlive()) {
-                    corona.update(all);
-                    for (Rectangle obstacle : obstacles) {
-                        corona.checkForCollisionWall(obstacle);
-                    }
-                    corona.checkForCollisionBabka(babka);
-                    if(babka.intersects(corona)&&corona.isAlive()) babka.die();
-                }
-            }
-            else if(enemies.get(i) instanceof CoronaSmall){
-                CoronaSmall coronaS = (CoronaSmall) enemies.get(i);
-                if(coronaS.isAlive()) {
-                    coronaS.update();
-                    coronaS.checkForCollisionBabka(babka);
-                    if(babka.intersects(coronaS)&&coronaS.isAlive()) babka.die();
-                }
-            }
-            else if(enemies.get(i) instanceof Turrel){
-                Turrel turrel = (Turrel) enemies.get(i);
-                turrel.update(delta);
-                turrel.checkForCollisionBabka(babka);
-                if(turrel.isReadyToShoot(babka)) bullets.add(turrel.shoot());
-            }
-
-        }
-
-    }
-
-    private void updateTapki(){
-        if (tapki.size()!=0) {
-            for (TapokPick tapok : tapki) {
-                if (tapok.isPresent()) {
-                    tapok.checkForCollision(babka);
-                }
-            }
-            for (int i = 0; i < tapki.size(); i++) {
-                TapokPick tapok = tapki.get(i);
-                if (tapok.isPresent() == false) tapki.remove(i);
-            }
-        }
-    }
-
-    private void updateBullets(){
-        for (int i = 0; i< bullets.size(); i++) {
-            if(bullets.get(i) instanceof Injection && bullets.get(i).isPresent()){
-                Injection j = (Injection) bullets.get(i);
-                j.update();
-                for (Rectangle obstacle : obstacles) {
-                    j.checkForCollision(obstacle);
-                }
-                for (Rectangle obstacle : doors) {
-                    j.checkForCollision(obstacle);
-                }
-                if(j.isReflected()) {
-                    for (int d = 0; d < enemies.size(); d++) {
-                        if (enemies.get(d) instanceof Doctor) {
-                            Doctor doctor = (Doctor) enemies.get(d);
-                            if (j.intersects(doctor)) {
-                                doctor.die();
-                                j.disappear();
-                            }
-                        }
-                    }
-                }
-                if(j.intersects(babka)) babka.die();
-            }
-            else if(bullets.get(i) instanceof TapokThrow && bullets.get(i).isPresent()){
-                TapokThrow tapok = (TapokThrow) bullets.get(i);
-                tapok.update();
-                for (Rectangle obstacle : obstacles) {
-                    tapok.checkForCollision(obstacle);
-                }
-                for (Rectangle obstacle : doors) {
-                    tapok.checkForCollision(obstacle);
-                }
-                for (int d = 0; d < enemies.size(); d++) {
-                    if(!(enemies.get(d) instanceof Turrel) && tapok.intersects((Shape) enemies.get(d))&&tapok.isPresent()){
-                        enemies.get(d).die();
-                        tapok.disappear();
-                    }
-                }
-            }
-            else {
-                bullets.remove(i);
-                i--;
-            }
-        }
     }
 
     @Override
     protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
-
-    }
-
-    private void checkForAttack(GameContainer container) {
-        attackZone = babka.getHitZone(container);
-        checkForAttackDoors();
-        checkForAttackEnemies();
-
-    }
-
-    private void checkForAttackDoors(){
-        for(int i = 0; i<doors.size(); i++){
-            Door door = doors.get(i);
-            if(attackZone.intersects(door)) door.broke() ;
-            if(door.isBroken()) doors.remove(i);
+        if (!isSymbolPresent()) {
+            setReadyToGoNextLevel(true);
         }
     }
-
-    private void checkForAttackEnemies(){
-        for(int i = 0; i<enemies.size(); i++){
-            if(enemies.get(i).isAlive() && attackZone.intersects( (Rectangle) enemies.get(i))){
-                enemies.get(i).die();
-            }
-        }
-
-    }
-
-
 
 }
+
+
+
+

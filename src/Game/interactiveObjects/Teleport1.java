@@ -16,7 +16,6 @@ public class Teleport1 extends Rectangle {
         this.exitY = exitY;
     }
 
-
     public Babka teleport(Babka babka, GameContainer container){
         if(babka.intersects(this) && container.getInput().isKeyPressed(Input.KEY_ENTER)) {
             babka.setX(exitX);

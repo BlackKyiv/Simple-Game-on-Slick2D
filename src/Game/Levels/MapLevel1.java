@@ -24,17 +24,14 @@ public class MapLevel1 extends Level {
 
     private String path = SetupGame.path;
 
-
     @Override
     public int getID() {
         return 2;
     }
 
-
     private void initTapki() throws SlickException {
-
         addTapok(new TapokPick(250, 285));
-        addTapok(new TapokPick(30, 670));
+        addTapok(new TapokPick(30, 600));
         addTapok(new TapokPick(50, 670));
     }
 
@@ -81,9 +78,8 @@ public class MapLevel1 extends Level {
 
         doorDown = new Image(path + "door1.png");
         doorUp = new Image(path + "door1.png");
+
         arrow = new Image(path + "arrow.png");
-
-
     }
 
     private void initDoors() throws SlickException {
@@ -154,13 +150,14 @@ public class MapLevel1 extends Level {
         wardrobe.draw(250, 495, 130, 193);
         cupboard.draw(220, 300, 150, 100);
 
-        arrow.draw(1050,650,50,50);
+        if(!isSymbolPresent())
+            arrow.draw(1050,650,50,50);
 
     }
 
     @Override
     protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
-        if(getQuantityOfEnemiesAlive()<=0 || !isSymbolPresent()){
+        if(!isSymbolPresent()){
             setReadyToGoNextLevel(true);
         }
     }
