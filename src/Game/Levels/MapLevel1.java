@@ -14,7 +14,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 
-public class MapLevel1 extends Level {
+public class MapLevel1 extends Level{
     private Babka babka;
     private Image background, wall, wallpaper, window, sofa, table, wardrobe, cupboard, nightstand, doorDown, doorUp, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
@@ -47,12 +47,12 @@ public class MapLevel1 extends Level {
 
     private boolean nextLevel = true;
 
-    @Override
+
     public int getID() {
         return 2;
     }
 
-    @Override
+
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
 
         babka = new Babka(800, 350);
@@ -91,7 +91,7 @@ public class MapLevel1 extends Level {
         attackZone = new Rectangle(-50, -50, 50, 50);
     }
 
-    @Override
+
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
 
     }
@@ -168,7 +168,7 @@ public class MapLevel1 extends Level {
         enemies.add(doctor);
     }
 
-    @Override
+
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0, 0, 1100, 700);
 
@@ -305,7 +305,6 @@ public class MapLevel1 extends Level {
         }
     }
 
-    @Override
     protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
 
     }
@@ -318,9 +317,9 @@ public class MapLevel1 extends Level {
         }
     }
 
-    @Override
+
     public void update(GameContainer gameContainer, StateBasedGame game, int delta) throws SlickException {
-clock.update(delta);
+        clock.update(delta);
         babka.update(1, delta);
         for (Rectangle obstacle : obstacles) {
             babka.checkForCollision(obstacle);
@@ -517,7 +516,7 @@ clock.update(delta);
         }
     }
 
-    @Override
+
     protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
 
     }
