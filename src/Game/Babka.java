@@ -364,7 +364,7 @@ public class Babka extends Rectangle {
     }
 
     public boolean isReadyToShoot(GameContainer container){
-        return isAlive()&&(tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
+        return isAlive()&&(tapokQ>=1)&&(container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
     }
 
     public boolean isReadyToPickTapok(){
