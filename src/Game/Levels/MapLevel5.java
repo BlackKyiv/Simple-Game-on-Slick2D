@@ -14,16 +14,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 public class MapLevel5 extends Level {
-    private Babka babka;
+
     private Image background, t1,t2;
-    private Rectangle attackZone;
-
-    private ArrayList<Rectangle> obstacles = new ArrayList<>();
-    private ArrayList<Teleport> teleports;
-    private ArrayList<Door> doors = new ArrayList<>();
-
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> bullets = new ArrayList<>();
 
     private String path = SetupGame.path;
     private boolean winner=false;
