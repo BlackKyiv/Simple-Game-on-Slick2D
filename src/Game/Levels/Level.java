@@ -276,8 +276,6 @@ public abstract class Level extends BasicGameState {
         }
     }
 
-
-
     private void updateBabka(int delta, GameContainer container) throws SlickException {
         babka.update(1, delta);
         for (Rectangle obstacle : obstacles) {
@@ -316,13 +314,17 @@ public abstract class Level extends BasicGameState {
             }
             else if(enemies.get(i) instanceof Coronavirus && enemies.get(i).isAlive()){
                 Coronavirus corona = (Coronavirus) enemies.get(i);
+
                 if(corona.isAlive()) {
                     corona.update(all);
                     for (Rectangle obstacle : obstacles) {
                         corona.checkForCollisionWall(obstacle);
                     }
                     corona.checkForCollisionBabka(babka);
-                    if(babka.intersects(corona)&&corona.isAlive()) babka.die();
+                    if(corona.intersects(babka)&&corona.isAlive()){
+                        babka.die();
+                    }
+
                 }
             }
             else if(enemies.get(i) instanceof CoronaSmall && enemies.get(i).isAlive()){
