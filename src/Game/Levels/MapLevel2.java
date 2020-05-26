@@ -21,8 +21,6 @@ public class MapLevel2 extends Level {
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
     private SpriteSheet wallSS,floorSS,wallpaper1, platformSS;
 
-    private TapokPick tapok1, tapok2, tapok3;
-
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 190, floorW = 900;
     private int x_offset = 200;
@@ -94,12 +92,9 @@ public class MapLevel2 extends Level {
     }
 
     private void initTapki() throws SlickException {
-        tapok1 = new TapokPick(500,535);
-        addTapok(tapok1);
-        tapok2 = new TapokPick(770,530);
-        addTapok(tapok2);
-        tapok3 = new TapokPick(350,120);
-        addTapok(tapok3);
+        addTapok(new TapokPick(500,535));
+        addTapok(new TapokPick(770,530));
+        addTapok(new TapokPick(350,120));
     }
 
     private void initDoors()throws SlickException{

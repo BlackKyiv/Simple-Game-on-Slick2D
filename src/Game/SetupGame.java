@@ -32,7 +32,7 @@ public class SetupGame extends StateBasedGame {
 
     public static void main(String[] args) throws SlickException {
         System.out.println(path);
-        AppGameContainer app = new AppGameContainer(new SetupGame("Corona vs Granny"));
+        AppGameContainer app = new AppGameContainer(new SetupGame("Grandma vs Corona"));
         app.setDisplayMode(width, height, false);
         app.setTargetFrameRate(fps);
         app.setAlwaysRender(true);

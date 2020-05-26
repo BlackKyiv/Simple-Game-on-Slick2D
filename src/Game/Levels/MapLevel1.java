@@ -29,10 +29,9 @@ public class MapLevel1 extends Level {
         return 2;
     }
 
-
     private void initTapki() throws SlickException {
         addTapok(new TapokPick(250, 285));
-        addTapok(new TapokPick(30, 670));
+        addTapok(new TapokPick(30, 600));
         addTapok(new TapokPick(50, 670));
     }
 
