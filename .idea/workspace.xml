@@ -21,6 +21,32 @@
   <component name="ChangeListManager">
     <list default="true" id="5d5f24b8-58fe-4878-a77e-11d4367c85b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelScore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelsMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelsMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/TestLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/TestLevel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Winner.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Winner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Coronavirus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Coronavirus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Doctor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Doctor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Turrel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Turrel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Door.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Injection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Injection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Symbol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Symbol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokPick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokPick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokThrow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokThrow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/SetupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/SetupGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/enemies/Boss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/enemies/CoronaSmall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/enemies/CoronaSmall.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +67,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1cRSfeubRwajP69NPVQu1N8BwhL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -153,30 +180,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590490635525" />
-    <state width="772" height="209" key="GridCell.Tab.0.bottom" timestamp="1590590354297">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1236" height="165" key="GridCell.Tab.0.bottom" timestamp="1590593464950">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
     <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201440" />
-    <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590520454059" />
-    <state width="772" height="209" key="GridCell.Tab.0.center" timestamp="1590590354297">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590593464950" />
+    <state width="1236" height="165" key="GridCell.Tab.0.center" timestamp="1590593464949">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
     <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201440" />
-    <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590520454057" />
-    <state width="772" height="209" key="GridCell.Tab.0.left" timestamp="1590590354296">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590593464949" />
+    <state width="1236" height="165" key="GridCell.Tab.0.left" timestamp="1590593464948">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590590354296" />
     <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201439" />
-    <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590520454056" />
-    <state width="772" height="209" key="GridCell.Tab.0.right" timestamp="1590590354297">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590593464948" />
+    <state width="1236" height="165" key="GridCell.Tab.0.right" timestamp="1590593464949">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
     <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201440" />
-    <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590520454057" />
+    <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590593464949" />
     <state x="446" y="79" key="MultipleFileMergeDialog" timestamp="1590590311709">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -185,6 +212,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590590295065" />
+    <state x="394" y="366" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590592198847">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="394" y="366" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1590592198847" />
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">
     <General>

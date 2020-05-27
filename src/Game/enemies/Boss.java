@@ -35,6 +35,8 @@ public class Boss extends Rectangle implements Enemy {
     private boolean zoneAlive6=true;
     private boolean zoneAlive7=true;
 
+    private boolean spawnActive=true;
+
     int zonesActive=7;
     int spawn =3;
 
@@ -56,7 +58,10 @@ public class Boss extends Rectangle implements Enemy {
 
 
     public void update(int delta) {
-       // System.out.println(""+zonesActive);
+
+       if (zonesActive==0){
+           die();
+       }
         move();
         zoneGap.update(delta);
         zoneCreate.update(delta);
@@ -109,6 +114,7 @@ public class Boss extends Rectangle implements Enemy {
 
 
     public void getHitZone() {
+        spawnActive=true;
         Random rand = new Random();
         int zone = rand.nextInt(7);
 
@@ -128,7 +134,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY(), 100, 100);
             zoneActive5=true;
         }else if (zone==5&&zoneAlive6){
-            zoneAttack =new  Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+200, 100, 100);
+            zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+200, 100, 100);
             zoneActive6=true;
         }else if (zone==6&&zoneAlive7){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+400, 100, 100);
@@ -137,7 +143,6 @@ public class Boss extends Rectangle implements Enemy {
     }
 
     public Rectangle getZoneAttack(){
-
         return zoneAttack ;
 
     }
@@ -192,8 +197,21 @@ public class Boss extends Rectangle implements Enemy {
             zoneAlive7=false;
             spawn+=2;
         }
-
     }
+
+public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
+    ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
+    for (int i=0; i<=spawn;i++){
+        CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX(),zoneAttack.getCenterY());
+           coronas.add(c);
+            }
+    spawnActive=false;
+    return coronas;
+
+}
+public boolean spawnActive(){
+        return spawnActive;
+}
 
 
 

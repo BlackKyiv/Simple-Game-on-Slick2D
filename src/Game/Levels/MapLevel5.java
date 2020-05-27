@@ -41,7 +41,7 @@ public class MapLevel5 extends Level {
         setExitNextLevel(1050, 650, 50, 50);
         boss=new Boss(300, 150);
         addEnemy(boss);
-        System.out.println(enemies.size());
+
     }
 
     private void initTapki() {
@@ -102,7 +102,17 @@ public class MapLevel5 extends Level {
             setReadyToGoNextLevel(true);
         }
         boss.update(delta);
+        if (boss.zonePresent()&&boss.spawnActive()){
+            try {
+                ArrayList<CoronaSmall> coronas = boss.spawnCorona();
+                for (CoronaSmall c:coronas) {
+                    addEnemy(c);
+                }
+            }catch (SlickException e){
 
+            }
+
+        }
 
     }
 

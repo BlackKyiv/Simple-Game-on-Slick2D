@@ -27,7 +27,7 @@ private boolean goRight;
     private Animation animationRightNoticed;
 
 
-    public CoronaSmall (int x, int y) throws SlickException {
+    public CoronaSmall (float x, float y) throws SlickException {
         super(x, y, 25, 25);
         setUpAnimation();
     }
