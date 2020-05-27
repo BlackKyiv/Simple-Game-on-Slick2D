@@ -30,6 +30,7 @@ public abstract class Level extends BasicGameState {
     private int score = 0;
     private Image tapok;
     private String path= SetupGame.path;
+    Music gameOverMusic;
 
     private boolean drawObstacles = false;
 
@@ -40,8 +41,6 @@ public abstract class Level extends BasicGameState {
     private ArrayList<Bullet> bullets = new ArrayList<>();
     private ArrayList<TapokPick> tapki = new ArrayList<>();
     private ArrayList<Teleport1> teleports = new ArrayList<>();
-
-    
 
     protected void addEnemy(Enemy enemy){
         enemies.add(enemy);
@@ -97,7 +96,7 @@ public abstract class Level extends BasicGameState {
         initLevel(container, game);
         initAttackZone();
         initScoreTable();
-
+        gameOverMusic = new Music(SetupGame.pathMusic+"directed by.wav");
     }
 
     private void initAttackZone(){
@@ -252,6 +251,11 @@ public abstract class Level extends BasicGameState {
         clock.update(delta);
 
         updateSymbol();
+
+        if(!babka.isAlive()){
+            game.enterState(8, new FadeOutTransition(),new FadeInTransition()); //game over
+            gameOverMusic.loop();
+        }
     }
 
     private void updateSymbol() {
@@ -457,7 +461,6 @@ public abstract class Level extends BasicGameState {
                 enemies.get(i).die();
             }
         }
-
     }
 
     protected boolean isReadyToGoNextLevel(){
