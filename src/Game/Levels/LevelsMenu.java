@@ -16,6 +16,7 @@ public class LevelsMenu  extends BasicGameState {
     private  String path = SetupGame.path;
     private Image background,level1,level2,level3,level4,level5;
     private MouseOverArea level1MOA,level2MOA,level3MOA,level4MOA,level5MOA;
+    private Music music;
 
     @Override
     public int getID() {
@@ -24,7 +25,7 @@ public class LevelsMenu  extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        background = new Image(path+"background.jpg");
+        background = new Image(path+"menu_background_game_won.png");
         level1 = new Image(path+"level_1.png");
         level2 = new Image(path+"level_2.png");
         level3 = new Image(path+"level_3.png");
@@ -36,38 +37,44 @@ public class LevelsMenu  extends BasicGameState {
         level3MOA = new MouseOverArea(container, level3, 400, 300);
         level4MOA = new MouseOverArea(container, level4, 400, 400);
         level5MOA = new MouseOverArea(container, level5, 400, 500);
+
+        music = SetupGame.levelMusic;
 }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw(0,0,1100,700);
-        level1.draw(450,100,300,80);
-        level2.draw(450,200,300,80);
-        level3.draw(450,300,300,80);
-        level4.draw(450,400,300,80);
-        level5.draw(450,500,300,80);
+        level1.draw(400,100,300,80);
+        level2.draw(400,200,300,80);
+        level3.draw(400,300,300,80);
+        level4.draw(400,400,300,80);
+        level5.draw(400,500,300,80);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(level1MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(2, new FadeOutTransition(),new FadeInTransition()); //level1
+            music.loop();
         }
         if(level2MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(3, new FadeOutTransition(),new FadeInTransition()); //level2
+            music.loop();
         }
         if(level3MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(4, new FadeOutTransition(),new FadeInTransition()); //level3
+            music.loop();
         }
         if(level4MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(5, new FadeOutTransition(),new FadeInTransition()); //level4
+            music.loop();
         }
         if(level5MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(6, new FadeOutTransition(),new FadeInTransition()); //level5
+            music.loop();
         }
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
-            game.enterState(0, new FadeOutTransition(),new FadeInTransition());
+            game.enterState(0, new FadeOutTransition(),new FadeInTransition()); //main menu
         }
-
     }
 }

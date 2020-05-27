@@ -10,13 +10,15 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.*;
 
+import javax.management.monitor.CounterMonitor;
+
 public class MainMenu extends BasicGameState {
 
-    private  String path = SetupGame.path;
+    private  String path = SetupGame.path, pathMusic = SetupGame.pathMusic;
     private  Image studios, presents, background, play;
     private MouseOverArea playMOA;
     private int timePassed=0;
-    private Music entryMusic;
+    private Music entryMusic, music;
 
     @Override
     public int getID() {
@@ -25,8 +27,8 @@ public class MainMenu extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        entryMusic = new Music(SetupGame.pathMusic+"entryMusic.wav");
-        entryMusic.loop();
+        music = SetupGame.entryMusic;
+        music.loop();
         studios = new Image(path+"studios.png");
         presents = new Image(path+"presents.png");
         background = new Image(path+"main_menu.png");
@@ -51,7 +53,6 @@ public class MainMenu extends BasicGameState {
         if(timePassed<7100)
             timePassed += delta;
         if(playMOA.isMouseOver() && Mouse.isButtonDown(0)){
-            entryMusic.stop();
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
     }

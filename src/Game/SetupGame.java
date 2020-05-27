@@ -3,6 +3,7 @@ package Game;
 import Game.Levels.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -11,8 +12,21 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
-    public final static String path =  "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
-    public final static String pathMusic ="C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\music\\";
+    public final static String path =  "..\\Game\\pictures\\";
+    public final static String pathMusic ="..\\Game\\music\\";
+    public static Music entryMusic;
+    public static Music levelMusic;
+    public static Music gameOverMusic;
+
+    static {
+        try {
+            entryMusic = new Music(pathMusic + "entryMusic.wav");
+            levelMusic = new Music(pathMusic+"Intro Theme.wav");
+            gameOverMusic = new Music(pathMusic+"directed by.wav");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+    }
 
     public SetupGame(String name) {
         super(name);
@@ -27,6 +41,7 @@ public class SetupGame extends StateBasedGame {
         this.addState(new MapLevel3());
         this.addState(new MapLevel4());
         this.addState(new MapLevel5());
+        this.addState(new GameOver());
         this.addState(new Winner());
     }
 

@@ -7,9 +7,10 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Winner extends BasicGameState {
+
     @Override
     public int getID() {
-        return 7;
+        return 9;
     }
 
     @Override
