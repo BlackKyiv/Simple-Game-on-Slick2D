@@ -31,6 +31,8 @@ public abstract class Level extends BasicGameState {
     private Image tapok;
     private String path= SetupGame.path;
 
+    private boolean drawObstacles = false;
+
     private Rectangle attackZone;
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
     private ArrayList<Door> doors = new ArrayList<>();
@@ -112,6 +114,8 @@ public abstract class Level extends BasicGameState {
     }
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+
+
         renderLevel(container, game, g);
         drawDoors(g);
         drawEnemies(g);
@@ -120,6 +124,12 @@ public abstract class Level extends BasicGameState {
         drawBabka();
         drawScoreTable(g);
         drawSymbol(g);
+    }
+
+    protected void drawObstacles(Graphics g){
+        for(Rectangle obstacle: obstacles){
+            g.fill(obstacle);
+        }
     }
 
     private void drawSymbol(Graphics graphics) {
@@ -151,6 +161,10 @@ public abstract class Level extends BasicGameState {
                 door.getImageDoor(graphics).draw(  door.getX(),   door.getY());
             }
         }
+    }
+
+    protected void setDrawObstacles(boolean drawObstacles){
+        this.drawObstacles = drawObstacles;
     }
 
     private void drawEnemies(Graphics graphics) {
@@ -276,8 +290,6 @@ public abstract class Level extends BasicGameState {
         }
     }
 
-
-
     private void updateBabka(int delta, GameContainer container) throws SlickException {
         babka.update(1, delta);
         for (Rectangle obstacle : obstacles) {
@@ -316,13 +328,17 @@ public abstract class Level extends BasicGameState {
             }
             else if(enemies.get(i) instanceof Coronavirus && enemies.get(i).isAlive()){
                 Coronavirus corona = (Coronavirus) enemies.get(i);
+
                 if(corona.isAlive()) {
                     corona.update(all);
                     for (Rectangle obstacle : obstacles) {
                         corona.checkForCollisionWall(obstacle);
                     }
                     corona.checkForCollisionBabka(babka);
-                    if(babka.intersects(corona)&&corona.isAlive()) babka.die();
+                    if(corona.intersects(babka)&&corona.isAlive()){
+                        babka.die();
+                    }
+
                 }
             }
             else if(enemies.get(i) instanceof CoronaSmall && enemies.get(i).isAlive()){

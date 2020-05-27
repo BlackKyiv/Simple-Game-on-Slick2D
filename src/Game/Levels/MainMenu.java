@@ -51,6 +51,7 @@ public class MainMenu extends BasicGameState {
         if(timePassed<7100)
             timePassed += delta;
         if(playMOA.isMouseOver() && Mouse.isButtonDown(0)){
+            entryMusic.stop();
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
     }

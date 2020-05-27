@@ -46,6 +46,8 @@ public class Babka extends Rectangle {
     private Animation animationJumpingLeft;
     private Animation animationJumpingRight;
 
+    private Animation dead;
+
     private Timer attackTimerLeft;
     private Timer attackTimerRight;
 
@@ -100,57 +102,55 @@ public class Babka extends Rectangle {
     public int getSpeedX(){return  (int) speedX;}
 
     private void gravityPull(){
-        if(!landed && alive){
+        if(!landed){
             speedY += timeCoeff*gravity * Math.pow(deltaSeconds, 2);
         }
 
     }
 
     private void move(float x, float y){
-        if(alive) {
-            this.setCenterX(getCenterX() + x);
-            this.setCenterY(getCenterY() + y);
-        }
+        this.setCenterX(getCenterX() + x);
+        this.setCenterY(getCenterY() + y);
     }
 
 
     public void controls(GameContainer gameContainer){
-        if((gameContainer.getInput().isKeyPressed(Input.KEY_SPACE)|| gameContainer.getInput().isKeyPressed(Input.KEY_W))&&(landed||blockedRight||blockedLeft)){
-            if(blockedLeft) {
-                move(3, 0);
-                speedX =speed*1.5f;
+        if(isAlive()) {
+            if ((gameContainer.getInput().isKeyPressed(Input.KEY_SPACE) || gameContainer.getInput().isKeyPressed(Input.KEY_W)) && (landed || blockedRight || blockedLeft)) {
+                if (blockedLeft) {
+                    move(3, 0);
+                    speedX = speed * 1.5f;
+                }
+                if (blockedRight) {
+                    move(-3, 0);
+                    speedX = -speed * 1.5f;
+                }
+                this.move(0, -1);
+                setLanded(false);
+                speedY = -jump;
             }
-            if(blockedRight) {
-                move(-3, 0);
-                speedX =-speed*1.5f;
-            }
-            this.move(0,-1);
-            setLanded(false);
-            speedY = -jump;
-        }
-        if(gameContainer.getInput().isKeyDown(Input.KEY_A)&&!blockedLeft){
-            if(landed) {
-                this.move(-speed*timeCoeff, 0);
-                walkingLeft = true;
-                standingLeft = false;
-                standingRight = false;
-            }
-            else {
-                speedX = -speed;
-            }
+            if (gameContainer.getInput().isKeyDown(Input.KEY_A) && !blockedLeft) {
+                if (landed) {
+                    this.move(-speed * timeCoeff, 0);
+                    walkingLeft = true;
+                    standingLeft = false;
+                    standingRight = false;
+                } else {
+                    speedX = -speed;
+                }
 
 
-        }
-        if(gameContainer.getInput().isKeyDown(Input.KEY_D)&&!blockedRight){
-            if(landed) {
-                this.move(speed*timeCoeff, 0);
-                walkingRight = true;
-                standingLeft = false;
-                standingRight = false;
             }
-            else{
-                if(timeCoeff < 1 )speedX = speed +  speed*timeCoeff;
-                else speedX = speed;
+            if (gameContainer.getInput().isKeyDown(Input.KEY_D) && !blockedRight) {
+                if (landed) {
+                    this.move(speed * timeCoeff, 0);
+                    walkingRight = true;
+                    standingLeft = false;
+                    standingRight = false;
+                } else {
+                    if (timeCoeff < 1) speedX = speed + speed * timeCoeff;
+                    else speedX = speed;
+                }
             }
         }
     }
@@ -226,6 +226,8 @@ public class Babka extends Rectangle {
 
     private void setupAnimation() throws SlickException {
 
+        dead = new Animation(new SpriteSheet(SetupGame.path+"babka_dead_right.png",50,50),100);
+
         animationSlidingLeft = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_right.PNG",50,50), 100);
         animationSlidingRight = new Animation(new SpriteSheet(SetupGame.path+"babka_climb_left.PNG",50,50), 100);
 
@@ -247,6 +249,11 @@ public class Babka extends Rectangle {
     }
 
     public Animation getAnimation() throws SlickException {
+
+        if(!isAlive()){
+            return dead;
+        }
+
 
         if(attackTimerLeft.isRunning()){
             return animationFightingLeft;
@@ -357,12 +364,11 @@ public class Babka extends Rectangle {
     }
 
     public boolean isReadyToShoot(GameContainer container){
-        //System.out.println("Checking for shooting "+(container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E)));
-        return isAlive()&&(tapokQ>=1)&& (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
+        return isAlive()&&(tapokQ>=1)&&(container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)||container.getInput().isKeyPressed(Input.KEY_E));
     }
 
     public boolean isReadyToPickTapok(){
-        if(tapokQ < 2) return true;
+        if(tapokQ < 2 && isAlive()) return true;
         return false;
     }
 

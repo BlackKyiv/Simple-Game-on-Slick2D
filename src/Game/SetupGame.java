@@ -11,8 +11,8 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
-    public final static String path = "..\\Game\\pictures\\";
-    public final static String pathMusic = "..\\Game\\music\\";
+    public final static String path =  "C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\pictures\\";
+    public final static String pathMusic ="C:\\Users\\atcat\\Documents\\Goptsii game 2\\Game\\music\\";
 
     public SetupGame(String name) {
         super(name);
@@ -20,7 +20,6 @@ public class SetupGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        //this.addState(new TestLevel());
         this.addState(new MainMenu());
         this.addState(new LevelsMenu());
         this.addState(new MapLevel1());
@@ -28,6 +27,7 @@ public class SetupGame extends StateBasedGame {
         this.addState(new MapLevel3());
         this.addState(new MapLevel4());
         this.addState(new MapLevel5());
+        this.addState(new Winner());
     }
 
     public static void main(String[] args) throws SlickException {
