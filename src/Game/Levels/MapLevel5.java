@@ -25,6 +25,8 @@ public class MapLevel5 extends Level {
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Bullet> bullets = new ArrayList<>();
 
+    private Boss boss;
+
     private String path = SetupGame.path;
     private boolean winner=false;
 
@@ -45,6 +47,9 @@ public class MapLevel5 extends Level {
 
         setSymbol(new Symbol(1000, 50));
         setExitNextLevel(1050, 650, 50, 50);
+        boss=new Boss(300, 150);
+        addEnemy(boss);
+        System.out.println(enemies.size());
     }
 
     private void initTapki() {
@@ -88,6 +93,14 @@ public class MapLevel5 extends Level {
         t1.draw(10,15,80,85);
         t2.draw(1010,595,80,85);
         drawObstacles(g);
+        g.setColor(Color.green);
+        g.draw(boss);
+        g.fill(boss);
+        g.setColor(Color.red);
+        if (boss.zonePresent()) {
+            g.draw(boss.getZoneAttack());
+            g.fill(boss.getZoneAttack());
+        }
 
     }
 
@@ -96,6 +109,9 @@ public class MapLevel5 extends Level {
         if (!isSymbolPresent()) {
             setReadyToGoNextLevel(true);
         }
+        boss.update(delta);
+
+
     }
 
 }

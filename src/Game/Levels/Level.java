@@ -124,6 +124,9 @@ public abstract class Level extends BasicGameState {
         drawBabka();
         drawScoreTable(g);
         drawSymbol(g);
+        g.setColor(Color.yellow);
+        g.draw(attackZone);
+        g.fill(attackZone);
     }
 
     protected void drawObstacles(Graphics g){
@@ -451,9 +454,10 @@ public abstract class Level extends BasicGameState {
 
     private void checkForAttackEnemies(){
         for(int i = 0; i<enemies.size(); i++){
-            if(enemies.get(i).isAlive() && attackZone.intersects( (Rectangle) enemies.get(i))){
+             if(enemies.get(i).isAlive() && attackZone.intersects( (Rectangle) enemies.get(i))){
                 enemies.get(i).die();
             }
+
         }
 
     }
