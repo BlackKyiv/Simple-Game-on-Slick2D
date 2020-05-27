@@ -18,7 +18,6 @@ public class MapLevel5 extends Level {
 
     private Lava lava;
     private String path = SetupGame.path;
-    private boolean winner=false;
 
     @Override
     public int getID() {
