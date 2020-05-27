@@ -372,8 +372,7 @@ public abstract class Level extends BasicGameState {
                         babka.die();
                         t.start();
                     }
-
-                    }
+                }
 
             }
             else if(enemies.get(i) instanceof Turrel && enemies.get(i).isAlive()){
@@ -466,7 +465,7 @@ public abstract class Level extends BasicGameState {
         }
     }
 
-    protected abstract void  updateLevel(GameContainer container, StateBasedGame game, int delta);
+    protected abstract void  updateLevel(GameContainer container, StateBasedGame game, int delta) throws SlickException;
 
     private void checkForAttack(GameContainer container) {
         attackZone = babka.getHitZone(container);

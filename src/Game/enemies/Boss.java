@@ -242,17 +242,18 @@ public class Boss extends Rectangle implements Enemy {
         }
     }
 
-public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
-    ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
-    for (int i=0; i<=spawn;i++){
-        CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX(),zoneAttack.getCenterY());
-           coronas.add(c);
-            }
-    spawnActive=false;
-    return coronas;
+    public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
+        ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
+        for (int i=0; i<=spawn;i++){
+            CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX(),zoneAttack.getCenterY());
+            c.setSpeed(4);
+            coronas.add(c);
+        }
+        spawnActive=false;
+        return coronas;
 
-}
-public boolean spawnActive(){
+    }
+    public boolean spawnActive(){
         return spawnActive;
 }
 
