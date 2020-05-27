@@ -20,17 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8369fda-6606-4afe-a488-2269382a9f05" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Boss.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/boss7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/score.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pictures/time.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelScore.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/LevelScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/LevelScore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/SetupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/SetupGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,21 @@
       <option name="project" value="LOCAL" />
       <updated>1590590400291</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="level score ready">
+      <created>1590618986454</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590618986454</updated>
+    </task>
+    <task id="LOCAL-00009" summary="level score ready">
+      <created>1590619106074</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590619106074</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -160,7 +175,8 @@
     <MESSAGE value="level4 extends Level - ready" />
     <MESSAGE value="music working" />
     <MESSAGE value="music files added" />
-    <option name="LAST_COMMIT_MESSAGE" value="music files added" />
+    <MESSAGE value="level score ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="level score ready" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1590575954441">
