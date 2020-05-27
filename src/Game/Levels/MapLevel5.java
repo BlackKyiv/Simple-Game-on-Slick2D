@@ -40,7 +40,7 @@ public class MapLevel5 extends Level {
         setExitNextLevel(1050, 650, 50, 50);
         boss=new Boss(300, 150);
         addEnemy(boss);
-        System.out.println(enemies.size());
+
     }
 
     private void initTapki() {
@@ -86,11 +86,12 @@ public class MapLevel5 extends Level {
         drawObstacles(g);
         g.setColor(Color.green);
         g.draw(boss);
-        g.fill(boss);
+     boss.getImageBoss().draw(boss.getX()-50, boss.getY()-50);
+       // g.fill(boss);
         g.setColor(Color.red);
         if (boss.zonePresent()) {
             g.draw(boss.getZoneAttack());
-            g.fill(boss.getZoneAttack());
+           // g.fill(boss.getZoneAttack());
         }
 
     }
@@ -101,6 +102,8 @@ public class MapLevel5 extends Level {
             setReadyToGoNextLevel(true);
         }
         boss.update(delta);
+
+
 
 
     }

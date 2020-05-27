@@ -35,8 +35,20 @@ public class Boss extends Rectangle implements Enemy {
     private boolean zoneAlive6=true;
     private boolean zoneAlive7=true;
 
+    private boolean spawnActive=true;
+
     int zonesActive=7;
     int spawn =3;
+
+    private Image boss0 = new Image (SetupGame.path+"boss0.png");
+    private Image boss1 = new Image (SetupGame.path+"boss1.png");
+    private Image boss2 = new Image (SetupGame.path+"boss2.png");
+    private Image boss3 = new Image (SetupGame.path+"boss3.png");
+    private Image boss4 = new Image (SetupGame.path+"boss4.png");
+    private Image boss5 = new Image (SetupGame.path+"boss5.png");
+    private Image boss6 = new Image (SetupGame.path+"boss6.png");
+    private Image boss7 = new Image (SetupGame.path+"boss7.png");
+
 
 
 
@@ -53,10 +65,46 @@ public class Boss extends Rectangle implements Enemy {
         getHitZone();
     }
 
+    public Image getImageBoss() {
+        if (zoneActive1&&zonePresent) {
+            return boss1;
+        }else if (zoneActive2&&zonePresent){
+            return boss2;
+        }
+        else if (zoneActive2&&zonePresent){
+            return boss2;
+        }
+        else if (zoneActive3&&zonePresent){
+            return boss3;
+        }
+        else if (zoneActive4&&zonePresent){
+            return boss4;
+        }
+        else if (zoneActive5&&zonePresent){
+            return boss5;
+        }
+        else if (zoneActive6&&zonePresent){
+            return boss6;
+        }
+        else if (zoneActive7&&zonePresent){
+            return boss7;
+        }
+
+        else{
+            return boss0;
+        }
+
+    }
+
+
+
 
 
     public void update(int delta) {
-       // System.out.println(""+zonesActive);
+
+       if (zonesActive==0){
+           die();
+       }
         move();
         zoneGap.update(delta);
         zoneCreate.update(delta);
@@ -86,11 +134,11 @@ public class Boss extends Rectangle implements Enemy {
 
 
     private void move() {
-        if (this.getY()+this.getHeight()>=700){
+        if (this.getY()+this.getHeight()>=650){
             goDown=false;
 
         }
-        if (this.getY()<=0){
+        if (this.getY()<=50){
             goDown=true;
         }
      if (goDown) {
@@ -109,6 +157,7 @@ public class Boss extends Rectangle implements Enemy {
 
 
     public void getHitZone() {
+        spawnActive=true;
         Random rand = new Random();
         int zone = rand.nextInt(7);
 
@@ -128,7 +177,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY(), 100, 100);
             zoneActive5=true;
         }else if (zone==5&&zoneAlive6){
-            zoneAttack =new  Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+200, 100, 100);
+            zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+200, 100, 100);
             zoneActive6=true;
         }else if (zone==6&&zoneAlive7){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+400, 100, 100);
@@ -137,7 +186,6 @@ public class Boss extends Rectangle implements Enemy {
     }
 
     public Rectangle getZoneAttack(){
-
         return zoneAttack ;
 
     }
@@ -192,8 +240,21 @@ public class Boss extends Rectangle implements Enemy {
             zoneAlive7=false;
             spawn+=2;
         }
-
     }
+
+public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
+    ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
+    for (int i=0; i<=spawn;i++){
+        CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX(),zoneAttack.getCenterY());
+           coronas.add(c);
+            }
+    spawnActive=false;
+    return coronas;
+
+}
+public boolean spawnActive(){
+        return spawnActive;
+}
 
 
 
