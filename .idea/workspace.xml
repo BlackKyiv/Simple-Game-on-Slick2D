@@ -175,42 +175,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="331" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590493692498" />
-    <state x="401" y="0" key="CommitChangelistDialog2" timestamp="1590500297078">
+    <state x="401" y="0" key="CommitChangelistDialog2" timestamp="1590589712537">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590500297078" />
+    <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590589712537" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590490635525">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590490635525" />
-    <state width="1545" height="209" key="GridCell.Tab.0.bottom" timestamp="1590589693058">
+    <state width="1545" height="209" key="GridCell.Tab.0.bottom" timestamp="1590589801096">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1545" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590589693058" />
+    <state width="1545" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590589801096" />
     <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201440" />
     <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590520454059" />
-    <state width="1545" height="209" key="GridCell.Tab.0.center" timestamp="1590589693058">
+    <state width="1545" height="209" key="GridCell.Tab.0.center" timestamp="1590589801096">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1545" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590589693058" />
+    <state width="1545" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590589801096" />
     <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201440" />
     <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590520454057" />
-    <state width="1545" height="209" key="GridCell.Tab.0.left" timestamp="1590589693058">
+    <state width="1545" height="209" key="GridCell.Tab.0.left" timestamp="1590589801095">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1545" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590589693058" />
+    <state width="1545" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590589801095" />
     <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201439" />
     <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590520454056" />
-    <state width="1545" height="209" key="GridCell.Tab.0.right" timestamp="1590589693058">
+    <state width="1545" height="209" key="GridCell.Tab.0.right" timestamp="1590589801096">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1545" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590589693058" />
+    <state width="1545" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590589801096" />
     <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590578201440" />
     <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590520454057" />
-    <state x="292" y="88" key="Vcs.Push.Dialog.v2" timestamp="1590500299737">
+    <state x="446" y="79" key="MultipleFileMergeDialog" timestamp="1590589738015">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590500299736" />
+    <state x="446" y="79" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1590589738015" />
+    <state x="292" y="88" key="Vcs.Push.Dialog.v2" timestamp="1590589715713">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590589715713" />
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">
     <General>

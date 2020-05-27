@@ -34,7 +34,7 @@ public class SetupGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        //this.addState(new MainMenu());
+        this.addState(new MainMenu());
         this.addState(new LevelsMenu());
         this.addState(new MapLevel1());
         this.addState(new MapLevel2());
