@@ -40,6 +40,16 @@ public class Boss extends Rectangle implements Enemy {
     int zonesActive=7;
     int spawn =3;
 
+    private Image boss0 = new Image (SetupGame.path+"boss0.png");
+    private Image boss1 = new Image (SetupGame.path+"boss1.png");
+    private Image boss2 = new Image (SetupGame.path+"boss2.png");
+    private Image boss3 = new Image (SetupGame.path+"boss3.png");
+    private Image boss4 = new Image (SetupGame.path+"boss4.png");
+    private Image boss5 = new Image (SetupGame.path+"boss5.png");
+    private Image boss6 = new Image (SetupGame.path+"boss6.png");
+    private Image boss7 = new Image (SetupGame.path+"boss7.png");
+
+
 
 
 
@@ -54,6 +64,39 @@ public class Boss extends Rectangle implements Enemy {
         zoneCreate.start();
         getHitZone();
     }
+
+    public Image getImageBoss() {
+        if (zoneActive1&&zonePresent) {
+            return boss1;
+        }else if (zoneActive2&&zonePresent){
+            return boss2;
+        }
+        else if (zoneActive2&&zonePresent){
+            return boss2;
+        }
+        else if (zoneActive3&&zonePresent){
+            return boss3;
+        }
+        else if (zoneActive4&&zonePresent){
+            return boss4;
+        }
+        else if (zoneActive5&&zonePresent){
+            return boss5;
+        }
+        else if (zoneActive6&&zonePresent){
+            return boss6;
+        }
+        else if (zoneActive7&&zonePresent){
+            return boss7;
+        }
+
+        else{
+            return boss0;
+        }
+
+    }
+
+
 
 
 
@@ -91,11 +134,11 @@ public class Boss extends Rectangle implements Enemy {
 
 
     private void move() {
-        if (this.getY()+this.getHeight()>=700){
+        if (this.getY()+this.getHeight()>=650){
             goDown=false;
 
         }
-        if (this.getY()<=0){
+        if (this.getY()<=50){
             goDown=true;
         }
      if (goDown) {

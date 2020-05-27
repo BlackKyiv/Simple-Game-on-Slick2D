@@ -87,11 +87,12 @@ public class MapLevel5 extends Level {
         drawObstacles(g);
         g.setColor(Color.green);
         g.draw(boss);
-        g.fill(boss);
+     boss.getImageBoss().draw(boss.getX()-50, boss.getY()-50);
+       // g.fill(boss);
         g.setColor(Color.red);
         if (boss.zonePresent()) {
             g.draw(boss.getZoneAttack());
-            g.fill(boss.getZoneAttack());
+           // g.fill(boss.getZoneAttack());
         }
 
     }
