@@ -60,6 +60,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;" />
         <option value="irazubrytska &lt;zubrytska.ira@gmail.com&gt;" />
       </list>
     </option>
@@ -156,10 +157,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="331" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590493692498" />
-    <state x="401" y="0" key="CommitChangelistDialog2" timestamp="1590589712537">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590590148468">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590589712537" />
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1590590148468" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590490635525">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
