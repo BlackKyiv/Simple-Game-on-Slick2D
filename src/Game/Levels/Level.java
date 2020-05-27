@@ -136,7 +136,7 @@ public abstract class Level extends BasicGameState {
     }
 
     private void drawBabka() throws SlickException {
-        if ( babka.animationSlide()) {
+        if (babka.animationSlide()) {
             babka.getAnimation().draw(babka.getX()-25, babka.getY());
         }else{
             babka.getAnimation().draw(babka.getX(), babka.getY());
