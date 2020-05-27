@@ -14,17 +14,9 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 public class MapLevel5 extends Level {
-    private Babka babka;
     private Image background, t1,t2;
-    private Rectangle attackZone;
 
-    private ArrayList<Rectangle> obstacles = new ArrayList<>();
-    private ArrayList<Teleport> teleports;
-    private ArrayList<Door> doors = new ArrayList<>();
-
-    private ArrayList<Enemy> enemies = new ArrayList<>();
-    private ArrayList<Bullet> bullets = new ArrayList<>();
-
+    private Lava lava;
     private String path = SetupGame.path;
     private boolean winner=false;
 
@@ -42,7 +34,10 @@ public class MapLevel5 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-
+        lava = new Lava(SetupGame.height-10, 600);
+        lava.setDelay(5000);
+        lava.setAtPeak(5000);
+        lava.setSpeed(1);
         setSymbol(new Symbol(1000, 50));
         setExitNextLevel(1050, 650, 50, 50);
     }
@@ -52,7 +47,7 @@ public class MapLevel5 extends Level {
 
     private void initWalls() throws SlickException {
         background = new Image(path + "background.jpg");
-        
+
 
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
         addObstacle(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
@@ -69,6 +64,8 @@ public class MapLevel5 extends Level {
         addObstacle(new Rectangle(250,200,20,160));
         addObstacle(new Rectangle(830,440,20,160)); //right vertical
         addObstacle(new Rectangle(830,200,20,160));
+        addObstacle(new Rectangle(SetupGame.width, 0, SetupGame.height, 25));// right wall
+        addObstacle(new Rectangle(0, 1300, SetupGame.width, 100));// bottom under lava
 
         t1 = new Image(path+"teleport.png");
         t2 = new Image(path+"teleport.png");
@@ -84,18 +81,24 @@ public class MapLevel5 extends Level {
 
     @Override
     protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
+        g.setColor(Color.black);
         background.draw(0, 0, 1100, 700);
         t1.draw(10,15,80,85);
         t2.draw(1010,595,80,85);
         drawObstacles(g);
 
+        g.setColor(Color.orange);
+        g.fill(lava);
+
     }
 
     @Override
     protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
-        if (!isSymbolPresent()) {
+        if (!isSymbolPresent() && getQuantityOfEnemiesAlive() <=0) {
             setReadyToGoNextLevel(true);
         }
+        if(lava.intersects(getBabka())) getBabka().die();
+        lava.update(delta);
     }
 
 }
