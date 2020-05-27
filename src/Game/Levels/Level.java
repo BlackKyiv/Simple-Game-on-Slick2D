@@ -3,6 +3,7 @@ package Game.Levels;
 import Game.Babka;
 import Game.enemies.*;
 import Game.Clock;
+import Game.Timer;
 import Game.SetupGame;
 import Game.interactiveObjects.*;
 import org.newdawn.slick.*;
@@ -12,6 +13,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.Transition;
 
 import java.util.ArrayList;
 
@@ -24,13 +26,13 @@ public abstract class Level extends BasicGameState {
     private Rectangle exitNextLevel;
 
     private int nextLevelId = 0;
-
     private Symbol symbol;
     private Clock clock;
     private int score = 0;
     private Image tapok;
     private String path= SetupGame.path;
     Music gameOverMusic;
+    Timer t = new Timer (1000);
 
     private boolean drawObstacles = false;
 
@@ -233,6 +235,7 @@ public abstract class Level extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
+        t.update(delta);
         updateBabka(delta, container);
         checkForAttack(container);
         updateLevel(container,game,delta);
@@ -250,14 +253,24 @@ public abstract class Level extends BasicGameState {
             game.enterState(nextLevelId, new FadeOutTransition(), new FadeInTransition());
         }
 
-        if(container.getInput().isKeyPressed(Input.KEY_R)) restart(container, game);
+        if(container.getInput().isKeyPressed(Input.KEY_R)){
+            restart(container, game);
+        }
         clock.update(delta);
 
         updateSymbol();
 
         if(!babka.isAlive()){
-            game.enterState(8, new FadeOutTransition(),new FadeInTransition()); //game over
             gameOverMusic.loop();
+
+            if (t.isFinished()){
+              System.out.println( "i");
+                game.enterState(8);
+
+                restart(container, game);
+            }
+
+
         }
     }
 
@@ -268,7 +281,8 @@ public abstract class Level extends BasicGameState {
 
     }
 
-    protected void restart(GameContainer container, StateBasedGame game) throws SlickException {
+    public void restart(GameContainer container, StateBasedGame game) throws SlickException {
+        t = new Timer(1000);
         readyToGoNextLevel = false;
         enemies = new ArrayList<>();
         obstacles = new ArrayList<>();
@@ -277,7 +291,9 @@ public abstract class Level extends BasicGameState {
         bullets = new ArrayList<>();
         tapki = new ArrayList<>();
         teleports = new ArrayList<>();
+
         initLevel(container, game);
+
         initAttackZone();
 
         score=0;
@@ -342,6 +358,7 @@ public abstract class Level extends BasicGameState {
                     corona.checkForCollisionBabka(babka);
                     if(corona.intersects(babka)&&corona.isAlive()){
                         babka.die();
+                        t.start();
                     }
 
                 }
@@ -351,8 +368,13 @@ public abstract class Level extends BasicGameState {
                 if(coronaS.isAlive()) {
                     coronaS.update();
                     coronaS.checkForCollisionBabka(babka);
-                    if(babka.intersects(coronaS)&&coronaS.isAlive()) babka.die();
-                }
+                    if(babka.intersects(coronaS)&&coronaS.isAlive()) {
+                        babka.die();
+                        t.start();
+                    }
+
+                    }
+
             }
             else if(enemies.get(i) instanceof Turrel && enemies.get(i).isAlive()){
                 Turrel turrel = (Turrel) enemies.get(i);
@@ -412,7 +434,10 @@ public abstract class Level extends BasicGameState {
                         }
                     }
                 }
-                if(j.intersects(babka)) babka.die();
+                if(j.intersects(babka)){
+                    babka.die();
+                    t.start();
+                }
             }
             else if(bullets.get(i) instanceof TapokThrow && bullets.get(i).isPresent()){
                 TapokThrow tapok = (TapokThrow) bullets.get(i);
