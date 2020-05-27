@@ -362,6 +362,10 @@ public abstract class Level extends BasicGameState {
 
     }
 
+    public Rectangle getAttackZone() {
+        return attackZone;
+    }
+
     private void updateTapki(){
         if (tapki.size()!=0) {
             for (TapokPick tapok : tapki) {

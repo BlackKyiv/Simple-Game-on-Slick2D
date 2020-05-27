@@ -20,11 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d5f24b8-58fe-4878-a77e-11d4367c85b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Babka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Babka.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/Level.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
