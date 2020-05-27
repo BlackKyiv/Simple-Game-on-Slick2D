@@ -19,7 +19,7 @@ public class CoronaSmall extends Rectangle implements Enemy {
 
     private boolean alive = true;
 
-private boolean goRight;
+    private boolean goRight;
 
     private SpriteSheet imageLeftNoticed;
     private SpriteSheet imageRightNoticed;
@@ -64,17 +64,18 @@ private boolean goRight;
 
 
     private void move() {
-        if (this.getX() < babkaX && blockedRight == false) {
+
+        if (this.getX() < babkaX ) {
             this.setCenterX(getCenterX() + speed);
             goRight=true;
 
-        } if (this.getX() > babkaX && blockedLeft == false) {
+        } if (this.getX() > babkaX ) {
             this.setCenterX(getCenterX() - speed);
             goRight=false;
         }
-        if (this.getY() > babkaY  && blockedUp == false) {
+        if (this.getY() > babkaY  ) {
             this.setCenterY(getCenterY() - speed);
-        } if (this.getY() < babkaY && blockedDown == false) {
+        } if (this.getY() < babkaY ) {
             this.setCenterY(getCenterY() + speed);
 
         }

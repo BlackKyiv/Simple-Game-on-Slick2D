@@ -20,7 +20,6 @@ public class MapLevel5 extends Level {
     private Boss boss;
 
     private String path = SetupGame.path;
-    private boolean winner=false;
 
     @Override
     public int getID() {
@@ -97,11 +96,18 @@ public class MapLevel5 extends Level {
     }
 
     @Override
-    protected void updateLevel(GameContainer container, StateBasedGame game, int delta) {
+    protected void updateLevel(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if (!isSymbolPresent()) {
             setReadyToGoNextLevel(true);
         }
         boss.update(delta);
+
+        if(boss.zonePresent()&&boss.spawnActive()) {
+            ArrayList<CoronaSmall> c = boss.spawnCorona();
+            for(int i = 0; i<c.size(); i++){
+                addEnemy(c.get(i));
+            }
+        }
 
 
     }
