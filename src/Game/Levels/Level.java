@@ -256,6 +256,7 @@ public abstract class Level extends BasicGameState {
         updateSymbol();
 
         if(!babka.isAlive()){
+            restart(container, game);
             game.enterState(8, new FadeOutTransition(),new FadeInTransition()); //game over
             gameOverMusic.loop();
         }
