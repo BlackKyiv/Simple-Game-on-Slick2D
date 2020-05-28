@@ -84,13 +84,10 @@ public class MapLevel5 extends Level {
         t1.draw(10,15,80,85);
         t2.draw(1010,595,80,85);
         drawObstacles(g);
-        g.setColor(Color.green);
-        g.draw(boss);
-        g.fill(boss);
-        g.setColor(Color.red);
-        if (boss.zonePresent()) {
-            g.draw(boss.getZoneAttack());
-            g.fill(boss.getZoneAttack());
+
+        if (boss.isAlive()) {
+            boss.getImageBoss().draw(boss.getX()-50,boss.getY()-50);;
+
         }
 
     }
