@@ -264,7 +264,6 @@ public abstract class Level extends BasicGameState {
             gameOverMusic.loop();
 
             if (t.isFinished()){
-              System.out.println( "i");
                 game.enterState(8);
 
                 restart(container, game);
@@ -381,6 +380,9 @@ public abstract class Level extends BasicGameState {
                 turrel.checkForCollisionBabka(babka);
                 if(turrel.isReadyToShoot(babka)) bullets.add(turrel.shoot());
             }
+           else if(enemies.get(i) instanceof Boss){
+
+            }
             else {
                 enemies.remove(i);
                 i--;
@@ -484,6 +486,12 @@ public abstract class Level extends BasicGameState {
 
     private void checkForAttackEnemies(){
         for(int i = 0; i<enemies.size(); i++){
+           if(enemies.get(i) instanceof Boss){
+            Boss boss = (Boss)enemies.get(i);
+               if(enemies.get(i).isAlive() && attackZone.intersects(boss.getZoneAttack())) {
+                   boss.attacked();
+               }
+            }else
              if(enemies.get(i).isAlive() && attackZone.intersects( (Rectangle) enemies.get(i))){
                 enemies.get(i).die();
             }

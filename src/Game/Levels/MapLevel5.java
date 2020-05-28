@@ -38,8 +38,7 @@ public class MapLevel5 extends Level {
 
         setSymbol(new Symbol(1000, 50));
         setExitNextLevel(1050, 650, 50, 50);
-        boss=new Boss(300, 150);
-        addEnemy(boss);
+
 
     }
 
@@ -76,6 +75,10 @@ public class MapLevel5 extends Level {
     }
 
     private void initEnemies() throws SlickException {
+        boss=new Boss(300, 150);
+        addEnemy(boss);
+
+
     }
 
     @Override
@@ -109,6 +112,8 @@ public class MapLevel5 extends Level {
                 addEnemy(c.get(i));
             }
         }
+
+
 
 
 
