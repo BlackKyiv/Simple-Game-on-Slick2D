@@ -77,7 +77,6 @@ public class LevelScore extends BasicGameState {
             if(levelID==6) {
                 game.enterState(9, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
                 //other music.loop
-
             }
         }
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){

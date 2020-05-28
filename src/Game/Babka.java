@@ -446,7 +446,7 @@ public class Babka extends Rectangle {
         return  tapokQ;
     }
 
-
-
-
+    public void setStandingLeft(boolean standingLeft) {
+        this.standingLeft = standingLeft;
+    }
 }
