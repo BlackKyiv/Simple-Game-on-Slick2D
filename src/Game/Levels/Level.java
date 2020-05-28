@@ -250,7 +250,7 @@ public abstract class Level extends BasicGameState {
 
         if(readyToGoNextLevel && babka.intersects(exitNextLevel)){
             System.out.println("Our id"+id+" Next level id:"+nextLevelId);
-            game.enterState(nextLevelId, new FadeOutTransition(), new FadeInTransition());
+            game.enterState(7, new FadeOutTransition(), new FadeInTransition());
         }
 
         if(container.getInput().isKeyPressed(Input.KEY_R)){
