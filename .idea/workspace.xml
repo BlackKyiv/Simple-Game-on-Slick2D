@@ -76,8 +76,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;bab" />
         <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;" />
+        <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;bab" />
         <option value="irazubrytska &lt;zubrytska.ira@gmail.com&gt;" />
       </list>
     </option>
@@ -215,11 +215,11 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="377" y="193" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1280.777@0.23.1280.777" timestamp="1590619216047" />
-    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590664380589">
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590664404980">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590590365352" />
-    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1590664380589" />
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1590664404980" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590490635525">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -248,15 +248,16 @@
     <state width="772" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
     <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
     <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590664317861" />
-    <state x="446" y="79" key="MultipleFileMergeDialog" timestamp="1590590311709">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="357" y="94" key="MultipleFileMergeDialog" timestamp="1590664499597">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="446" y="79" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1590590311709" />
-    <state x="234" y="103" key="Vcs.Push.Dialog.v2" timestamp="1590603907510">
+    <state x="357" y="94" key="MultipleFileMergeDialog/0.23.1280.777@0.23.1280.777" timestamp="1590664499597" />
+    <state x="234" y="103" key="Vcs.Push.Dialog.v2" timestamp="1590664407384">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590590295065" />
-    <state x="234" y="103" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1590603907510" />
+    <state x="234" y="103" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1590664407384" />
     <state x="394" y="366" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590611264825">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
