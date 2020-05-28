@@ -87,9 +87,7 @@ public class MapLevel5 extends Level {
 
         if (boss.isAlive()) {
             boss.getImageBoss().draw(boss.getX()-50,boss.getY()-50);;
-
         }
-
     }
 
     @Override

@@ -91,6 +91,7 @@ public class MapLevel4 extends Level {
 
 
     private void initEnemies() throws SlickException {
+        ArrayList<Coronavirus> coronas = new ArrayList<>();
         Coronavirus corona1 = new Coronavirus(950, 400);
         coronas.add(corona1);
         Coronavirus corona2 = new Coronavirus(50, 390);

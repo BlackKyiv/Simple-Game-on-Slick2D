@@ -291,6 +291,7 @@ public abstract class Level extends BasicGameState {
         tapki = new ArrayList<>();
         teleports = new ArrayList<>();
 
+
         initLevel(container, game);
 
         initAttackZone();
