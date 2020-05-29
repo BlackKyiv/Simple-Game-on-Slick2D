@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class MapLevel5 extends Level {
 
-    private Image background, wall, subWall, t1,t2;
+    private Image background, wall, subWall, t1,t2, arrow;
     private int wallThickness=20;
 
     private Boss boss;
@@ -55,7 +55,7 @@ public class MapLevel5 extends Level {
         subWall = wall.getSubImage(0,0,85,85);
 
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
-        addObstacle(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
+        addObstacle(new Rectangle(1100, 0, 25, SetupGame.height)); //right frame
         addObstacle(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
         addObstacle(new Rectangle(0,680,100,20)); //left ground
         addObstacle(new Rectangle(1000,680,100,20)); //right ground
@@ -75,6 +75,7 @@ public class MapLevel5 extends Level {
         t2 = new Image(path+"teleport.png");
 
         addTeleport(new Teleport1(10,15,80,85,1010,595));
+        arrow = new Image(path+"arrow.png");
     }
 
     private void initDoors() throws SlickException {
@@ -126,6 +127,9 @@ public class MapLevel5 extends Level {
 
         if (boss.isAlive()) {
             boss.getImageBoss().draw(boss.getX()-50,boss.getY()-50);;
+        }
+        if(!isSymbolPresent()){
+            arrow.draw(1050,50,50,50);
         }
     }
 
