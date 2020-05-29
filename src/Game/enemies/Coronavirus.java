@@ -277,8 +277,8 @@ public class Coronavirus extends Rectangle implements Enemy {
         babkaWidth = +platform.getWidth();
         babkaHeight = platform.getHeight();
 
-       Rectangle arm1B = new Rectangle(this.getX() - visionHorizontalLeft, this.getY() - visionVerticalUp, visionHorizontalLeft, visionVerticalUp + this.getHeight() + visionVerticalDown);
-        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth(), this.getY() - visionVerticalUp, visionHorizontalRight, visionVerticalUp + this.getHeight() + visionVerticalDown);
+        Rectangle arm1B = new Rectangle(this.getX()+this.getWidth()/2 - visionHorizontalLeft, this.getY() - visionVerticalUp, visionHorizontalLeft, visionVerticalUp + this.getHeight() + visionVerticalDown);
+        Rectangle arm2B = new Rectangle(this.getX() + this.getWidth()/2, this.getY() - visionVerticalUp, visionHorizontalRight, visionVerticalUp + this.getHeight() + visionVerticalDown);
 
         if (arm1B.intersects(platform) && goRight == false || arm2B.intersects(platform) && goRight) {
             babkaNoticed = true;

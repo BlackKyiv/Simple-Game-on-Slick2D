@@ -15,16 +15,13 @@ import java.util.ArrayList;
 
 public class MapLevel4 extends Level {
 
-    private Image background, wall, wallpaper, window, doorDown, doorUp,arrow;
-    private SpriteSheet wallSS, floorSS, wallpaper1;
-    private  Teleport winnerT;
+    private Image background, wall,subWall,arrow;
+    private SpriteSheet wallSS;
 
     private ArrayList<Teleport> teleports;
     private  ArrayList<Coronavirus> coronas = new ArrayList<>();
 
-    private int wallWidth = 25, floorHeight = 15;
-    private int floorH = 225, floorW = 900;
-    private int x_offset = 200;
+    private int wallThickness=25;
 
     private String path = SetupGame.path;
 
@@ -37,70 +34,74 @@ public class MapLevel4 extends Level {
 
     private void initTapki() throws SlickException {
         addTapok(new TapokPick(100,250));
+        addTapok(new TapokPick(600,50));
+        addTapok(new TapokPick(1050,150));
     }
 
     @Override
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
-        setBabka(new Babka(800, 350));
+        setBabka(new Babka(1000, 0));
+        getBabka().setStandingLeft(true);
         setId(5);
         setNextLevelId(6);
         initDoors();
         initWalls();
         initEnemies();
         initTapki();
-        setSymbol(new Symbol(50, 150));
-        setExitNextLevel(1050, 650, 50, 50);
+        setSymbol(new Symbol(95, 440));
+        setExitNextLevel(1050, 620, 50, 50);
     }
 
     private void initWalls() throws SlickException {
         background = new Image(path + "background.jpg");
         wall = new Image(path + "wall.jpg");
+        subWall = wall.getSubImage(0,0,85,85);
 
-        addObstacle(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
-        addObstacle(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
-        addObstacle(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
-        addObstacle(new Rectangle(0, SetupGame.height - floorH - floorHeight, floorW, floorHeight)); //second floor
-        addObstacle(new Rectangle(0, SetupGame.height - floorH * 2 - floorHeight * 2, floorW + 60, floorHeight * 2));//roof
-        addObstacle(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
         addObstacle(new Rectangle(1100, 0, 25, SetupGame.height)); //right frame
         addObstacle(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
+        addObstacle(new Rectangle(0,SetupGame.height-wallThickness,200,wallThickness)); //left terrain
+        addObstacle(new Rectangle(900,SetupGame.height-wallThickness,200,wallThickness)); //right terrain
+
+        addObstacle(new Rectangle(200,90,900,wallThickness)); //1-st row
+        addObstacle(new Rectangle(0,190,800,wallThickness)); //2-nd row left
+        addObstacle(new Rectangle(900,190,200,wallThickness)); //2-nd row right
+        addObstacle(new Rectangle(0,290,300,wallThickness)); //3-rd row left
+        addObstacle(new Rectangle(400,290,700,wallThickness)); //3-rd row centre
+        addObstacle(new Rectangle(0,410,900,wallThickness)); //4-th row
+
+        addObstacle(new Rectangle(100,450,25,wallThickness)); //below symbol
+        addObstacle(new Rectangle(0,590,75,wallThickness)); //stair to symbol
+
+        addObstacle(new Rectangle(225,600,150,wallThickness)); //left stair
+        addObstacle(new Rectangle(475,520,150,wallThickness)); //center stair
+        addObstacle(new Rectangle(725,600,150,wallThickness)); //right stair
 
         wallSS = new SpriteSheet(wall, 10, 10);
-        floorSS = new SpriteSheet(wall, 10, 10);
-
-        wallpaper = new Image(path + "wallpaper.jpg");
-        wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
-
-        window = new Image(path + "window.jpg");
-
-        doorDown = new Image(path + "door1.png");
-        doorUp = new Image(path + "door1.png");
         arrow = new Image(path+"arrow.png");
-
-        teleports = new ArrayList<>();
-        winnerT = new Teleport(1030, 630, 70, 70, 0, 0);
-        teleports.add(winnerT);
-
-        addTeleport(new Teleport1(110,600,80,85,110,375));
     }
 
     private void initDoors() throws SlickException {
-        addDoor(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85, false));
+        //addDoor(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85, false));
     }
 
 
     private void initEnemies() throws SlickException {
-        Coronavirus corona1 = new Coronavirus(950, 400);
+        coronas = new ArrayList<>();
+        Coronavirus corona1 = new Coronavirus(500,20);
         coronas.add(corona1);
-        Coronavirus corona2 = new Coronavirus(50, 390);
+        Coronavirus corona2 = new Coronavirus(900,125);
         coronas.add(corona2);
-        Coronavirus corona3 = new Coronavirus(200, 600);
+        Coronavirus corona3 = new Coronavirus(100,225);
         coronas.add(corona3);
-        Coronavirus corona4 = new Coronavirus(700, 620);
+        Coronavirus corona4 = new Coronavirus(100,325);
         coronas.add(corona4);
-        Coronavirus corona5 = new Coronavirus(400, 150);
+        Coronavirus corona5 = new Coronavirus(900,325);
         coronas.add(corona5);
+        Coronavirus corona6 = new Coronavirus(525,450);
+        coronas.add(corona6);
+        Coronavirus corona7 = new Coronavirus(50,630);
+        coronas.add(corona7);
         for(Coronavirus c: coronas){
             if(c instanceof Coronavirus){
                 addEnemy(c);
@@ -108,44 +109,67 @@ public class MapLevel4 extends Level {
                 c.setVisionVertical(20,0,20,0);
             }
         }
-        Doctor doctor = new Doctor(900, 605);
-        doctor.setSpace(150);
-        doctor.setVisionVertical(50,0,50,0);
+        corona6.setSpace(50);
+
+        Doctor doctor = new Doctor(500, 330);
+        doctor.setSpace(200);
+        doctor.setVisionVertical(20,0,50,0);
         addEnemy(doctor);
+
+        Turrel t = new Turrel(0,510);
+        t.setRight();
+        t.setTimeBeforeShoot(400);
+        t.setRangeOfSight(400);
+        addEnemy(t);
     }
 
     @Override
     protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
         background.draw(0, 0, 1100, 700);
-
-        wallpaper.startUse();
-        for (int a = wallWidth; a <= SetupGame.width - x_offset; a += 10) {
-            wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH, 10, floorH - floorHeight);
-            wallpaper1.getSubImage(0, 0, 333, 850).drawEmbedded(a, SetupGame.height - floorH * 2, 10, floorH - floorHeight);
-        }
-        wallpaper.endUse();
         wall.startUse();
-        for (int a = wallWidth; a < SetupGame.width - x_offset; a += floorHeight) {
-            floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorHeight, floorHeight*2, floorHeight);
-            floorSS.getSubImage(0, 0, 55, 55).drawEmbedded(a, SetupGame.height - floorH - floorHeight, floorHeight*2, floorHeight);
+        for(int a=0; a<SetupGame.width; a+=wallThickness){ //horizontal
+            if(a>=200) {
+                subWall.drawEmbedded(a, 90, wallThickness, wallThickness); //1-st row
+                if(a>=400){
+                    subWall.drawEmbedded(a,290,wallThickness,wallThickness); //3-rd right
+                }
+            }
+            if(a<900) {
+                subWall.drawEmbedded(a, 410, wallThickness, wallThickness); //4-th row
+                if(a<70){
+                    subWall.drawEmbedded(a,590,wallThickness,wallThickness); //stair to symbol
+                }
+                if(a>=100 && a<125){
+                    subWall.drawEmbedded(a,490,wallThickness,wallThickness); //below symbol
+                }
+                if(a<200){
+                    subWall.drawEmbedded(a,SetupGame.height-wallThickness,wallThickness,wallThickness); //left terrain
+                }
+                if(a<300){
+                    subWall.drawEmbedded(a,290,wallThickness,wallThickness); //3-rd left
+                }
+                if(a<800) {
+                    subWall.drawEmbedded(a, 190, wallThickness, wallThickness); //2-nd left
+                }
+                if(a>=225 && a<375){
+                    subWall.drawEmbedded(a,600,wallThickness,wallThickness); //left stair
+                }
+                if(a>=475 && a<625){
+                    subWall.drawEmbedded(a,520,wallThickness,wallThickness); //center stair
+                }
+                if(a>=725 && a<875){
+                    subWall.drawEmbedded(a,600,wallThickness,wallThickness); //right stair
+                }
+            }
+            if(a>=900) {
+                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(a, 190, wallThickness, wallThickness); //2-nd right
+                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(a, SetupGame.height - wallThickness, wallThickness, wallThickness); //right terrain
+            }
         }
-        for (int a = 0; a < SetupGame.width - x_offset+50; a += floorHeight*2) {
-            floorSS.getSubImage(0, 0, 110, 110).drawEmbedded(a, SetupGame.height - floorH * 2 - floorHeight * 2, floorHeight*2, floorHeight*2);
-        }
-        for (int a = SetupGame.height-floorHeight; a > SetupGame.height-2*floorH-2*floorHeight; a -= wallWidth) {
-            wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(0, a, wallWidth, wallWidth);
-            if(a<=580)
-                wallSS.getSubImage(0, 0, 85, 85).drawEmbedded(SetupGame.width-x_offset, a, wallWidth, wallWidth);
-        }
-        wallSS.getSubImage(0,0,85,60).drawEmbedded(SetupGame.width-x_offset,585,wallWidth,15); //above doors
         wall.endUse();
 
-        window.draw(700, 300, 100, 100);
-        window.draw(400, 300, 100, 100);
-        window.draw(700, 550, 100, 100);
-        window.draw(400, 550, 100, 100);
-        doorUp.draw(110, 375, 80, 85);
-        doorDown.draw(110, 600, 80, 85);
+        if(!isSymbolPresent())
+            arrow.draw(1050,620,50,50);
     }
 
     @Override

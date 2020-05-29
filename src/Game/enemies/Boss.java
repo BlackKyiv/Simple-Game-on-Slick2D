@@ -152,6 +152,7 @@ public class Boss extends Rectangle implements Enemy {
     }
 
     public void die() {
+
         alive = false;
     }
 
@@ -209,45 +210,61 @@ public class Boss extends Rectangle implements Enemy {
         if (zoneActive1){
             zonesActive--;
             zoneAlive1=false;
+            zoneActive1=false;
             spawn+=2;
+            return;
         }else if(zoneActive2){
             zonesActive--;
+            zoneActive2=false;
             zoneAlive2=false;
             spawn+=2;
+            return;
         }
         else if(zoneActive3){
             zonesActive--;
+            zoneActive3=false;
             zoneAlive3=false;
             spawn+=2;
+            return;
         }
         else if(zoneActive4){
             zonesActive--;
+            zoneActive4=false;
             zoneAlive4=false;
             spawn+=2;
+            return;
         }
         else if(zoneActive5){
             zonesActive--;
+            zoneActive5=false;
             zoneAlive5=false;
             spawn+=2;
+            return;
         }
         else if(zoneActive6){
             zonesActive--;
+            zoneActive6=false;
             zoneAlive6=false;
             spawn+=2;
+            return;
         }
         else if(zoneActive7){
             zonesActive--;
+            zoneActive7=false;
             zoneAlive7=false;
             spawn+=2;
+            return;
         }
     }
 
     public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
         ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
-        for (int i=0; i<=spawn;i++){
-            CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX(),zoneAttack.getCenterY());
+        int shift=0;
+        for (int i=0; i<spawn;i++){
+            CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX()+shift,zoneAttack.getCenterY()+shift);
             c.setSpeed(4);
             coronas.add(c);
+            shift+=25;
         }
         spawnActive=false;
         return coronas;
