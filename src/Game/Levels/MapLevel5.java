@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 public class MapLevel5 extends Level {
 
-    private Image background, wall, subWall, t1,t2;
-    private int wallThickness=20;
+    private Image background, t1,t2;
+
     private Boss boss;
 
+    private Lava lava;
     private String path = SetupGame.path;
 
     @Override
@@ -35,9 +36,12 @@ public class MapLevel5 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-
+        lava = new Lava(SetupGame.height-5, SetupGame.height-110);
         setSymbol(new Symbol(1000, 50));
         setExitNextLevel(1050, 650, 50, 50);
+        boss=new Boss(300, 150);
+        addEnemy(boss);
+
         //System.out.println(enemies.size());
     }
 
@@ -46,8 +50,7 @@ public class MapLevel5 extends Level {
 
     private void initWalls() throws SlickException {
         background = new Image(path + "background.jpg");
-        wall = new Image(path+"wall.jpg");
-        subWall = wall.getSubImage(0,0,85,85);
+        
 
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
         addObstacle(new Rectangle(1100, 0, 25, SetupGame.height-90)); //right frame
@@ -64,6 +67,7 @@ public class MapLevel5 extends Level {
         addObstacle(new Rectangle(250,200,20,160));
         addObstacle(new Rectangle(830,440,20,160)); //right vertical
         addObstacle(new Rectangle(830,200,20,160));
+        addObstacle(new Rectangle(300,680, 500,20));
 
         t1 = new Image(path+"teleport.png");
         t2 = new Image(path+"teleport.png");
@@ -75,44 +79,17 @@ public class MapLevel5 extends Level {
     }
 
     private void initEnemies() throws SlickException {
-        boss=new Boss(300, 150);
-        addEnemy(boss);
     }
 
     @Override
     protected void renderLevel(GameContainer container, StateBasedGame game, Graphics g) {
         background.draw(0, 0, 1100, 700);
-
-        subWall.startUse();
-        for(int a=0; a<SetupGame.width; a+=wallThickness){
-            if(a<100){
-                subWall.drawEmbedded(a,680,wallThickness,wallThickness); //left horizontal
-                subWall.drawEmbedded(a,500,wallThickness,wallThickness);
-                subWall.drawEmbedded(a,300,wallThickness,wallThickness);
-                subWall.drawEmbedded(a,100,wallThickness,wallThickness);
-            }
-            if(a>=1000){
-                subWall.drawEmbedded(a,680,wallThickness,wallThickness); //right horizontal
-                subWall.drawEmbedded(a,500,wallThickness,wallThickness);
-                subWall.drawEmbedded(a,300,wallThickness,wallThickness);
-                subWall.drawEmbedded(a,140,wallThickness,wallThickness);
-            }
-        }
-        for(int a=0; a<SetupGame.height; a+=wallThickness){
-            if(a>=200 && a<360){
-                subWall.drawEmbedded(250,a,wallThickness,wallThickness); //upper vertical
-                subWall.drawEmbedded(830,a,wallThickness,wallThickness);
-            }
-            if(a>=440 && a<600){
-                subWall.drawEmbedded(250,a,wallThickness,wallThickness); //lower vertical
-                subWall.drawEmbedded(830,a,wallThickness,wallThickness);
-            }
-        }
-        subWall.endUse();
-
         t1.draw(10,15,80,85);
         t2.draw(1010,595,80,85);
-        //drawObstacles(g);
+        g.setColor(Color.black);
+        drawObstacles(g);
+        g.setColor(Color.orange);
+        g.fill(lava);
 
         if (boss.isAlive()) {
             boss.getImageBoss().draw(boss.getX()-50,boss.getY()-50);;
@@ -125,6 +102,11 @@ public class MapLevel5 extends Level {
             setReadyToGoNextLevel(true);
         }
         boss.update(delta);
+        lava.update(delta);
+        if(getBabka().intersects(lava)) {
+            t.start();
+            getBabka().die();
+        }
 
         if(boss.zonePresent()&&boss.spawnActive()) {
             ArrayList<CoronaSmall> c = boss.spawnCorona();
