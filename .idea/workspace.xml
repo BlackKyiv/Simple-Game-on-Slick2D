@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d5f24b8-58fe-4878-a77e-11d4367c85b8" name="Default Changelist" comment="boss animation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/enemies/Boss.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/enemies/CoronaSmall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/enemies/CoronaSmall.java" afterDir="false" />
-    </list>
+    <list default="true" id="5d5f24b8-58fe-4878-a77e-11d4367c85b8" name="Default Changelist" comment="boss animation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -192,29 +182,29 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590490635525" />
-    <state width="1877" height="240" key="GridCell.Tab.0.bottom" timestamp="1590616184638">
+    <state width="1877" height="240" key="GridCell.Tab.0.bottom" timestamp="1590616302598">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
-    <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590616302598" />
     <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590614655816" />
-    <state width="1877" height="240" key="GridCell.Tab.0.center" timestamp="1590616184637">
+    <state width="1877" height="240" key="GridCell.Tab.0.center" timestamp="1590616302598">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
-    <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590616302598" />
     <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590614655814" />
-    <state width="1877" height="240" key="GridCell.Tab.0.left" timestamp="1590616184637">
+    <state width="1877" height="240" key="GridCell.Tab.0.left" timestamp="1590616302598">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590590354296" />
-    <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590616302598" />
     <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590614655814" />
-    <state width="1877" height="240" key="GridCell.Tab.0.right" timestamp="1590616184637">
+    <state width="1877" height="240" key="GridCell.Tab.0.right" timestamp="1590616302598">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="772" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590590354297" />
-    <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590616302598" />
     <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590614655815" />
     <state x="446" y="79" key="MultipleFileMergeDialog" timestamp="1590590311709">
       <screen x="0" y="0" width="1600" height="860" />
