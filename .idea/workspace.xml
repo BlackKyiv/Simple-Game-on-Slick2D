@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8369fda-6606-4afe-a488-2269382a9f05" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/SetupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/SetupGame.java" afterDir="false" />
-    </list>
+    <list default="true" id="f8369fda-6606-4afe-a488-2269382a9f05" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590755146234</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added exits on each level &amp; enemies on 3-rd">
+      <created>1590768898329</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1590768898329</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -209,7 +206,8 @@
     <MESSAGE value="map level 4 done" />
     <MESSAGE value="music changes after escape" />
     <MESSAGE value="level 5 walls done" />
-    <option name="LAST_COMMIT_MESSAGE" value="level 5 walls done" />
+    <MESSAGE value="added exits on each level &amp; enemies on 3-rd" />
+    <option name="LAST_COMMIT_MESSAGE" value="added exits on each level &amp; enemies on 3-rd" />
   </component>
   <component name="WindowStateProjectService">
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1590575954441">
@@ -220,10 +218,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="331" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590493692498" />
-    <state x="401" y="0" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590755145592">
+    <state x="401" y="0" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590768897027">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590755145592" />
+    <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590768897027" />
     <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1590614638996" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590490635525">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -257,10 +255,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="446" y="79" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1590754488187" />
-    <state x="292" y="88" key="Vcs.Push.Dialog.v2" timestamp="1590755159730">
+    <state x="292" y="88" key="Vcs.Push.Dialog.v2" timestamp="1590768900206">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590755159730" />
+    <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590768900206" />
     <state x="234" y="103" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1590603907510" />
     <state x="446" y="217" key="com.intellij.ide.util.TipDialog" timestamp="1590752551041">
       <screen x="0" y="0" width="1600" height="860" />
