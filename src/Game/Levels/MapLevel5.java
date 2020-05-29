@@ -19,6 +19,7 @@ public class MapLevel5 extends Level {
 
     private Boss boss;
 
+    private Lava lava;
     private String path = SetupGame.path;
 
     @Override
@@ -35,11 +36,12 @@ public class MapLevel5 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-
+        lava = new Lava(SetupGame.height-5, SetupGame.height-110);
         setSymbol(new Symbol(1000, 50));
         setExitNextLevel(1050, 650, 50, 50);
         boss=new Boss(300, 150);
         addEnemy(boss);
+
         //System.out.println(enemies.size());
     }
 
@@ -65,6 +67,7 @@ public class MapLevel5 extends Level {
         addObstacle(new Rectangle(250,200,20,160));
         addObstacle(new Rectangle(830,440,20,160)); //right vertical
         addObstacle(new Rectangle(830,200,20,160));
+        addObstacle(new Rectangle(300,680, 500,20));
 
         t1 = new Image(path+"teleport.png");
         t2 = new Image(path+"teleport.png");
@@ -83,7 +86,10 @@ public class MapLevel5 extends Level {
         background.draw(0, 0, 1100, 700);
         t1.draw(10,15,80,85);
         t2.draw(1010,595,80,85);
+        g.setColor(Color.black);
         drawObstacles(g);
+        g.setColor(Color.orange);
+        g.fill(lava);
 
         if (boss.isAlive()) {
             boss.getImageBoss().draw(boss.getX()-50,boss.getY()-50);;
@@ -96,6 +102,11 @@ public class MapLevel5 extends Level {
             setReadyToGoNextLevel(true);
         }
         boss.update(delta);
+        lava.update(delta);
+        if(getBabka().intersects(lava)) {
+            t.start();
+            getBabka().die();
+        }
 
         if(boss.zonePresent()&&boss.spawnActive()) {
             ArrayList<CoronaSmall> c = boss.spawnCorona();
