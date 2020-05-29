@@ -246,6 +246,7 @@ public abstract class Level extends BasicGameState {
         updateTeleport(container);
 
         if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+            SetupGame.entryMusic.loop();
             game.enterState(1,new FadeOutTransition(), new FadeInTransition());
         }
 
