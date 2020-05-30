@@ -285,10 +285,10 @@ public abstract class Level extends BasicGameState {
         if (clock.getPassedTime()<=30000){
             stars=3;
         }
-        if (clock.getPassedTime()>30000){
+        if (clock.getPassedTime()>30000&&clock.getPassedTime()<=45000){
             stars=2;
         }
-        if (clock.getPassedTime()>45000){
+        if (clock.getPassedTime()>45000&&clock.getPassedTime()<=60000){
             stars=1;
         }
         if (clock.getPassedTime()>60000){
