@@ -29,6 +29,7 @@ public abstract class Level extends BasicGameState {
     private Symbol symbol;
     private Clock clock;
     private int score = 0;
+    private int stars =0;
     private Image tapok;
     private String path= SetupGame.path;
     Music gameOverMusic;
@@ -150,12 +151,12 @@ public abstract class Level extends BasicGameState {
     }
 
     private void drawScoreTable(Graphics graphics) {
-        tapok.draw(850, 28);
+        tapok.draw(900, 28);
         graphics.setColor(Color.black);
-        graphics.drawString("X" + babka.tapkiLeft(), 870, 25);
+        graphics.drawString("X" + babka.tapkiLeft(), 925, 25);
 
-        graphics.drawString("Time:"+(int)(clock.getPassedTime()/1000)+"s", 900, 25);
-        graphics.drawString("Score:" + score, 980, 25);
+        graphics.drawString("Time:"+(int)(clock.getPassedTime()/1000)+"s", 955, 25);
+      //  graphics.drawString("Score:" + score, 980, 25);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -244,15 +245,19 @@ public abstract class Level extends BasicGameState {
         updateBullets();
         updateTapki();
         updateTeleport(container);
+        updateStars();
 
-        if(container.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+        if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             SetupGame.entryMusic.loop();
             game.enterState(1,new FadeOutTransition(), new FadeInTransition());
         }
 
         if(readyToGoNextLevel && babka.intersects(exitNextLevel)){
             System.out.println("Our id"+id+" Next level id:"+nextLevelId);
-            game.enterState(7, new FadeOutTransition(), new FadeInTransition());
+            LevelScore.setLevelScore (stars);
+            restart(container, game);
+            game.enterState(7);
+
         }
 
         if(container.getInput().isKeyPressed(Input.KEY_R)){
@@ -264,7 +269,7 @@ public abstract class Level extends BasicGameState {
 
         if(!babka.isAlive()){
             gameOverMusic.loop();
-
+            GameOver.setReplayLevel(this.id);
             if (t.isFinished()){
                 game.enterState(8);
 
@@ -273,7 +278,26 @@ public abstract class Level extends BasicGameState {
 
 
         }
+
     }
+
+    private void updateStars(){
+        if (clock.getPassedTime()<=30000){
+            stars=3;
+        }
+        if (clock.getPassedTime()>30000){
+            stars=2;
+        }
+        if (clock.getPassedTime()>45000){
+            stars=1;
+        }
+        if (clock.getPassedTime()>60000){
+            stars=0;
+        }
+        LevelScore.setLevelTime((int)(clock.getPassedTime()/1000));
+
+    }
+
 
     private void updateSymbol() {
         if (symbol.isPresent()) {
@@ -501,6 +525,7 @@ public abstract class Level extends BasicGameState {
 
         }
     }
+
 
     protected boolean isReadyToGoNextLevel(){
         return readyToGoNextLevel;

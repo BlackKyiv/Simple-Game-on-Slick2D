@@ -261,7 +261,7 @@ public class Boss extends Rectangle implements Enemy {
         ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
         int shift=0;
         for (int i=0; i<spawn;i++){
-            CoronaSmall c = new CoronaSmall(zoneAttack.getCenterX()+shift,zoneAttack.getCenterY()+shift);
+            CoronaSmall c = new CoronaSmall(this.getCenterX()+shift,this.getCenterY()+shift);
             c.setSpeed(4);
             coronas.add(c);
             shift+=25;
