@@ -25,11 +25,10 @@ public class MapLevel4 extends Level {
 
     private String path = SetupGame.path;
 
-    private boolean nextLevel=true;
 
     @Override
     public int getID() {
-        return 5;
+        return 3;
     }
 
     private void initTapki() throws SlickException {
@@ -42,8 +41,8 @@ public class MapLevel4 extends Level {
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
         setBabka(new Babka(1000, 0));
         getBabka().setStandingLeft(true);
-        setId(5);
-        setNextLevelId(6);
+        setId(3);
+        setNextLevelId(4);
         initDoors();
         initWalls();
         initEnemies();

@@ -44,7 +44,6 @@ public class MapLevel5 extends Level {
         addEnemy(boss);
         setExitNextLevel(1050,50,50,50);
 
-        //System.out.println(enemies.size());
     }
 
     private void initTapki() {

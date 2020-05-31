@@ -29,14 +29,14 @@ public class MapLevel2 extends Level {
 
     @Override
     public int getID() {
-        return 3;
+        return 5;
     }
 
     @Override
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
         setBabka(new Babka(40, 600));
-        setId(3);
-        setNextLevelId(4);
+        setId(5);
+        setNextLevelId(6);
         initDoors();
         initWalls();
         initEnemies();
