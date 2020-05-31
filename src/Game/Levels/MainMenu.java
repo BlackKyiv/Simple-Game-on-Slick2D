@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.*;
 
 import javax.management.monitor.CounterMonitor;
+import java.lang.management.MemoryUsage;
 
 public class MainMenu extends BasicGameState {
 
@@ -29,6 +30,7 @@ public class MainMenu extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         music = SetupGame.entryMusic;
         music.loop();
+        music.setVolume(0.4f);
         studios = new Image(path+"studios.png");
         presents = new Image(path+"presents.png");
         background = new Image(path+"main_menu_background.png");
@@ -43,6 +45,7 @@ public class MainMenu extends BasicGameState {
         if(timePassed>3000)
             presents.draw(0,0,1100,700);
         if(timePassed>7000) {
+            music.setVolume(0.3f);
             background.draw(0, 0, 1100, 700);
             play.draw(850, 600);
         }

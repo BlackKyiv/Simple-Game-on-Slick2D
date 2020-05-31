@@ -60,22 +60,27 @@ public class LevelsMenu  extends BasicGameState {
         if(level1MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(2, new FadeOutTransition(),new FadeInTransition()); //level1
             music.loop();
+            music.setVolume(0.2f);
         }
         if(level2MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(3, new FadeOutTransition(),new FadeInTransition()); //level2
             music.loop();
+            music.setVolume(0.2f);
         }
         if(level3MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(4, new FadeOutTransition(),new FadeInTransition()); //level3
             music.loop();
+            music.setVolume(0.2f);
         }
         if(level4MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(5, new FadeOutTransition(),new FadeInTransition()); //level4
             music.loop();
+            music.setVolume(0.2f);
         }
         if(level5MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(6, new FadeOutTransition(),new FadeInTransition()); //level5
             music.loop();
+            music.setVolume(0.2f);
         }
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             game.enterState(0, new FadeOutTransition(),new FadeInTransition()); //main menu

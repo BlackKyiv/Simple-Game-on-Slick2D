@@ -45,8 +45,9 @@ public class GameOver extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(replayMOA.isMouseOver()&& Mouse.isButtonDown(0)){
             game.enterState( enterState, new FadeOutTransition(),new FadeInTransition());
-           music=SetupGame.levelMusic;
+            music=SetupGame.levelMusic;
             music.loop();
+            music.setVolume(0.2f);
         }
         if(levelsMOA.isMouseOver()&& Mouse.isButtonDown(0)){
 
