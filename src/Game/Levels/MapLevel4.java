@@ -41,7 +41,7 @@ public class MapLevel4 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-        setSymbol(new Symbol(400, 150));
+        setSymbol(new Symbol(550,310));
         setExitNextLevel(400,35,50,50);
     }
 

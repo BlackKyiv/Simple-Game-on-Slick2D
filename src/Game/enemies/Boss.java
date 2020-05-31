@@ -37,7 +37,7 @@ public class Boss extends Rectangle implements Enemy {
 
     private boolean spawnActive=true;
 
-    int zonesActive=7;
+    int zonesActive=4;
     int spawn =3;
 
     private Image boss0 = new Image (SetupGame.path+"boss0.png");
@@ -57,10 +57,10 @@ public class Boss extends Rectangle implements Enemy {
 
     public Boss (int x, int y) throws SlickException {
         super(x, y, 500, 500);
-    initialY=y;
-        zoneGap = new Timer(5000);
+        initialY=y;
+        zoneGap = new Timer(2500);
         zoneGap.start();
-        zoneCreate = new Timer(10000);
+        zoneCreate = new Timer(17000);
         zoneCreate.start();
         getHitZone();
     }
@@ -101,10 +101,10 @@ public class Boss extends Rectangle implements Enemy {
 
 
     public void update(int delta) {
-
-       if (zonesActive==0){
-           die();
-       }
+        System.out.println(zonesActive);
+        if (zonesActive==0){
+            die();
+        }
         move();
         zoneGap.update(delta);
         zoneCreate.update(delta);
@@ -121,9 +121,9 @@ public class Boss extends Rectangle implements Enemy {
 
                 getHitZone();
                 zonePresent=false;
-                zoneGap = new Timer(5000);
+                zoneGap = new Timer(2500);
                 zoneGap.start();
-                zoneCreate = new Timer(10000);
+                zoneCreate = new Timer(17000);
                 zoneCreate.start();
             }
         }
@@ -136,17 +136,16 @@ public class Boss extends Rectangle implements Enemy {
     private void move() {
         if (this.getY()+this.getHeight()>=650){
             goDown=false;
-
         }
         if (this.getY()<=50){
             goDown=true;
         }
-     if (goDown) {
-       this.setCenterY(getCenterY() + 1);
-       zoneAttack.setCenterY( zoneAttack.getCenterY() + 1);
-       }else{
-         this.setCenterY(getCenterY() - 1);
-         zoneAttack.setCenterY( zoneAttack.getCenterY() - 1);
+        if (goDown) {
+            this.setCenterY(getCenterY() + 1);
+            zoneAttack.setCenterY( zoneAttack.getCenterY() + 1);
+        }else{
+            this.setCenterY(getCenterY() - 1);
+            zoneAttack.setCenterY( zoneAttack.getCenterY() - 1);
      }
 
     }
@@ -187,7 +186,7 @@ public class Boss extends Rectangle implements Enemy {
     }
 
     public Rectangle getZoneAttack(){
-        return zoneAttack ;
+        return zoneAttack;
 
     }
 
@@ -260,13 +259,16 @@ public class Boss extends Rectangle implements Enemy {
     public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
         ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
         int shift=0;
-        for (int i=0; i<spawn;i++){
-            CoronaSmall c = new CoronaSmall(this.getCenterX()+shift,this.getCenterY()+shift);
-            c.setSpeed(4);
-            coronas.add(c);
-            shift+=25;
+        if(isAlive()) {
+            for (int i = 0; i < spawn; i++) {
+                CoronaSmall c = new CoronaSmall(this.getCenterX() + shift, this.getCenterY() + shift);
+                c.setSpeed(4);
+                coronas.add(c);
+                shift += 25;
+            }
+
         }
-        spawnActive=false;
+        spawnActive = false;
         return coronas;
 
     }

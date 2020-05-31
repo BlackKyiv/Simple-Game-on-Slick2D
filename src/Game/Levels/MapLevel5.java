@@ -57,14 +57,14 @@ public class MapLevel5 extends Level {
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
         addObstacle(new Rectangle(1100, 0, 25, SetupGame.height)); //right frame
         addObstacle(new Rectangle(0, -25, SetupGame.width, 25)); //upper frame
-        addObstacle(new Rectangle(0,680,100,20)); //left ground
-        addObstacle(new Rectangle(1000,680,100,20)); //right ground
-        addObstacle(new Rectangle(0,500,100,20)); //left horizontal
-        addObstacle(new Rectangle(0,300,100,20));
-        addObstacle(new Rectangle(0,100,100,20));
-        addObstacle(new Rectangle(1000,500,100,20)); //right horizontal
-        addObstacle(new Rectangle(1000,300,100,20));
-        addObstacle(new Rectangle(1000,140,100,20 ));
+        addObstacle(new Rectangle(0,680,100,25)); //left ground
+        addObstacle(new Rectangle(1000,680,100,25)); //right ground
+        addObstacle(new Rectangle(0,500,100,25)); //left horizontal
+        addObstacle(new Rectangle(0,300,100,25));
+        addObstacle(new Rectangle(0,100,100,25));
+        addObstacle(new Rectangle(1000,500,100,25)); //right horizontal
+        addObstacle(new Rectangle(1000,300,100,25));
+        addObstacle(new Rectangle(1000,140,100,25 ));
         addObstacle(new Rectangle(250,440,20,160)); //left vertical
         addObstacle(new Rectangle(250,200,20,160));
         addObstacle(new Rectangle(830,440,20,160)); //right vertical
