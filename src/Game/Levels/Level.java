@@ -248,6 +248,7 @@ public abstract class Level extends BasicGameState {
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             SetupGame.entryMusic.loop();
             game.enterState(1,new FadeOutTransition(), new FadeInTransition());
+
         }
 
         if(readyToGoNextLevel && babka.intersects(exitNextLevel)){
@@ -264,7 +265,7 @@ public abstract class Level extends BasicGameState {
 
         if(!babka.isAlive()){
             gameOverMusic.loop();
-            GameOver.setReplayLevel(this.id);
+            GameOver.setReplayLevel(getID());
             if (t.isFinished()){
                 game.enterState(8);
 

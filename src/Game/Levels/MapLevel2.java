@@ -29,7 +29,7 @@ public class MapLevel2 extends Level {
 
     @Override
     public int getID() {
-        return 3;
+        return 5;
     }
 
     @Override

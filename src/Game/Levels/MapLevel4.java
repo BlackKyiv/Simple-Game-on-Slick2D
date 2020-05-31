@@ -29,7 +29,7 @@ public class MapLevel4 extends Level {
 
     @Override
     public int getID() {
-        return 5;
+        return 3;
     }
 
     private void initTapki() throws SlickException {

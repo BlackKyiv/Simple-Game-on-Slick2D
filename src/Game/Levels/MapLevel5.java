@@ -132,6 +132,8 @@ public class MapLevel5 extends Level {
         if(!isSymbolPresent()){
             arrow.draw(1050,50,50,50);
         }
+        g.setColor(Color.black);
+        g.drawString ("Enemy`s lives:"+ boss.livesLeft(),750,25);
     }
 
     @Override

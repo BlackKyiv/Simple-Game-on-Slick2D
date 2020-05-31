@@ -158,31 +158,40 @@ public class Boss extends Rectangle implements Enemy {
 
 
     public void getHitZone() {
-        spawnActive=true;
+
         Random rand = new Random();
         int zone = rand.nextInt(7);
 
         if (zone==0&&zoneAlive1){
             zoneAttack = new Rectangle(this.getX(), this.getY()+100, 100, 100);
             zoneActive1=true;
+            spawnActive=true;
         }else if (zone==1&&zoneAlive2){
           zoneAttack =new  Rectangle(this.getX(), this.getY()+300, 100, 100);
             zoneActive2=true;
+            spawnActive=true;
         }else if (zone==2&&zoneAlive3){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()-100, this.getY()+100, 100, 100);
             zoneActive3=true;
+            spawnActive=true;
         }else if (zone==3&&zoneAlive4){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()-100, this.getY()+300, 100, 100);
             zoneActive4=true;
+            spawnActive=true;
         }else if (zone==4&&zoneAlive5){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY(), 100, 100);
             zoneActive5=true;
+            spawnActive=true;
         }else if (zone==5&&zoneAlive6){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+200, 100, 100);
             zoneActive6=true;
+            spawnActive=true;
         }else if (zone==6&&zoneAlive7){
             zoneAttack =new Rectangle(this.getX()+this.getWidth()/2-50, this.getY()+400, 100, 100);
             zoneActive7=true;
+            spawnActive=true;
+        }else if (isAlive()){
+            getHitZone();
         }
     }
 
@@ -206,6 +215,9 @@ public class Boss extends Rectangle implements Enemy {
         return zonePresent;
     }
 
+    public int livesLeft(){
+        return zonesActive;
+    }
     public void attacked(){
         if (zoneActive1){
             zonesActive--;
