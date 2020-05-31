@@ -28,7 +28,7 @@ public class MapLevel2 extends Level {
 
     @Override
     public int getID() {
-        return 5;
+        return 3;
     }
 
     private void initTapki() throws SlickException {

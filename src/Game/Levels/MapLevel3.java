@@ -75,11 +75,11 @@ public class MapLevel3 extends Level {
         window = new Image(path + "window.jpg");
         door = new Image(path + "door1.png");
 
-        table = new Image(path+"hospital table.jpg");
-        bed = new Image(path+"hospital bed.png");
+        table = new Image(path+"hospital_table.png");
+        bed = new Image(path+"bed.png");
         iv = new Image(path+"iv.png");
         gurney = new Image(path+"gurney.png");
-        picture = new Image(path+"picture.png");
+        picture = new Image(path+"shelf.png");
         shelf = new Image(path+"shelf.png");
         logo = new Image(path+"hospital logo.png");
 
@@ -196,12 +196,13 @@ public class MapLevel3 extends Level {
 
         logo.draw(535,120,30,30);
         iv.draw(250,270,60,140);
-        bed.draw(310,350,150,60);
+        bed.draw(310,350,120,60);
+
         table.draw(530,350,140,60);
         gurney.draw(300,625,120,60);
         gurney.draw(530,625,120,60);
-        picture.draw(570,500,80,60);
-        shelf.draw(250,530,100,50);
+        picture.draw(530,550,140,24);
+       // shelf.draw(220,550,140,24);
 
         if (!isSymbolPresent()) {
             arrow.draw(1050,650,50,50);

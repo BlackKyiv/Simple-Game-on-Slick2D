@@ -29,7 +29,7 @@ public class MapLevel4 extends Level {
 
     @Override
     public int getID() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -213,7 +213,7 @@ public class MapLevel4 extends Level {
             platformSS.getSubImage(0,0,85,170).drawEmbedded(a+300,250,wallWidth,40);
         }
         wall.endUse();
-        helicopter.draw(250,5,250,80);
+        helicopter.draw(250,5,180,80);
 
         if(!isSymbolPresent())
             arrow.draw(550,35,-50,50);
