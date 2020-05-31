@@ -47,7 +47,7 @@ public class LevelsMenu  extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw(0,0,1100,700);
-        level1.draw(400,100,300,80);
+        level1.draw(385,100,300,80);
         level2.draw(400,200,300,80);
         level3.draw(400,300,300,80);
         level4.draw(400,400,300,80);

@@ -99,7 +99,6 @@ public abstract class Level extends BasicGameState {
         initLevel(container, game);
         initAttackZone();
         initScoreTable();
-
         gameOverMusic = new Music(SetupGame.pathMusic+"directed by.wav");
     }
 
@@ -248,8 +247,8 @@ public abstract class Level extends BasicGameState {
 
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             SetupGame.entryMusic.loop();
-            SetupGame.entryMusic.setVolume(0.5f);
             game.enterState(1,new FadeOutTransition(), new FadeInTransition());
+
         }
 
         if(readyToGoNextLevel && babka.intersects(exitNextLevel)){
@@ -266,8 +265,7 @@ public abstract class Level extends BasicGameState {
 
         if(!babka.isAlive()){
             gameOverMusic.loop();
-            gameOverMusic.setVolume(0.4f);
-            GameOver.setReplayLevel(this.id);
+            GameOver.setReplayLevel(getID());
             if (t.isFinished()){
                 game.enterState(8);
 
@@ -280,7 +278,6 @@ public abstract class Level extends BasicGameState {
         if(babka.getCenterY()>SetupGame.height){
             babka.die();
             gameOverMusic.loop();
-            gameOverMusic.setVolume(0.4f);
             GameOver.setReplayLevel(this.id);
             game.enterState(8);
             restart(container, game);
