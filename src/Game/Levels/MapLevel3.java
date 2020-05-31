@@ -14,7 +14,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 public class MapLevel3 extends Level {
-    private Image background, wall, wallpaper, window, door, arrow;
+    private Image background, wall, wallpaper, window, door, table, bed, gurney, iv, picture, shelf, logo, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
 
     private int wallWidth = 25, floorHeight = 15;
@@ -40,7 +40,7 @@ public class MapLevel3 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-        setSymbol(new Symbol(650,605));
+        setSymbol(new Symbol(950,550));
         setExitNextLevel(1050, 650, 50, 50);
     }
 
@@ -74,6 +74,14 @@ public class MapLevel3 extends Level {
 
         window = new Image(path + "window.jpg");
         door = new Image(path + "door1.png");
+
+        table = new Image(path+"hospital table.jpg");
+        bed = new Image(path+"hospital bed.png");
+        iv = new Image(path+"iv.png");
+        gurney = new Image(path+"gurney.png");
+        picture = new Image(path+"picture.png");
+        shelf = new Image(path+"shelf.png");
+        logo = new Image(path+"hospital logo.png");
 
         addTeleport(new Teleport1(800, SetupGame.height - floorHeight - floorH - 85, 80, 85, 800, SetupGame.height - floorHeight - 85));
         arrow = new Image(path + "arrow.png");
@@ -185,6 +193,15 @@ public class MapLevel3 extends Level {
         window.draw(400, 480, 100, 100);
         door.draw(800, SetupGame.height - floorHeight - 85, 80, 85);
         door.draw(800, SetupGame.height - floorHeight - floorH - 85, 80, 85);
+
+        logo.draw(535,120,30,30);
+        iv.draw(250,270,60,140);
+        bed.draw(310,350,150,60);
+        table.draw(530,350,140,60);
+        gurney.draw(300,625,120,60);
+        gurney.draw(530,625,120,60);
+        picture.draw(570,500,80,60);
+        shelf.draw(250,530,100,50);
 
         if (!isSymbolPresent()) {
             arrow.draw(1050,650,50,50);
