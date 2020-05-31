@@ -125,8 +125,6 @@ public abstract class Level extends BasicGameState {
         drawSymbol(g);
         //drawObstacles(g);
         g.setColor(Color.yellow);
-        g.draw(attackZone);
-        g.fill(attackZone);
     }
 
     protected void drawObstacles(Graphics g){
