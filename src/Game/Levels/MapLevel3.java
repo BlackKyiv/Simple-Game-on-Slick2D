@@ -14,7 +14,6 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 public class MapLevel3 extends Level {
-    private Babka babka;
     private Image background, wall, wallpaper, window, door, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
 
@@ -41,7 +40,7 @@ public class MapLevel3 extends Level {
         initWalls();
         initEnemies();
         initTapki();
-        setSymbol(new Symbol(1000, 200));
+        setSymbol(new Symbol(650,605));
         setExitNextLevel(1050, 650, 50, 50);
     }
 
@@ -149,8 +148,8 @@ public class MapLevel3 extends Level {
         addEnemy(doctor3);
 
         Turrel t = new Turrel(700,605);
-        t.setTimeBeforeShoot(400);
-        t.setRangeOfSight(400);
+        t.setTimeBeforeShoot(100);
+        t.setRangeOfSight(500);
         addEnemy(t);
     }
 

@@ -120,7 +120,7 @@ public class MapLevel2 extends Level {
         corona1.setVisionVertical(20,0,20,0);
         //addEnemy(corona1);
 
-        Coronavirus corona2 = new Coronavirus(300,600);
+        Coronavirus corona2 = new Coronavirus(250,580);
         corona2.setSpace(150);
         corona2.setVisionVertical(20,0,20,0);
         addEnemy(corona2);
@@ -156,7 +156,7 @@ public class MapLevel2 extends Level {
         addEnemy(doctor1);
 
         Doctor doctor2 = new Doctor(500,170);
-        doctor2.setSpace(60);
+        doctor2.setSpace(40);
         doctor2.setVisionVertical(50,0,50,0);
         addEnemy(doctor2);
     }
