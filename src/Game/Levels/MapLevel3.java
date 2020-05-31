@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 public class MapLevel3 extends Level {
     private Babka babka;
-    private Image background, wall, wallpaper, window, door;
+    private Image background, wall, wallpaper, window, door, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
 
     private int wallWidth = 25, floorHeight = 15;
-    private int floorH = 300, floorW = 700;
+    private int floorH = 275, floorW = 700;
     private int x_offset = 200;
 
     private String path = SetupGame.path;
@@ -34,21 +34,20 @@ public class MapLevel3 extends Level {
 
     @Override
     protected void initLevel(GameContainer container, StateBasedGame game) throws SlickException {
-        setBabka(new Babka(800, 350));
+        setBabka(new Babka(30, 500));
         setId(3);
         setNextLevelId(5);
         initDoors();
         initWalls();
         initEnemies();
         initTapki();
-        setSymbol(new Symbol(50, 150));
+        setSymbol(new Symbol(1000, 200));
         setExitNextLevel(1050, 650, 50, 50);
     }
 
     private void initTapki() throws SlickException {
-        addTapok(new TapokPick(250, 285));
-        addTapok(new TapokPick(30, 670));
-        addTapok(new TapokPick(50, 670));
+        addTapok(new TapokPick(800, 250));
+        addTapok(new TapokPick(300, 600));
     }
 
     private void initWalls() throws SlickException {
@@ -78,6 +77,7 @@ public class MapLevel3 extends Level {
         door = new Image(path + "door1.png");
 
         addTeleport(new Teleport1(800, SetupGame.height - floorHeight - floorH - 85, 80, 85, 800, SetupGame.height - floorHeight - 85));
+        arrow = new Image(path + "arrow.png");
     }
 
     private void initDoors() throws SlickException {
@@ -88,11 +88,70 @@ public class MapLevel3 extends Level {
     }
 
     private void initEnemies() throws SlickException {
-        Coronavirus coronavirus = new Coronavirus(300, 304);
-        coronavirus.setSpace(200);
-        //coronavirus.setNotVisionHorizontal(500,500);
-        // coronavirus.setVisionHorizontal(500,500);
-        addEnemy(coronavirus);
+        Coronavirus corona1 = new Coronavirus(500, 304);
+        corona1.setSpace(250);
+        corona1.setVisionVertical(20,0,20,0);
+        addEnemy(corona1);
+
+        Coronavirus corona2 = new Coronavirus(600, 610);
+        corona2.setSpace(300);
+        corona2.setVisionVertical(20,0,20,0);
+        addEnemy(corona2);
+
+        Coronavirus corona3 = new Coronavirus(800, 590);
+        corona3.setSpace(150);
+        corona3.setVisionVertical(20,0,20,0);
+        addEnemy(corona3);
+
+        Coronavirus corona4 = new Coronavirus(400, 600);
+        corona4.setSpace(200);
+        corona4.setVisionVertical(20,0,20,0);
+        addEnemy(corona4);
+
+        Coronavirus corona5 = new Coronavirus(200, 70);
+        corona5.setSpace(200);
+        corona5.setVisionVertical(20,0,20,0);
+        addEnemy(corona5);
+
+        Coronavirus corona6 = new Coronavirus(100, 150);
+        corona6.setSpace(100);
+        corona6.setVisionVertical(20,0,20,0);
+        addEnemy(corona6);
+
+        Coronavirus corona7 = new Coronavirus(900, 70);
+        corona7.setSpace(200);
+        corona7.setVisionVertical(20,0,20,0);
+        addEnemy(corona7);
+
+        Coronavirus corona8 = new Coronavirus(1000, 150);
+        corona8.setSpace(100);
+        corona8.setVisionVertical(20,0,20,0);
+        addEnemy(corona8);
+
+        Doctor doctor = new Doctor(350, 330);
+        doctor.setSpace(150);
+        doctor.setVisionVertical(20,0,50,0);
+        addEnemy(doctor);
+
+        Doctor doctor1 = new Doctor(550, 330);
+        doctor1.setSpace(150);
+        doctor1.setVisionVertical(20,0,50,0);
+        addEnemy(doctor1);
+
+        Doctor doctor2 = new Doctor(450, 40);
+        doctor2.setSpace(300);
+        doctor2.setVisionVertical(20,0,50,0);
+        addEnemy(doctor2);
+
+        Doctor doctor3 = new Doctor(620, 40);
+        doctor3.setSpace(300);
+        doctor3.setVisionVertical(20,0,50,0);
+        addEnemy(doctor3);
+
+        Turrel t = new Turrel(700,605);
+        t.setTimeBeforeShoot(400);
+        t.setRangeOfSight(400);
+        addEnemy(t);
     }
 
     @Override
@@ -121,12 +180,16 @@ public class MapLevel3 extends Level {
         }
         wall.endUse();
 
-        window.draw(700, 150, 100, 100);
-        window.draw(400, 150, 100, 100);
-        window.draw(700, 450, 100, 100);
-        window.draw(400, 450, 100, 100);
+        window.draw(700, 180, 100, 100);
+        window.draw(400, 180, 100, 100);
+        window.draw(700, 480, 100, 100);
+        window.draw(400, 480, 100, 100);
         door.draw(800, SetupGame.height - floorHeight - 85, 80, 85);
         door.draw(800, SetupGame.height - floorHeight - floorH - 85, 80, 85);
+
+        if (!isSymbolPresent()) {
+            arrow.draw(1050,650,50,50);
+        }
     }
 
     @Override

@@ -14,8 +14,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 public class LevelsMenu  extends BasicGameState {
 
     private  String path = SetupGame.path;
-    private Image background,level1,level2,level3,level4,level5;
-    private MouseOverArea level1MOA,level2MOA,level3MOA,level4MOA,level5MOA;
+    private Image background,level1,level2,level3,level4,level5, main;
+    private MouseOverArea level1MOA,level2MOA,level3MOA,level4MOA,level5MOA,mainMOA;
     private Music music;
 
     @Override
@@ -38,6 +38,9 @@ public class LevelsMenu  extends BasicGameState {
         level4MOA = new MouseOverArea(container, level4, 400, 400);
         level5MOA = new MouseOverArea(container, level5, 400, 500);
 
+
+        main = new Image(path+"main_menu.png");
+        mainMOA = new MouseOverArea(container, main,750,600);
         music = SetupGame.levelMusic;
 }
 
@@ -49,6 +52,7 @@ public class LevelsMenu  extends BasicGameState {
         level3.draw(400,300,300,80);
         level4.draw(400,400,300,80);
         level5.draw(400,500,300,80);
+        main.draw(750,600,300,50);
     }
 
     @Override
@@ -75,6 +79,12 @@ public class LevelsMenu  extends BasicGameState {
         }
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             game.enterState(0, new FadeOutTransition(),new FadeInTransition()); //main menu
+        }
+        if(mainMOA.isMouseOver()&& Mouse.isButtonDown(0)){
+
+            game.enterState(0, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
+
+
         }
     }
 }

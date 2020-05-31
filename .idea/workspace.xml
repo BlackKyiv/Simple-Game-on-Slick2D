@@ -21,9 +21,48 @@
   <component name="ChangeListManager">
     <list default="true" id="f8369fda-6606-4afe-a488-2269382a9f05" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" afterDir="false" />
+||||||| merged common ancestors
+=======
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Babka.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/GameOver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/GameOver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/Level.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelScore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelsMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/LevelsMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel4.class" afterDir="false" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
       <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/MapLevel5.class" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/Game/Levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/Level.java" afterDir="false" />
+||||||| merged common ancestors
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MapLevel5.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/Levels/TestLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/Levels/TestLevel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/SetupGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Boss.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Boss.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/CoronaSmall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Coronavirus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Coronavirus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Doctor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Doctor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Turrel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/enemies/Turrel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Door.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Door.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Injection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Injection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Symbol.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/Symbol.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokPick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokPick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokThrow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GAME/Game/interactiveObjects/TapokThrow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pictures/main_menu.png" beforeDir="false" afterPath="$PROJECT_DIR$/pictures/main_menu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/GameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/GameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/LevelScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/LevelScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/LevelsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/LevelsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Levels/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Levels/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/SetupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/SetupGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/enemies/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/enemies/Boss.java" afterDir="false" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,10 +79,10 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;" />
         <option value="irazubrytska &lt;zubrytska.ira@gmail.com&gt;" />
         <option value="i" />
         <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;bab" />
-        <option value="Daria Goptsii &lt;daria.goptsii@gmail.com&gt;" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -182,7 +221,28 @@
       <option name="project" value="LOCAL" />
       <updated>1590754243150</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="level 5 walls done">
+      <created>1590755146234</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1590755146234</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added exits on each level &amp; enemies on 3-rd">
+      <created>1590768898329</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1590768898329</updated>
+    </task>
+    <task id="LOCAL-00015" summary="+ exit on 5-th level">
+      <created>1590769152618</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1590769152618</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -197,68 +257,132 @@
     <MESSAGE value="map level 4 done" />
     <MESSAGE value="music changes after escape" />
     <MESSAGE value="level 5 walls done" />
-    <option name="LAST_COMMIT_MESSAGE" value="level 5 walls done" />
+    <MESSAGE value="added exits on each level &amp; enemies on 3-rd" />
+    <MESSAGE value="+ exit in 5-th level" />
+    <MESSAGE value="+ exit on 5-th level" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ exit on 5-th level" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1590575954441">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="510" y="192" key="#com.intellij.ide.util.MemberChooser" timestamp="1590833776842">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1590575954441" />
+    <state x="510" y="192" key="#com.intellij.ide.util.MemberChooser/0.23.1280.777@0.23.1280.777" timestamp="1590833776842" />
     <state x="331" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590493692498">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="331" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590493692498" />
-    <state x="401" y="0" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590752766790">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1590836598722">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590752766790" />
-    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1590614638996" />
+    <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1590769151789" />
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1590836598722" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1590490635525">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1590490635525" />
+<<<<<<< HEAD
     <state width="1877" height="240" key="GridCell.Tab.0.bottom" timestamp="1590755849462">
       <screen x="0" y="0" width="1920" height="1040" />
+||||||| merged common ancestors
+    <state width="1545" height="209" key="GridCell.Tab.0.bottom" timestamp="1590755131244">
+      <screen x="0" y="0" width="1600" height="860" />
+=======
+    <state width="1236" height="165" key="GridCell.Tab.0.bottom" timestamp="1590836547873">
+      <screen x="0" y="23" width="1280" height="777" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
     </state>
+<<<<<<< HEAD
     <state width="1545" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
     <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590755849462" />
     <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590614655816" />
     <state width="1877" height="240" key="GridCell.Tab.0.center" timestamp="1590755849462">
       <screen x="0" y="0" width="1920" height="1040" />
+||||||| merged common ancestors
+    <state width="1545" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
+    <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590614655816" />
+    <state width="1545" height="209" key="GridCell.Tab.0.center" timestamp="1590755131244">
+      <screen x="0" y="0" width="1600" height="860" />
+=======
+    <state width="1545" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1590768753919" />
+    <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1590836547873" />
+    <state width="1236" height="165" key="GridCell.Tab.0.center" timestamp="1590836547870">
+      <screen x="0" y="23" width="1280" height="777" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
     </state>
+<<<<<<< HEAD
     <state width="1545" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
     <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590755849462" />
     <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590614655814" />
     <state width="1877" height="240" key="GridCell.Tab.0.left" timestamp="1590755849462">
       <screen x="0" y="0" width="1920" height="1040" />
+||||||| merged common ancestors
+    <state width="1545" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
+    <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590614655814" />
+    <state width="1545" height="209" key="GridCell.Tab.0.left" timestamp="1590755131244">
+      <screen x="0" y="0" width="1600" height="860" />
+=======
+    <state width="1545" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1590768753919" />
+    <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1590836547870" />
+    <state width="1236" height="165" key="GridCell.Tab.0.left" timestamp="1590836547869">
+      <screen x="0" y="23" width="1280" height="777" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
     </state>
+<<<<<<< HEAD
     <state width="1545" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
     <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590755849462" />
     <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590614655814" />
     <state width="1877" height="240" key="GridCell.Tab.0.right" timestamp="1590755849462">
       <screen x="0" y="0" width="1920" height="1040" />
+||||||| merged common ancestors
+    <state width="1545" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
+    <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590614655814" />
+    <state width="1545" height="209" key="GridCell.Tab.0.right" timestamp="1590755131244">
+      <screen x="0" y="0" width="1600" height="860" />
+=======
+    <state width="1545" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1590768753918" />
+    <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1590836547869" />
+    <state width="1236" height="165" key="GridCell.Tab.0.right" timestamp="1590836547871">
+      <screen x="0" y="23" width="1280" height="777" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
     </state>
+<<<<<<< HEAD
     <state width="1545" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
     <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590755849462" />
     <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590614655815" />
+||||||| merged common ancestors
+    <state width="1545" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590755131244" />
+    <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590614655815" />
+=======
+    <state width="1545" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1590768753919" />
+    <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590616184637" />
+    <state width="1236" height="165" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1590836547871" />
+>>>>>>> 5f48b51502e0b3030b36f088e491ae486ef651d1
     <state x="446" y="79" key="MultipleFileMergeDialog" timestamp="1590754488187">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="446" y="79" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1590754488187" />
-    <state x="292" y="88" key="Vcs.Push.Dialog.v2" timestamp="1590752769524">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="234" y="103" key="Vcs.Push.Dialog.v2" timestamp="1590836601972">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590752769524" />
-    <state x="234" y="103" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1590603907510" />
+    <state x="292" y="88" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1590769154224" />
+    <state x="234" y="103" key="Vcs.Push.Dialog.v2/0.23.1280.777@0.23.1280.777" timestamp="1590836601972" />
     <state x="446" y="217" key="com.intellij.ide.util.TipDialog" timestamp="1590752551041">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="446" y="217" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1590752551041" />
-    <state x="493" y="380" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590754484345">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="394" y="366" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590831860580">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="493" y="380" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1590754484345" />
-    <state x="394" y="366" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1590611264825" />
+    <state x="394" y="366" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1590831860580" />
   </component>
   <component name="simpleUML.UMLToolWindowPlugin">
     <General>

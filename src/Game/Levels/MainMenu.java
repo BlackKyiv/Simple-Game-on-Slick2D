@@ -31,7 +31,7 @@ public class MainMenu extends BasicGameState {
         music.loop();
         studios = new Image(path+"studios.png");
         presents = new Image(path+"presents.png");
-        background = new Image(path+"main_menu.png");
+        background = new Image(path+"main_menu_background.png");
         play = new Image(path+"play.png");
         playMOA = new MouseOverArea(container,play,850,600);
     }
@@ -55,5 +55,7 @@ public class MainMenu extends BasicGameState {
         if(playMOA.isMouseOver() && Mouse.isButtonDown(0)){
             game.enterState(1, new FadeOutTransition(),new FadeInTransition());
         }
+
+
     }
 }

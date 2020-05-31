@@ -17,7 +17,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class MapLevel2 extends Level {
 
-    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter;
+    private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter, arrow;
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
     private SpriteSheet wallSS,floorSS,wallpaper1, platformSS;
 
@@ -42,7 +42,7 @@ public class MapLevel2 extends Level {
         initEnemies();
         initTapki();
         setSymbol(new Symbol(400, 150));
-        setExitNextLevel(0,0,50,50);
+        setExitNextLevel(400,35,50,50);
     }
 
     private void initWalls()throws SlickException {
@@ -85,10 +85,11 @@ public class MapLevel2 extends Level {
 
         addTeleport(new Teleport1(980,410,80,85,980,600)); //1-2 floor
         addTeleport(new Teleport1(220,305,80,85,220,410)); //2-3 floor
-        addTeleport(new Teleport1(980,0,80,85,980,90)); //3-4 floor
+        addTeleport(new Teleport1(980,0,80,85,980,305)); //3-4 floor
 
         helicopter = new Image(path+"helicopter.png");
         window = new Image(path+"window.jpg");
+        arrow = new Image(path+"arrow.png");
     }
 
     private void initTapki() throws SlickException {
@@ -117,7 +118,7 @@ public class MapLevel2 extends Level {
         Coronavirus corona1 = new Coronavirus(250,580);
         corona1.setSpace(150);
         corona1.setVisionVertical(20,0,20,0);
-        addEnemy(corona1);
+        //addEnemy(corona1);
 
         Coronavirus corona2 = new Coronavirus(300,600);
         corona2.setSpace(150);
@@ -127,14 +128,14 @@ public class MapLevel2 extends Level {
         Coronavirus corona3 = new Coronavirus(500,530);
         corona3.setSpace(150);
         corona3.setVisionVertical(20,0,20,0);
-        addEnemy(corona3);
+        //addEnemy(corona3);
 
         Coronavirus corona4 = new Coronavirus(600,530);
         corona4.setSpace(150);
         corona4.setVisionVertical(20,0,20,0);
-        addEnemy(corona4);
+        //addEnemy(corona4);
 
-        Coronavirus corona5 = new Coronavirus(920,430);
+        Coronavirus corona5 = new Coronavirus(800,430);
         corona5.setSpace(100);
         corona5.setVisionVertical(20,0,20,0);
         addEnemy(corona5);
@@ -144,7 +145,7 @@ public class MapLevel2 extends Level {
         corona6.setVisionVertical(20,0,20,0);
         addEnemy(corona6);
 
-        Coronavirus corona7 = new Coronavirus(800,200);
+        Coronavirus corona7 = new Coronavirus(700,200);
         corona7.setSpace(100);
         corona7.setVisionVertical(20,0,20,0);
         addEnemy(corona7);
@@ -213,6 +214,9 @@ public class MapLevel2 extends Level {
         }
         wall.endUse();
         helicopter.draw(250,5,250,80);
+
+        if(!isSymbolPresent())
+            arrow.draw(550,35,-50,50);
     }
 
     @Override
