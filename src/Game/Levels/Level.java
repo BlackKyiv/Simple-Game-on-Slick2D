@@ -126,8 +126,6 @@ public abstract class Level extends BasicGameState {
         drawSymbol(g);
         //drawObstacles(g);
         g.setColor(Color.yellow);
-        g.draw(attackZone);
-        g.fill(attackZone);
     }
 
     protected void drawObstacles(Graphics g){
@@ -260,9 +258,6 @@ public abstract class Level extends BasicGameState {
 
         }
 
-        if(container.getInput().isKeyPressed(Input.KEY_R)){
-            restart(container, game);
-        }
         clock.update(delta);
 
         updateSymbol();
@@ -277,6 +272,14 @@ public abstract class Level extends BasicGameState {
             }
 
 
+        }
+
+        if(babka.getCenterY()>SetupGame.height){
+            babka.die();
+            gameOverMusic.loop();
+            GameOver.setReplayLevel(this.id);
+            game.enterState(8);
+            restart(container, game);
         }
 
     }
@@ -364,7 +367,7 @@ public abstract class Level extends BasicGameState {
                 doctor.update(delta, all);
                 if (doctor.isReadyToShoot()) bullets.add(doctor.shoot(babka));
 
-                for (Rectangle obstacle : obstacles) {
+                for (Rectangle obstacle : all) {
                     doctor.checkForCollisionWall(obstacle);
                 }
 
@@ -378,7 +381,7 @@ public abstract class Level extends BasicGameState {
 
                 if(corona.isAlive()) {
                     corona.update(all);
-                    for (Rectangle obstacle : obstacles) {
+                    for (Rectangle obstacle : all) {
                         corona.checkForCollisionWall(obstacle);
                     }
                     corona.checkForCollisionBabka(babka);
