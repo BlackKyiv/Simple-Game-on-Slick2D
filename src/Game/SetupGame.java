@@ -12,8 +12,8 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
-    public final static String path =  "..\\Game\\pictures\\";
-    public final static String pathMusic ="..\\Game\\music\\";
+    public final static String path =  "/Users/dgoptsii/Game/pictures/";
+    public final static String pathMusic ="/Users/dgoptsii/Game/music/";
     public static Music entryMusic;
     public static Music levelMusic;
     public static Music level1Music;

@@ -40,7 +40,7 @@ public class LevelsMenu  extends BasicGameState {
 
 
         main = new Image(path+"main_menu.png");
-        mainMOA = new MouseOverArea(container, main,750,600);
+        mainMOA = new MouseOverArea(container, main,50,600);
         music = SetupGame.levelMusic;
 }
 

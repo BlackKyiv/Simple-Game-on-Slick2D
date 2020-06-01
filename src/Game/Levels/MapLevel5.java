@@ -43,7 +43,6 @@ public class MapLevel5 extends Level {
         boss=new Boss(300, 150);
         addEnemy(boss);
         setExitNextLevel(1050,50,50,50);
-
     }
 
     private void initTapki() throws SlickException {
@@ -128,7 +127,6 @@ public class MapLevel5 extends Level {
         t1.draw(10,15,80,85);
         t2.draw(1010,595,80,85);
         g.setColor(Color.black);
-        //drawObstacles(g);
         g.setColor(Color.orange);
         g.fill(lava);
 

@@ -30,12 +30,11 @@ public class GameOver extends BasicGameState {
         replayMOA = new MouseOverArea(container, replay,800,600);
 
         levels = new Image(path+"levels_menu.png");
-        levelsMOA = new MouseOverArea(container,levels,10,590);
+        levelsMOA = new MouseOverArea(container,levels,50,600);
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-
         background.draw(0,0,1100,700);
         replay.draw(800,600,200,40);
         levels.draw(50,600,300,35);

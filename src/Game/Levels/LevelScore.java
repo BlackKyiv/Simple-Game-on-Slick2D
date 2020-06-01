@@ -43,32 +43,17 @@ public class LevelScore extends BasicGameState {
         result2 = new Image(path+"well.png");
         result3 = new Image(path+"excellent.png");
 
-        /*switch(levelID){
-            case 2: symbol = new Image(path+"symbol_1.png");
-                break;
-            case 3: symbol = new Image(path+"symbol_2.png");
-                break;
-            case 4: symbol = new Image(path+"symbol_3.png");
-                break;
-            case 5: symbol = new Image(path+"symbol_4.png");
-                break;
-            case 6: symbol = new Image(path+"symbol_5.png");
-                break;
-        }*/
         next = new Image(path+"next.png");
         nextMOA = new MouseOverArea(container,next,900,600);
 
         levels = new Image(path+"levels_menu.png");
-       levelsMOA = new MouseOverArea(container,levels,10,590);
-     // score = new Image(path+"score.png");
-     //  time = new Image(path+"time.png");
+       levelsMOA = new MouseOverArea(container,levels,50,600);
 
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw(0,0,1100,700);
-       // symbol.draw(950,20,130,100);
         next.draw(900,600,180,55);
         levels.draw(50,600,300,35);
         switch(levelScore){
@@ -88,9 +73,7 @@ public class LevelScore extends BasicGameState {
                     stars3.draw(335,100,430,150);
                     result3.draw(130,300,826,82);
                     break;
-        }
-
-        g.setColor(Color.black);
+            }
     }
 
     @Override

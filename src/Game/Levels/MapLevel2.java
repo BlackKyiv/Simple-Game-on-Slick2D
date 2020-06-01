@@ -80,7 +80,6 @@ public class MapLevel2 extends Level {
     }
 
     private void initDoors() throws SlickException {
-        //addDoor(new Door(900, SetupGame.height-floorHeight-85,wallWidth,85, false));
     }
 
 
