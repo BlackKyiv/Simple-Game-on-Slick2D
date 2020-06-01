@@ -9,8 +9,8 @@ public class SetupGame extends StateBasedGame {
     public final static int width = 1100;
     public final static int height = 700;
     public final static int fps = 60;
-    public final static String path =  "C:\\Users\\atcat\\Documents\\GitHub\\Game\\pictures\\";
-    public final static String pathMusic ="C:\\Users\\atcat\\Documents\\GitHub\\Game\\music\\";
+    public final static String path =  "/Users/dgoptsii/Game/pictures/";
+    public final static String pathMusic ="/Users/dgoptsii/Game/music/";
     public static Music entryMusic;
     public static Music levelMusic;
     public static Music level1Music;
@@ -20,11 +20,32 @@ public class SetupGame extends StateBasedGame {
     public static Music level5Music;
     public static Music gameOverMusic;
     public static Music winMusic;
+    public static Sound hitSound;
+    public static Sound throwSound;
+    public static Sound coronaSound;
+    public static Sound doctorSound;
+    public static Sound windowSound;
+    public static Sound doorSound;
+    public static Sound pickSound;
+    public static Sound teleportSound;
+
 
     public static Sound pickedSymbol;
 
+    public void initMusic(){
+
+    }
+
+
     static {
+
+
+
         try {
+
+
+
+
             entryMusic = new Music(pathMusic + "entryMusic.wav");
             levelMusic = new Music(pathMusic+"Intro Theme.wav");
             level1Music = new Music(pathMusic+"level1Music.wav");
@@ -36,10 +57,42 @@ public class SetupGame extends StateBasedGame {
             gameOverMusic = new Music(pathMusic+"directed by.wav");
             winMusic = new Music(pathMusic+"winningMusic.wav");
             pickedSymbol = new Sound(pathMusic+"ta da.wav");
+
+            pickSound = new Sound(pathMusic + "pick.wav");
+            hitSound = new Sound(pathMusic + "hit.wav");
+            doorSound = new Sound(pathMusic + "door.wav");
+            doctorSound = new Sound(pathMusic + "doctor.wav");
+            windowSound = new Sound(pathMusic + " window.wav");
+            coronaSound = new Sound(pathMusic + "corona.wav");
+            throwSound = new Sound(pathMusic + "throw.wav");
+
+
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    static {
+        try {
+            entryMusic = new Music(pathMusic + "entryMusic.wav");
+            levelMusic = new Music(pathMusic+"Intro Theme.wav");
+            gameOverMusic = new Music(pathMusic+"directed by.wav");
+            hitSound = new Sound(pathMusic+"hit.wav");
+            throwSound = new Sound(pathMusic+"throw.wav");
+            doctorSound = new Sound(pathMusic+"doctor.wav");
+            coronaSound = new Sound(pathMusic+"corona.wav");
+            doorSound = new Sound(pathMusic+"door.wav");
+            windowSound = new Sound(pathMusic+"window.wav");
+            teleportSound = new Sound(pathMusic+"teleport.wav");
+
         } catch (SlickException e) {
             e.printStackTrace();
         }
     }
+
 
     public SetupGame(String name) {
         super(name);

@@ -218,24 +218,28 @@ public class Boss extends Rectangle implements Enemy {
         return zonesActive;
     }
     public void attacked(){
+
         if (zoneActive1){
             zonesActive--;
             zoneAlive1=false;
             zoneActive1=false;
-            spawn+=1;
+            spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }else if(zoneActive2){
             zonesActive--;
             zoneActive2=false;
             zoneAlive2=false;
             spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }
         else if(zoneActive3){
             zonesActive--;
             zoneActive3=false;
             zoneAlive3=false;
-            spawn+=1;
+            spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }
         else if(zoneActive4){
@@ -243,13 +247,15 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive4=false;
             zoneAlive4=false;
             spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }
         else if(zoneActive5){
             zonesActive--;
             zoneActive5=false;
             zoneAlive5=false;
-            spawn+=1;
+            spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }
         else if(zoneActive6){
@@ -257,12 +263,15 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive6=false;
             zoneAlive6=false;
             spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }
         else if(zoneActive7){
             zonesActive--;
             zoneActive7=false;
             zoneAlive7=false;
+            spawn+=2;
+            SetupGame.coronaSound.play();
             return;
         }
     }

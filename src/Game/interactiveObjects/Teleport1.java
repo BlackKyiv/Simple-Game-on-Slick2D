@@ -2,6 +2,7 @@ package Game.interactiveObjects;
 
 
 import Game.Babka;
+import Game.SetupGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.geom.Rectangle;
@@ -17,13 +18,16 @@ public class Teleport1 extends Rectangle {
     }
 
     public Babka teleport(Babka babka, GameContainer container){
+
         if(babka.intersects(this) && container.getInput().isKeyPressed(Input.KEY_ENTER)) {
             babka.setX(exitX);
             babka.setY(exitY);
+            SetupGame.teleportSound.play();
         }
         else if(babka.intersects(new Rectangle(exitX, exitY, getWidth(), getHeight())) && container.getInput().isKeyPressed(Input.KEY_ENTER)) {
             babka.setX(getX());
             babka.setY(getY());
+            SetupGame.teleportSound.play();
         }
         return babka;
     }

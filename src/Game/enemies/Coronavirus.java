@@ -216,6 +216,8 @@ public class Coronavirus extends Rectangle implements Enemy {
     }
 
     public void die() {
+
+        SetupGame.coronaSound.play();
         alive = false;
     }
 
@@ -291,7 +293,7 @@ public class Coronavirus extends Rectangle implements Enemy {
 
         Rectangle headDie = new Rectangle(this.getX() + 8, this.getY(), width - 16, 1);
         if (headDie.intersects(platform)) {
-            die();
+          //  die();
         }
 
     }

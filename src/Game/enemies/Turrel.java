@@ -93,6 +93,7 @@ public class Turrel extends Rectangle implements Enemy {
         shootGap.restart();
         shootGap.start();
         shooting = true;
+        SetupGame.throwSound.play();
         return injection;
     }
 
@@ -138,6 +139,7 @@ public class Turrel extends Rectangle implements Enemy {
 
 
     public void die(){
+        SetupGame.doctorSound.play();
         alive = false;
     }
     public boolean isAlive(){return alive;}
@@ -145,7 +147,7 @@ public class Turrel extends Rectangle implements Enemy {
     public void checkForCollisionBabka(Rectangle platform)   {
         Rectangle headDie = new Rectangle(this.getX()+8, this.getY(), width-16, 1);
         if (headDie.intersects(platform)) {
-            die();
+            //die();
         }
     }
 

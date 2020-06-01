@@ -39,6 +39,13 @@ public class Door extends Rectangle {
     }
 
     public void broke(){
+        if (window==false) {
+            SetupGame.doorSound.play();
+        }
+            else{
+            SetupGame.windowSound.play();
+            }
+
         broken = true;
     }
 
