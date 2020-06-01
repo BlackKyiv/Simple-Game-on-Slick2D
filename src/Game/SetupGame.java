@@ -109,6 +109,7 @@ public class SetupGame extends StateBasedGame {
         System.out.println(path);
         AppGameContainer app = new AppGameContainer(new SetupGame("Grandma vs Corona"));
         app.setDisplayMode(width, height, false);
+        app.setShowFPS(false);
         app.setTargetFrameRate(fps);
         app.setAlwaysRender(true);
         app.start();
