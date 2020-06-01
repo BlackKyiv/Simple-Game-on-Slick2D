@@ -44,8 +44,8 @@ public class Winner extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
         background.draw(0,0,1100,700);
 
-        main.draw(780,590,300,50);
-        levels.draw(10,590,300,50);
+        main.draw(780,600,300,40);
+        levels.draw(50,600,300,35);
         babkaWon.draw(350,10,645,655);
         symbol.draw(250,100,200,150);
 
