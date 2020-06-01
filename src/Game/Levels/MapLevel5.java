@@ -46,7 +46,14 @@ public class MapLevel5 extends Level {
 
     }
 
-    private void initTapki() {
+    private void initTapki() throws SlickException {
+        addTapok(new TapokPick(50,70));
+        addTapok(new TapokPick(50,270));
+        addTapok(new TapokPick(50,470));
+        addTapok(new TapokPick(1050,70));
+        addTapok(new TapokPick(1050,270));
+        addTapok(new TapokPick(1050,470));
+        addTapok(new TapokPick(1050,650));
     }
 
     private void initWalls() throws SlickException {
