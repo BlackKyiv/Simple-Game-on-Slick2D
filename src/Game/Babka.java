@@ -330,8 +330,8 @@ public class Babka extends Rectangle {
 
     public Rectangle getHitZone(GameContainer container) {
         if (isAlive()) {
-            if (container.getInput().isKeyPressed(Input.KEY_F)) {
-
+            if (container.getInput().isKeyDown(Input.KEY_F)&&container.getInput().isKeyPressed(Input.KEY_F)) {
+                SetupGame.hitSound.play();
                 if (speedX == 0) {
                     if (standingRight||walkingRight) {
                         this.setFightingRight(true);
@@ -375,6 +375,7 @@ public class Babka extends Rectangle {
 
     public TapokThrow shoot(GameContainer container) throws SlickException {
         tapokQ--;
+        SetupGame.throwSound.play();
         if(container.getInput().isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
             if(container.getInput().getMouseX()<getCenterX()){
                 TapokThrow tapokThrow = new TapokThrow(getCenterX(), getCenterY()-20);
@@ -413,6 +414,7 @@ public class Babka extends Rectangle {
     }
 
     public void pickTapok(){
+        SetupGame.pickSound.play();
         tapokQ++;
     }
     public void pickTapok(int q){

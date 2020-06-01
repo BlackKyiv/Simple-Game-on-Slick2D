@@ -274,6 +274,7 @@ public class Doctor extends Rectangle implements Enemy {
     }
 
     public void die() {
+        SetupGame.doctorSound.play();
         alive = false;
     }
 
@@ -335,7 +336,7 @@ public class Doctor extends Rectangle implements Enemy {
 
         Rectangle headDie = new Rectangle(this.getX() + 8, this.getY(), width - 16, 1);
         if (headDie.intersects(platform)) {
-            die();
+          //  die();
         }
 
 
@@ -382,6 +383,7 @@ public class Doctor extends Rectangle implements Enemy {
         injection.setDoctor(true);
         shootGap.restart();
         shootGap.start();
+        SetupGame.throwSound.play();
         return injection;
     }
 

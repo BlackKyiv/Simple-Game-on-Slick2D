@@ -83,6 +83,8 @@ public class CoronaSmall extends Rectangle implements Enemy {
     }
 
     public void die() {
+
+        SetupGame.coronaSound.play();
         alive = false;
     }
 
