@@ -22,6 +22,7 @@ public class SetupGame extends StateBasedGame {
     public static Music level4Music;
     public static Music level5Music;
     public static Music gameOverMusic;
+    private static Music coronaTime;
 
     static {
         try {
@@ -34,6 +35,7 @@ public class SetupGame extends StateBasedGame {
             level5Music = new Music(pathMusic+"level1Music.wav");
 
             gameOverMusic = new Music(pathMusic+"directed by.wav");
+            coronaTime = new Music(pathMusic+"corona time.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }
