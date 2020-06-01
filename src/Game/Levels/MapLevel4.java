@@ -115,25 +115,10 @@ public class MapLevel4 extends Level {
         t1.setRangeOfSight(750);
         addEnemy(t1);
 
-        Coronavirus corona1 = new Coronavirus(250,580);
-        corona1.setSpace(150);
-        corona1.setVisionVertical(20,0,20,0);
-        //addEnemy(corona1);
-
         Coronavirus corona2 = new Coronavirus(250,580);
         corona2.setSpace(150);
         corona2.setVisionVertical(20,0,20,0);
         addEnemy(corona2);
-
-        Coronavirus corona3 = new Coronavirus(500,530);
-        corona3.setSpace(150);
-        corona3.setVisionVertical(20,0,20,0);
-        //addEnemy(corona3);
-
-        Coronavirus corona4 = new Coronavirus(600,530);
-        corona4.setSpace(150);
-        corona4.setVisionVertical(20,0,20,0);
-        //addEnemy(corona4);
 
         Coronavirus corona5 = new Coronavirus(800,430);
         corona5.setSpace(100);

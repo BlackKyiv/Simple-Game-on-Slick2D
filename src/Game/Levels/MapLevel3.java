@@ -14,7 +14,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import java.util.ArrayList;
 
 public class MapLevel3 extends Level {
-    private Image background, wall, wallpaper, window, door, table, bed, gurney, iv, picture, shelf, logo, arrow;
+    private Image background, wall, wallpaper, window, door, table, bed, gurney, picture, logo, arrow;
     private SpriteSheet wallSS, floorSS, wallpaper1;
 
     private int wallWidth = 25, floorHeight = 15;
@@ -77,10 +77,8 @@ public class MapLevel3 extends Level {
 
         table = new Image(path+"hospital_table.png");
         bed = new Image(path+"bed.png");
-        iv = new Image(path+"iv.png");
         gurney = new Image(path+"gurney.png");
         picture = new Image(path+"shelf.png");
-        shelf = new Image(path+"shelf.png");
         logo = new Image(path+"hospital_logo.png");
 
         addTeleport(new Teleport1(800, SetupGame.height - floorHeight - floorH - 85, 80, 85, 800, SetupGame.height - floorHeight - 85));
@@ -195,14 +193,12 @@ public class MapLevel3 extends Level {
         door.draw(800, SetupGame.height - floorHeight - floorH - 85, 80, 85);
 
         logo.draw(535,120,30,30);
-       // iv.draw(250,270,60,140);
         bed.draw(310,350,120,60);
 
         table.draw(530,350,140,60);
         gurney.draw(300,625,120,60);
         gurney.draw(530,625,120,60);
         picture.draw(530,550,140,24);
-       // shelf.draw(220,550,140,24);
 
         if (!isSymbolPresent()) {
             arrow.draw(1050,650,50,50);
