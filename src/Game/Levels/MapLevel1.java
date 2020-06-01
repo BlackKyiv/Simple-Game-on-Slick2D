@@ -22,6 +22,8 @@ public class MapLevel1 extends Level {
     private int floorH = 225, floorW = 900;
     private int x_offset = 200;
 
+    private String path = SetupGame.path;
+
     @Override
     public int getID() {
         return 2;
@@ -48,9 +50,9 @@ public class MapLevel1 extends Level {
     }
 
     private void initWalls() throws SlickException {
-        background = new Image(SetupGame.path + "background.jpg");
+        background = new Image(path + "background.jpg");
 
-        wall = new Image(SetupGame.path + "wall.jpg");
+        wall = new Image(path + "wall.jpg");
         addObstacle(new Rectangle(0, SetupGame.height - floorH * 2, wallWidth, floorH * 2)); //left wall
         addObstacle(new Rectangle(SetupGame.width - x_offset, SetupGame.height - floorH * 2, wallWidth, floorH * 2-85-floorHeight)); //right wall
         addObstacle(new Rectangle(0, SetupGame.height - floorHeight, floorW, floorHeight)); //first floor
@@ -64,20 +66,20 @@ public class MapLevel1 extends Level {
         wallSS = new SpriteSheet(wall, 10, 10);
         floorSS = new SpriteSheet(wall, 10, 10);
 
-        wallpaper = new Image(SetupGame.path + "wallpaper.jpg");
+        wallpaper = new Image(path + "wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
 
-        window = new Image(SetupGame.path + "window.jpg");
-        sofa = new Image(SetupGame.path + "sofa.png");
-        table = new Image(SetupGame.path + "table.png");
-        wardrobe = new Image(SetupGame.path + "wardrobe.png");
-        cupboard = new Image(SetupGame.path + "cupboard.png");
-        nightstand = new Image(SetupGame.path + "nightstand.png");
+        window = new Image(path + "window.jpg");
+        sofa = new Image(path + "sofa.png");
+        table = new Image(path + "table.png");
+        wardrobe = new Image(path + "wardrobe.png");
+        cupboard = new Image(path + "cupboard.png");
+        nightstand = new Image(path + "nightstand.png");
 
-        doorDown = new Image(SetupGame.path + "door1.png");
-        doorUp = new Image(SetupGame.path + "door1.png");
+        doorDown = new Image(path + "door1.png");
+        doorUp = new Image(path + "door1.png");
 
-        arrow = new Image(SetupGame.path + "arrow.png");
+        arrow = new Image(path + "arrow.png");
     }
 
     private void initDoors() throws SlickException {
