@@ -28,13 +28,7 @@ public class SetupGame extends StateBasedGame {
     public static Sound doorSound;
     public static Sound pickSound;
     public static Sound teleportSound;
-
-
     public static Sound pickedSymbol;
-
-    public void initMusic(){
-
-    }
 
 
     static {

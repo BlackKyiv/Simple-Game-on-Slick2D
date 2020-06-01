@@ -20,9 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8369fda-6606-4afe-a488-2269382a9f05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/uml.puml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dia.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/Babka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Babka.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/SetupGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/SetupGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uml.puml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="UML Sequence" />
+        <option value="UML Object" />
         <option value="UML Class" />
       </list>
     </option>
@@ -60,6 +63,11 @@
     <property name="DefaultPlantUmlFileTemplate" value="UML Class" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\atcat\Documents\Goptsii game 2\Game\src" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="SetupGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -189,37 +197,38 @@
     </state>
     <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1591018733621" />
     <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1591042172830" />
-    <state x="549" y="139" key="FileChooserDialogImpl" timestamp="1591033398821">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="686" y="175" key="FileChooserDialogImpl" timestamp="1591049756841">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="139" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591033398821" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1591045044685">
+    <state x="686" y="175" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591049756841" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1591045957847">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="161" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591028082244" />
     <state width="1545" height="209" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1591018079992" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591045044685" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591045957847" />
     <state width="1236" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1591040191512" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1591045044684">
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1591045957847">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="161" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591028082243" />
     <state width="1545" height="209" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1591018079992" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591045044684" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591045957847" />
     <state width="1236" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1591040191511" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1591045044684">
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1591045957847">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="161" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591028082243" />
     <state width="1545" height="209" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1591018079992" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591045044684" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591045957847" />
     <state width="1236" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1591040191510" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1591045044685">
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1591045957847">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="161" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591028082243" />
     <state width="1545" height="209" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1591018079992" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591045044685" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591045957847" />
     <state width="1236" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1591040191512" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1590935341124">
       <screen x="0" y="0" width="1920" height="1040" />

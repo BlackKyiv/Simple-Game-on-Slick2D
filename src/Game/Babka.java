@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 import javax.print.DocFlavor;
 
 public class Babka extends Rectangle {
+
     private float speedX = 0;
     private float speedY = 0;
 
@@ -60,6 +61,7 @@ public class Babka extends Rectangle {
 
     private int tapokQ = 0;
 
+    /*Babka is a main character, which is controlled bt player*/
 
     public Babka(float x, float y) throws SlickException {
         super(x, y,50,50);

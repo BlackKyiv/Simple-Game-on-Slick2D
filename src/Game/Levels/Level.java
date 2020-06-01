@@ -46,6 +46,7 @@ public abstract class Level extends BasicGameState {
 
     private GameContainer gameContainer;
     private StateBasedGame game;
+    
 
     protected void addEnemy(Enemy enemy){
         enemies.add(enemy);
