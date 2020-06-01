@@ -38,14 +38,7 @@ public class SetupGame extends StateBasedGame {
 
 
     static {
-
-
-
         try {
-
-
-
-
             entryMusic = new Music(pathMusic + "entryMusic.wav");
             levelMusic = new Music(pathMusic+"Intro Theme.wav");
             level1Music = new Music(pathMusic+"level1Music.wav");
@@ -65,8 +58,6 @@ public class SetupGame extends StateBasedGame {
             windowSound = new Sound(pathMusic + " window.wav");
             coronaSound = new Sound(pathMusic + "corona.wav");
             throwSound = new Sound(pathMusic + "throw.wav");
-
-
         } catch (SlickException e) {
             e.printStackTrace();
         }

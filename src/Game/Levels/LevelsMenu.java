@@ -25,12 +25,12 @@ public class LevelsMenu  extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        background = new Image(path+"menu_background_game_won.png");
-        level1 = new Image(path+"level_1.png");
-        level2 = new Image(path+"level_2.png");
-        level3 = new Image(path+"level_3.png");
-        level4 = new Image(path+"level_4.png");
-        level5 = new Image(path+"level_5.png");
+        background = new Image(SetupGame.path+"menu_background_game_won.png");
+        level1 = new Image(SetupGame.path+"level_1.png");
+        level2 = new Image(SetupGame.path+"level_2.png");
+        level3 = new Image(SetupGame.path+"level_3.png");
+        level4 = new Image(SetupGame.path+"level_4.png");
+        level5 = new Image(SetupGame.path+"level_5.png");
 
         level1MOA = new MouseOverArea(container, level1, 400, 100);
         level2MOA = new MouseOverArea(container, level2, 400, 200);

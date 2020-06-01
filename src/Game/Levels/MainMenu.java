@@ -15,7 +15,7 @@ import java.lang.management.MemoryUsage;
 
 public class MainMenu extends BasicGameState {
 
-    private  String path = SetupGame.path, pathMusic = SetupGame.pathMusic;
+
     private  Image studios, presents, background, play;
     private MouseOverArea playMOA;
     private int timePassed=0;
@@ -31,10 +31,10 @@ public class MainMenu extends BasicGameState {
         music = SetupGame.entryMusic;
         music.loop();
         music.setVolume(0.4f);
-        studios = new Image(path+"studios.png");
-        presents = new Image(path+"presents.png");
-        background = new Image(path+"main_menu_background.png");
-        play = new Image(path+"play.png");
+        studios = new Image(SetupGame.path+"studios.png");
+        presents = new Image(SetupGame.path+"presents.png");
+        background = new Image(SetupGame.path+"main_menu_background.png");
+        play = new Image(SetupGame.path+"play.png");
         playMOA = new MouseOverArea(container,play,850,600);
     }
 
