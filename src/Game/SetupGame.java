@@ -44,7 +44,7 @@ public class SetupGame extends StateBasedGame {
         this.addState(new MapLevel5());
         this.addState(new GameOver());
         this.addState(new Winner());
-       // this.addState(new LevelScore());
+        this.addState(new LevelScore());
 
     }
 

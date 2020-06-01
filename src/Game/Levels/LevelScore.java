@@ -21,7 +21,7 @@ public class LevelScore extends BasicGameState {
 
     @Override
     public int getID() {
-        return 7;
+        return 10;
     }
 
     @Override
