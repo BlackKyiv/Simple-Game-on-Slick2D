@@ -260,11 +260,11 @@ public class Doctor extends Rectangle implements Enemy {
 
                if (this.getX() + this.getWidth() + distance < babkaX || (this.getX() < babkaX + babkaWidth + distance && this.getX() > babkaX + babkaWidth) && blockedRight == false) {
                    this.setCenterX(getCenterX() + 2);
-                   goRight = true;
+                  // goRight = true;
                }
                if (this.getX() > babkaX + this.getWidth() + distance || (this.getX() + this.getWidth() + distance > babkaX && this.getX() + this.getWidth() < babkaX) && blockedLeft == false) {
                    this.setCenterX(getCenterX() - 2);
-                   goRight = false;
+                 //  goRight = false;
                }
 
 
