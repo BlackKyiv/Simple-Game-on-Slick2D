@@ -16,12 +16,23 @@ public class SetupGame extends StateBasedGame {
     public final static String pathMusic ="..\\Game\\music\\";
     public static Music entryMusic;
     public static Music levelMusic;
+    public static Music level1Music;
+    public static Music level2Music;
+    public static Music level3Music;
+    public static Music level4Music;
+    public static Music level5Music;
     public static Music gameOverMusic;
 
     static {
         try {
             entryMusic = new Music(pathMusic + "entryMusic.wav");
             levelMusic = new Music(pathMusic+"Intro Theme.wav");
+            level1Music = new Music(pathMusic+"level1Music.wav");
+            level2Music = new Music(pathMusic+"level2Music.wav");
+            level3Music = new Music(pathMusic+"level3Music.wav");
+            level4Music = new Music(pathMusic+"level4Music.wav");
+            level5Music = new Music(pathMusic+"level1Music.wav");
+
             gameOverMusic = new Music(pathMusic+"directed by.wav");
         } catch (SlickException e) {
             e.printStackTrace();

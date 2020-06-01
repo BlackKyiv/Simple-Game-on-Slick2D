@@ -71,12 +71,11 @@ public class LevelScore extends BasicGameState {
        // symbol.draw(950,20,130,100);
         next.draw(900,600,180,55);
         levels.draw(50,600,300,35);
-            switch(levelScore){
-                case 0:
-                    stars0.draw(335,100,430,150);
-                    result0.draw(130,300,826,82);
-                    break;
-
+        switch(levelScore){
+            case 0:
+                stars0.draw(335,100,430,150);
+                result0.draw(130,300,826,82);
+                break;
                 case 1:
                     stars1.draw(335,100,430,150);
                     result1.draw(150,300,826,82);
@@ -89,13 +88,9 @@ public class LevelScore extends BasicGameState {
                     stars3.draw(335,100,430,150);
                     result3.draw(130,300,826,82);
                     break;
-            }
+        }
 
-      //  score.draw(420,270,226,50);
         g.setColor(Color.black);
-     //  g.drawString(String.valueOf(levelScore),660,270);
-      //  time.draw(450,400,176,50);
-     //   g.drawString(String.valueOf(levelTime),660,400);
     }
 
     @Override
@@ -103,20 +98,38 @@ public class LevelScore extends BasicGameState {
         if(nextMOA.isMouseOver()&& Mouse.isButtonDown(0)){
             if(levelID<6) {
                 game.enterState(levelID + 1, new FadeOutTransition(), new FadeInTransition()); //next level
-               // music = SetupGame.levelMusic;
-               // music.loop();
+                switch (levelID+1){
+                    case 2:
+                        SetupGame.level1Music.loop();
+                        SetupGame.level1Music.setVolume(0.2f);
+                        break;
+                    case 3:
+                        SetupGame.level2Music.loop();
+                        SetupGame.level2Music.setVolume(0.2f);
+                        break;
+                    case 4:
+                        SetupGame.level3Music.loop();
+                        SetupGame.level3Music.setVolume(0.2f);
+                        break;
+                    case 5:
+                        SetupGame.level4Music.loop();
+                        SetupGame.level4Music.setVolume(0.2f);
+                        break;
+                    case 6:
+                        SetupGame.level5Music.loop();
+                        SetupGame.level5Music.setVolume(0.2f);
+                        break;
+
+                }
             }
             if(levelID==6) {
                 game.enterState(9, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
-                //other music.loop
             }
         }
         if(levelsMOA.isMouseOver()&& Mouse.isButtonDown(0)){
-
-                game.enterState(1, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
-              music = SetupGame.entryMusic;
-               music.loop();
-
+            game.enterState(1, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
+            music = SetupGame.entryMusic;
+            music.loop();
         }
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             game.enterState(1, new FadeOutTransition(),new FadeInTransition()); //level menu

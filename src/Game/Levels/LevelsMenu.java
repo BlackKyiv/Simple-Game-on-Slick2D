@@ -59,28 +59,28 @@ public class LevelsMenu  extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(level1MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(2, new FadeOutTransition(),new FadeInTransition()); //level1
-            music.loop();
-            music.setVolume(0.2f);
+            SetupGame.level1Music.loop();
+            SetupGame.level1Music.setVolume(0.2f);
         }
         if(level2MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(3, new FadeOutTransition(),new FadeInTransition()); //level2
-            music.loop();
-            music.setVolume(0.2f);
+            SetupGame.level2Music.loop();
+            SetupGame.level2Music.setVolume(0.2f);
         }
         if(level3MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(4, new FadeOutTransition(),new FadeInTransition()); //level3
-            music.loop();
-            music.setVolume(0.2f);
+            SetupGame.level3Music.loop();
+            SetupGame.level3Music.setVolume(0.2f);
         }
         if(level4MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(5, new FadeOutTransition(),new FadeInTransition()); //level4
-            music.loop();
-            music.setVolume(0.2f);
+            SetupGame.level4Music.loop();
+            SetupGame.level4Music.setVolume(0.2f);
         }
         if(level5MOA.isMouseOver()&&Mouse.isButtonDown(0)){
             game.enterState(6, new FadeOutTransition(),new FadeInTransition()); //level5
-            music.loop();
-            music.setVolume(0.2f);
+            SetupGame.level5Music.loop();
+            SetupGame.level5Music.setVolume(0.2f);
         }
         if(container.getInput().isKeyDown(Input.KEY_ESCAPE)){
             game.enterState(0, new FadeOutTransition(),new FadeInTransition()); //main menu

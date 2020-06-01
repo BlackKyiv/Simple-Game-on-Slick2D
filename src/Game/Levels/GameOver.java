@@ -15,7 +15,7 @@ public class GameOver extends BasicGameState {
     Image background, replay, levels;
     private MouseOverArea replayMOA, levelsMOA;
     private Music music;
-    private static int  enterState;
+    private static int enterState;
 
     @Override
     public int getID() {
@@ -45,9 +45,28 @@ public class GameOver extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(replayMOA.isMouseOver()&& Mouse.isButtonDown(0)){
             game.enterState( enterState, new FadeOutTransition(),new FadeInTransition());
-            music=SetupGame.levelMusic;
-            music.loop();
-            music.setVolume(0.2f);
+            switch (enterState){
+                case 2:
+                    SetupGame.level1Music.loop();
+                    SetupGame.level1Music.setVolume(0.2f);
+                    break;
+                case 3:
+                    SetupGame.level2Music.loop();
+                    SetupGame.level2Music.setVolume(0.2f);
+                    break;
+                case 4:
+                    SetupGame.level3Music.loop();
+                    SetupGame.level3Music.setVolume(0.2f);
+                    break;
+                case 5:
+                    SetupGame.level4Music.loop();
+                    SetupGame.level4Music.setVolume(0.2f);
+                    break;
+                case 6:
+                    SetupGame.level5Music.loop();
+                    SetupGame.level5Music.setVolume(0.2f);
+                    break;
+            }
         }
         if(levelsMOA.isMouseOver()&& Mouse.isButtonDown(0)){
             game.enterState(1, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
@@ -55,6 +74,7 @@ public class GameOver extends BasicGameState {
             music.loop();
         }
     }
+
 
     public static void setReplayLevel(int i){
         enterState = i;
