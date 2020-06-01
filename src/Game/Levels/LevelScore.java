@@ -13,7 +13,7 @@ public class LevelScore extends BasicGameState {
 
     private Image background, stars0,stars1,stars2,stars3, next,levels, score, time, symbol, result1,result2,result3,result0;
     private static int levelScore=0;
-    private int levelID=2;
+    private static int levelID=2;
     private static int levelTime=0;
     private String path= SetupGame.path;
     private MouseOverArea nextMOA, levelsMOA;
@@ -22,6 +22,10 @@ public class LevelScore extends BasicGameState {
     @Override
     public int getID() {
         return 10;
+    }
+
+    public static void setLevelID(int id){
+        levelID = id;
     }
 
     @Override

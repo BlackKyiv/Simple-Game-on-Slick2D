@@ -254,6 +254,7 @@ public abstract class Level extends BasicGameState {
         if(readyToGoNextLevel && babka.intersects(exitNextLevel)){
             System.out.println("Our id"+id+" Next level id:"+nextLevelId);
             LevelScore.setLevelScore (stars);
+            LevelScore.setLevelID(id);
             restart(container, game);
             if (id==6){
                 game.enterState(7);
