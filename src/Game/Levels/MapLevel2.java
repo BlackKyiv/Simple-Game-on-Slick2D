@@ -18,7 +18,6 @@ public class MapLevel2 extends Level {
     private Image background, wall,subWall,arrow;
     private SpriteSheet wallSS;
 
-    private ArrayList<Teleport> teleports;
     private  ArrayList<Coronavirus> coronas = new ArrayList<>();
 
     private int wallThickness=25;

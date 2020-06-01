@@ -255,7 +255,7 @@ public abstract class Level extends BasicGameState {
             System.out.println("Our id"+id+" Next level id:"+nextLevelId);
             LevelScore.setLevelScore (stars);
             restart(container, game);
-            game.enterState(7);
+            game.enterState(nextLevelId);
 
         }
 
