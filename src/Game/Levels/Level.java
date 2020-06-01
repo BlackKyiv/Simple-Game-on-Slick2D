@@ -45,6 +45,9 @@ public abstract class Level extends BasicGameState {
     private ArrayList<TapokPick> tapki = new ArrayList<>();
     private ArrayList<Teleport1> teleports = new ArrayList<>();
 
+    private GameContainer gameContainer;
+    private StateBasedGame game;
+
     protected void addEnemy(Enemy enemy){
         enemies.add(enemy);
     }
@@ -96,6 +99,14 @@ public abstract class Level extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        obstacles = new ArrayList<>();
+        doors = new ArrayList<>();
+        enemies = new ArrayList<>();
+        bullets = new ArrayList<>();
+        tapki = new ArrayList<>();
+        teleports = new ArrayList<>();
+        gameContainer = container;
+        this.game = game;
         initLevel(container, game);
         initAttackZone();
         initScoreTable();
@@ -124,7 +135,6 @@ public abstract class Level extends BasicGameState {
         drawBabka();
         drawScoreTable(g);
         drawSymbol(g);
-        //drawObstacles(g);
         g.setColor(Color.yellow);
     }
 
@@ -154,7 +164,6 @@ public abstract class Level extends BasicGameState {
         graphics.drawString("X" + babka.tapkiLeft(), 925, 25);
 
         graphics.drawString("Time:"+(int)(clock.getPassedTime()/1000)+"s", 955, 25);
-      //  graphics.drawString("Score:" + score, 980, 25);
     }
 
     private void drawDoors(Graphics graphics) {
@@ -255,7 +264,7 @@ public abstract class Level extends BasicGameState {
             System.out.println("Our id"+id+" Next level id:"+nextLevelId);
             LevelScore.setLevelScore (stars);
             LevelScore.setNextLevel(id);
-            restart(container, game);
+            restart();
             if (id==6){
                 game.enterState(7);
             }else {
@@ -275,7 +284,7 @@ public abstract class Level extends BasicGameState {
             if (t.isFinished()){
                 game.enterState(8);
 
-                restart(container, game);
+                restart();
             }
 
 
@@ -286,7 +295,7 @@ public abstract class Level extends BasicGameState {
             gameOverMusic.loop();
             GameOver.setReplayLevel(this.id);
             game.enterState(8);
-            restart(container, game);
+            restart();
         }
 
     }
@@ -316,7 +325,7 @@ public abstract class Level extends BasicGameState {
 
     }
 
-    public void restart(GameContainer container, StateBasedGame game) throws SlickException {
+    public void restart() throws SlickException {
         t = new Timer(1000);
         readyToGoNextLevel = false;
         enemies = new ArrayList<>();
@@ -328,7 +337,7 @@ public abstract class Level extends BasicGameState {
         teleports = new ArrayList<>();
 
 
-        initLevel(container, game);
+        initLevel(this.gameContainer, this.game);
 
         initAttackZone();
 
@@ -419,11 +428,11 @@ public abstract class Level extends BasicGameState {
             }
            else if(enemies.get(i) instanceof Boss){
 
-            }
-            else {
+           }
+           else {
                 enemies.remove(i);
                 i--;
-            }
+           }
 
         }
 
@@ -491,7 +500,7 @@ public abstract class Level extends BasicGameState {
                     tapok.checkForCollision(obstacle);
                 }
                 for (int d = 0; d < enemies.size(); d++) {
-                    if(!(enemies.get(d) instanceof Turrel) && tapok.intersects((Shape) enemies.get(d))&&tapok.isPresent()){
+                    if(!(enemies.get(d) instanceof Turrel) &&  !(enemies.get(d) instanceof Boss) && tapok.intersects((Shape) enemies.get(d))&&tapok.isPresent()){
                         enemies.get(d).die();
                         tapok.disappear();
                     }
@@ -528,14 +537,17 @@ public abstract class Level extends BasicGameState {
                if(enemies.get(i).isAlive() && attackZone.intersects(boss.getZoneAttack())) {
                    boss.attacked();
                }
-            }else
-             if(enemies.get(i).isAlive() && attackZone.intersects( (Rectangle) enemies.get(i))){
+           }
+           else if(enemies.get(i).isAlive() && attackZone.intersects( (Rectangle) enemies.get(i))){
                 enemies.get(i).die();
-            }
+           }
 
         }
     }
 
+    protected ArrayList<Bullet> getBullets(){
+        return bullets;
+    }
 
     protected boolean isReadyToGoNextLevel(){
         return readyToGoNextLevel;

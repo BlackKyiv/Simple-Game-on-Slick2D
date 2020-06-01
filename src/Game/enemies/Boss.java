@@ -37,8 +37,8 @@ public class Boss extends Rectangle implements Enemy {
 
     private boolean spawnActive=true;
 
-    int zonesActive=4;
-    int spawn =3;
+    int zonesActive=7;
+    int spawn =2;
 
     private Image boss0 = new Image (SetupGame.path+"boss0.png");
     private Image boss1 = new Image (SetupGame.path+"boss1.png");
@@ -222,7 +222,7 @@ public class Boss extends Rectangle implements Enemy {
             zonesActive--;
             zoneAlive1=false;
             zoneActive1=false;
-            spawn+=2;
+            spawn+=1;
             return;
         }else if(zoneActive2){
             zonesActive--;
@@ -235,7 +235,7 @@ public class Boss extends Rectangle implements Enemy {
             zonesActive--;
             zoneActive3=false;
             zoneAlive3=false;
-            spawn+=2;
+            spawn+=1;
             return;
         }
         else if(zoneActive4){
@@ -249,7 +249,7 @@ public class Boss extends Rectangle implements Enemy {
             zonesActive--;
             zoneActive5=false;
             zoneAlive5=false;
-            spawn+=2;
+            spawn+=1;
             return;
         }
         else if(zoneActive6){
@@ -263,7 +263,6 @@ public class Boss extends Rectangle implements Enemy {
             zonesActive--;
             zoneActive7=false;
             zoneAlive7=false;
-            spawn+=2;
             return;
         }
     }
@@ -271,9 +270,10 @@ public class Boss extends Rectangle implements Enemy {
     public ArrayList<CoronaSmall> spawnCorona() throws SlickException{
         ArrayList<CoronaSmall> coronas= new ArrayList<CoronaSmall>();
         int shift=0;
+        Random r = new Random();
         if(isAlive()) {
             for (int i = 0; i < spawn; i++) {
-                CoronaSmall c = new CoronaSmall(this.getCenterX() + shift, this.getCenterY() + shift);
+                CoronaSmall c = new CoronaSmall(this.getCenterX() + r.nextInt(25)+shift, this.getCenterY() + shift + r.nextInt(50));
                 c.setSpeed(4);
                 coronas.add(c);
                 shift += 25;

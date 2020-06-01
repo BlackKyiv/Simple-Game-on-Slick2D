@@ -58,26 +58,31 @@ public class LevelsMenu  extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
         if(level1MOA.isMouseOver()&&Mouse.isButtonDown(0)){
+            game.getState(2).init(container, game);
             game.enterState(2, new FadeOutTransition(),new FadeInTransition()); //level1
             SetupGame.level1Music.loop();
             SetupGame.level1Music.setVolume(0.2f);
         }
         if(level2MOA.isMouseOver()&&Mouse.isButtonDown(0)){
+            game.getState(3).init(container, game);
             game.enterState(3, new FadeOutTransition(),new FadeInTransition()); //level2
             SetupGame.level2Music.loop();
             SetupGame.level2Music.setVolume(0.2f);
         }
         if(level3MOA.isMouseOver()&&Mouse.isButtonDown(0)){
+            game.getState(4).init(container, game);
             game.enterState(4, new FadeOutTransition(),new FadeInTransition()); //level3
             SetupGame.level3Music.loop();
             SetupGame.level3Music.setVolume(0.2f);
         }
         if(level4MOA.isMouseOver()&&Mouse.isButtonDown(0)){
+            game.getState(5).init(container, game);
             game.enterState(5, new FadeOutTransition(),new FadeInTransition()); //level4
             SetupGame.level4Music.loop();
             SetupGame.level4Music.setVolume(0.2f);
         }
         if(level5MOA.isMouseOver()&&Mouse.isButtonDown(0)){
+            game.getState(6).init(container, game);
             game.enterState(6, new FadeOutTransition(),new FadeInTransition()); //level5
             SetupGame.level5Music.loop();
             SetupGame.level5Music.setVolume(0.2f);

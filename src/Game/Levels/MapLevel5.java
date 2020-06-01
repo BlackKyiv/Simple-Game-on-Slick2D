@@ -41,7 +41,7 @@ public class MapLevel5 extends Level {
         setSymbol(new Symbol(1000, 50));
         setExitNextLevel(1050, 650, 50, 50);
         boss=new Boss(300, 150);
-        addEnemy(boss);
+        //addEnemy(boss);
         setExitNextLevel(1050,50,50,50);
     }
 
@@ -133,7 +133,7 @@ public class MapLevel5 extends Level {
         if (boss.isAlive()) {
             boss.getImageBoss().draw(boss.getX()-50,boss.getY()-50);;
         }
-        if(!isSymbolPresent()){
+        if(!isSymbolPresent() && !boss.isAlive()){
             arrow.draw(1050,50,50,50);
         }
         g.setColor(Color.black);
@@ -142,7 +142,7 @@ public class MapLevel5 extends Level {
 
     @Override
     protected void updateLevel(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-        if (!isSymbolPresent()) {
+        if (!isSymbolPresent() && !boss.isAlive()) {
             setReadyToGoNextLevel(true);
         }
         boss.update(delta);
@@ -150,6 +150,21 @@ public class MapLevel5 extends Level {
         if(getBabka().intersects(lava)) {
             t.start();
             getBabka().die();
+        }
+
+
+        if(boss.isAlive() && getAttackZone().intersects(boss.getZoneAttack())) {
+            boss.attacked();
+        }
+        for(int i = 0; i<getBullets().size(); i++){
+            if(getBullets().get(i) instanceof TapokThrow){
+                TapokThrow tapokThrow = (TapokThrow) getBullets().get(i);
+                if(tapokThrow.isPresent() && tapokThrow.intersects(boss.getZoneAttack())){
+                    getBullets().get(i).collided();
+                    getBullets().get(i).disappear();
+                    boss.attacked();
+                }
+            }
         }
 
         if(boss.zonePresent()&&boss.spawnActive()) {
