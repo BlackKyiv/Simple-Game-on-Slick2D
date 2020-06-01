@@ -13,7 +13,7 @@ public class LevelScore extends BasicGameState {
 
     private Image background, stars0,stars1,stars2,stars3, next,levels, score, time, symbol, result1,result2,result3,result0;
     private static int levelScore=0;
-    private int levelID=2;
+    private static int levelID;
     private static int levelTime=0;
     private String path= SetupGame.path;
     private MouseOverArea nextMOA, levelsMOA;
@@ -121,7 +121,10 @@ public class LevelScore extends BasicGameState {
 
 
     public static void setLevelScore(int l){
-      levelScore=l;
+        levelScore=l;
+    }
+    public static void setNextLevel(int l){
+        levelID=l;
     }
 
     public static void setLevelTime(int t) {
