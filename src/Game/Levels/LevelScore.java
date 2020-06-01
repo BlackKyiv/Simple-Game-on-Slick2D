@@ -99,8 +99,8 @@ public class LevelScore extends BasicGameState {
         if(nextMOA.isMouseOver()&& Mouse.isButtonDown(0)){
             if(levelID<6) {
                 game.enterState(levelID + 1, new FadeOutTransition(), new FadeInTransition()); //next level
-                music = SetupGame.levelMusic;
-                music.loop();
+               // music = SetupGame.levelMusic;
+               // music.loop();
             }
             if(levelID==6) {
                 game.enterState(9, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
