@@ -1,28 +1,62 @@
 package Game.interactiveObjects;
 
-import org.newdawn.slick.SlickException;
+import Game.SetupGame;
+import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+
+
 
 public class Injection extends Rectangle implements Bullet {
 
-    private boolean blockedLeft = false;
-
     private boolean collided = false;
 
-    private float initialX;
-    private float initialY;
     private float speed=3;
+
+    private boolean doctor;
+    private boolean reflected=false;
 
 
     private boolean right = false;
     private boolean present = true;
+    private Image imageBlueLeft;
+    private Image imageBlueRight;
+    private Image imageRedLeft;
+    private Image imageRedRight;
+    private int reflections=0;
+
 
 
     public Injection(int x, int y) throws SlickException {
-        super(x, y, 20, 10);
-        initialX = x;
-        initialY = y;
+        super(x, y, 30, 10);
+        setUpImage();
     }
+
+    private void setUpImage() throws SlickException {
+        imageBlueLeft = new Image (SetupGame.path + "injection_blue_left.PNG");;
+        imageBlueRight  = new Image (SetupGame.path + "injection_blue_right.PNG");;
+
+        imageRedLeft = new Image (SetupGame.path + "injection_red_left.PNG");;
+        imageRedRight = new Image (SetupGame.path + "injection_red_right.PNG");;
+    }
+    public Image getImageInjection(Graphics graphics) {
+    if (doctor) {
+    if (right) {
+        return imageBlueRight;
+    } else {
+        return imageBlueLeft;
+    }
+}
+else{
+    if (right) {
+        return imageRedRight;
+    } else {
+        return imageRedLeft;
+    }
+}
+
+    }
+
+
 
 
     public void update() {
@@ -48,11 +82,6 @@ public class Injection extends Rectangle implements Bullet {
                 this.setCenterX(getCenterX() - speed);
             }
         }
-    }
-
-    @Override
-    public void checkCollisions() {
-
     }
 
     @Override
@@ -101,10 +130,14 @@ public class Injection extends Rectangle implements Bullet {
     }
 
     public void reflect(){
-        if (right){
-            right=false;
-        }else{
-            right=true;
+        if (doctor&&reflections==0) {
+            reflected = true;
+            if (right) {
+                right = false;
+            } else {
+                right = true;
+            }
+            reflections++;
         }
     }
 
@@ -112,7 +145,13 @@ public class Injection extends Rectangle implements Bullet {
     public  boolean collided(){
         return collided;
     }
+    public  boolean isReflected(){
+        return reflected;
+    }
 
+    public void setDoctor(boolean doctor){
+        this.doctor=doctor;
+    }
 
 
 }
