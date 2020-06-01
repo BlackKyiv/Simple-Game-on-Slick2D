@@ -14,15 +14,11 @@ import java.util.ArrayList;
 
 public class MapLevel2 extends BasicGameState {
     private Babka babka;
-    private Rectangle terrain;
-    private Rectangle leftFrame, rightFrame, upperFrame;
-    private Rectangle leftWall,rightWall,firstFloor,secondFloor,thirdFloor,roof;
+
     private Image background,wall,wallpaper,cellarwallpaper,workshopwallpaper,window,helicopter,turret1,turret2;
     private Image lift21, lift22, lift1,lift31, lift32, lift4;
     private SpriteSheet wallSS,floorSS,wallpaper1,platform1,platform2;
     private Rectangle attackZone;
-    private Coronavirus corona;
-    private Doctor doctor;
     private Teleport tp1,tp21,tp22,tp31,tp32,tp4;
 
     private ArrayList<Rectangle> obstacles = new ArrayList<>();
@@ -30,8 +26,6 @@ public class MapLevel2 extends BasicGameState {
 
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private ArrayList<Injection> injections = new ArrayList<Injection>();
-
-    private Door door1,door2;
 
     private int wallW =10;
     private int floorH =190, floorW =900;
@@ -105,6 +99,7 @@ public class MapLevel2 extends BasicGameState {
     private void initDoors()throws SlickException{
         doors.add(new Door(190,610,10,80));
     }
+
     private void initEnemies() throws SlickException {
 
     }
@@ -301,7 +296,6 @@ public class MapLevel2 extends BasicGameState {
 
     }
 
-
     private void updateBullets(){
         //Injections update
         if (!injections.isEmpty()) {
@@ -322,7 +316,6 @@ public class MapLevel2 extends BasicGameState {
         }
 
     }
-
 
     private void checkForAttackDoors(){
         for(int i = 0; i<doors.size(); i++){
