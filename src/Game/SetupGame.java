@@ -17,12 +17,14 @@ public class SetupGame extends StateBasedGame {
     public static Music entryMusic;
     public static Music levelMusic;
     public static Music gameOverMusic;
+    private static Music coronaTime;
 
     static {
         try {
             entryMusic = new Music(pathMusic + "entryMusic.wav");
             levelMusic = new Music(pathMusic+"Intro Theme.wav");
             gameOverMusic = new Music(pathMusic+"directed by.wav");
+            coronaTime = new Music(pathMusic+"corona time.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }
