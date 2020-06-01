@@ -81,7 +81,7 @@ public class MapLevel3 extends Level {
         gurney = new Image(path+"gurney.png");
         picture = new Image(path+"shelf.png");
         shelf = new Image(path+"shelf.png");
-        logo = new Image(path+"hospital logo.png");
+        logo = new Image(path+"hospital_logo.png");
 
         addTeleport(new Teleport1(800, SetupGame.height - floorHeight - floorH - 85, 80, 85, 800, SetupGame.height - floorHeight - 85));
         arrow = new Image(path + "arrow.png");
@@ -195,7 +195,7 @@ public class MapLevel3 extends Level {
         door.draw(800, SetupGame.height - floorHeight - floorH - 85, 80, 85);
 
         logo.draw(535,120,30,30);
-        iv.draw(250,270,60,140);
+       // iv.draw(250,270,60,140);
         bed.draw(310,350,120,60);
 
         table.draw(530,350,140,60);

@@ -11,8 +11,8 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class LevelScore extends BasicGameState {
 
-    private Image background, stars0,stars1,stars2,stars3, next,levels, score, time, symbol;
-    private static int levelScore=1;
+    private Image background, stars0,stars1,stars2,stars3, next,levels, score, time, symbol, result1,result2,result3,result0;
+    private static int levelScore=0;
     private int levelID=2;
     private static int levelTime=0;
     private String path= SetupGame.path;
@@ -32,6 +32,12 @@ public class LevelScore extends BasicGameState {
             stars1 = new Image(path+"stars_1.png");
             stars2 = new Image(path+"stars_2.png");
            stars3 = new Image(path+"stars_3.png");
+
+
+        result0 = new Image(path+"passed.png");
+        result1 = new Image(path+"good.png");
+        result2 = new Image(path+"well.png");
+        result3 = new Image(path+"excellent.png");
 
         /*switch(levelID){
             case 2: symbol = new Image(path+"symbol_1.png");
@@ -64,16 +70,20 @@ public class LevelScore extends BasicGameState {
             switch(levelScore){
                 case 0:
                     stars0.draw(335,100,430,150);
+                    result0.draw(130,300,826,82);
                     break;
 
                 case 1:
                     stars1.draw(335,100,430,150);
+                    result1.draw(150,300,826,82);
                     break;
                 case 2:
                     stars2.draw(335,100,430,150);
+                    result2.draw(150,300,826,82);
                     break;
                 case 3:
                     stars3.draw(335,100,430,150);
+                    result3.draw(130,300,826,82);
                     break;
             }
 
