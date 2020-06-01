@@ -32,7 +32,7 @@ public class SetupGame extends StateBasedGame {
             level2Music = new Music(pathMusic+"level2Music.wav");
             level3Music = new Music(pathMusic+"level3Music.wav");
             level4Music = new Music(pathMusic+"level4Music.wav");
-            level5Music = new Music(pathMusic+"level1Music.wav");
+            level5Music = new Music(pathMusic+"corona time.wav");
 
             gameOverMusic = new Music(pathMusic+"directed by.wav");
             coronaTime = new Music(pathMusic+"corona time.wav");
