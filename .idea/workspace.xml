@@ -177,11 +177,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="566" y="297" width="403" height="236" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1591027833578" />
-    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1591042153213">
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2" timestamp="1591042172830">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="401" y="0" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1591018733621" />
-    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1591042153213" />
+    <state x="321" y="23" width="756" height="777" key="CommitChangelistDialog2/0.23.1280.777@0.23.1280.777" timestamp="1591042172830" />
     <state x="549" y="139" key="FileChooserDialogImpl" timestamp="1591033398821">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -230,6 +230,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590935341124" />
+    <state x="464" y="135" key="MultipleFileMergeDialog" timestamp="1591042181424">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="464" y="135" key="MultipleFileMergeDialog/0.23.1280.777@0.23.1280.777" timestamp="1591042181424" />
     <state x="292" y="88" key="Vcs.Push.Dialog.v2" timestamp="1591017329408">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -240,10 +244,11 @@
     </state>
     <state x="369" y="247" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1591018289308" />
     <state x="295" y="246" key="com.intellij.ide.util.TipDialog/0.23.1280.777@0.23.1280.777" timestamp="1591016008556" />
-    <state x="581" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591017252765">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="465" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591042186664">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="581" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1591017252765" />
+    <state x="465" y="322" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.777@0.23.1280.777" timestamp="1591042186664" />
     <state x="370" y="44" width="840" height="858" key="search.everywhere.popup" timestamp="1591017622774">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
