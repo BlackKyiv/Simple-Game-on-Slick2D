@@ -1,10 +1,7 @@
 package Game;
 
 import Game.Levels.*;
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class SetupGame extends StateBasedGame {
@@ -24,6 +21,8 @@ public class SetupGame extends StateBasedGame {
     public static Music gameOverMusic;
     public static Music winMusic;
 
+    public static Sound pickedSymbol;
+
     static {
         try {
             entryMusic = new Music(pathMusic + "entryMusic.wav");
@@ -36,6 +35,7 @@ public class SetupGame extends StateBasedGame {
 
             gameOverMusic = new Music(pathMusic+"directed by.wav");
             winMusic = new Music(pathMusic+"winningMusic.wav");
+            pickedSymbol = new Sound(pathMusic+"ta da.wav");
         } catch (SlickException e) {
             e.printStackTrace();
         }

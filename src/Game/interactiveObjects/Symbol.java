@@ -60,22 +60,26 @@ public class Symbol extends Rectangle {
 
         Rectangle leg = new Rectangle(this.getX(), this.getY() + this.width, width, 1);
         if (leg.intersects(platform)) {
+            SetupGame.pickedSymbol.play(1, 0.1f);
             present = false;
         }
 
 
         Rectangle arm1 = new Rectangle(this.getX(), this.getY() + 1, 1, height - 2);
         if ((arm1.intersects(platform))) {
+            SetupGame.pickedSymbol.play(1, 0.1f);
             present = false;
         }
 
         Rectangle arm2 = new Rectangle(this.getX() + this.getWidth(), this.getY() + 1, 1, height - 2);
         if ((arm2.intersects(platform))) {
+            SetupGame.pickedSymbol.play(1, 0.1f);
             present = false;
         }
 
         Rectangle head = new Rectangle(this.getX(), this.getY(), width, 1);
         if (head.intersects(platform)) {
+            SetupGame.pickedSymbol.play(1, 0.1f);
             present = false;
         }
 
