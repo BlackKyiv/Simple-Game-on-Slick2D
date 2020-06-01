@@ -101,7 +101,7 @@ public class Boss extends Rectangle implements Enemy {
 
 
     public void update(int delta) {
-        System.out.println(zonesActive);
+        //System.out.println(zonesActive);
         if (zonesActive==0){
             die();
         }

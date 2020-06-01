@@ -70,7 +70,7 @@ public class LevelScore extends BasicGameState {
         background.draw(0,0,1100,700);
        // symbol.draw(950,20,130,100);
         next.draw(900,600,180,55);
-        levels.draw(10,590,300,50);
+        levels.draw(50,600,300,35);
             switch(levelScore){
                 case 0:
                     stars0.draw(335,100,430,150);

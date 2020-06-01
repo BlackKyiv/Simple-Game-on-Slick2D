@@ -52,7 +52,7 @@ public class LevelsMenu  extends BasicGameState {
         level3.draw(400,300,300,80);
         level4.draw(400,400,300,80);
         level5.draw(400,500,300,80);
-        main.draw(750,600,300,50);
+        main.draw(50,600, 300,40);
     }
 
     @Override

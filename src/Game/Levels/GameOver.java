@@ -38,7 +38,7 @@ public class GameOver extends BasicGameState {
 
         background.draw(0,0,1100,700);
         replay.draw(800,600,200,40);
-        levels.draw(10,590,300,50);
+        levels.draw(50,600,300,35);
     }
 
     @Override
@@ -50,11 +50,9 @@ public class GameOver extends BasicGameState {
             music.setVolume(0.2f);
         }
         if(levelsMOA.isMouseOver()&& Mouse.isButtonDown(0)){
-
             game.enterState(1, new FadeOutTransition(), new FadeInTransition()); //if level5 then winner
             music = SetupGame.entryMusic;
             music.loop();
-
         }
     }
 
