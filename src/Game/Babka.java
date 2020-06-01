@@ -414,7 +414,7 @@ public class Babka extends Rectangle {
     }
 
     public void pickTapok(){
-        SetupGame.pickSound.play();
+        SetupGame.pickSound.play(1, 0.3f);
         tapokQ++;
     }
     public void pickTapok(int q){

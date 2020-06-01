@@ -12,7 +12,6 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 public class Winner extends BasicGameState {
 
     private Image background, main,levels, babkaWon,symbol;
-    private String path= SetupGame.path;
     private MouseOverArea mainMOA, levelsMOA;
     private Music music;
 
@@ -23,17 +22,17 @@ public class Winner extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        background = new Image(path+"menu_background_game_won.png");
+        background = new Image(SetupGame.path+"menu_background_game_won.png");
 
 
-        main = new Image(path+"main_menu.png");
+        main = new Image(SetupGame.path+"main_menu.png");
         mainMOA = new MouseOverArea(container, main,780,600);
 
-        levels = new Image(path+"levels_menu.png");
+        levels = new Image(SetupGame.path+"levels_menu.png");
         levelsMOA = new MouseOverArea(container,levels,50,600);
 
-        babkaWon = new Image(path+"babka_won.png");
-        symbol = new Image(path+"symbol_5.png");
+        babkaWon = new Image(SetupGame.path+"babka_won.png");
+        symbol = new Image(SetupGame.path+"symbol_5.png");
 
     }
 

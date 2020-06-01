@@ -25,7 +25,7 @@ public class Symbol extends Rectangle {
     private void setUpAnimation() throws SlickException {
 
 
-        image = new SpriteSheet(SetupGame.path + "symbol.PNG", 38, 40);
+        image = new SpriteSheet(SetupGame.path+ "symbol.PNG", 38, 40);
         animation = new Animation(image, 100);
         animation.setPingPong(true);
 

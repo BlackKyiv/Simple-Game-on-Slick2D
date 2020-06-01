@@ -20,7 +20,6 @@ public class MapLevel5 extends Level {
 
     private Boss boss;
     private Lava lava;
-    private String path = SetupGame.path;
 
     private boolean musicIsPlaying = false;
 
@@ -56,8 +55,8 @@ public class MapLevel5 extends Level {
     }
 
     private void initWalls() throws SlickException {
-        background = new Image(path + "background.jpg");
-        wall = new Image(path+"wall.jpg");
+        background = new Image(SetupGame.path + "background.jpg");
+        wall = new Image(SetupGame.path+"wall.jpg");
         subWall = wall.getSubImage(0,0,85,85);
 
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
@@ -77,11 +76,11 @@ public class MapLevel5 extends Level {
         addObstacle(new Rectangle(830,200,20,160));
         addObstacle(new Rectangle(300,680, 500,20));
 
-        t1 = new Image(path+"teleport.png");
-        t2 = new Image(path+"teleport.png");
+        t1 = new Image(SetupGame.path+"teleport.png");
+        t2 = new Image(SetupGame.path+"teleport.png");
 
         addTeleport(new Teleport1(10,15,80,85,1010,595));
-        arrow = new Image(path+"arrow.png");
+        arrow = new Image(SetupGame.path+"arrow.png");
     }
 
     private void initDoors() throws SlickException {

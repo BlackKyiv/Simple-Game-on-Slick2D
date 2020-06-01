@@ -15,7 +15,6 @@ public class LevelScore extends BasicGameState {
     private static int levelScore=0;
     private static int levelID;
     private static int levelTime=0;
-    private String path= SetupGame.path;
     private MouseOverArea nextMOA, levelsMOA;
     private Music music;
 
@@ -30,23 +29,23 @@ public class LevelScore extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        background = new Image(path+"menu_background_game_won.png");
+        background = new Image(SetupGame.path+"menu_background_game_won.png");
 
-          stars0 = new Image(path+"stars_0.png");
-          stars1 = new Image(path+"stars_1.png");
-          stars2 = new Image(path+"stars_2.png");
-          stars3 = new Image(path+"stars_3.png");
+          stars0 = new Image(SetupGame.path+"stars_0.png");
+          stars1 = new Image(SetupGame.path+"stars_1.png");
+          stars2 = new Image(SetupGame.path+"stars_2.png");
+          stars3 = new Image(SetupGame.path+"stars_3.png");
 
 
-        result0 = new Image(path+"passed.png");
-        result1 = new Image(path+"good.png");
-        result2 = new Image(path+"well.png");
-        result3 = new Image(path+"excellent.png");
+        result0 = new Image(SetupGame.path+"passed.png");
+        result1 = new Image(SetupGame.path+"good.png");
+        result2 = new Image(SetupGame.path+"well.png");
+        result3 = new Image(SetupGame.path+"excellent.png");
 
-        next = new Image(path+"next.png");
+        next = new Image(SetupGame.path+"next.png");
         nextMOA = new MouseOverArea(container,next,900,600);
 
-        levels = new Image(path+"levels_menu.png");
+        levels = new Image(SetupGame.path+"levels_menu.png");
        levelsMOA = new MouseOverArea(container,levels,50,600);
 
     }

@@ -32,11 +32,11 @@ public class Injection extends Rectangle implements Bullet {
     }
 
     private void setUpImage() throws SlickException {
-        imageBlueLeft = new Image (SetupGame.path + "injection_blue_left.PNG");;
-        imageBlueRight  = new Image (SetupGame.path + "injection_blue_right.PNG");;
+        imageBlueLeft = new Image (SetupGame.path+ "injection_blue_left.PNG");;
+        imageBlueRight  = new Image (SetupGame.path+ "injection_blue_right.PNG");;
 
-        imageRedLeft = new Image (SetupGame.path + "injection_red_left.PNG");;
-        imageRedRight = new Image (SetupGame.path + "injection_red_right.PNG");;
+        imageRedLeft = new Image (SetupGame.path+ "injection_red_left.PNG");;
+        imageRedRight = new Image (SetupGame.path+ "injection_red_right.PNG");;
     }
     public Image getImageInjection(Graphics graphics) {
     if (doctor) {

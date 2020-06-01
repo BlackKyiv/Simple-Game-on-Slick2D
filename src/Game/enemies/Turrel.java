@@ -93,7 +93,7 @@ public class Turrel extends Rectangle implements Enemy {
         shootGap.restart();
         shootGap.start();
         shooting = true;
-        SetupGame.throwSound.play();
+        SetupGame.throwSound.play(1, 0.3f);
         return injection;
     }
 
@@ -139,7 +139,7 @@ public class Turrel extends Rectangle implements Enemy {
 
 
     public void die(){
-        SetupGame.doctorSound.play();
+        SetupGame.doctorSound.play(1, 0.3f);
         alive = false;
     }
     public boolean isAlive(){return alive;}

@@ -31,7 +31,6 @@ public abstract class Level extends BasicGameState {
     private int score = 0;
     private int stars =0;
     private Image tapok;
-    private String path= SetupGame.path;
     Music gameOverMusic;
     Timer t = new Timer (1000);
 
@@ -121,7 +120,7 @@ public abstract class Level extends BasicGameState {
 
 
     private void initScoreTable() throws SlickException {
-        tapok = new Image(path + "tapok_score_table.png");
+        tapok = new Image(SetupGame.path + "tapok_score_table.png");
         clock = new Clock();
         clock.start();
     }

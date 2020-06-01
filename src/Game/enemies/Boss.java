@@ -224,14 +224,14 @@ public class Boss extends Rectangle implements Enemy {
             zoneAlive1=false;
             zoneActive1=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }else if(zoneActive2){
             zonesActive--;
             zoneActive2=false;
             zoneAlive2=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }
         else if(zoneActive3){
@@ -239,7 +239,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive3=false;
             zoneAlive3=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }
         else if(zoneActive4){
@@ -247,7 +247,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive4=false;
             zoneAlive4=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }
         else if(zoneActive5){
@@ -255,7 +255,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive5=false;
             zoneAlive5=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }
         else if(zoneActive6){
@@ -263,7 +263,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive6=false;
             zoneAlive6=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }
         else if(zoneActive7){
@@ -271,7 +271,7 @@ public class Boss extends Rectangle implements Enemy {
             zoneActive7=false;
             zoneAlive7=false;
             spawn+=2;
-            SetupGame.coronaSound.play();
+            SetupGame.coronaSound.play(1, 0.3f);
             return;
         }
     }

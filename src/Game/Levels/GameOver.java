@@ -10,8 +10,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class GameOver extends BasicGameState {
-
-    String path = SetupGame.path, pathMusic = SetupGame.pathMusic;
+    
     Image background, replay, levels;
     private MouseOverArea replayMOA, levelsMOA;
     private Music music;
@@ -25,11 +24,11 @@ public class GameOver extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         music = SetupGame.entryMusic;
-        background = new Image(path+"background_game_over.png");
-        replay = new Image(path+"replay.png");
+        background = new Image(SetupGame.path+"background_game_over.png");
+        replay = new Image(SetupGame.path+"replay.png");
         replayMOA = new MouseOverArea(container, replay,800,600);
 
-        levels = new Image(path+"levels_menu.png");
+        levels = new Image(SetupGame.path+"levels_menu.png");
         levelsMOA = new MouseOverArea(container,levels,50,600);
     }
 

@@ -14,9 +14,8 @@ public class TapokPick extends Rectangle{
 
     public TapokPick(float x, float y) throws SlickException {
         super(x, y, 20, 10);
-
-    setUpAnimation();
-}
+        setUpAnimation();
+    }
 
     private void setUpAnimation() throws SlickException{
 

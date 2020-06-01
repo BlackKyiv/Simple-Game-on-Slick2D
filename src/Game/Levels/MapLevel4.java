@@ -24,8 +24,7 @@ public class MapLevel4 extends Level {
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 190, floorW = 900;
     private int x_offset = 200;
-
-    private String path = SetupGame.path;
+    
 
     @Override
     public int getID() {
@@ -46,7 +45,7 @@ public class MapLevel4 extends Level {
     }
 
     private void initWalls()throws SlickException {
-        background = new Image(path+"background.jpg");
+        background = new Image(SetupGame.path+"background.jpg");
 
         addObstacle(new Rectangle(0, SetupGame.height, SetupGame.width, floorHeight)); //terrain
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
@@ -66,30 +65,30 @@ public class MapLevel4 extends Level {
             addObstacle(new Rectangle(i,510,wallWidth,90)); //on the first floor
         }
 
-        wall = new Image(path+"wall.jpg");
+        wall = new Image(SetupGame.path+"wall.jpg");
         wallSS = new SpriteSheet(wall,10,10);
         floorSS = new SpriteSheet(wall,10,10);
         platformSS = new SpriteSheet(wall,10,10);
 
-        cellarwallpaper = new Image(path+"cellarwallpaper.png");
-        workshopwallpaper = new Image(path+"workshopwallpaer.jpg");
-        wallpaper = new Image(path+"wallpaper.jpg");
+        cellarwallpaper = new Image(SetupGame.path+"cellarwallpaper.png");
+        workshopwallpaper = new Image(SetupGame.path+"workshopwallpaer.jpg");
+        wallpaper = new Image(SetupGame.path+"wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper,10,10);
 
-        lift22 = new Image(path+"lift.png");
-        lift1 = new Image(path+"lift.png");
-        lift32 = new Image(path+"lift.png");
-        lift31 = new Image(path+"lift.png");
-        lift4 = new Image(path+"lift.png");
-        lift21 = new Image(path+"lift.png");
+        lift22 = new Image(SetupGame.path+"lift.png");
+        lift1 = new Image(SetupGame.path+"lift.png");
+        lift32 = new Image(SetupGame.path+"lift.png");
+        lift31 = new Image(SetupGame.path+"lift.png");
+        lift4 = new Image(SetupGame.path+"lift.png");
+        lift21 = new Image(SetupGame.path+"lift.png");
 
         addTeleport(new Teleport1(980,410,80,85,980,600)); //1-2 floor
         addTeleport(new Teleport1(220,305,80,85,220,410)); //2-3 floor
         addTeleport(new Teleport1(980,0,80,85,980,305)); //3-4 floor
 
-        helicopter = new Image(path+"helicopter.png");
-        window = new Image(path+"window.jpg");
-        arrow = new Image(path+"arrow.png");
+        helicopter = new Image(SetupGame.path+"helicopter.png");
+        window = new Image(SetupGame.path+"window.jpg");
+        arrow = new Image(SetupGame.path+"arrow.png");
     }
 
     private void initTapki() throws SlickException {

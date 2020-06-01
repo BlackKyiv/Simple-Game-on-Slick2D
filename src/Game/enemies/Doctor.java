@@ -274,7 +274,7 @@ public class Doctor extends Rectangle implements Enemy {
     }
 
     public void die() {
-        SetupGame.doctorSound.play();
+        SetupGame.doctorSound.play(1, 0.3f);
         alive = false;
     }
 

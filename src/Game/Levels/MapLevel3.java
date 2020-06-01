@@ -20,8 +20,7 @@ public class MapLevel3 extends Level {
     private int wallWidth = 25, floorHeight = 15;
     private int floorH = 275, floorW = 700;
     private int x_offset = 200;
-
-    private String path = SetupGame.path;
+    
 
     public MapLevel3() {
     }
@@ -50,9 +49,9 @@ public class MapLevel3 extends Level {
     }
 
     private void initWalls() throws SlickException {
-        background = new Image(path + "background.jpg");
+        background = new Image(SetupGame.path + "background.jpg");
 
-        wall = new Image(path + "wall.jpg");
+        wall = new Image(SetupGame.path + "wall.jpg");
 
         addObstacle(new Rectangle(x_offset - wallWidth, SetupGame.height - floorH * 2, wallWidth, floorH - floorHeight - 85)); //left upper wall
         addObstacle(new Rectangle(x_offset - wallWidth, SetupGame.height - floorH, wallWidth, floorH - floorHeight - 85)); //left lower wall
@@ -69,20 +68,20 @@ public class MapLevel3 extends Level {
         wallSS = new SpriteSheet(wall, 10, 10);
         floorSS = new SpriteSheet(wall, 10, 10);
 
-        wallpaper = new Image(path + "wallpaper.jpg");
+        wallpaper = new Image(SetupGame.path + "wallpaper.jpg");
         wallpaper1 = new SpriteSheet(wallpaper, 100, 100);
 
-        window = new Image(path + "window.jpg");
-        door = new Image(path + "door1.png");
+        window = new Image(SetupGame.path + "window.jpg");
+        door = new Image(SetupGame.path + "door1.png");
 
-        table = new Image(path+"hospital_table.png");
-        bed = new Image(path+"bed.png");
-        gurney = new Image(path+"gurney.png");
-        picture = new Image(path+"shelf.png");
-        logo = new Image(path+"hospital_logo.png");
+        table = new Image(SetupGame.path+"hospital_table.png");
+        bed = new Image(SetupGame.path+"bed.png");
+        gurney = new Image(SetupGame.path+"gurney.png");
+        picture = new Image(SetupGame.path+"shelf.png");
+        logo = new Image(SetupGame.path+"hospital_logo.png");
 
         addTeleport(new Teleport1(800, SetupGame.height - floorHeight - floorH - 85, 80, 85, 800, SetupGame.height - floorHeight - 85));
-        arrow = new Image(path + "arrow.png");
+        arrow = new Image(SetupGame.path + "arrow.png");
     }
 
     private void initDoors() throws SlickException {

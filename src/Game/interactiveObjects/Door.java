@@ -40,10 +40,10 @@ public class Door extends Rectangle {
 
     public void broke(){
         if (window==false) {
-            SetupGame.doorSound.play();
+            SetupGame.doorSound.play(1, 0.3f);
         }
             else{
-            SetupGame.windowSound.play();
+            SetupGame.windowSound.play(1, 0.3f);
             }
 
         broken = true;

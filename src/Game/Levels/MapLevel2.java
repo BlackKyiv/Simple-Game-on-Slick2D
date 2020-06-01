@@ -22,7 +22,7 @@ public class MapLevel2 extends Level {
 
     private int wallThickness=25;
 
-    private String path = SetupGame.path;
+    
 
 
     @Override
@@ -51,8 +51,8 @@ public class MapLevel2 extends Level {
     }
 
     private void initWalls() throws SlickException {
-        background = new Image(path + "background.jpg");
-        wall = new Image(path + "wall.jpg");
+        background = new Image(SetupGame.path + "background.jpg");
+        wall = new Image(SetupGame.path + "wall.jpg");
         subWall = wall.getSubImage(0,0,85,85);
 
         addObstacle(new Rectangle(-25, 0, 25, SetupGame.height)); //left frame
@@ -76,7 +76,7 @@ public class MapLevel2 extends Level {
         addObstacle(new Rectangle(725,600,150,wallThickness)); //right stair
 
         wallSS = new SpriteSheet(wall, 10, 10);
-        arrow = new Image(path+"arrow.png");
+        arrow = new Image(SetupGame.path+"arrow.png");
     }
 
     private void initDoors() throws SlickException {
