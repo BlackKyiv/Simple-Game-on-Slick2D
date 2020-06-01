@@ -19,9 +19,10 @@ public class MapLevel5 extends Level {
     private int wallThickness=20;
 
     private Boss boss;
-
     private Lava lava;
     private String path = SetupGame.path;
+
+    private boolean musicIsPlaying = false;
 
     @Override
     public int getID() {
@@ -38,10 +39,9 @@ public class MapLevel5 extends Level {
         initEnemies();
         initTapki();
         lava = new Lava(SetupGame.height-5, SetupGame.height-110);
-        setSymbol(new Symbol(1000, 50));
+        setSymbol(new Symbol(525, 635));
         setExitNextLevel(1050, 650, 50, 50);
         boss=new Boss(300, 150);
-        //addEnemy(boss);
         setExitNextLevel(1050,50,50,50);
     }
 
@@ -135,6 +135,11 @@ public class MapLevel5 extends Level {
         }
         if(!isSymbolPresent() && !boss.isAlive()){
             arrow.draw(1050,50,50,50);
+        }
+        if(!boss.isAlive() && !musicIsPlaying){
+            musicIsPlaying = true;
+            SetupGame.winMusic.loop();
+            SetupGame.winMusic.setVolume(0.4f);
         }
         g.setColor(Color.black);
         g.drawString ("Enemy`s lives:"+ boss.livesLeft(),750,25);

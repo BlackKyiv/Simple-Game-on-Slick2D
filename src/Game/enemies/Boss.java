@@ -37,7 +37,7 @@ public class Boss extends Rectangle implements Enemy {
 
     private boolean spawnActive=true;
 
-    int zonesActive=7;
+    int zonesActive=5;
     int spawn =2;
 
     private Image boss0 = new Image (SetupGame.path+"boss0.png");
